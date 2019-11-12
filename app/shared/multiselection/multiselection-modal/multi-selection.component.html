@@ -1,0 +1,21 @@
+<form #dialog="ngForm" autocomplete="off">
+    <p-dialog class="multi-select-dialog" header={{title}} [(visible)]="display" (onShow)="search=undefined;" (onHide)="reset();" modal="modal" width="400">
+        <input type="text" class="form-control" name="search" placeholder="Search by {{searchTitle}}" [(ngModel)]="search"  />
+        <nav>
+            <ul class="dialog-list">
+                <li *ngFor="let item of items | searchFilter:search" class="row">
+                    <div class="checkbox-inline col-md-12">
+                        <label class="col-md-11 multi-select-data"><input class="col-md-1" id={{item.id}} [(ngModel)]="item.checked" type="checkbox" name={{item.name}} (click)="itemSelected()" [ngModelOptions]="{standalone: true}"><span style="padding-left:1em;">{{item.name}}</span></label>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <footer>
+            <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix panel-btns">
+                <button  type="button" pButton icon="fa-close" (click)="display=false;search=undefined;reset()" label="Cancel"></button>
+                <button type="button" pButton icon="fa-check" (click)="addSelection(dialog.value)" [disabled]="disable" label="Add"></button>
+            </div>
+        </footer>
+    </p-dialog>
+</form>
+<span class="glyphicon glyphicon-plus" style="cursor:pointer;" (click)="showDialog()"></span>

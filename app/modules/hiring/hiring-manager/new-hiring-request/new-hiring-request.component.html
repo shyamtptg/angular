@@ -1,0 +1,242 @@
+<form #basicHiringDetailsForm="ngForm">
+    <div #basicHiringDetails [hidden]="false" *ngIf="detailsFrmHiringRequestData">
+        <div class="row maindiv">
+            <p class="heading">ADD NEW HIRING REQUEST<span class="subheading"> | ALL MANDATORY*</span></p>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="hiringfor">Hiring For*</label>
+                    <select name="hiringfor" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.primaryHiringDetails.hiringFor" required #hiringForRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="Account Growth">Account Growth</option>
+                    </select>
+                    <div [hidden]="hiringForRef.valid || hiringForRef.untouched" class="alert alert-danger">Please select the Hiring For</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="clientname">Client Name*</label>
+                    <select name="clientname" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.primaryHiringDetails.clientName" required #clientNameRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="Trimble">Trimble</option>
+                    </select>
+                    <div [hidden]="clientNameRef.valid || clientNameRef.untouched" class="alert alert-danger">Please select the Client Name</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="department">Department*</label>
+                    <select name="department" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.primaryHiringDetails.department" required #departmentRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="Design">Design</option>
+                    </select>
+                    <div [hidden]="departmentRef.valid || departmentRef.untouched" class="alert alert-danger">Please select the Department</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="hiringtype">Hiring Type*</label>
+                    <select name="hiringtype" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.primaryHiringDetails.hiringType" required #hiringTypeRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="OffShore">OffShore</option>
+                    </select>
+                    <div [hidden]="hiringTypeRef.valid || hiringTypeRef.untouched" class="alert alert-danger">Please select the Hiring Type</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="hiringmanager">Hiring Manager*</label>
+                    <select name="hiringmanager" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.primaryHiringDetails.hiringManager" required #hiringManagerRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="RamKishore">Ram Kishore</option>
+                    </select>
+                    <div [hidden]="hiringManagerRef.valid || hiringManagerRef.untouched" class="alert alert-danger">Please select the Hiring Manager</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="priority">Priority*</label>
+                    <select name="priority" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.primaryHiringDetails.priority" required #priorityRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="High">High</option>
+                    </select>
+                    <div [hidden]="priorityRef.valid || priorityRef.untouched" class="alert alert-danger">Please select the Priority</div>
+                </div>
+            </div>
+            <!--<div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-12">
+                    <label class="labelText" for="model1">Model</label>
+                    <select name="model1" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.primaryHiringDetails.model">
+                        <option value="0">Select</option>
+                        <option value="OffShore">OffShore</option>
+                    </select>
+                </div>
+            </div>-->
+        </div>
+        <ng-template ngbModalContainer></ng-template>
+        <div class="row maindiv">
+            <p class="heading">HIRING REQUEST DETAILS<span class="subheading"> | ALL MANDATORY*</span></p>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="practice">Practice*</label>
+                    <select name="practice" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.secondaryHiringDetails.practice" required #practiceRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="UX">UX</option>
+                    </select>
+                    <div [hidden]="practiceRef.valid || practiceRef.untouched" class="alert alert-danger">Please select the Practice</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="competency">Competency*</label>
+                    <select name="competency" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.secondaryHiringDetails.competency" required #competencyRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="Android">Android</option>
+                    </select>
+                    <div [hidden]="competencyRef.valid || competencyRef.untouched" class="alert alert-danger">Please select the Competency</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="workloc">Work Location*</label>
+                    <select name="workloc" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.secondaryHiringDetails.workLocation" required #workLocationRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="InnomindsHyd">Innominds Hyd</option>
+                    </select>
+                    <div [hidden]="workLocationRef.valid || workLocationRef.untouched" class="alert alert-danger">Please select the Work Location</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" >Experience Req(Yrs)*</label>
+                    <div>
+                        <input type="number" name="expReqFrom" class="col-md-4 col-xs-12" [(ngModel)]="detailsFrmHiringRequestData.secondaryHiringDetails.experienceReq.from" required #expReqFromRef="ngModel" />
+                        <span class="col-md-1 col-xs-1">to*</span>
+                        <input type="number" name="expReqTo" class="col-md-4 col-xs-12" [(ngModel)]="detailsFrmHiringRequestData.secondaryHiringDetails.experienceReq.to" required #expReqToRef="ngModel" />
+                    </div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="expectedrole">Expected Role*</label>
+                    <select name="expectedrole" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.secondaryHiringDetails.expectedRole" required #expectedRoleRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="Senior / lead level">Senior/Lead Level</option>
+                    </select>
+                    <div [hidden]="expectedRoleRef.valid || expectedRoleRef.untouched" class="alert alert-danger">Please select the Expected Role</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="noofres">Number of Resources*</label>
+                    <input type="number" name="noofres" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.secondaryHiringDetails.numberOfResources" required #numOfResRef="ngModel" />
+                    <div [hidden]="numOfResRef.valid || numOfResRef.pristine" class="alert alert-danger">Please enter the Number of Resources</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="expectedstart">Expected Start Date*</label>
+                    <input type="date" name="expectedstart" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.secondaryHiringDetails.expectedStartDate" required #expectedStartDateRef="ngModel" />
+                    <div [hidden]="expectedStartDateRef.valid || expectedStartDateRef.pristine" class="alert alert-danger">Please select the Expected Start Date</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="model2">Model*</label>
+                    <select name="model2" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.secondaryHiringDetails.model" required #modelRef="ngModel">
+                        <option value="0">Select</option>
+                        <option value="OffShore">OffShore</option>
+                    </select>
+                    <div [hidden]="modelRef.valid || modelRef.untouched" class="alert alert-danger">Please select the Model</div>
+                </div>
+            </div>
+        </div>
+        <div class="row maindiv">
+            <p class="heading">JOB DESCRIPTION</p>
+            <job-description-modal [modalId]="existingJobDescId" [modalTitle]="existingJobDescTitle" (continue)="showJobDescription()"></job-description-modal>
+            <div class="col-md-2"></div>
+            <job-description-modal [modalId]="newJobDescId" [modalTitle]="newJobDescTitle" (continue)="showJobDescription()" (loadJobDetails)="loadJobDescriptionDetails($event)"></job-description-modal>
+        </div>
+        <div class="pull-right new-hiring-request-btns">
+            <button class="job-description-cancel-button">Cancel</button>
+            <!--<button class="job-description-save-button" (click)="saveHiringDetails(detailsFrmHiringRequestData)">Save</button>-->
+            <button class="job-description-next-button" (click)="newHiringRequestNext()" [disabled]="!basicHiringDetailsForm.valid">Next</button>
+        </div>
+    </div>
+</form>
+<div #interviewPanelDetails [hidden]="true" class="row maindiv">
+    <interview-panel [panelDetails]="panel" *ngFor="let panel of panelList" (back)="finishJobDescription()" (next)="loadHiringRequestSummary()" (newPanel)="addNewPanel($event)" (remove)="removePanel(panel)"></interview-panel>
+</div>
+<div #hiringRequestSummary [hidden]="true" class="row maindiv">
+    <hiring-request-summary [detailsFrmHiringSummaryData]="detailsFrmHiringSummaryData" [panelList]="panelList" (back)="newHiringRequestNext()"></hiring-request-summary>
+</div>
+<div #jobDescriptionDetails [hidden]="true" class="row maindiv">
+    <div class="row">
+        <div class="col-md-9 job-description-container">
+            <job-description [code]="code" [description]="description" [location]="location" [country]="country"></job-description>
+        </div>
+        <div class="col-md-3 job-description-progress">
+            <div class="progress">
+                <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [style.width] = "progressPercentage+'%'">
+                    {{progressPercentage}}%
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="job-description-details">
+        <p class="heading">JOB DESCRIPTION</p>
+        <tabs #tablist (tabSelect)="tabSelect($event)" *ngIf="jobDescData">
+        <tab #companyBackground [tabTitle]="'Company Background'">
+        <div class="form-group">
+            <label for="companyBackground" class="labelText">Company Background</label>
+            <textarea class="form-control"
+            id="companyBackground" [(ngModel)]="jobDescData.details.companyOverview"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="practiceBackground" class="labelText">Practice Background</label>
+            <textarea class="form-control"
+            id="practiceBackground" [(ngModel)]="jobDescData.details.practiceOverview"></textarea>
+        </div>
+        </tab>
+        <tab #jobDescription [tabTitle]="'Job Description'">
+        <div class="form-group">
+            <label for="jobDescription" class="labelText">Job Description</label>
+            <textarea class="form-control"
+            id="jobDescription" [(ngModel)]="jobDescData.details.jobDesc"></textarea>
+        </div>
+        </tab>
+        <tab [tabTitle]="'Position/Responsibilities'">
+        <div class="form-group">
+            <label for="positionResponsibility" class="labelText">Position/Responsibilities</label>
+            <textarea class="form-control"
+            id="positionResponsibility" [(ngModel)]="jobDescData.details.responsibilities"></textarea>
+        </div>
+        </tab>
+        <tab [tabTitle]="'Skills'">
+        <div class="form-group">
+            <label for="designSkills" class="labelText">Select Design Skills</label>
+            <div class="tag-section">
+                <tag-input [(ngModel)]="designTags"></tag-input>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="designSkills" class="labelText">Select Technical Skills</label>
+            <div class="tag-section">
+                <tag-input [(ngModel)]="technicalTags"></tag-input>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="designSkills" class="labelText">Certifications (If mandatory)</label>
+            <div class="tag-section">
+                <tag-input [(ngModel)]="certificationTags"></tag-input>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="otherSkills" class="labelText">Other Skills</label>
+            <textarea class="form-control"
+            id="otherSkills" [(ngModel)]="jobDescData.details.skills.others"></textarea>
+        </div>
+        </tab>
+        <tab [tabTitle]="'Education'">
+        <div class="form-group">
+            <label for="education" class="labelText">Education</label>
+            <textarea class="form-control"
+            id="education" [(ngModel)]="jobDescData.details.education"></textarea>
+        </div>
+        </tab>
+        <tab [tabTitle]="'Initial Screening Questions'">
+        <div class="form-group">
+            <label for="initialScrreningQuestions" class="labelText">Initial Screening Questions</label>
+            <textarea class="form-control"
+            id="initialScrreningQuestions" [(ngModel)]="jobDescData.details.screeningQuestions"></textarea>
+        </div>
+        </tab>
+        </tabs>
+        <div class="pull-right">
+            <button class="job-description-cancel-button">Cancel</button>
+            <button #jobDescriptionNext class="job-description-next-button" (click)="next()">Next</button>
+            <button #jobDescriptionFinish hidden=true class="job-description-finish-button" (click)="finishJobDescription()">Finish</button>
+        </div>
+    </div>
+</div>

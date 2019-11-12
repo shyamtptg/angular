@@ -1,0 +1,35 @@
+<button type="button" class="col-md-5 newjddiv" data-toggle="modal" [attr.data-target]="'#' + modalId">{{modalTitle}}<img class="arrow-img2" /></button>
+<div class="modal" id="{{modalId}}" tabindex="-1" role="dialog" [attr.aria-labelledby]="modalId+ 'Label'">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<form *ngIf="jobDescTemplateForm">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="close">
+					<span aria-hidden="true" class="modal-close">&times;</span>
+					</button>
+					<h3 class="modal-title" [attr.id]="modalId+ 'Label'">Choose Job Description Template</h3>
+				</div>
+				<div class="modal-body">
+					<div class="form-group">
+						<label class="labelText" for="department">Department</label>
+						<input  name="department" class="form-control" [(ngModel)]="jobDescTemplateForm.departmentId" />
+					</div>
+					<div class="form-group">
+						<label class="labelText" for="practice">Practice</label>
+						<input  name="practice" class="form-control" [(ngModel)]="jobDescTemplateForm.practiceId" />
+					</div>
+					<div class="form-group">
+						<label class="labelText" for="template">Choose Template</label>
+						<select name="template" class="form-control" [(ngModel)]="jobDescTemplateForm.templateName">
+							<option value="0">Senior/Lead level</option>
+						</select>
+					</div>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-secondary modal-details-btn" data-dismiss="modal">No, Thanks</button>
+					<button type="button" class="btn btn-secondary modal-details-btn" data-dismiss="modal" (click)="continueJobDesc()">Continue</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</div>

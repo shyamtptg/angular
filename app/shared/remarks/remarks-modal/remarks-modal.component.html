@@ -1,0 +1,25 @@
+<button type="button" class="remark-button" [disabled]="isDisable" data-toggle="modal" [attr.data-target]="'#' + modalId">{{remarkTitle}}</button>
+<div class="modal comments-modal" id="{{modalId}}" tabindex="-1" name="remarksPopup" role="dialog" [attr.aria-labelledby]="modalId+ 'Label'">
+ <div class="modal-dialog" role="document">
+   <div class="modal-content">
+     <div class="modal-header">
+       <button type="button" (click)="resetData()" class="close" data-dismiss="modal" aria-label="close">
+         <span aria-hidden="true" class="remarks-close">&times;</span>
+       </button>
+       <h3 class="modal-title" [attr.id]="modalId+ 'Label'">{{remarkTitle}}</h3>
+     </div>
+     <div class="modal-body remarks-body">
+      <div class="form-group">
+        <label for="remarks" class="labelText">Remarks{{(required)?'*' : ''}}</label>
+        <textarea *ngIf="!required" class="form-control remarks" maxlength="1024" name="remarks" [(ngModel)]="reason" style="height:120px;"></textarea>
+        <textarea *ngIf="required" class="form-control remarks" maxlength="1024" name="remarks" [(ngModel)]="reason" (keypress)="restrictSpace($event, reason)" style="height:120px;"></textarea>
+        <div *ngIf="showMessage" class="alert alert-danger">{{(message)? message : 'Please enter the comments'}}</div>
+      </div>
+     </div>
+     <div class="modal-footer">
+       <button (click)="resetData()" class="remarks-details-button" type="button" data-dismiss="modal">Cancel</button>
+       <button class="remarks-details-button" type="button" (click)="saveRemarks()">Done</button>
+     </div>
+   </div>
+ </div>
+</div>

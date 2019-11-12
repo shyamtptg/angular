@@ -1,0 +1,110 @@
+<form #offerDetailsForm="ngForm" autocomplete="off" novalidate>
+	<div class="row offerletter-details">
+		<p class="offerletter-main-heading">OFFER LETTER DETAILS</p>
+	</div>
+	<div class="row offerletter-details">
+		<div class="col-md-11 col-xs-12">
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+					<label class="labelText" for="name">Name</label>
+					<div class="offerletter-details-text">{{prospectName}}</div>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+					<label class="labelText" for="experience">Total Years Of Experience</label>
+					<div class="offerletter-details-text">{{totalExp}}</div>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+					<label class="labelText" for="relevantExperience">Relevant Experience</label>
+					<div class="offerletter-details-text">{{relevantExp}}</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-3 col-sm-3 col-xs-6 form-group" style="padding-right:5px;">
+					<label class="labelText" for="designation">Offered Designation*</label>
+					<select name="designation" class="form-control" style="padding-left:4px;padding-right:3px;" required [(ngModel)]="offerDetails.offeredDesignationId" [disabled]="readonly">
+					    <option value="">Select</option>
+                    	<option *ngFor="let desig of comboData.designation" [value]="desig.id">{{desig.designation}}</option>
+                   	</select>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 form-group" style="padding-left:0;padding-right:4px;">
+                   <label class="labelText" for="suffix">Designation Suffix</label>
+                   <input type="text" class="form-control" name="designationSuffix" title="{{desigSuffix}}" [(ngModel)]="desigSuffix" [readonly]="readonly"/>
+                </div>
+				<div *ngIf="!commonService.hideFeature('VIEW_PROFILE_CTC_DETAILS')" class="col-md-3 col-sm-3 col-xs-12 form-group">
+					<label class="labelText" for="finalCtc">Offered CTC*</label>
+					<input type="number" class="form-control"  min="0" name="finalCtc" [(ngModel)]="offerDetails.offerCtc"(keyup)="convertToWords(offerCtc.value)" (keypress)="restrictCharcters(offerCtc.value)" #offerCtc ="ngModel"  [readonly]="readonly" required/>
+					<div style="font-size:12px"> {{ctcToWord}}</div>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+					<label class="labelText" for="workLocation">Work Location*</label>
+					<select name="workloc" class="form-control" required [(ngModel)]="offerDetails.workLocationId"  [disabled]="readonly">
+					<option value="">Select</option>
+                    <option *ngFor="let location of comboData.workLocation" [value]="location.id">{{location.clientName}}</option>
+                	</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group doj-opacity" >
+					<label class="labelText" for="dateOfJoining">Date Of Joining*</label>
+					<!-- <input type="date" name="dateOfJoining" class="form-control" [(ngModel)]="offerDetails.expectedJoiningDate" required/> -->
+					<p-calendar name="dateOfJoining" [(ngModel)]="offerDetails.expecJoiningDate" [defaultDate]="today" [minDate]="today" showIcon="true" dateFormat="dd-mm-yy" (onSelect)="onBlurMethod($event)" required  [disabled]="readonly">
+					</p-calendar>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group doj-opacity reporting-time">
+					<label class="labelText" for="reportingTime">Reporting Time*</label>
+					<p-calendar name="reportingTime" [(ngModel)]="reportingTime" showTime="true" hourFormat="12" [timeOnly]="true" (onSelect)="getTime($event)" required  [disabled]="readonly"></p-calendar>
+					<!--<input type="time" name="reportingTime" class="form-control" [(ngModel)]="offerDetails.reportingTime" required/>-->
+				</div>
+				<div class="col-md-4 col-sm-4 form-group">
+					<label class="labelText" for="location">Reporting Location*</label>
+					<input type="text" name="location" class="form-control" maxlength="128" [(ngModel)]="offerDetails.location" [readonly]="readonly" required/>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group doj-opacity">
+					<label class="labelText" for="expiryDate">Offer Expiry Date*</label>
+					<!-- <input type="date" name="expiryDate" class="form-control" [(ngModel)]="offerDetails.expiryDate" required/> --> 
+					<p-calendar *ngIf="offerexpirydate"  name="expiryDate" [(ngModel)]="offerDetails.expDate" [defaultDate]="today" [minDate]="today" [maxDate]="yesterday || today"  showIcon="true" dateFormat="dd-mm-yy" required  [disabled]="readonly" (onSelect)="checkExpiryDate()" (onFocus)="setDatesForExpiry()"></p-calendar>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+					<label class="labelText" for="expiryGracePeriod">Expiry Grace Period (In Days)*</label>
+					<input type="text" name="expiryGracePeriod" class="form-control" [(ngModel)]="offerDetails.expiryGracePeriod" (change)="checkExpiryDate()" (keypress)="restrictNumeric($event)" required  [readonly]="readonly"/>
+				</div>
+			</div>
+			<div class="row">
+			    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+					<label class="labelText" for="signature">HR Signature*</label>
+					<textarea name="signature" rows=6 class="form-control" maxlength="128" [(ngModel)]="offerDetails.signature"  [readonly]="readonly" required></textarea>
+				</div>
+			    <div class="col-md-4 col-sm-4 col-xs-12 form-group">
+					<label class="labelText" for="address">Office Address*</label>
+					<textarea name="address" rows=6 class="form-control" [(ngModel)]="offerDetails.officeAddress"  [readonly]="readonly" required></textarea>
+				</div>
+				<div class="col-md-4 col-sm-4 col-xs-12 form-group">
+					<label class="labelText" for="remarks">Remarks</label>
+					<textarea name="remarks" rows=6 class="form-control" maxlength="250" [(ngModel)]="offerDetails.comments"  [readonly]="readonly"></textarea>
+				</div>
+			</div>
+		</div>
+	</div>
+    <div class="row hiring-request-need-details config-container res-hiringreqneed">
+		<ctc-line-item [configList]="configList" [lineItems]="lineItems" [paymentPeriods]="paymentPeriods" (addItem)="addLineItem()" [readonly]="readonly" (deleteItem)="deleteLineItem($event)"></ctc-line-item>
+    </div>
+    <!--<div class="row offerletter-details" style="margin-top:0.3em">
+    	<div class="col-xs-12 form-group">
+		<label class="need-heading" style="color:#575757;font-weight: 600;font-size:13px" for="annexure">ANNEXURE</label>
+		<textarea name="annexure" rows=10 class="form-control" [(ngModel)]="annexure" [readonly]="readonly"></textarea>
+		</div>
+	</div>-->
+	<div class="row hiring-request-need-details config-container res-hiringreqneed">
+		<annexure [annexure]="annexure" [readonly]="readonly"></annexure>
+	</div>
+	<div *ngIf="(editMode && (!commonService.hideFeature('UPLOAD_OFFER_ATTACHMENT') || !commonService.hideFeature('DELETE_OFFER_ATTACHMENT')))" class="row hiring-request-need-details config-container res-hiringreqneed">
+		<attachments [offerId]="offerId" [hiringId]="hiringDetails.hiringId" [needId]="hiringDetails.hiringNeedId" [readonly]="readonly"></attachments>
+	</div>
+	<div class="pull-right offerletter-btns">
+		<button *ngIf="!commonService.hideFeature('UPDATE_OFFER')" [hidden]="editMode" class="pull-right offerletter-save-button" [disabled]="!offerDetailsForm.valid|| readonly" (click)="saveOffer()">Save</button>
+		<button *ngIf="!commonService.hideFeature('UPDATE_OFFER')" [hidden]="(!editMode)||readonly" class="pull-right offerletter-save-button" [disabled]="!offerDetailsForm.valid" (click)="updateOffer()">Update</button>
+		<button class="pull-right offerletter-save-button" (click)="navigateToPrevious()">Close</button>
+	</div>
+</form>

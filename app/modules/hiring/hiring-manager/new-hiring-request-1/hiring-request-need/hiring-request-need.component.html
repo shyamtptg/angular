@@ -1,0 +1,132 @@
+<form #hiringNeedDetailsForm="ngForm" autocomplete="off" novalidate>
+    <div class="row maindiv card" *ngIf="needDetailsFrmHiringRequestData">
+        <p class="heading">ADD HIRING REQUEST NEED DETAILS<span class="subheading"> | ALL MANDATORY*</span></p>
+        <div class="row">
+            <div *ngIf="comboData" class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="practice">Practice*</label>
+                <select name="practice" class="form-control" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.practice" required #practiceRef="ngModel" (change)="loadCompetenciesByPractice()">
+                    <option *ngFor="let practice of comboData.practice" [value]="practice.id">{{practice.name}}</option>
+                </select>
+                <div [hidden]="practiceRef.valid || practiceRef.untouched" class="alert alert-danger">Please select the Practice</div>
+            </div>
+            <div *ngIf="comboData" class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="competency">Competency*</label>
+                <select name="competency" class="form-control" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.competency" required #competencyRef="ngModel">
+                    <option *ngFor="let competency of comboData.competency" [value]="competency.id">{{competency.name}}</option>
+                </select>
+                <div [hidden]="competencyRef.valid || competencyRef.untouched" class="alert alert-danger">Please select the Competency</div>
+            </div>
+            <div *ngIf="comboData" class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="workloc">Work Location*</label>
+                <select name="workloc" class="form-control" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.workLocation" required #workLocationRef="ngModel">
+                    <option *ngFor="let location of comboData.workLocation" [value]="location.id">{{location.clientName}}</option>
+                </select>
+                <div [hidden]="workLocationRef.valid || workLocationRef.untouched" class="alert alert-danger">Please select the Work Location</div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" >Experience Req (Yrs)*</label>
+                <div>
+                    <div class="col-md-5 col-xs-12" style="padding-left:2px;padding-right:2px">
+                        <input type="number" name="expReqFrom" min="0" max="100" class="form-control" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.experienceReq.from" placeholder="Min Experience" (blur)="validateExpReq('min')" required #expReqFromRef="ngModel" (keypress)="restrictFloatnumber($event) && restrictExpCharcters(expReqFromRef.value)" />
+                    </div>
+                    <span class="col-md-1 col-xs-1 to-text" style="padding-top:0.3em">to</span>
+                    <div class="col-md-5 col-xs-12" style="padding-left:2px;padding-right:2px">
+                        <input type="number" name="expReqTo" min="0" max="100" class="form-control" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.experienceReq.to" placeholder="Max Experience" (blur)="validateExpReq('max')" required #expReqToRef="ngModel" (keypress)="restrictFloatnumber($event) && restrictExpCharcters(expReqToRef.value)"/>
+                    </div>
+                </div>
+                <div [hidden]="(expReqFromRef.valid || expReqFromRef.pristine) && (expReqToRef.valid || expReqToRef.pristine)" style="clear: both" class="alert alert-danger experience-alert">Please enter the Experience Req</div>
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="expectedrole">Expected Role*</label>
+                <input type="text" name="expectedrole" class="form-control" maxlength="64" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.expectedRole" required #expectedRoleRef="ngModel" />
+                <div [hidden]="expectedRoleRef.valid || expectedRoleRef.pristine" class="alert alert-danger">Please enter the Expected Role</div>
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="noofres">Number of Resources*</label>
+                <input type="number" name="noofres" class="form-control" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.numberOfResources" required #numOfResRef="ngModel" pattern="^([1-9][0-9]{0,2}|1000)$"/>
+                <div [hidden]="(numOfResRef.valid || numOfResRef.pristine || numOfResRef.hasError('pattern'))" class="alert alert-danger">Please enter the Number of Resources</div>
+                <div *ngIf="numOfResRef.hasError('pattern')" class="alert alert-danger">
+                    The value for Number of Resources should be an integer between 1 and 1000.
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="expectedstart">Expected Start Date*</label>
+                <div class="expected-startdate"><p-calendar name="expectedStartDate" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.expectedStartDate" dateFormat="dd-mm-yy" [monthNavigator]="true" [yearNavigator]="true" yearRange="2000:2035" [minDate]="today" [showIcon]="true" readonlyInput required #expectedStartDateRef="ngModel"></p-calendar></div>
+                <div [hidden]="expectedStartDateRef.valid || expectedStartDateRef.pristine" class="alert alert-danger">Please select the Expected Start Date</div>
+            </div>
+            <div *ngIf="comboData" class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="model2">Model*</label>
+                <select name="model2" class="form-control" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.model" required #modelRef="ngModel">
+                    <option *ngFor="let model of comboData.model" [value]="model.code">{{model.description}}</option>
+                </select>
+                <div [hidden]="modelRef.valid || modelRef.untouched" class="alert alert-danger">Please select the Model</div>
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="needpurpose">Purpose*</label>
+                <input type="text" name="needpurpose" class="form-control" placeholder="Enter a description for hiring need" maxlength="128" [(ngModel)]="needDetailsFrmHiringRequestData.needDetails.purpose" required #purRef="ngModel"/>
+                <div [hidden]="purRef.valid || purRef.pristine" class="alert alert-danger">Please enter the Purpose</div>
+            </div>
+        </div>
+        <job-desc-modal [modalId]="modalId" [practId]="pracId" (setjobid)="setJobId($event)" [isDisable]="isDisable" [resetJobDesc]="resetJobDesc"></job-desc-modal>
+        <div #interviewPanelDetails [hidden]="false" class="row maindiv">
+            <interview-panel [panelLevel]="interviewPanelComboData && interviewPanelComboData.level" [panelMemberTags]="interviewPanelComboData" [panelDetails]="panel" *ngFor="let panel of panelList" (back)="finishJobDescription()" (next)="loadHiringRequestSummary()" (newPanel)="addNewPanel()" (remove)="removePanel(panel)" (disable)="setDisableState($event)" (finalRoundSelected)="validateFinalRoundSelection(panel)"></interview-panel>
+        </div>
+    </div>
+    <div class="hiring-request-need-btns pull-right">
+        <button class="hiring-request-new-save-button" (click)="navigateToHiringRequests()">Close</button>
+        <button class="hiring-request-new-save-button" [disabled]="!hiringNeedDetailsForm.valid || disableState" (click)="saveHiringNeed()">Save and Close</button>
+        <button class="hiring-request-new-add-new-button" [disabled]="!hiringNeedDetailsForm.valid || disableState" (click)="saveAndAddNew()">Save & Add New Need</button>
+    </div>
+</form>
+<div class="modal fade" name="needModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert-success">
+                <button type="button" (click)="navigateToHiringRequests()" class="close alert-close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Message Type - Success</h4>
+            </div>
+            <div class="modal-body">
+                {{successMessage}}
+            </div>
+            <div class="modal-footer alert-footer">
+                <button type="button" (click)="navigateToHiringRequests()" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" name="newNeedModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert-success">
+                <button type="button" (click)="addNew()" class="close alert-close" data-dismiss="modal" aria-label="Close"><span class="alert-close" aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Message Type - Success</h4>
+            </div>
+            <div class="modal-body">
+                {{successMessage}}
+            </div>
+            <div class="modal-footer alert-footer">
+                <button type="button" (click)="addNew()" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" name="jobDesModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header alert-warning">
+                <button type="button" class="close alert-close" data-dismiss="modal" aria-label="Close"><span class="alert-close" aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Message Type - Warning</h4>
+            </div>
+            <div class="modal-body">
+                {{successMessage}}
+            </div>
+            <div class="modal-footer alert-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

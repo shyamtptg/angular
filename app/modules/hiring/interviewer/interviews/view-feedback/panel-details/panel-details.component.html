@@ -1,0 +1,56 @@
+<div class="col-md-12 hiring-need-div view-feedback" style="padding-bottom: 10.5px;
+	line-height: 47px;">
+	<div class="row">
+		<div class="col-xs-10">
+			<span class="pull-left need-text"><span class="need-heading">Level:</span> {{needData.level}}</span><span class="pull-left need-text"><span class="need-heading">Interviewer:</span> {{needData.interviewer.fullName}}</span><span class="pull-left need-text"><span class="need-heading">Interview Date:</span> {{needData.interviewDate}}</span><span class="pull-left need-text"><span class="need-heading">Interview Mode:</span> {{needData.mode}}</span><span *ngIf="needData.interviewResultStatus && (needData.interviewResultStatus == 'RECOMMENDED')" class="pull-left need-text"><span class="need-heading">Interview Result Status: </span>Recommended</span>
+			<span *ngIf="needData.interviewResultStatus && (needData.interviewResultStatus == 'NOT_RECOMMENDED')" class="pull-left need-text"><span class="need-heading">Interview Result Status: </span>Not Recommended</span></div>
+			<div class="col-xs-2">
+				<span class="pull-right"><span><a class="glyphicon glyphicon-chevron-right plus-icon" (click)="toggleHiringNeedDetails()"></a><a class="glyphicon glyphicon-chevron-down minus-icon" (click)="toggleHiringNeedDetails()"></a></span></span></div>
+			</div>
+		</div>
+		<div hiringNeed class="hiring-need-details close res-feedback-open">
+			<p class="feedback-heading">PANEL DETAILS</p>
+			<div class="row">
+				<div class="col-md-3 col-sm-3 form-group col-xs-12">
+					<label class="labelText" for="Level">Level</label>
+					<div class="feedback-details-text">{{needData.level}}</div>
+				</div>
+				<div class="col-md-3 col-sm-3 form-group col-xs-12">
+					<label class="labelText" for="interviewer">Interviewer</label>
+					<div class="feedback-details-text">{{needData.interviewer.fullName}}</div>
+				</div>
+				<div class="col-md-3 col-sm-3 form-group col-xs-12">
+					<label class="labelText" for="interviewDate">Interview Date</label>
+					<div class="feedback-details-text"><span class="glyphicon glyphicon-calendar feedback-date-icon"></span>{{needData.interviewDate}}</div>
+				</div>
+				<div class="col-md-3 col-sm-3 form-group col-xs-12">
+					<label class="labelText" for="interviewMode">Interview Mode</label>
+					<div class="feedback-details-text">{{needData.mode}}</div>
+				</div>
+			</div>
+			<p *ngIf="criterionList" class="feedback-heading">FEEDBACK</p>
+			<div name="categories" *ngFor="let criterion of criterionList">
+				<div class="row">
+					<label class="labelText col-md-2" for="priorWorkExperience">{{criterion.criterionName}}</label>
+				<p-rating [readonly]="true" class="col-md-2" style="margin-left: -2.5em" [(ngModel)]="criterion.rating"></p-rating>
+			</div>
+		<p-editor [readonly]="true" class="feedback-editor view-feedback-editor" name={{criterion.criterionName}} [(ngModel)]="criterion.feedback"></p-editor>
+	</div>
+	<!--<p class="feedback-heading">INTERVIEW RESULT STATUS</p>
+	<div class="feedback-details-text">Recommended</div>-->
+	<div class="result-status">
+		<span *ngIf="needData.interviewResultStatus && (needData.interviewResultStatus == 'RECOMMENDED')" class="pull-left need-text"><span class="result-status-heading">Interview Result Status: </span>Recommended</span>
+		<span *ngIf="needData.interviewResultStatus && (needData.interviewResultStatus == 'NOT_RECOMMENDED')" class="pull-left"><span class="result-status-heading">Interview Result Status: </span>Not Recommended</span>
+	</div>
+	<!--<div class="feedback-radio">
+							<label class="radio-inline" style="pointer-events: none;">
+												<input type="radio" [(ngModel)]="needData.interviewResultStatus" name="recommendationRadio" value="RECOMMENDED"> Recommended
+							</label>
+							<label class="radio-inline" style="pointer-events: none;">
+												<input type="radio" [(ngModel)]="needData.interviewResultStatus" name="recommendationRadio" value="NOT_RECOMMENDED"> Not Recommended
+		</label>-->
+		<!--<label class="radio-inline">
+							<input type="radio" [(ngModel)]="needData.resultStatus" name="recommendationRadio" value="ON_HOLD"> On Hold
+		</label>
+	</div>-->
+</div>

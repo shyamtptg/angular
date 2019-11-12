@@ -1,0 +1,44 @@
+@import './../../assets/scss/colors.scss';
+@import './../../assets/scss/variables.scss';
+
+.outer-box-50 {
+    width: calc(50% - 10px);
+    margin: 5px;
+    padding: 20px;
+}
+
+h3 {
+    font-family: Lato;
+    font-size: 20px;
+    line-height: 20px;
+    font-weight: 600;
+    color: #444444;
+    margin: 0;
+}
+.stats {
+    font-family: Lato;
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+    display: block;
+    &.stats-main {
+        color: #FF562D;
+        font-size: 40px;
+        font-weight: 600;
+        line-height: 48px;
+    }
+    &.stats-total {
+        color: #888888;
+    }
+    &.stats-accepted {
+        color: #888888;
+    }
+    &.stats-declined {
+        color: #18CCCD;
+    }
+}
+
+.dotted-divider {
+    margin: 0 30px;
+    border-right: 1px dotted #D2D2D2;
+}

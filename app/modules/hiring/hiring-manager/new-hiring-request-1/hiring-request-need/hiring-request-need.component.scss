@@ -1,0 +1,25 @@
+.hiring-request-need-btns{
+  margin-bottom: 0.7em;
+}
+.experience-alert {
+  margin-top: 1.8em;
+}
+.alert-close{
+  margin: 1em;
+}
+p-calendar {
+  .ui-calendar {
+    width: 100%;
+    input {
+      width: 90%;
+      height: 34px;
+      border-radius: 5px 0px 0px 5px;
+      color: #555;
+    }
+  }
+
+}
+.ui-dialog-content nav {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}

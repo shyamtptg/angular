@@ -1,0 +1,61 @@
+<div class="request p-tb-3x p-lr-3x" fxLayout="column" fxFlex="0 0 100%" fxLayoutGap="10px">
+  <div fxFlex="70px">
+    <img [src]="url" class="img">
+  </div>
+  <div class="name" fxLayout="row" fxFlex="30px">
+    <div class="field" fxFlex="0 0 40%">Name</div>
+    <div class="separator" fxFlex="0 0 2%">:</div>
+    <div class="value" fxFlex="0 0 58%">{{data.employeeName}}</div>
+  </div>
+  <div class="employeeID" fxLayout="row" fxFlex="30px">
+    <div class="field" fxFlex="0 0 40%">Employee code</div>
+    <div class="separator" fxFlex="0 0 2%">:</div>
+    <div class="value" fxFlex="0 0 58%">{{data.employeeId}}</div>
+  </div>
+  <div class="IDIssueDate" fxLayout="row" fxFlex="30px">
+    <div class="field" fxFlex="0 0 40%">Joining date</div>
+    <div class="separator" fxFlex="0 0 2%">:</div>
+    <div class="value" fxFlex="0 0 58%">{{data.dateOfJoining |date:'dd/MM/yyyy'}}</div>
+  </div>
+  <div class="IDValidDate" fxLayout="row" fxFlex="30px">
+    <div class="field" fxFlex="0 0 40%">Blood group</div>
+    <div class="separator" fxFlex="0 0 2%">:</div>
+    <div class="value" fxFlex="0 0 58%">{{data.bloodGroup}}</div>
+  </div>
+  <div class="IDValidDate" fxLayout="row" fxFlex="30px">
+    <div class="field" fxFlex="0 0 40%">Designation</div>
+    <div class="separator" fxFlex="0 0 2%">:</div>
+    <div class="value" fxFlex="0 0 58%">{{data.designation}}</div>
+  </div>
+  <div class="IDStatus" fxLayout="row" fxFlex="30px">
+    <div class="field m-t-3x" fxFlex="0 0 40%">ID card status</div>
+    <div class="separator m-t-3x" fxFlex="0 0 2%">:</div>
+    <div class="value" fxFlex="0 0 58%">
+      <mat-form-field class="dropdownchange">
+        <mat-select [(ngModel)]="idCardStatus">
+          <mat-option *ngFor="let status of status" [value]="status.value">
+            <span class="options">{{ status.viewValue }}</span>
+          </mat-option>
+        </mat-select>
+        <div class="arrowicon">
+          <mat-icon>keyboard_arrow_down</mat-icon>
+        </div>
+      </mat-form-field>
+    </div>
+  </div>
+  <div fxLayout="row" class="dialogcontent p-t-3x" > 
+      <div class="field p-t-4x" fxFlex="0 0 40%">Notes</div>
+      <div class="separator p-t-4x" fxFlex="0 0 2%">:</div>
+      <div fxFlex="58%" class="medium-font">
+          <mat-form-field>
+              <textarea  matInput [(ngModel)]="comments" class="textedit"></textarea >  
+          </mat-form-field>
+      </div>
+  </div>
+  <div class="actions" fxLayout="row" fxFlex="20px">
+    <mat-dialog-actions>
+      <button class="ms-btn ms-btn-primary-filled" mat-button (click)="save()">Save</button>
+      <button class="ms-btn ms-btn-secondary-bordered" mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </div>
+</div>

@@ -1,0 +1,96 @@
+@import 'variables';
+@import 'colors';
+
+.ms-btn {
+  padding: $space-1x $space-2x;
+  border: 0;
+  border-radius: $border-radius;
+  width: auto;
+  min-width: 90px;
+  height: 35px;
+  outline: none;
+  @extend .plain-text;
+  font-weight: 500;
+
+  &:not([class*="m-"]) {
+    margin: 0;
+  }
+
+  &.ms-btn-primary-filled {
+    background-color: $orange;
+    color: $pure-white;
+    border: 1px solid $orange;
+    &:hover:not(.ms-btn-disabled):not(:disabled) {
+      background-color: $orange; //TODO
+      border-color: $orange; //TODO
+    }
+    &:active:not(.ms-btn-disabled):not(:disabled) {
+      background-color: $orange; //TODO
+      border-color: $orange; //TODO
+    }
+    &.ms-btn-disabled,
+    &:disabled {
+      background-color: $disable-orange;
+      color: $pure-white;
+      border-color: $disable-orange;
+      cursor: not-allowed;
+    }
+  }
+
+  &.ms-btn-secondary-filled {
+    background-color: $gray1;
+    color: $pure-white;
+    border: 1px solid $gray1;
+    &:hover:not(.ms-btn-disabled):not(:disabled) {
+      background-color: $gray1; //TODO
+      border-color: $gray1; //TODO
+    }
+    &:active:not(.ms-btn-disabled):not(:disabled) {
+      background-color: $gray1; //TODO
+      border-color: $gray1; //TODO
+    }
+    &.ms-btn-disabled,
+    &:disabled {
+      background-color: $disable-gray1;
+      color: $pure-white;
+      border-color: $disable-gray1;
+      cursor: not-allowed;
+    }
+  }
+
+  &.ms-btn-primary-bordered {
+    background-color: $pure-white;
+    color: $orange;
+    border: 1px solid $orange;
+    &:hover:not(.ms-btn-disabled):not(:disabled) {
+      border-color: $orange; //TODO
+    }
+    &:active:not(.ms-btn-disabled):not(:disabled) {
+      border-color: $orange; //TODO
+    }
+    &.ms-btn-disabled,
+    &:disabled {
+      color: $disable-orange;
+      border-color: $disable-orange;
+      cursor: not-allowed;
+    }
+  }
+
+  &.ms-btn-secondary-bordered {
+    background-color: $pure-white;
+    color: $gray1;
+    border: 1px solid $gray1;
+    &:hover:not(.ms-btn-disabled):not(:disabled) {
+      border-color: $gray1; //TODO
+    }
+    &:active:not(.ms-btn-disabled):not(:disabled) {
+      border-color: $gray1; //TODO
+    }
+    &.ms-btn-disabled,
+    &:disabled {
+      color: $disable-gray1;
+      border-color: $disable-gray1;
+      cursor: not-allowed;
+    }
+  }
+}

@@ -1,0 +1,61 @@
+<div class="row" style="padding:1em 0 1em 0">
+    <div class="col-sm-8">
+        <div *ngIf=" user && user.role !== 'hremployee'">
+            <input type="checkbox" [disabled]="isCheckBoxDisabled" [(ngModel)]="selectall" (ngModelChange)="select($event)" /> Select All
+            <select [(ngModel)]="SelectedAction" (change)="accept(SelectedAction)" [disabled]="selectDropDown">
+                <option value="Action" [selected]="selectBox" disabled>Action</option>
+                <option value="APPROVED">Approve</option>
+                <option value="REJECTED">Reject</option>
+            </select>
+        </div>
+    </div>
+    <div *ngIf=" user && user.role !== 'hremployee'" class="col-sm-4">
+        <div class="radio-info radio-inline">
+            <input type="radio" id="inlineRadio1" value="option1" name="filter" (click)="getRequests('ALL')">
+            <label for="All"> All </label>
+        </div>
+        <div class=" radio-inline">
+            <input type="radio" value="option2" name="filter" checked (click)="getRequests('PENDING')">
+            <label for="Pending"> Pending </label>
+        </div>
+        <div class=" radio-inline">
+            <input type="radio" value="option2" name="filter" (click)="getRequests('CANCEL')">
+            <label for="Pending"> Cancel Pending </label>
+        </div>
+    </div>
+    <div *ngIf=" user && user.role === 'hremployee'" class="col-sm-offset-10 col-sm-2">
+        <div class="radio-info radio-inline">
+            <input type="radio" id="inlineRadio1" value="option1" name="filter" (click)="getRequests('ALL')">
+            <label for="All"> All </label>
+        </div>
+        <div class=" radio-inline">
+            <input type="radio" value="option2" name="filter" checked (click)="getRequests('PENDING')">
+            <label for="Pending"> Pending </label>
+        </div>
+    </div>
+</div>
+<div style="margin-top: 0px;" class="row team-requests">
+    <div *ngIf=" user && user.role !== 'hremployee'" class="col-md-12">
+        <h4 *ngIf=" user && user.role == 'manager'">Delivery Team</h4>
+        <h4 *ngIf=" user && user.role == 'hr'">Reporting Team</h4>
+        <ag-grid-angular [rowMultiSelectWithClick]="true" [isRowSelectable]="isRowSelectable" #agGrid style="width:100%; height:360px;"
+            class="ag-theme-fresh" enableColResize enableSorting enableFilter [context]="context" [headerHeight]="headerHeight"
+            (gridSizeChanged)="resizeColumnsParams($event)" [rowSelection]="rowSelection" (rowSelected)="onRowSelected($event)"
+            [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize" [columnDefs]="columnDefs" (gridReady)="onGridReady($event)">
+        </ag-grid-angular>
+        <nav class="grid-pagination">
+            <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages" (onPageChange)="paginate($event)"></p-paginator>
+        </nav>
+    </div>
+    <div class="col-md-12">
+        <h4 *ngIf=" user &&( user.role == 'hr'|| user.role == 'hremployee')">Maternity & Paternity Leave Requests</h4>
+        <h4 *ngIf=" user && user.role == 'manager'">Reporting Team</h4>
+        <ag-grid-angular [isRowSelectable]="isRowSelectable" #agGrid style="width:100%; height:373px;" class="ag-theme-fresh" enableColResize
+            enableSorting enableFilter [context]="context" [headerHeight]="headerHeight" [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize"
+            (gridSizeChanged)="resizeColumnsParams($event)" [columnDefs]="column" (gridReady)="onGridReadyRm($event)">
+        </ag-grid-angular>
+        <nav class="grid-pagination">
+            <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPagesRm" (onPageChange)="paginateRm($event)"></p-paginator>
+        </nav>
+    </div>
+</div>

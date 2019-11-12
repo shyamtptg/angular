@@ -1,0 +1,22 @@
+<div class="profile-summary-title">
+	<p class="heading">PROFILES SUMMARY<span class="subheading"> | TOTAL 18</span><a class="pull-right"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a></p>
+</div>
+<div class="profile-summary">
+    <ag-grid-angular #agGrid class="ag-fresh grid_ag"
+    	[gridOptions]="gridOptions" 
+    	enableColResize
+    	enableSorting
+    	enableFilter
+    	rowSelection="single"
+    	paginationPageSize=20
+		rowDeselection=true
+    	(cellClicked)="onCellClicked($event)"
+    	(gridReady)="onGridInitialize()"  (gridSizeChanged)="resizeColumns()">
+ 	</ag-grid-angular>`
+</div>
+<div class="pull-right search_grid_btn">
+    <profile-details-dialog></profile-details-dialog>
+    <button class="profile-summary-approve-button">Approve</button>
+    <button class="profile-summary-reject-button">Reject</button>
+</div>
+

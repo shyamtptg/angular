@@ -1,0 +1,50 @@
+@import '../../../../assets/scss/colors.scss';
+@import '../../../../assets/scss/fonts.scss';
+@import '../../../../assets/scss/common.scss';
+@import '../../../../assets/scss/variables.scss';
+
+.review_container {
+    @extend .box;
+    .review_header {
+        background-color: $gray4;
+        border-bottom: 1px solid $border-color;
+        padding: $space-3x $space-4x;
+        .review_header_text {
+            @extend .form-header-text;
+        }
+    }
+    .review_body {
+        background-color: $pure-white;
+        padding: $space-4x;
+        word-break: break-word;
+        .review_loop {
+            &:first-child {
+                > div {
+                    margin-top: 0;
+                }
+            }
+            &:last-child {
+                > div {
+                    margin-bottom: 0;
+                }
+                > mat-divider {
+                    display: none;
+                }
+            }
+        }
+    }
+    .review_label {
+        @extend .small-text;
+        color: $gray7;
+        padding-bottom: $space-1x;
+        opacity: 0.8;
+    }
+    .review_value {
+        @extend .medium-font;
+        color: $gray8;
+    }
+    .review_info_value {
+        @extend .medium-font;
+        color: $dark-gray;
+    }
+}

@@ -1,0 +1,148 @@
+@import '../../../../assets/scss/colors.scss';
+@import '../../../../assets/scss/fonts.scss';
+.formwidth{
+	padding-right:213.01px;
+//	padding-bottom:4px;
+	.mat-button-toggle-group{
+		width:201px;
+		height: 33px;		
+		border: 1px solid $gray13;	
+		border-radius: 2px;	
+		background-color: $pure-white;
+		box-shadow: none;
+	}
+	.mat-button-toggle{	
+		border-right: 1px solid $mat-toggle;
+		width: 171px;
+		color:  $gray7;		
+		font-weight: 500;
+	}
+
+	::ng-deep .mat-button-toggle-label-content{
+		line-height: 30px;
+	}
+	::ng-deep .mat-input-infix{
+			width: 250px;	
+	}
+	::ng-deep	.mat-input-flex{
+		width: 250px;	
+	}
+
+}
+
+.firstNameText {
+	::ng-deep .mat-input-infix{
+	 	margin-top:17px;
+		padding-top:9px;	
+		padding-bottom:8px;	
+	}	 
+}
+.datepicker{
+	::ng-deep .mat-input-infix{
+		padding-top:10px;		
+	}
+}
+.dropdownStatus,.relocation,.vehicleInfo{
+	::ng-deep .mat-select{
+			padding-bottom:9px;	
+		}
+}
+.middleNameText,.lastNameText{
+	::ng-deep .mat-input-infix{	
+		padding-top:10px;
+		margin-bottom: 7px;
+	}
+}
+.gender{
+	height: 25px;	
+	width: 40px;	
+	color: $gray7;
+}
+.radiogroup{
+	padding-top:12px;
+}
+.vehicledropdown  /deep/  {  
+  .mat-select-arrow {
+		border: none;
+	}
+	.mat-select{
+		width:50%;
+		margin-top:5px;
+	}
+	.mat-form-field-infix{
+		margin-top:-20px;
+	}
+	.mat-input-infix{
+		padding:0px;
+		border: none;
+	}
+}
+.statusdropdown /deep/  {  
+  .mat-select-arrow {
+		border: none;
+	}
+	.mat-select{
+		width:50%;
+		margin-top:5px;
+	}
+	.mat-input-infix /deep/ {
+		border:none;
+		padding:0px;
+	}
+}
+.bloodGroupdropdown /deep/  {  
+  .mat-select-arrow {
+		border: none;
+	}
+	.mat-input-infix /deep/ {
+		border:none;
+		padding:0px;
+	}
+	.mat-select{
+		width:50%;
+		margin-top:5px;
+	}
+}
+.relocationdropdown /deep/{
+	.mat-select-arrow {
+		border: none;
+	}
+	.mat-select{
+		width:50%;
+		margin-top:5px;	
+	}
+	.mat-input-infix /deep/ {
+		border:none;
+		padding:0px;
+	}
+}
+.arrowicon{
+		float: right;
+		background-repeat: no-repeat;
+    height: 24px;
+		width: 24px;
+		font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-smoothing: antialiased;
+}
+.vehiclenumber{
+	::ng-deep	.mat-input-infix {	
+				border:0px;
+	}
+}
+.genderrequire{
+	font-size: medium;
+  padding-left: 2px;
+}
+.next-btn{
+	margin-top:-5px;
+}
+

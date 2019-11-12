@@ -1,0 +1,26 @@
+// .scheduled-interview-grid {
+//   width: 99%;
+//   margin: 0.5% 0 6% 1%;
+//   height: 30em;
+// }
+
+.scheduled-interview-title {
+  margin-left: 0.8em
+}
+
+// .scheduled-interview-btns {
+//   margin-top: 0;
+// }
+
+.scheduled-interview-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 35px;
+  margin-left: 0.5em;
+}
+
+.scheduled-interview-feedback-button {
+  @extend .scheduled-interview-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}

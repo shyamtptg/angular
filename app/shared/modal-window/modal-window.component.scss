@@ -1,0 +1,55 @@
+@import '../../modules/auth/login/login.component.scss';
+.modal-title {
+    font-family: $font-family;
+    font-size: 18px;
+    color: #000000;
+    letter-spacing: $letter-spacing;
+    text-align: left;
+}
+
+.modal-body {
+    font-family: $font-family;
+    font-size: 17px;
+    color: #000000;
+    letter-spacing: $letter-spacing;
+    text-align: left;
+}
+
+.modal-header {
+    border: none;
+    padding: 19px 0px 5px 15px;
+}
+
+.yes-btn {
+    background: rgba(30, 52, 72, 0.96);
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.no-btn {
+    background: #9b9b9b;
+    border-radius: 2px;
+    padding: 10px;
+}
+
+.btn-text {
+    font-family: $font-family;
+    font-size: 14px;
+    color: #ffffff;
+    letter-spacing: $letter-spacing;
+    text-align: middle;
+}
+
+.btn:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.modal-footer {
+    border: none;
+}
+
+.reason {
+    margin-bottom: 15px;
+    height: 25%;
+}

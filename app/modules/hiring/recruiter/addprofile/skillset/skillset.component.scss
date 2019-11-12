@@ -1,0 +1,103 @@
+.skillset-container {
+  padding: 0px 60px 0 0;
+}
+
+.table-header {
+  background: rgba(8, 14, 21, 0.77);
+  font-family: $font-family;
+  font-size: 13px;
+  letter-spacing: $letter-spacing;
+  color: #ffffff;
+  text-align: center;
+  font-weight: normal;
+}
+
+.glyphicon-plus:before {
+  content: "\002b";
+}
+
+.star {
+  font-size: 2rem;
+  color: #b0c4de;
+}
+
+.filled {
+  color: #f5a623;
+}
+
+.delete-icon {
+  background-image: url("assets/ic_cancel.png");
+  height: 20px;
+  width: 20px;
+  position: absolute;
+}
+
+.skill-set-icon {
+  margin: 1.4em 0 0 -2em;
+  font-size: 1.2em;
+}
+
+.skill-set {
+  margin: 1em 0 0 1em !important;
+}
+
+.skillset-button-grp {
+  margin: 1em 8em 0.5em 0;
+  .btn {
+    font-family: $font-family !important;
+    font-size: 13px !important;
+    letter-spacing: $letter-spacing !important;
+    font-weight: normal;
+  }
+}
+
+.skill-category {
+  margin: 1em 0 0 0.5em;
+  .labelText,
+  .skillset-add-category-button {
+    font-family: $font-family;
+    font-size: 13px;
+    letter-spacing: $letter-spacing;
+    font-weight: $font-weight;
+  }
+}
+
+.skillset-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 35px;
+  margin-left: 0.5em;
+}
+
+.skillset-add-category-button {
+  @extend .skillset-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+  margin: 1.8em 0 0 0;
+}
+
+.category-name {
+  font-size: 1.2em;
+}
+
+.cat-remove-icon {
+  font-size: 1.3em;
+}
+
+.add-more {
+  margin-bottom: 1em;
+}
+
+.table-responsive {
+  overflow-y: hidden !important;
+}
+
+.loading-spinner {
+  position: absolute;
+  top: 15em;
+  right: 20em;
+  z-index: 101;
+  .loader {
+    width: 4em;
+  }
+}

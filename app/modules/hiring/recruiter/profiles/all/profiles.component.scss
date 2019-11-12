@@ -1,0 +1,62 @@
+.recruiter-profiles {
+    .profiles-grid {
+        width: 97.6%;
+        margin: 0.5% 0 6% 1%;
+        height: 28.5em;
+    }
+    .profiles-title {
+        margin-left: 0.8em;
+        .no-padding {
+            padding: 0px;
+        }
+    }
+    .dropdrown-main select {
+        height: 29px;
+        margin-top: 4px;
+        padding: 4px;
+    }
+    .profiles-btns {
+        margin-top: -3.5em;
+        @media (max-width: 1024px) {
+            margin-top: -1em;
+        }
+        @media (max-width: 768px) {
+            margin-top: -1em;
+        }
+        margin-right: 1em;
+    }
+    .profiles-button {
+        border-radius: 2px;
+        min-width: 72px;
+        height: 35px;
+        margin-left: 0.5em;
+    }
+    .profiles-view-button {
+        @extend .profiles-button;
+        color: #ffffff;
+        background: rgba(39, 70, 98, 0.96);
+    }
+    .grid-download-icon {
+        margin-right: 1.2em;
+    }
+    .profile-details {
+        margin: 1em 0 0 0;
+    }
+    .profile-details-buttons {
+        margin: 1.7em 0 0 0;
+    }
+    .attach-div {
+        position: relative;
+        bottom: 0px;
+    }
+    .attached-text {
+        text-align: right;
+        padding: 0px 15px;
+    }
+    @media all and (min-width:1200px) {
+        .attached-text {
+            position: relative;
+            bottom: 80px;
+        }
+    }
+}

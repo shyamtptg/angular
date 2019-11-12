@@ -1,0 +1,48 @@
+<span><a class="job-link" (click)="showDialog()">Show Job Description</a></span>
+<p-dialog class="job-desc-popup" header="Job Description" [(visible)]="display" modal="modal" width="600" [responsive]="true">
+	<div class="job-desc-details">
+		<tabs *ngIf="jobDescData">
+		<tab #jobDescription [tabTitle]="'Job Description'">
+		<div class="form-group">
+			<label for="jobDescription" class="labelText">Job Description</label>
+			<textarea class="form-control"
+			id="jobDescription" [(ngModel)]="jobDescData.details && jobDescData.details.jobDesc" [readonly]="true"></textarea>
+		</div>
+		</tab>
+		<tab [tabTitle]="'Position/Responsibilities'">
+		<div class="form-group">
+			<label for="positionResponsibility" class="labelText">Position/Responsibilities</label>
+			<textarea class="form-control"
+			id="positionResponsibility" [(ngModel)]="jobDescData.details && jobDescData.details.responsibilities" [readonly]="true"></textarea>
+		</div>
+		</tab>
+		<tab [tabTitle]="'Skills'">
+		<div class="row">
+			<div class="form-group col-md-6 col-sm-6  col-xs-12">
+				<label for="companyBackground" class="labelText">Design Skills</label>
+				<textarea class="form-control" [(ngModel)]="jobDescData.details && jobDescData.details.skills && jobDescData.details.skills.uxDesignSkills" [readonly]="true"></textarea>
+			</div>
+			<div class="form-group col-md-6 col-sm-6  col-xs-12">
+				<label for="practiceBackground" class="labelText">Technical Skills</label>
+				<textarea class="form-control" [(ngModel)]="jobDescData.details && jobDescData.details.skills && jobDescData.details.skills.technicalSkills" [readonly]="true"></textarea>
+			</div>
+			<div class="form-group col-md-6 col-sm-6  col-xs-12">
+				<label for="companyBackground" class="labelText">Certifications</label>
+				<textarea class="form-control" [(ngModel)]="jobDescData.details && jobDescData.details.skills && jobDescData.details.skills.certifications" [readonly]="true"></textarea>
+			</div>
+			<div class="form-group col-md-6 col-sm-6  col-xs-12">
+				<label for="practiceBackground" class="labelText">Other Skills</label>
+				<textarea class="form-control" [(ngModel)]="jobDescData.details && jobDescData.details.skills && jobDescData.details.skills.others" [readonly]="true"></textarea>
+			</div>
+		</div>
+		</tab>
+		<tab [tabTitle]="'Education'">
+		<div class="form-group">
+			<label for="education" class="labelText">Education</label>
+			<textarea class="form-control"
+			id="education" [(ngModel)]="jobDescData.details && jobDescData.details.education" [readonly]="true"></textarea>
+		</div>
+		</tab>
+		</tabs>
+	</div>
+</p-dialog>

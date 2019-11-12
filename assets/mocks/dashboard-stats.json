@@ -1,0 +1,24 @@
+{
+    "joinees": {
+        "total": 100,
+        "thisWeek": 10,
+        "thisMonth": 20
+    },
+    "offers": {
+        "released": 500,
+        "accepted": 200,
+        "declined": 300
+    },
+    "workstations": {
+        "total": 500,
+        "allocated": 400,
+        "available": 100,
+        "pending": 50
+    },
+    "employeeid": {
+        "pending": 10,
+        "inprogress": 15
+    },
+    "pendingHardwareRequests": 100,
+    "pendingSoftwareRequests": 100
+}

@@ -1,0 +1,24 @@
+<form>
+	<div class="row feedback-details">
+		<p class="feedback-heading">FEEDBACK</p>
+		<div name="categories" *ngFor="let criterion of feedBackDetails.criterionList">
+			<div class="row">
+				<label class="labelText col-md-2" for="priorWorkExperience">{{criterion.criterionName}}</label>
+			<p-rating class="col-md-2" style="margin-left: -2.5em" [(ngModel)]="criterion.rating" name={{criterion.criterionName}}></p-rating>
+		</div>
+	<p-editor class="feedback-editor" name={{criterion.criterionName}} [(ngModel)]="criterion.feedback"></p-editor>
+</div>
+</div>
+<div class="feedback-radio">
+<label class="radio-inline">
+	<input type="radio" [(ngModel)]="feedBackDetails.resultStatus" name="recommendationRadio" value="RECOMMENDED"> Recommended
+</label>
+<label class="radio-inline">
+	<input type="radio" [(ngModel)]="feedBackDetails.resultStatus" name="recommendationRadio" value="NOT_RECOMMENDED"> Not Recommended
+</label>
+</div>
+<div class="pull-right feedback-btns">
+<button class="feedback-cancel-button" (click)="navigateToInterviews()">Close</button>
+<button *ngIf="!commonService.hideFeature('SUBMIT_INTERVIEW_FEEDBACK')" class="feedback-submit-button" (click)="submitFeedback()">Submit</button>
+</div>
+</form>

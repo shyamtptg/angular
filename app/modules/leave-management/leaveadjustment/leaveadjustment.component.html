@@ -1,0 +1,250 @@
+<div class="row">
+    <div class="col-md-7 container-border">
+        <form autocomplete="off" name="leaveadjustment" (ngSubmit)="adjustleave(adjust)" #leaveadjustment="ngForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row ">
+                        <div class="leavesbox_starts">
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Name
+                                            <span class="required">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="auto-comp-control">
+                                        <p-autoComplete [required]="required" [(ngModel)]="leavedata" (onSelect)="onSelectEmployee(leavedata)" name="employedetails"
+                                            #people="ngModel" [suggestions]="filteredCountriesMultiple" (completeMethod)="filterCountryMultiple($event)"
+                                            field="fullName" [minLength]="1" placeholder="Search Employee..." [multiple]="false"
+                                            [style]="{'width':'80%'}" [inputStyle]="{'width':'100%', 'padding': '7px 30px 7px 12px'}">
+                                        </p-autoComplete>
+                                    </div>
+                                    <div *ngIf="people.dirty && people.pristine && people.errors " class="text-danger">
+                                        <div *ngIf="people.errors.required">
+                                            Select employee name
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Employee Code
+                                            <span class="required">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" required [(ngModel)]="adjust.employeeCode" class="form-control" name="employeeCode" #empolyeid readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Date Of Joining</label>
+                                        <span class="required">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" required [(ngModel)]="adjust.dateOfJoining" class="form-control" name="doj" #doj readonly>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Type</label>
+                                        <span class="required">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <select [disabled]="typeDisable" (ngModelChange)="checkLeaveType($event)" [(ngModel)]="adjust.leaveType" class="form-control slect_type"
+                                            name="leave-types" required ngModel #leavetypes="ngModel">
+                                            <option [disabled]=true value="">Select Type</option>
+                                            <option *ngFor="let type of leaveTypes" [ngValue]="type">{{type.description}}</option>
+                                        </select>
+                                    </div>
+                                    <div *ngIf="leavetypes.dirty&& leavetypes.pristine && leavetypes.errors " class="text-danger">
+                                        <div *ngIf="leavetypes.errors.required">
+                                            Select leave type!
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-12 col-md-offset-6" *ngIf="isSelected">
+                                Available: {{balance}}
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Action</label>
+                                        <span class="required">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="radio-info radio-inline">
+                                        <input type="radio" required id="inlineRadio1" (click)="actionSelected($event)" [(ngModel)]="adjust.action" value="increase"
+                                            #action="ngModel" name="Increase">
+                                        <label for="All">Increase</label>
+                                    </div>
+                                    <div class=" radio-inline">
+                                        <input type="radio" required value="decrease" (click)="actionSelected($event)" [(ngModel)]="adjust.action" #action="ngModel"
+                                            name="Decrease" checked>
+                                        <label for="Pending"> Decrease </label>
+                                    </div>
+                                    <div *ngIf="action.dirty && action.pristine && action.errors " class="text-danger">
+                                        <div *ngIf="action.errors.required">
+                                            Action field is required.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedleavetype != 'CO'" class="col-sm-12">
+                                <div class="col-sm-6 ">
+                                    <div class="form-group">
+                                        <label for="Numberof Days">Number Of Days</label>
+                                        <span class="required">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" required class="form-control" name="numberofdays" placeholder="Please enter number of days" (keypress)="restrictFloatnumber($event)"
+                                            pattern="^(10|\d)(\.\d{1,2})?$" maxlength="3" [(ngModel)]="adjust.numberofdays" #numberofdays="ngModel"
+                                            (ngModelChange)="updateCalenderCount()">
+                                    </div>
+                                    <div *ngIf="numberofdays.dirty  && numberofdays.pristine && numberofdays.errors " class="text-danger">
+                                        <div *ngIf="numberofdays.errors.required">
+                                            Please enter valid number.
+                                        </div>
+                                    </div>
+                                    <div *ngIf="numberofdays.dirty && numberofdays.errors " class="text-danger">
+                                        <div *ngIf="numberofdays.errors.maxlength && !numberofdays.errors.pattern">
+                                            Maximum number of balance adjustment days for Casual leave, Earned leave, Optional leave is 10 days.
+                                        </div>
+                                        <div *ngIf="numberofdays.errors.pattern">
+                                            Maximum number of balance adjustment days for Casual leave, Earned leave, Optional leave is 10 days.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div *ngIf="selectedleavetype =='CO'" class="col-sm-12">
+                                <div class="col-sm-6 ">
+                                    <div class="form-group">
+                                        <label for="Numberof Days">Number Of Days</label>
+                                        <span class="required">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="text" required class="form-control" name="numberofdays" placeholder="Please enter number of days" (keypress)="restrictMobilenumber($event)"
+                                            pattern="^[1-5]?$|^5$" maxlength="1" [(ngModel)]="adjust.numberofdays" #numberofdays="ngModel"
+                                            (ngModelChange)="updateCalenderCount()">
+                                    </div>
+                                    <div *ngIf="numberofdays.dirty  && numberofdays.pristine && numberofdays.errors " class="text-danger">
+                                        <div *ngIf="numberofdays.errors.required">
+                                            Please enter valid number.
+                                        </div>
+                                    </div>
+                                    <div *ngIf="numberofdays.dirty && numberofdays.errors " class="text-danger">
+                                        <div *ngIf="numberofdays.errors.maxlength && !numberofdays.errors.pattern">
+                                            Maximum number of balance adjustment days for Comp Off leave is 5 days.
+                                        </div>
+                                        <div *ngIf="numberofdays.errors.pattern">
+                                            Maximum number of balance adjustment days for Comp Off leave is 5 days.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" *ngIf="!SelectType">
+                                <div class="col-sm-6">
+                                    <div class="from-group">
+                                        <label for="">Comp Off Date</label>
+                                        <span class="required">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div *ngFor="let day of days">
+                                        <div class="form-group" style="width: 78%;">
+                                            <p-calendar readonlyInput="true" placeholder="Please select Comp Off date" [(ngModel)]="day.value" dateFormat="dd/mm/yy"
+                                                [defaultDate]="maxDate" [minDate]="fromMinDate" [maxDate]="maxDate" [disabledDates]=holidaysList
+                                                [showIcon]=true [ngModelOptions]="{standalone: true}" name="from" #from="ngModel"
+                                                required></p-calendar>
+                                        </div>
+                                        <div *ngIf="from.dirty && from.errors " class="text-danger">
+                                            <div *ngIf="from.errors.required">
+                                                Please enter Comp Off date.
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="">Comments</label>
+                                        <span class="required">*</span>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <textarea #comments="ngModel" required pattern="(.|\n){0,}\S+(.|\n){0,}" rows="4"
+                                            cols="50" maxlength="500" [(ngModel)]="adjust.comments" name="comments" type="text"
+                                            class="form-control" id="Comments" placeholder="Please enter maximum 500 characters"></textarea>
+                                    </div>
+                                    <div *ngIf="comments.dirty && comments.pristine && comments.errors" class="text-danger">
+                                        <div *ngIf="comments.errors.required">
+                                            Please add comments.
+                                        </div>
+                                        <div *ngIf="comments.errors.maxlength">
+                                            Comments can't be more than 500 characters long.
+                                        </div>
+                                        <div *ngIf="comments.errors.pattern">
+                                            Please enter valid text.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-offset-3 col-sm-9">
+                                    <button type="submit" class="btn btn-apply" [disabled]="leaveadjustment.invalid" data-color="primary">Submit</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="row adjustment-details" style="border-top: 1px solid #eee;" *ngIf="!empData">
+        <div class="col-md-7 col-sm-8">
+            <div style="margin-top:1.5em">
+                <h4>Leave Balance Adjustment</h4>
+            </div>
+        </div>
+        <div class="col-md-2 col-sm-3 col-xs-6">
+            <div class="form-group" style="padding:5px;margin-bottom:0.5em">
+                <select (change)="exportData()" class="form-control" style="width:100%" id="adjustment">
+                    <option [disabled]="true" [selected]="export">Export As</option>
+                    <option>CSV</option>
+                </select>
+            </div>
+        </div>
+    </div>
+    <div class="row adjustment-details" *ngIf="!empData">
+        <div  class="col-md-9">
+            <ag-grid-angular #agGrid style="width:100%; height:300px;" enableColResize enableSorting enableFilter (gridSizeChanged)="resizeColumns($event)"
+                [gridOptions]="gridOptions" [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize" class="ag-theme-fresh teamreqst-grid"
+                [columnDefs]="columnDefs"></ag-grid-angular>
+            <nav class="grid-pagination">
+                <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" (onPageChange)="paginate($event)" [totalRecords]="totalPages"></p-paginator>
+            </nav>
+        </div>
+    </div>
+</div>

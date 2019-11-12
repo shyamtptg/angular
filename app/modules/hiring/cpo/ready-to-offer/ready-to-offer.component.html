@@ -1,0 +1,59 @@
+<div class="offer-title">
+    <div class="no-padding col-md-6 col-sm-6 col-xs-9">
+        <p class="heading">OFFERS<span class="subheading"> | TOTAL {{recordsCount}}</span></p>
+    </div>
+    <!--<div class="col-md-5">
+        <div class="prioritydropdrown-main no-padding col-md-12">
+            <div class="no-padding col-md-6">
+                <div class="col-md-4 col-sm-4">
+                    <label class="labelText" for="priority">Priority</label>
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    <select name="priority" class="form-control" [(ngModel)]="priority" #priorityRef="ngModel">
+                        <option *ngFor="let priority of priorityOptions" [value]="priority">{{priority}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="no-padding col-md-6">
+                <div class="col-md-4 col-sm-4">
+                    <label class="labelText" for="status">Status</label>
+                </div>
+                <div class="col-md-8 col-sm-8">
+                    <select name="status" class="form-control" [(ngModel)]="status" #statusRef="ngModel">
+                        <option *ngFor="let status of statusOptions" [value]="status">{{status}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>-->
+    <div class="col-md-6 col-sm-6 col-xs-3">
+        <p class="heading">
+            <a class="pull-right" (click)="exportData()"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a>
+        </p>
+    </div>
+</div>
+<div class="offer">
+    <ag-grid-angular #agGrid class="ag-fresh grid_ag"
+    	[gridOptions]="gridOptions" 
+    	enableColResize
+    	enableSorting
+    	enableFilter
+    	rowSelection="single"
+    	paginationPageSize=20
+        rowDeselection=true
+    	(selectionChanged)="checkModes()"
+        (gridReady)="onGridInitialize()"
+        (gridSizeChanged)="resizeColumns()">
+ 	</ag-grid-angular>
+    <nav class="grid_nav">
+        <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+    </nav>
+</div>
+<div class="pull-right grid_btn">
+    <button *ngIf="!commonService.hideFeature('VIEW_OFFER')" class="offer-create-button" [disabled]="buttonModes.open" (click)="openOffer()">Open</button>
+    <button *ngIf="!commonService.hideFeature('UPDATE_OFFER')" class="offer-create-button" [disabled]="buttonModes.edit" (click)="editOffer()">Edit</button>
+    <button *ngIf="!commonService.hideFeature('DELETE_OFFER')" class="offer-create-button" [disabled]="buttonModes.delete" (click)="deleteOffer()">Delete</button>
+    <button *ngIf="!commonService.hideFeature('RELEASE_OFFER')" class="offer-create-button" [disabled]="buttonModes.release" (click)="submitOffer('RELEASE')">Release</button>
+    <remarks-modal *ngIf="!commonService.hideFeature('REJECT_OFFER')" [modalId]="'rejectOffer'" [remarkTitle]="'Reject'" (updateReason)="submitOffer('REJECT', $event)" [required]="true" [message]="'Please enter the reason for rejection'" [isDisable]="buttonModes.reject"></remarks-modal>
+    <button *ngIf="!commonService.hideFeature('VIEW_OFFER_LETTER')" class="offer-create-button" [disabled]="buttonModes.view" (click)="viewOffer()">View</button>
+</div>

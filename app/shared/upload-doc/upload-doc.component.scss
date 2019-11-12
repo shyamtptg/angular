@@ -1,0 +1,35 @@
+
+
+.upload_comp {
+    label {
+        font-family: $font-family;
+        font-size: 14px;
+        color: #575757;
+        letter-spacing: $letter-spacing;
+        text-align: left;
+        font-weight: $font-weight;
+    }
+    .upload_inputdiv {
+        display: flex;
+        .image-upload input {
+            display: none;
+        }
+        .image-upload img {
+            height: 34px;
+            width: 34px;
+            cursor: pointer;
+            margin-left: 5px;
+            border-radius: 6px;
+        }
+        .upload-button {
+            margin: 0.3em 0 0 1em;
+            button[hidden] {
+                display: none;
+            }
+        }
+    }
+}
+
+.remove-document span {
+    margin: 5px 10px;
+}

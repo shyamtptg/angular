@@ -1,0 +1,64 @@
+.verification-details {
+  background: #ffffff;
+  margin: 0.7em 0 0.7em 0.7em;
+  padding: 0.7em;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.10);
+}
+
+.verification-main-heading {
+  @extend .verification-heading;
+  margin-left: 1em;
+}
+
+.verification-heading {
+  font-family: $font-family;
+  font-size: 14px;
+  color: #000000;
+  letter-spacing: $letter-spacing;
+  text-align: left;
+  font-weight: bold;
+}
+
+.labelText {
+  font-family: $font-family;
+  font-size: 14px;
+  color: #575757;
+  letter-spacing: $letter-spacing;
+  text-align: left;
+  font-weight: $font-weight;
+}
+
+.verification-details-text {
+  font-family: $font-family;
+  font-size: 14px;
+  color: #575757;
+  letter-spacing: $letter-spacing;
+  text-align: left;
+}
+
+.verification-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 35px;
+  margin-left: 0.5em;
+}
+
+.verification-cancel-button {
+  @extend .verification-button;
+  color: #ffffff;
+  background: #9b9b9b;
+}
+
+.verification-send-button {
+  @extend .verification-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}
+
+.verification-confirm-button {
+  @extend .verification-send-button;
+}
+
+.modal-backdrop.in {
+  opacity: 0.5;
+}

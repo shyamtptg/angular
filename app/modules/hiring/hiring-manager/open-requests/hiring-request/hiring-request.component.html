@@ -1,0 +1,53 @@
+<div class="col-md-12 open-req-div" style="line-height:30px"><div class="row">
+	<div class="col-xs-10" style="padding:7px; 0">
+	<div class="col-md-4 col-sm-6"><span class="need-text"><span class="need-heading">Client:</span> {{hiringData.clientName}}</span></div>
+	<div class="col-md-4 col-sm-6"><span class="need-text"><span class="need-heading">Department:</span> {{hiringData.departmentName}}</span></div>
+	<div class="col-md-4 col-sm-6"><span class="need-text"><span class="need-heading">Priority:</span> {{hiringData.priorityDisplayName}}</span></div>
+	<div class="col-md-4 col-sm-6"><span class="need-text"><span class="need-heading">Type:</span> {{hiringData.typeDisplayName}}</span></div>
+	<div class="col-md-8 col-sm-6"><span class="need-text"><span class="need-heading">Purpose:</span> {{hiringData.purpose}}</span></div>
+	</div>
+	<div class="col-xs-2"><span class="pull-right"><a class="glyphicon glyphicon-chevron-right plus-icon" (click)="toggleHiringNeedDetails()"></a><a class="glyphicon glyphicon-chevron-down minus-icon" (click)="toggleHiringNeedDetails()"></a></span></div></div>
+</div>
+<div class="open-need-details">
+	<div hiringNeed class="hiring-need-details close">
+		<p class="heading">HIRING REQUEST NEED DETAILS</p>
+		<div class="well well-sm need-well" *ngFor="let need of needList">
+			<div class="row">
+			<div class="col-lg-3 col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="requestPurpose">Purpose</label>
+				<div class="feedback-details-text">{{need.purpose}}</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="needPurpose">Competency</label>
+				<div class="feedback-details-text">{{need.competencyName}}</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="clientName">Practice</label>
+				<div class="feedback-details-text">{{need.practiceName}}</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="requestPurpose">Minimum Experience</label>
+				<div class="feedback-details-text">{{need.minimumExperienceInYears}}</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="needPurpose">Maximum Experience</label>
+				<div class="feedback-details-text">{{need.maximumExperienceInYears}}</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="clientName">Expected Role</label>
+				<div class="feedback-details-text">{{need.expectedRole}}</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="clientName">Model</label>
+				<div class="feedback-details-text">{{need.modelDesc}}</div>
+			</div>
+			<div class="col-lg-3 col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="clientName"><open-job-desc [jobDescId]="need.jobDescriptionId"></open-job-desc></label>
+			</div>
+		</div>
+			<!--<div class="row"><button class="hiring-requests-create-button pull-right" (click)="applyRequest(need)">Apply</button></div>-->
+		</div>	
+	</div>
+</div>
+
+

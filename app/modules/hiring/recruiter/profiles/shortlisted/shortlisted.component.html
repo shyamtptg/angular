@@ -1,0 +1,63 @@
+<div class="shortlisted-details">
+    <div class="shortlisted-requests-title">
+        <div class="no-padding col-md-3 col-sm-6 col-xs-10">
+            <p class="heading">SHORTLISTED PROFILES<span class="subheading"> | TOTAL {{totalRecords}}</span></p>
+        </div>
+        <div class="col-md-8 col-xs-12 res-prioritymain col-sm-11">
+            <div class="prioritydropdrown-main no-padding col-md-12">
+                <div class="no-padding col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <select name="hiringrequest" class="form-control" [(ngModel)]="hiringRequestId" (change)="loadNeedsByHiringId()">
+                        <option value="">Select Hiring Request</option>
+                        <option *ngFor="let hiringRequest of hiringRequestOptions" [value]="hiringRequest.id">{{hiringRequest.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <select name="hiringneed" class="form-control" [(ngModel)]="hiringRequestNeedId" (change)="filterChanged()">
+                        <option value="">Select Hiring Request Need</option>
+                        <option *ngFor="let hiringNeed of hiringNeedOptions" [value]="hiringNeed.id">{{hiringNeed.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <select name="priority" class="form-control" [(ngModel)]="noticePeriod" #noticePeriodRef="ngModel" (change)="filterChanged()">
+                            <option value="ALL">Select Notice Period</option>
+                            <option *ngFor="let noticePeriod of noticePeriodOptions" [value]="noticePeriod.code">{{noticePeriod.description}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 col-sm-1 col-xs-2">
+            <p class="heading">
+                <a class="pull-right" (click)="exportData()"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a>
+            </p>
+        </div>
+    </div>
+    <div class="shortlisted-requests">
+        <ag-grid-angular class="ag-fresh grid_ag"
+            [gridOptions]="gridOptions"
+            enableColResize
+            enableSorting
+            enableFilter
+            rowSelection="single"
+            paginationPageSize=20
+            rowDeselection=true
+            (selectionChanged)="setModes()"
+            (gridReady)="onGridInitialize()"
+            (gridSizeChanged)="resizeColumns()">
+        </ag-grid-angular>
+        <nav class="grid_nav">
+            <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+        </nav>
+    </div>
+    <div class="pull-right grid_btn">
+        <button *ngIf="!commonService.hideFeature('VIEW_PROFILE')" [disabled]="buttonModes.open" class="profile-screening-view-button" (click)="showProfileDetails()">Open</button>
+        <button *ngIf="!commonService.hideFeature('VIEW_PROFILE_TIMELINE')" [disabled]="buttonModes.timeline" class="profile-screening-view-button" (click)="showProspectTimeline()">Show Timeline</button>
+        <button *ngIf="!commonService.hideFeature('SCHEDULE_INTERVIEW')" class="shortlisted-requests-schedule-button" [disabled]="disableShedule" (click)="loadScheduleInterview()">Schedule Interview</button>
+        <remarks-modal *ngIf="!commonService.hideFeature('REJECT_PROFILE_FOR_HIRING_REQUEST_NEED')" [modalId]="rejectId" [remarkTitle]="rejectTitle" [required]="true" [message]="'Please enter the reason for rejection'" [isDisable]="buttonModes.reject" (updateReason)="rejectProfile($event)"></remarks-modal>
+    </div>
+</div>

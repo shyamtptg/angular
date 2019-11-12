@@ -1,0 +1,39 @@
+<div class="ms-login-container">
+    <h1 class="ms-login-header">myspace</h1>
+    <div class="box p-8x">
+        <div class="row display-flex">
+            <div class="col-sm-6 ms-login-info">
+                Welcome to
+                <h4 class="ms-text">MySpace</h4>
+                <ul>
+                    <li>Fill your hiring needs</li>
+                    <li>Apply and manage your leaves</li>
+                    <li>...</li>
+                    <li>Manage workstation allocations</li>
+                </ul>
+            </div>
+            <div class="col-sm-6">
+                <form #loginFormRef="ngForm" autocomplete="off" class="ms-login-form">
+                    <h2 class="login-text">Login to your account</h2>
+                    <!-- <div>
+                        <label for="username">Username</label>
+                        <input type="text" id="username" name="username" placeholder="Please enter your user name" required [(ngModel)]="email" #emailRef="ngModel" />
+                    </div>
+                    <div>
+                        <label for="password">Password</label>
+                        <input type="password" id="password" name="password" [(ngModel)]="password" #passwordRef="ngModel" (keypress)="handleEnter($event)" />
+                    </div> -->
+                    <mat-form-field class="full-width">
+                        <input matInput placeholder="Username" required [(ngModel)]="email" name="username">
+                    </mat-form-field>
+                    <mat-form-field class="full-width">
+                        <input matInput type="password" placeholder="Password" [(ngModel)]="password" name="password">
+                    </mat-form-field>
+                    <button #loginbutton [disabled]="!loginFormRef.valid" class="ms-btn ms-btn-primary-filled ms-login-button" (click)="login()">Login</button>
+                </form>
+                <p class="small-text"><span class="bold">Note: </span>After entering the credentials and clicking the login button, if you observe the loading symbol for a long time, please click on the login button again.</p>
+            </div>
+        </div>
+        
+    </div>
+</div>

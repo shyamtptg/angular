@@ -1,0 +1,2 @@
+<div class="status-btn" *ngIf="status=='Pending' ||  status=='Approved'">
+    <a *ngIf='(canceldateCheck >= currentDate)' (click)="cancel(params)">Cancel</a>

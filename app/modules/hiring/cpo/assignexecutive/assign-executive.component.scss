@@ -1,0 +1,37 @@
+.ag-header-cell-label {
+    font-weight: bold;
+}
+
+// .assign-executive-grid {
+//     width: 99%;
+//     margin: 0.5% 0 6% 1%;
+//     height: 30em;
+// }
+
+.assign-executive-title {
+    margin-left: 0.8em;
+}
+
+// .assign-executive-btns {
+//     margin-top: -4.5em;
+// }
+
+.assign-executive-button {
+    border-radius: 2px;
+    min-width: 72px;
+    height: 35px;
+    margin-left: 0.5em;
+}
+
+.assign-executive-create-button {
+    @extend .assign-executive-button;
+    color: #ffffff;
+    background: rgba(39, 70, 98, 0.96);
+}
+
+// .assign-executive {
+//     .grid-pagination {
+//         position: relative;
+//         top: -5em;
+//     }
+// }

@@ -1,0 +1,19 @@
+<div class="recruiter-navigation">
+	<div class="sidebar-container" left-menu-nav>
+		<div class="sidebar-menu">
+			<ul class="nav-route-items sidebar-nav nav-pills nav-stacked menu">
+				<li><a [routerLink]="['dashboard']" routerLinkActive="active-link" class="menu-list"><span class="fa-stack fa-lg pull-left"><i class="fa fa-tachometer fa-stack-1x"></i></span> <span class="menu-text">Dashboard</span></a></li>
+				<li><a [routerLink]="['myrequests']" routerLinkActive="active-link" class="menu-list"><span class="fa-stack fa-lg pull-left"><i class="fa fa-address-card fa-stack-1x"></i></span><span class="menu-text">Hiring Requests</span></a></li>
+				<li style="border:none; color:grey"> <a href="javascript:void(0);"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user-circle-o fa-stack-1x "></i></span><span class="menu-text">Profiles</span><span><i class="fa fa-chevron-down list-arrow"></i></span></a>
+					<ul class="nav-route-items" [hidden]="false">
+						<li><a [routerLink]="['all']" routerLinkActive="active-link" class="menu-list"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user fa-stack-1x"></i></span><span class="menu-text">All Profiles</span></a></li>
+						<li><a [routerLink]="['shortlist']" routerLinkActive="active-link" class="menu-list"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user fa-stack-1x"></i></span><span class="menu-text">Shortlisted</span></a></li>
+						<li><a [routerLink]="['select']" routerLinkActive="active-link" class="menu-list"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user fa-stack-1x"></i></span><span class="menu-text">Selected</span></a></li>
+						<li><a [routerLink]="['deactivate']" routerLinkActive="active-link" class="menu-list"><span class="fa-stack fa-lg pull-left"><i class="fa fa-user fa-stack-1x"></i></span><span class="menu-text">Deactivated</span></a></li>
+						<li><a [routerLink]="['search']" routerLinkActive="active-link" class="menu-list"><span class="fa-stack fa-lg pull-left"><i class="fa fa-search fa-stack-1x"></i></span><span class="menu-text">Search</span></a></li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</div>
+</div>

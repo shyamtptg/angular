@@ -1,0 +1,77 @@
+.hiring-feature {
+    .toggle_menu {
+        margin-left: 10px;
+        margin-right: 10px;
+        color: #3e4248;
+        cursor: pointer;
+        opacity: 0;
+    }
+    .sidebar_menu {
+        position: fixed;
+        width: 250px;
+        margin: -0.2em 0 0 -1.5em;
+        overflow: auto;
+        height: 100vh;
+        max-height: 100vh;
+        z-index: 1000000;
+        background-color: rgba(17, 17, 17, 0.9);
+        opacity: 0.9;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+        list-style: none;
+        a {
+            text-decoration: none !important;
+        }
+        .fa {
+            margin-right: 1em;
+        }
+        .list-arrow {
+            margin-left: 1em;
+        }
+        .link-active {
+            color: white !important;
+        }
+    }
+    .fa-times {
+        right: 10px;
+        top: 10px;
+        opacity: 0.7;
+        position: absolute;
+        cursor: pointer;
+        color: white;
+        background-color: rgba(17, 17, 17, 0.9);
+    }
+    .fa-times:hover {
+        opacity: 1;
+    }
+    .navigation-selection {
+        margin: 20px 0;
+        display: block;
+        width: 200px;
+        margin-left: 25px;
+    }
+    .navigation-item {
+        font-weight: 200;
+        color: white;
+        padding: 12px 0;
+        box-sizing: border-box;
+        font-size: 12px;
+        color: #D8D8D8;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+    }
+    .hide_menu {
+        margin-left: -260px;
+    }
+    .opacity_one {
+        opacity: 1;
+        transition: all 0.3s ease-in-out;
+        -webkit-transition: all 0.3s ease-in-out;
+        -moz-transition: all 0.3s ease-in-out;
+        -o-transition: all 0.3s ease-in-out;
+    }
+}

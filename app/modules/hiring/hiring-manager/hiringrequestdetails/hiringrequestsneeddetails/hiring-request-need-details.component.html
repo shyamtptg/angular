@@ -1,0 +1,76 @@
+
+<div class="col-md-12 hiring-need-div" style="padding-top:4.5px;padding-bottom: 4.5px;line-height:42px;"><div class="row">
+	<div class="col-xs-10">
+	<span class="pull-left need-text"><span class="need-heading">Role: </span>{{needData.expectedRole}}</span>
+	<span class="pull-left need-text"><span class="need-heading">Practice: </span>{{needData.practiceName}}</span>
+	<span class="pull-left need-text"><span class="need-heading">No. of Resources: </span>{{needData.resourcesCount}}</span>
+	</div>
+	<div class="col-xs-2"><span class="pull-right"><span><a class="glyphicon glyphicon-chevron-right plus-icon" style="margin: 0.8em 0.8em 0 0;" (click)="toggleHiringNeedDetails()"></a><a class="glyphicon glyphicon-chevron-down minus-icon" style="margin: 0.8em 0.8em 0 0;" (click)="toggleHiringNeedDetails()"></a></span></span></div></div>
+</div>
+
+<form #updateHiringNeedForm="ngForm" novalidate>
+	<div hiringNeed class="hiring-need-details close">
+		<p class="heading">HIRING REQUEST NEED DETAILS<span class="subheading"> | ALL MANDATORY*</span></p>
+		<div class="row">
+			<div *ngIf="comboData" class="form-group col-md-4 col-xs-12 col-sm-4">
+				<label class="labelText" for="practice">Practice*</label>
+				<select name="practice" class="form-control" [(ngModel)]="needData.practiceId" required (change)="loadCompetenciesByPractice()" [disabled]="viewMode">
+					<option *ngFor="let practice of comboData.practice" [value]="practice.id">{{practice.name}}</option>
+				</select>
+			</div>
+			<div *ngIf="comboData" class="form-group col-md-4 col-xs-12 col-sm-4">
+				<label class="labelText" for="competency">Competency*</label>
+				<select name="competency" class="form-control" [(ngModel)]="needData.competencyId" required [disabled]="viewMode">
+					<option *ngFor="let competency of comboData.competency" [value]="competency.id">{{competency.name}}</option>
+				</select>
+			</div>
+			<div *ngIf="comboData" class="form-group col-md-4 col-xs-12 col-sm-4">
+				<label class="labelText" for="workloc">Work Location*</label>
+				<select name="workloc" class="form-control" [(ngModel)]="needData.workLocationId" [disabled]="viewMode" required>
+					<option *ngFor="let location of comboData.workLocation" [value]="location.id">{{location.clientName}}</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4 col-xs-12 col-sm-4">
+				<label class="labelText" >Experience Req (Yrs)*</label>
+				<div>
+					<input type="number" name="expReqFrom" min="0" max="100" class="col-md-4 col-xs-12" [(ngModel)]="needData.minimumExperienceInYears" required #expReqFromRef="ngModel" [readOnly]="viewMode"/>
+					<span class="col-md-1 col-xs-1 to-text">to</span>
+					<input type="number" name="expReqTo" min="0" max="100" class="col-md-4 col-xs-12" [(ngModel)]="needData.maximumExperienceInYears" required #expReqToRef="ngModel" [readOnly]="viewMode"/>
+				</div>
+				<div [hidden]="(expReqFromRef.valid || expReqFromRef.pristine) && (expReqToRef.valid || expReqToRef.pristine)" class="alert alert-danger experience-alert">Please enter the Experience Req</div>
+			</div>
+			<div class="form-group col-md-4 col-xs-12 col-sm-4">
+				<label class="labelText" for="expectedrole">Expected Role*</label>
+				<input type="text" name="expectedrole" class="form-control"  maxlength="64" [(ngModel)]="needData.expectedRole" required #expectedRoleRef="ngModel" [readOnly]="viewMode"/>
+				<div [hidden]="expectedRoleRef.valid || expectedRoleRef.pristine" class="alert alert-danger">Please enter the Expected Role</div>
+			</div>
+			<div class="form-group col-md-4 col-xs-12 col-sm-4">
+				<label class="labelText" for="noofres">Number of Resources*</label>
+				<input type="number" name="noofres" class="form-control" [(ngModel)]="needData.resourcesCount" required #numOfResRef="ngModel" [readOnly]="viewMode"/>
+				<div [hidden]="numOfResRef.valid || numOfResRef.pristine" class="alert alert-danger">Please enter the Number of Resources</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-4 col-xs-12 col-sm-4">
+				<label class="labelText" for="expectedstart">Expected Start Date*</label>
+				<input type="date" name="expectedstart" class="form-control" [(ngModel)]="needData.expectedStartDate" required [readOnly]="viewMode"/>
+			</div>
+			<div *ngIf="comboData" class="form-group col-md-4 col-xs-12 col-sm-4">
+				<label class="labelText" for="model2">Model*</label>
+				<select name="model2" class="form-control" [(ngModel)]="needData.model" required [disabled]="viewMode">
+					<option *ngFor="let model of comboData.model" [value]="model.code">{{model.description}}</option>
+				</select>
+			</div>
+			<div class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="needpurpose">Purpose*</label>
+                <input type="text" name="needpurpose" class="form-control" maxlength="128" [(ngModel)]="needData.purpose" required [readOnly]="viewMode"/>
+            </div>
+		</div>
+		<recruiter-job-desc-modal [jobId]="jobDescriptionId" [modalId]="modalId" [practId]="needData.practiceId" (setjobid)="setJobId($event)"></recruiter-job-desc-modal>
+		<div #interviewPanelDetails [hidden]="false" class="row maindiv">
+			<recruiter-interview-panel [panelDetails]="panel" *ngFor="let panel of panelList" (back)="finishJobDescription()" (next)="loadHiringRequestSummary()" (newPanel)="addNewPanel()" (remove)="removePanel(panel)" (disable)="setDisableState($event)" [disabled]="viewMode"></recruiter-interview-panel>
+		</div>
+	</div>
+</form>

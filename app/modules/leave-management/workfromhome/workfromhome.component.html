@@ -1,0 +1,155 @@
+<div class="row">
+    <div class="col-md-7 container-border">
+        <form autocomplete="off" name="workFromHomeForm" (ngSubmit)="createWorkFromHome(wfhData)" #workFromHomeForm="ngForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row ">
+                        <div class="leavesbox_starts">
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Date
+                                            <span class="required">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <p-calendar readonlyInput="true" required [(ngModel)]="wfhData.date" dateFormat="dd/mm/yy" [minDate]="minDate" [maxDate]="maxDate"
+                                            [disabledDays]="[0,6]" [disabledDates]=holidaysList [showIcon]=true name="from" #from="ngModel"></p-calendar>
+                                    </div>
+                                    <div *ngIf="from.dirty && from.errors " class=" text-danger">
+                                        <div *ngIf="from.errors.required">
+                                            Date field can't be blank
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Tasks planned
+                                            <span class="required">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <textarea pattern="(.|\n){0,}\S+(.|\n){0,}" required #tasksPlanned="ngModel" rows="4" cols="50" maxlength="500" [(ngModel)]="wfhData.tasksPlanned"
+                                            name="tasksPlanned" type="text" class="form-control" id="tasksPlanned" placeholder="Please enter max 500 Characters"></textarea>
+                                    </div>
+                                    <div class="text-danger">
+                                        <div *ngIf="tasksPlanned.dirty && tasksPlanned.pristine && tasksPlanned.errors && tasksPlanned.errors.required">
+                                            Tasks Planned field can't be blank
+                                        </div>
+
+                                        <div *ngIf="tasksPlanned.dirty && tasksPlanned.errors && tasksPlanned.errors.pattern ">
+                                            Please enter valid text.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Comments</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <textarea #comments="ngModel" pattern="(.|\n){0,}\S+(.|\n){0,}" rows="4" cols="50" maxlength="500" [(ngModel)]="wfhData.comments"
+                                            name="comments" type="text" class="form-control" id="Comments" placeholder="Please enter maximum 500 characters"></textarea>
+                                    </div>
+                                    <div *ngIf="comments.dirty && comments.errors" class="text-danger">
+                                        <div *ngIf="comments.errors.maxlength">
+                                            comments can't be more than 500 characters long.
+                                        </div>
+                                        <div *ngIf="comments.errors.pattern ">
+                                            Please enter valid text.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Apply To</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span *ngFor="let manager of managerInfo.projectManagerDto">
+                                            <button type="button" class="btn-default btn-xs" disabled>
+                                                {{manager.projectManagerName}}
+                                            </button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" *ngIf="managerInfo.reportingManagerDto!=null">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Copy To</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <button type="button" class="btn-default btn-xs" disabled>{{managerInfo.reportingManagerDto.reportingManagerName}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Notify To</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <p-autoComplete [(ngModel)]="wfhData.addPeople" name="people" #people="ngModel" [suggestions]="filteredCountriesMultiple"
+                                            (completeMethod)="filterCountryMultiple($event)" field="fullName" styleClass="wid100"
+                                            [minLength]="1" placeholder="Add people..." [multiple]="true">
+                                        </p-autoComplete>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6 col-sm-offset-6">
+                                    <div class="form-group">
+                                        <button type="submit" [disabled]="!workFromHomeForm.valid" class="btn Encash" data-color="primary">Apply WFH</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+        <div class="row" style=" border-top: 1px solid #eee;padding-right:2px">
+            <div class="col-md-12">
+                <div>
+                    <h4>Work From Home History</h4>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <ag-grid-angular #agGrid style="width:100%; height:300px;" enableColResize enableSorting enableFilter (gridReady)="onGridReady($event)"
+                    (gridSizeChanged)="resizeColumns($event)" [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize"
+                    class="ag-theme-fresh teamreqst-grid" [columnDefs]="columnDefs"></ag-grid-angular>
+                <nav class="grid-pagination">
+                    <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages" (onPageChange)="paginate($event)"></p-paginator>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5  desc-content">
+        <h5 class="aside-heading">Work From Home</h5>
+        <div>
+            <ol>
+                <li *ngFor="let desc of workFromHomeData">{{desc}}</li>
+            </ol>
+        </div>
+    </div>
+</div>

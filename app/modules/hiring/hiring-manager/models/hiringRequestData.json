@@ -1,0 +1,31 @@
+{
+    "primaryHiringDetails": {
+        "hiringFor": "Account Growth",
+        "clientName": "Trimble",
+        "department": "Design",
+        "hiringType": "OffShore",
+        "hiringManager": "RamKishore",
+        "priority": "High"
+    },
+    "secondaryHiringDetails": {
+        "practice": "UX",
+        "competency": "Android",
+        "workLocation": "InnomindsHyd",
+        "experienceReq": {
+          "from": 5,
+          "to": 7
+        },
+        "expectedRole": "Senior / lead level",
+        "numberOfResources": "2",
+        "expectedStartDate": "2016-09-01",
+        "model": "OffShore",
+        "jobDescription": "JDUX00231"
+    },
+    "interviewPanels": [{
+        "panelNumber": 1,
+        "name": "UX Communication",
+        "level": "level 1",
+        "panelMembers": ["sreeharsha.T", "pavan.T"],
+        "selectionCriterion": ["flexibility"]
+    }]
+}

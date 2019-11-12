@@ -1,0 +1,187 @@
+.recruiter-profile-details {
+  margin: 1em 0 2em 0 !important;
+  .nav > li > a {
+    padding: 6px 11px;
+    margin-right: 4px;
+  }
+  .resume-upload-button {
+      margin-top: 0.7em;
+      font-family: $font-family;
+      font-size: 14px;
+      color: #ffffff;
+      letter-spacing:$letter-spacing;
+      line-height: 2em;
+      text-align: center;
+  }
+  .professional-upload-btn {
+      background: rgba(30, 52, 72, 0.96);
+      border-radius: 2px;
+      width: 74px;
+      height: 42px;
+
+      @extend .resume-upload-button;
+  }
+  .table {
+    margin-left: 1.7em;
+  }
+  .cancel-upload {
+      color: rgba(30, 52, 72, 0.96);
+      margin: 2.2em 0 0 0.5em;
+  }
+  .professional-btn-grp {
+        margin-right: 0;
+    }
+
+    .form-control[readonly] {
+        background-color: #ffffff;
+    }
+
+    input[disabled] {
+        cursor: not-allowed !important;
+    }
+
+    .close {
+        margin-right: 0.5em;
+    }
+    
+    .category-name {
+      font-size: 1em !important;
+      margin-left: 1.5em;
+      line-height: 2em;
+    }
+    .cat-remove-icon {
+      font-size: 1.3em;
+    }
+    .image-preview-input input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity = 0);
+    }
+    .skill-details {
+      .delete-icon, .cat-remove-icon { 
+        display: none;
+      }
+      .skill-set {
+        margin: 10px 0px 0px 0px;
+        padding: 0;
+      }
+    }
+    .profile-screen-btns{
+       margin: 0 0 0 5em;
+       .profile-close-btn {
+        margin: 0 27.8em 0.9em 0.5em;
+       }
+      .profile-close {
+       margin: 0.1em -0.9em 1em 0.5em;
+      }
+    }
+    .shortlisted_permanent_address {
+      padding-top: 15px;
+    }
+    .ui-autocomplete {
+        font-size: 12px;
+    }
+    .ui-autocomplete .ui-autocomplete-input {
+        padding-left: 1em;
+    }
+    .date-picker-view {
+        p-calendar {
+            input {
+                padding: 6px 12px;
+                font-size: 12px;
+                width: 91.5%;
+            }
+            .ui-widget:disabled {
+                opacity: 1 !important;
+            }
+        }
+    }
+}
+.skillset-container {
+    .skill-set {
+    .add-more.show {
+      float: left;
+      padding-right: 5px;
+      }
+    }
+  }
+.upload_resume_main {
+  .resume-title {
+    padding: 0px 15px;
+  }
+  .remove-resume {
+    margin: 2.2em 0 0.3em 0.5em;
+    line-height: 2.3;
+  }
+  .resume_btn {
+    margin-top: 15px !important;
+    height: 33px !important;
+    border-radius: 4px;
+    line-height: 21px;
+  }
+}
+.profile-details-button {
+  border-radius:2px;
+  min-width:72px;
+  height:35px;
+  margin-left: 0em;
+}
+.profile-details-view-button {
+  @extend .profile-details-button;
+  color:#ffffff;
+  background:rgba(39,70,98,0.96);
+}
+.profile-detail-tabs {
+  .nav li.active a {
+    background:rgba(39,70,98,0.96);
+  }
+}
+.profile-details-download-button {
+  @extend .profile-details-view-button;
+}
+.professional-details-btns, .skill-details-btns{
+  margin-left: -0.5em;
+}
+.skill-details-shortlist-button {
+  @extend .profile-details-view-button;
+}
+.skill-details-reject-button {
+  @extend .profile-details-view-button; 
+}
+.skill-details-on-hold-button {
+  @extend .profile-details-view-button; 
+}
+remarks-modal button {
+  @extend .profile-details-view-button;
+}
+.modal-backdrop.in {
+  opacity: 0.5;
+}
+.shortlisted_skill_details {
+    .skill-category {
+      margin: 0px;
+    }
+    .skill_cat_text {
+      padding: 0px;
+    }
+    .skill-set {
+      margin-top: 0px !important;
+      .category-name {
+        margin-left: 1.0em !important;
+        font-size: 1.1em !important;
+      }
+      table {
+          margin-left: 1em !important;
+      }
+      .add-more {
+        padding-left: 15px;
+      }
+    }
+}
+

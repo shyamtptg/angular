@@ -1,0 +1,28 @@
+<div class="panel register-container">
+    <form #loginFormRef="ngForm" class="register-form">
+        <div class="register-header row">
+            <span><img src="../assets/Innominds_logo.png" class="innominds-logo"></span>
+            <span>HR Portal Register</span>
+        </div>
+        <div class="register-input-container">
+            <div class="row">
+                <div class="form-group col-md-12 col-xs-6 col-sm-6">
+                    <label class="label-text" for="email">Email ID*</label>
+                    <input type="email" id="email" class="form-control register-input" required name="email" placeholder="Please enter your email address"
+                        [(ngModel)]="email" #emailRef="ngModel" />
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12 col-xs-6 col-sm-6">
+                    <label class="label-text" for="password">Password*</label>
+                    <input type="text" id="password" class="form-control register-input" required [(ngModel)]="password" name="password" #passwordRef="ngModel"
+                    />
+                </div>
+            </div>
+            <div class="button">
+                <button type="button" [disabled]="!loginFormRef.valid" class="col-md-1 pull-right register-btn btn" (click)="register()">Register</button>
+                <button (click)="navigateToLogin()" class="col-md-1 pull-right register-cancel-btn btn">Cancel</button>
+            </div>
+        </div>
+    </form>
+</div>

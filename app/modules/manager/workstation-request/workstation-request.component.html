@@ -1,0 +1,136 @@
+<div *ngIf="edit; else NoEdit" class="main p-b-9x" fxLayout="column" fxLayoutAlign="center">
+  <div class="title" fxFlex>
+    <app-employee-info-badge [employeeObject]='employeeObject'></app-employee-info-badge>
+  </div>
+  <div class="common" fxLayout fxFlex fxLayoutAlign="center">
+    <div class="workstation-allocation" fxLayout="column" fxFlex="0 0 90%">
+      <div class="heading-container p-l-4x" fxLayout="row" fxFlex>
+        <span class="heading" fxFlex="0 0 calc(100% - 796px)">Workstation request</span>
+        <div class="heading-contents m-t-4x" fxLayout="row" fxFlex="0 0 796px">
+          <div class="location" fxLayout="column" fxFlex="0 0 200px">
+            <span class="heading-text bold">Location:</span>
+            <span class="content">{{selectedLocation}}</span>
+          </div>
+          <div class="building" fxLayout="column" fxFlex="0 0 200px">
+            <span class="heading-text bold">Building:</span>
+            <span class="content">{{selectedBuilding}}</span>
+          </div>
+        </div>
+      </div>
+      <div class="work-allocation-container" fxLayout="column" fxFlex>
+        <div class="top" fxLayout="row" fxFlex="0 0 59px">
+          <div class="top-left left" fxFlex="0 0 35%">&nbsp;</div>
+          <div class="right p-t-4x p-r-4x" fxLayout="row" fxFlex="0 0 calc(65% - 230px)">
+              <div class="pointer" (click)="showSelectedValues('Not Available')" fxFlex><div class="not-available m-r-1x"></div><div fxFlex><div class="not-available-text small-font">Not Available</div></div></div>
+              <div class="pointer" (click)="showSelectedValues('Available Stations')" fxFlex><div class="available m-r-1x"></div><div fxFlex><div class="available-text small-font">Available</div></div></div>
+              <div class="pointer" (click)="showSelectedValues('Selected')" fxFlex><div class="selected m-r-1x"></div><div fxFlex><div class="selected-text small-font">Selected</div></div></div>
+          </div>
+          <div class="top-right1 right" fxLayout="row" fxFlex="0 0 230px">
+            <div fxLayout="row" class="searchinput">
+              <mat-form-field class="search-mat-form">
+                <mat-icon matPrefix class="searchicon m-r-2x">search</mat-icon>
+                <input matInput  (keyup)="applyFilter($event.target.value)" placeholder="Search for workstations">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div class="bottom" fxLayout="row" fxFlex>
+          <div class="bottom-left left" fxLayout="column" fxFlex>
+            <div class="bottom-left-first p-l-4x" fxFlex>
+              <mat-form-field class="workstation m-l-1x">
+                <textarea matInput class="fixedSize" placeholder="Workstation" cols="20" rows="1" disabled>{{selectedText}}</textarea>
+              </mat-form-field><br>
+              <div *ngIf="allComments.length !== 0" fxLayout="column" class="dialogcontent p-t-3x scroll" > 
+                <span fxFlex class="keys medium-font p-t-4x">Previous Comments:</span>
+                <div fxFlex="200px" class="kevalues medium-font previouscomment" >
+                  <div class="contents">
+                    <div class="scroll">
+                      <ul *ngFor="let comment of allComments" class="commentlist">
+                        <li fxLayout="column">
+                          <div class="person" fxFlex>
+                            <span class="name-designation bold">{{comment.name}} ({{comment.role}})</span>
+                          </div>
+                          <span class="comment" fxFlex>{{comment.comment}} - {{comment.timeStamp | date :'medium'}}</span>
+                        </li>
+                      </ul> 
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div *ngIf="!isEditing" class="write-comments m-l-1x p-tb-3x">
+                <a class="comment-link medium-font" [ngClass]="{'default': disableClass}" (click)="addComment()">Write your comment</a>
+              </div>
+              <div *ngIf="isEditing" class="m-l-1x p-b-3x">
+                <mat-form-field class="notes m-t-2x">
+                  <textarea matInput class="fixedSize" placeholder="Your comments" [(ngModel)]="commentsText" cols="30" rows="5"></textarea>
+                </mat-form-field><br>
+                <button type="button" class="ms-btn ms-btn-primary-filled m-t-6x" (click)="saveDialog()">Save</button>
+                <button  class="ms-btn ms-btn-secondary-bordered" (click)="cancel()">Cancel</button>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="isLoaded" class="bottom-right p-l-4x p-r-3x right" fxFlex="0 0 65%">
+            <mat-table #table [dataSource]="workstationDataSource" class="p-r-3x">
+              <ng-container matColumnDef="workstation">
+                <mat-header-cell *matHeaderCellDef> workstation </mat-header-cell>
+                <mat-cell class="p-t-4x" *matCellDef="let element"> 
+                  <div *ngIf="element.selected; else NotSelected" class="selected-station small-font">{{element.workstation}}</div> 
+                  <ng-template #NotSelected>
+                    <div class="nonselected-station small-font">{{element.workstation}}</div>
+                  </ng-template>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="availiability">
+                <mat-header-cell *matHeaderCellDef> availiability </mat-header-cell>
+                  <mat-cell class="p-t-4x" *matCellDef="let element"> 
+                    <div *ngIf="element.availiability=='Not Available'; else Available">
+                      <div class="not-available m-r-1x m-t-1x"></div><div class="not-available-text small-font" fxFlex>Not Available</div>
+                    </div>
+                    <ng-template #Available>
+                    <div *ngIf="element.availiability=='Selected'; else NotSelected">
+                      <div class="selected m-r-1x m-t-1x"></div><div class="selected-text small-font" fxFlex>Selected</div>
+                    </div>
+                    <ng-template #NotSelected>
+                      <div class="available m-r-1x m-t-1x"></div><div class="available-text small-font" fxFlex>Available</div> 
+                    </ng-template>
+                    </ng-template>
+                  </mat-cell>
+              </ng-container>
+
+              <ng-container matColumnDef="selected">
+                <mat-header-cell *matHeaderCellDef> selected </mat-header-cell>
+                <mat-cell *matCellDef="let element"> 
+                  <label class="myCheckbox">
+                    <div *ngIf="element.availiability=='Not Available'; else Available">
+                      <input type="radio" [(checked)]="element.selected" name="test" disabled (change)="element.selected = $event.target.checked; checkSelected(element.index)"/>
+                      <mat-icon class="display-block check-icon-disabled">check_circle</mat-icon>
+                    </div>
+                    <ng-template #Available>
+                    <div *ngIf="element.selected; else NotSelected">
+                      <input type="radio" [(checked)]="element.selected" (change)="element.selected = $event.target.checked" (click)="uncheck(element.index, true)" name="test"/>
+                      <mat-icon class="check-icon display-block pointer">check_circle</mat-icon>
+                    </div>
+                    <ng-template #NotSelected>
+                      <input type="radio" [(checked)]="element.selected" (change)="element.selected = $event.target.checked; checkSelected(element.index)" name="test"/>
+                      <mat-icon class="display-block check-icon">check_circle</mat-icon>
+                    </ng-template>
+                    </ng-template>
+                  </label>
+                </mat-cell>
+              </ng-container>
+              <mat-header-row *matHeaderRowDef="workstationRequestColumns"></mat-header-row>
+              <mat-row *matRowDef="let row; columns: workstationRequestColumns;"></mat-row>
+            </mat-table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<ng-template #NoEdit>
+  <div class="box m-lr-5x p-tb-10x p-lr-3x text-center">
+    <p class="large-font">No changing of workstations available for the selected employee as the current date has crossed his joining date.</p>
+    <button class="ms-btn ms-btn-primary-filled" (click)="navigateToRequests()">Back To IT/WS Requests</button>
+  </div>
+</ng-template> 
+ 

@@ -1,0 +1,64 @@
+   
+button{
+    border-radius: 20px;
+    color: white;      
+} 
+
+.status-btn{
+    width: 120px;
+}
+
+.grid-download-icon {
+    color: #4a4a4a;
+    cursor: pointer;
+}
+
+.ag-header-viewport{
+    background: #2f4d68 !important;
+    color: white !important;
+}
+
+.ag-sort-order {
+    display: none;
+}
+
+.sub-header {
+   
+    font-size: 16px;
+    color: #000000;
+    letter-spacing:1px;
+    text-align: left;
+}
+
+// For Google Chrome
+.ag-root ::-webkit-scrollbar {
+    width: 0.9em;
+    height: 0.9em;
+}
+.indicate-leave{
+    margin-top: -16px;
+    .leave_info{
+        display: inline-block;
+        .leaves{
+            font-size: 20px;
+            margin-top: 1em;
+            font-weight: bold;
+            .leaves-optn{
+                font-size: 13px;
+                color: 	#969494;
+                }
+                
+        }
+    }
+    
+}
+
+h4{
+    font-size: 16px;
+}
+.marginTop{
+    margin-top: 10px;
+}
+.team-requests .ag-theme-fresh .ag-cell {
+  line-height: 2.31em !important;
+}

@@ -1,0 +1,46 @@
+<div class="row marginTop">
+    <div class="col-md-8">
+        <form name="CompOffForm">
+            <div class="row compoff-requests">
+                <div class="row compoff-radio">
+                    <div class="col-md-offset-9 col-md-4">
+                        <div class="radio-info radio-inline">
+                            <input type="radio" id="inlineRadio1" value="option1" name="filter" (click)="getRequests('ALL')">
+                            <label for="All"> All </label>
+                        </div>
+                        <div class=" radio-inline">
+                            <input type="radio" value="option2" name="filter" checked (click)="getRequests('PENDING')">
+                            <label for="Pending"> Pending </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <h4 *ngIf="user && user.role == 'manager'" class="Delivery_heading">Delivery Team</h4>
+                    <ag-grid-angular #agGrid style="width:100%; height:370px;" enableColResize enableSorting [context]="context" enableFilter
+                        (gridReady)="onGridReady($event)" [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize"
+                        class="ag-theme-fresh teamreqst-grid" [columnDefs]="columnDefs" (gridSizeChanged)="resizeColumns($event)"></ag-grid-angular>
+                    <nav class="grid-pagination">
+                        <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages" (onPageChange)="paginate($event)"></p-paginator>
+                    </nav>
+                </div>
+                <div *ngIf="user && user.role == 'manager'" class="col-md-12">
+                    <h4>Reporting Team</h4>
+                    <ag-grid-angular #agGrid style="width:100%; height:370px;" enableColResize enableSorting [context]="context" enableFilter
+                        (gridReady)="onGridReadyRm($event)" [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize"
+                        class="ag-theme-fresh teamreqst-grid" (gridSizeChanged)="resizeColumns($event)" [columnDefs]="columnDefsRm"></ag-grid-angular>
+                    <nav class="grid-pagination">
+                        <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPagesRm" (onPageChange)="paginateRm($event)"></p-paginator>
+                    </nav>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-4 desc-content  container-border">
+        <h4>Compensatory Off</h4>
+        <div>
+            <ol>
+                <li *ngFor="let desc of leaveDetails[2].detailedDescription.split('*')">{{desc}}</li>
+            </ol>
+        </div>
+    </div>
+</div>

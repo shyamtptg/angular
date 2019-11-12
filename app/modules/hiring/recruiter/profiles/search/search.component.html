@@ -1,0 +1,79 @@
+<div class="search-details">
+    <div class="row search-form">
+        <form autocomplete="off">
+        <div class="col-md-12">
+            <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                <label class="labelText" for="firstname">First Name</label>
+                <input type="text" class="form-control" name="firstName" maxlength="100" [(ngModel)]="searchData.firstName">
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                <label class="labelText" for="lastname">Last Name</label>
+                <input type="text" class="form-control" name="lastName" maxlength="40" [(ngModel)]="searchData.lastName">
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                <label class="labelText" for="hiringrequest">Email ID</label>
+                <input type="email" class="form-control" name="email" maxlength="64" [(ngModel)]="searchData.email">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                <label class="labelText" for="relevantexperience">Relavant Experience</label>
+                <input type="number" class="form-control" name="relevantexperience" #relExp="ngModel" min="0" max="99" step="any" [(ngModel)]="searchData.relevantExperience" (keypress)="restrictFloatnumber($event) && validateExperience(relExp.value)" placeholder="E.g. 5.5" (change)="checkExperience(searchData.relevantExperience)" />
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                <label class="labelText" for="matchingskills">Matching Skills</label>
+                <input type="text" class="form-control" name="matchingskills"  [(ngModel)]="searchData.skills" placeholder="E.g. Java">
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                 <label class="labelText" for="panno">PAN No.</label>
+                <input type="text" class="form-control" name="panno" [(ngModel)]="searchData.panNo">
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                <label class="labelText" for="mobno">Mobile No.</label>
+                <input type="text" class="form-control" name="mobno" maxlength="24" (keypress)="restrictMobilenumber($event)" [(ngModel)]="searchData.mobileNumber" >
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-6 search-details-buttons">
+                <button class="profile-screening-approve-button" (click)="searchProfiles()" [disabled]="!searchData.firstName && !searchData.lastName&& !searchData.email && !searchData.relevantExperience && !searchData.skills  && !searchData.panNo && !searchData.mobileNumber">Search</button>
+            </div>
+        </div>
+        </form>
+    </div>
+    <div class="search-profiles-grid" *ngIf="gridOptions">
+        <div class="search-requests-title">
+            <div class="no-padding col-md-6 col-sm-6 col-xs-6">
+                <p class="heading">PROFILES<span class="subheading"> | TOTAL {{totalProfiles}}</span></p>
+            </div>
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                <p [hidden]="true" class="heading">
+                    <a class="pull-right"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a>
+                </p>
+            </div>
+        </div>
+        <div class="selected-requests">
+            <ag-grid-angular class="ag-fresh grid_ag"
+                [gridOptions]="gridOptions"
+                enableColResize
+                enableSorting
+                enableFilter
+                rowSelection="single"
+                paginationPageSize=10
+                rowDeselection=true
+                (selectionChanged)="checkModes()"
+                (gridReady)="onGridInitialize()"
+                (gridSizeChanged)="resizeColumns()">
+            </ag-grid-angular>
+            <nav *ngIf="totalPages" class="search_grid_nav">
+                <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+            </nav>
+        </div>
+        <div class="pull-right search_grid_btn">
+            <button *ngIf="!commonService.hideFeature('ATTACH_PROFILE_TO_HIRING_REQUEST_NEED')" class="search-request-view-button" (click)="attachProfile()" [disabled] ="isDisable">Attach Profile</button>
+            <button *ngIf="!commonService.hideFeature('VIEW_PROFILE_TIMELINE')" class="search-request-view-button" (click)="showProspectTimeline()" [disabled]="isDisable">Show Timeline</button>
+            <button *ngIf="!commonService.hideFeature('VIEW_PROFILE')" class="search-request-view-button" (click)="viewProfile()" [disabled]="isDisable">View</button>
+            <button *ngIf="!commonService.hideFeature('UPDATE_PROFILE')" class="search-request-view-button" (click)="updateProfile()" [disabled]="isDisable">Edit</button>
+            <button *ngIf="!commonService.hideFeature('ADD_PROFILE')" class="search-request-view-button" (click)="loadProfile()" [disabled]="!isDisable">Add Profile</button>
+        </div>
+    </div>
+</div>

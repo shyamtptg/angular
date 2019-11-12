@@ -1,0 +1,97 @@
+<div class="row">
+    <div class="col-md-10">
+        <div class="profile">
+            <table class="table borderless ">
+                <thead>
+                    <tr>
+                        <th colspan="2" style="font-size:15px">
+                            {{EmpInfo.employeeName}}
+                            <p style="font-size:12px">
+                                <br/>Details:
+                            </p>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>
+                            EmployeeId:
+                        </td>
+                        <td>
+                            {{EmpInfo.employeeCode}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Employment Type:
+                        </td>
+                        <td>
+                            {{EmpInfo.employmentType}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Department:
+                        </td>
+                        <td>
+                            {{EmpInfo.departmentName}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Designation:
+                        </td>
+                        <td>
+                            {{EmpInfo.designation}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Worklocation:
+                        </td>
+                        <td>
+                            {{EmpInfo.workLocation}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Permanent Location:
+                        </td>
+                        <td>
+                            Innominds(Hyd)
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Company E-Mail ID:
+                        </td>
+                        <td>
+                            {{EmpInfo.companyMailId}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            Work station ID:
+                        </td>
+                        <td>
+                            ----
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class=" col-md-2  prfcard">
+        <img src="{{EmpInfo.photo}}" alt="No_Image" class="img-thumbnail">
+    </div>
+</div>
+<div class="row">
+    <h4 style="margin: 1em 0.1em 0.1em 1.2em">Available Leaves</h4>
+    <span class="leave-info-container">
+        <div class="col-xs-3" style="padding-left:7px;padding-right:7px"><div class="leave">{{coBalance}}</div><div class="leave-text">Comp Off</div></div>
+        <div class="col-xs-3"><div class="leave">{{clBalance}}</div><div class="leave-text">Casual</div></div>
+        <div class="col-xs-3"><div class="leave">{{olBalance}}</div><div class="leave-text">Optional</div></div>
+        <div class="col-xs-3"><div class="leave">{{elBalance}}</div><div class="leave-text">Earned</div></div>
+    </span>
+</div>
+

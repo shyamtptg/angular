@@ -1,0 +1,132 @@
+<div class="hrFlow" >    
+    <mat-grid-list cols="16"  data-toggle="tab"   [gutterSize]="'15px'" >
+        <!--  <mat-grid-tile class="space" colspan="2"></mat-grid-tile>  -->
+        <mat-grid-tile class="tabs" colspan="4"   [ngClass]="{'firsttile': step=='step1', 'secondtile':step=='step2'}">
+            <p class="content m-l-4x m-t-2x">
+                <button class="tile-btn joined-text" (click)="empstatuscheck('Workstaion')">Workstation Allocation</button>
+                <br/>
+                <span class="allocated p-t-1x p-l-1x">{{workstationStatus}}</span>
+            </p>
+        </mat-grid-tile>
+        <!-- <mat-grid-tile class="space" colspan=""></mat-grid-tile> -->
+        <mat-grid-tile class="tabs "  colspan="4"  [ngClass]="{'firsttile': step=='step1','thirdtile':step=='step3' }">
+            <p class="content m-l-4x m-t-2x">
+                <button  class="tile-btn joined-text" (click)="empstatuscheck('Hardware')">Hardware Allocation</button>
+                <br/>
+                <span class="inprogress p-t-1x p-l-1x">{{hardwareAllocationStatus}}</span>
+            </p>
+        </mat-grid-tile>
+        <!-- <mat-grid-tile class="space" colspan=""></mat-grid-tile> -->
+        <mat-grid-tile class="tabs" colspan="4">
+            <p class="content m-l-4x m-t-2x">
+                <button  class="tile-btn joined-text emailid">Email id Creation</button>
+                <br/>
+                <span class="inprogress p-t-1x p-l-1x">{{emailIdCreation}}</span>
+            </p>
+        </mat-grid-tile>
+        <!--  <mat-grid-tile class="space" colspan=""></mat-grid-tile> -->
+        <mat-grid-tile class="tabs"  colspan="4" >
+            <p class="content m-l-4x m-t-2x" >
+                <button  class="tile-btn joined-text empid"  >Employee id Card Creation</button>
+                <br/>
+                <span class="initiated p-t-1x p-l-1x">{{employeeIdCreation}}</span>
+            </p>
+        </mat-grid-tile>
+    </mat-grid-list> 
+ 
+    <div id="workstation" *ngIf="visible">       
+        <div class="closeimg pointer" (click)="changeVarible()">
+            <img src="../../../../../assets/close.svg">
+        </div>    
+        <div *ngIf="myVal=='Workstaion'">
+            <div fxLayout="row" fxLayoutGap="25px" class="workstationcontent m-t-9x">
+                    <div  class="workstationinfo p-l-4x" fxFlex="10%">
+                        <div class="location small-text">Location</div>
+                        <div class="locationinfo p-t-2x">{{location}}</div>
+                    </div>
+                    <div  class=""  fxFlex="15%">
+                            <div class="workstation small-text">Workstaion</div>
+                            <div class="workstationinfo p-t-2x">{{workStation}}</div>
+                    </div>
+            </div>
+        </div>
+        <div *ngIf="myVal=='Hardware'">
+            <div fxLayout="row"   class="hardwarecontent m-t-9x p-l-5x p-r-5x">
+                <div  class="hardwareinfo" fxFlex="27%">
+                    <div class="system small-text">System Type</div>
+                    <div class="systeminfo p-t-2x">{{systemType}}</div>
+                </div>
+                <div  class="" fxFlex="27%">
+                    <div class="operating small-text">Operating System</div>
+                    <div class="Operatinginfo p-t-2x">{{operatingSystem}}</div>
+                </div>
+                <div  class="" fxFlex="27%">
+                    <div class="processor small-text">RAM</div>
+                    <div class="processorinfo p-t-2x">{{ramConfiguration}}</div>
+                </div>               
+            </div>
+            <div fxLayout="row"  class="hardwarecontent m-t-6x">
+                <div  class="hardwareinfo p-l-4x" fxFlex="50%">
+                    <div class="system small-text">Configuration</div>
+                    <div class="systeminfo p-t-2x">{{configuration}}</div>
+                </div>                             
+            </div>
+        </div>      
+    </div>   
+    <div role="tab" fxLayout="column" fxLayoutAlign="center center" class="personalInfo">
+        <mat-horizontal-stepper #stepper [ngClass]="{'navigationStepper':disableMatStepper}" [@.disabled]="true" (selectionChange)="stepClick($event)">
+            <mat-step [stepControl]="formGroup1" label="Personal Information" completed="false">
+                <form [formGroup]="formGroup1">
+                    <div class="stepper" fxLayout="row">
+                        <mat-sidenav-container>
+                            <mat-sidenav  #drawer mode="side" opened="true" position="start">
+                                <mat-nav-list class="personalInfolist" *ngFor="let tab of tabs;let i=index">
+                                    <a class="links " mat-list-item routerLinkActive="active"  [class.active]="i===indexvalue" [class.disabled]="i>indexvalue"  (click)="i>indexvalue?'#':openFirst(i)" >{{tab}}</a>
+                                    <mat-divider></mat-divider>                                   
+                                </mat-nav-list>
+                            </mat-sidenav>
+                            <mat-sidenav-content>
+                                <router-outlet></router-outlet>
+                            </mat-sidenav-content>
+                        </mat-sidenav-container>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="formGroup2" label="Official Information" class="officialinfo" completed="false">
+                <form [formGroup]=formGroup2>
+                    <div class="stepper" fxLayout="row" >
+                    <!--   Here it comes next stepper -->
+                  <app-official-info *ngIf="selectedIndex===1" (disable)="disableStepper($event)"></app-official-info>
+                  </div>
+                   
+                </form>
+            </mat-step>
+            <mat-step id="work-tab" [stepControl]="formGroup3" label="Work Experience" completed="false">
+                <form [formGroup]=formGroup3>
+                    <div class="work-experience-info" *ngIf="selectedIndex===2">
+                        <app-work-experience #child [(childData)]="childObject"  (disable)="disableStepper($event)" (disableProceed)="disableProceedFn($event)"></app-work-experience>
+                    </div>
+                </form>
+            </mat-step>
+            <mat-step [stepControl]="formGroup4" label="Educational Info" completed="false">
+                <form [formGroup]=formGroup4>
+                    <div class="education-experience-info" *ngIf="selectedIndex===3">
+                        <app-education-experience #child2 [(childData)]="childObject1.data"  (disable)="disableStepper($event)" (disableProceed)="disableProceedFn($event)"></app-education-experience>
+                    </div>
+                </form>
+            </mat-step>
+        </mat-horizontal-stepper>
+    </div>
+</div>
+<div *ngIf="checkSelected" class="work-container">
+    <router-outlet></router-outlet>
+</div>
+<div class="footerSection m-t-3x">
+       <div fxLayout="row" class="footerbtn p-tb-4x"  fxLayoutAlign="center center" fxLayoutGap="20px">
+            <button class="ms-btn ms-btn-secondary-filled" *ngIf="selectedIndex!=0 && selectedIndex!=undefined" [disabled]="(selectedIndex===2 || selectedIndex===3) && disableProceedBtn===true"  (click)="gotoBack(stepper)">Back</button> 
+            <button *ngIf="(selectedIndex===0 || selectedIndex===1); else ProceedButton" class="ms-btn ms-btn-primary-filled p-tb-1x p-lr-1x" [disabled]="!((selectedIndex==0 && saveEnable) || selectedIndex==1 && isvalidOfficial)" (click)="save(stepper)">Save & Proceed</button>
+            <ng-template #ProceedButton>
+                <button type="button" class="ms-btn ms-btn-primary-filled p-tb-1x p-lr-1x" [disabled]="disableProceedBtn===true" (click)="save(stepper)">Proceed</button>
+            </ng-template>
+     </div>
+</div>

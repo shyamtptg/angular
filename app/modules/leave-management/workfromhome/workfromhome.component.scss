@@ -1,0 +1,84 @@
+.Encash{
+    width: 130px;
+    vertical-align: middle;
+    margin-top: 20px;
+    background-color: #2f4d68;
+    color: white;
+}
+.container-border{
+    border-right: 1px solid #eee;
+   
+}
+
+.applycompoff-text h5 span {
+background: #fff;
+position: relative;
+top: -7px;
+padding: 0px 10px;
+}
+.leavesbox_starts {
+  padding: 15px 5px;
+}
+.Pending{
+    color:#ffc266;
+}
+.Approved{
+    color: green; 
+}
+.Cancelled{
+    color: #ff8533;
+}
+.Rejected{
+    color: red;
+}
+textarea {
+    resize: none;
+}
+/* For loader */
+
+.loading {
+    border: 5px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 5px solid #3498db;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    top: -7px;
+    padding: 0px 10px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+  }
+  
+  /* Safari */
+  @-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+  }
+  
+  @keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+  }
+  .indicate-leave{
+    margin-top: -16px;
+    .leave_info{
+        display: inline-block;
+        .leaves{
+            font-size: 20px;
+            margin-top: 1em;
+            font-weight: bold;
+            .leaves-optn{
+                font-size: 13px;
+                color: 	#969494;
+             }
+             
+        }
+    }
+    
+}
+.required{
+    color: #e32;
+}
+h4{
+    font-size: 16px;
+}

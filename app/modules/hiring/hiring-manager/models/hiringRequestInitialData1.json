@@ -1,0 +1,34 @@
+{
+    "primaryHiringDetails": {
+        "hiringReason": null,
+        "clientId": null,
+        "departmentId": null,
+        "hiringType": null,
+        "hiringManager": null,
+        "hiringPriority": null
+    },
+    "secondaryHiringDetails": [{
+        "needNumber": 1,
+        "needDetails": {
+            "practice": null,
+            "competency": null,
+            "workLocation": null,
+            "experienceReq": {
+                "from": null,
+                "to": null
+            },
+            "expectedRole": null,
+            "numberOfResources": null,
+            "expectedStartDate": null,
+            "model": null,
+            "jobDescription": null,
+            "interviewPanels": [{
+                "panelNumber": 1,
+                "name": null,
+                "level": null,
+                "panelMembers": null,
+                "selectionCriterion": null
+            }]
+        }
+    }]
+}

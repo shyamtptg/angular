@@ -1,0 +1,88 @@
+<div class="data-table m-b-9x" fxLayout="column" fxflex>
+    <div fxLayout="row" class="toolbar" fxflex>
+        <mat-toolbar class="display-flex p-lr-4x">
+            <div class="requests">Workstation Allocation Requests</div>
+            <div class="mat-group">
+                <mat-radio-group >
+                    <div class="view small-font">View:</div>
+                    <mat-radio-button [checked]="check===1" (change)="changeDisplayData(1, $event)" value="all" class="m-l-1x"><div class="menu">All</div></mat-radio-button>
+                    <mat-radio-button [checked]="check===2" (change)="changeDisplayData(2, $event)" class="m-l-1x" value="joinedthisweek"><div class="menu">Joining this week</div></mat-radio-button>
+                    <mat-radio-button [checked]="check===3" (change)="changeDisplayData(3, $event)" class="m-l-1x" value="joinednextweek"><div class="menu">Joining Next week</div></mat-radio-button>
+                    <mat-radio-button [checked]="check===4" (change)="changeDisplayData(4, $event)" class="m-l-1x" value="joinedlastweek"><div class="menu">Joined Last week</div></mat-radio-button>
+                </mat-radio-group>
+            </div>
+        </mat-toolbar>
+    </div>
+    <div fxLayout="column" *ngIf="isLoaded" class="requests-container" fxflex>
+        <mat-table *ngIf="AllocationRequestsData.length>0; else NoJoinees" #table [dataSource]="AllocationRequestsSource" matSortActive="date" matSortDirection="asc" class="p-t-4x" [@.disabled]="true" matSort>
+            <ng-container matColumnDef="src">
+                <mat-header-cell *matHeaderCellDef="let e" class="display-flex"></mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1"><img class="image" [src]="e.src"/></mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="joinee">
+                <mat-header-cell *matHeaderCellDef="let e" class="display-flex" mat-sort-header>Joinee</mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                    <div class="details" fxLayout="column" fxflex>
+                        <div class="name medium-font">{{e.name}}</div>
+                        <div class="id medium-font">Emp ID: {{e.id? e.id: 'Not available'}}</div>
+                    </div>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="date">
+                <mat-header-cell *matHeaderCellDef="let e" class="display-flex" mat-sort-header>Joining Date</mat-header-cell>
+                <mat-cell *matCellDef="let e"  class="matCell1">
+                    <span class="id medium-font">{{e.date |date:'dd/MM/yyyy'}}</span>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="status">
+                <mat-header-cell *matHeaderCellDef="let e" class="display-flex">Job Status</mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                    <span class="status">{{e.status}}</span>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="request">
+                <mat-header-cell *matHeaderCellDef="let e" class="display-flex" mat-sort-header>Request#</mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                    <span class="request">{{e.request}}</span>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="workstation">
+                <mat-header-cell *matHeaderCellDef="let e" class="display-flex" mat-sort-header>Requested Workstation</mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                    <div class="details" fxLayout="column" fxflex>
+                        <div class="request">{{e.workstation}}</div>
+                        <div class="id medium-font">({{e.building}})</div>
+                    </div>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="availiability">
+                <mat-header-cell *matHeaderCellDef="let e" class="display-flex" mat-sort-header>Workstation Availiability</mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                    <span class="availiability">{{e.availiability}}</span>
+                </mat-cell>
+            </ng-container>
+            <ng-container matColumnDef="action">
+                <mat-header-cell *matHeaderCellDef="let e" class="display-flex"></mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                    <button *ngIf="e.action === 'Allocate'" (click)="navigateToWorkstationAllocationDetails(e.joinee, 'Allocate')" class="ms-btn ms-btn-primary-bordered">Allocate</button>
+                    <div *ngIf="e.action === 'Edit and Deallocate'" class="actions" fxLayout="column" fxLayoutGap="4px">
+                        <button (click)="navigateToWorkstationAllocationDetails(e.joinee, 'Edit')" class="ms-btn ms-btn-primary-bordered" [ngClass]="{'disable': e.date < e.currentDate}">Edit</button>
+                        <button (click)="navigateToWorkstationAllocationDetails(e.joinee, 'Deallocate')" class="ms-btn ms-btn-primary-bordered" [ngClass]="{'disable': e.date < e.currentDate}">Deallocate</button>
+                    </div>
+                </mat-cell>
+            </ng-container>
+            <mat-header-row *matHeaderRowDef="AllocationRequestsColumns;"></mat-header-row>
+            <mat-row *matRowDef="let row; columns: AllocationRequestsColumns;"></mat-row>
+        </mat-table>
+        <ng-template #NoJoinees>
+            <span class="no-records">{{text}}</span>
+        </ng-template>
+    </div>
+    <div class="paginator-div" fxflex>
+        <mat-paginator #paginator
+        [pageSize]="10"
+        [pageSizeOptions]="[10]"
+        [showFirstLastButtons]="true">
+        </mat-paginator>
+    </div>
+</div>

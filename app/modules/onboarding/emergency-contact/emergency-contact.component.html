@@ -1,0 +1,58 @@
+<form class="emergencyformwidth m-t-10x p-l-10x" [formGroup]="emergencyInfoFormGroup">
+    <div class="fullwidth" cellspacing="0">
+            <div fxLayout="column"  fxLayoutGap="25px">
+                <div fxLayout="row"  fxLayoutGap="40px">
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Emergency Contact Person1" formControlName="emergencyContactPerson1" required name="emergencyContactPerson" [errorStateMatcher]="matcher">                                
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Phone Number" formControlName="phoneNumber1" required name="phoneNumber1" [errorStateMatcher]="matcher">                                
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row"  >
+                    <div>
+                        <mat-form-field>
+                            <mat-select placeholder="Relation" name="relation1" required formControlName="relation1" [errorStateMatcher]="matcher">
+                                <mat-option *ngFor="let relation1 of relationships" [value]="relation1">
+                                    {{relation1}}
+                                </mat-option>                           
+                            </mat-select> 
+                            <span class="arrowicon m-t-1x">   
+                                    <mat-icon>keyboard_arrow_down</mat-icon>                           
+                            </span>                     
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row"  fxLayoutGap="40px">
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Emergency Contact Person2" formControlName="emergencyContactPerson2"  name="emergencyContactPerson2" [errorStateMatcher]="matcher">                                
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Phone Number" formControlName="phoneNumber2"  name="phoneNumber2" [errorStateMatcher]="matcher">                                
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row">
+                    <div>
+                        <mat-form-field>
+                            <mat-select placeholder="Relation" name="relation2" formControlName="relation2">
+                                <mat-option *ngFor="let relations of relationships" [value]="relations">
+                                    {{relations}}
+                                </mat-option>                           
+                            </mat-select> 
+                            <span class="arrowicon m-t-1x">   
+                                <mat-icon>keyboard_arrow_down</mat-icon>                           
+                            </span>                       
+                        </mat-form-field> 
+                    </div>
+                </div>
+            </div>
+    </div>
+</form>

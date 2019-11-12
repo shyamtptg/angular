@@ -1,0 +1,203 @@
+@import '../../../../assets/scss/spacing.scss';
+@import '../../../../assets/scss/colors.scss';
+@import '../../../../assets/scss/fonts.scss';
+
+* {
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+  }
+  .timeline {
+    position: relative;
+    width: inherit;
+    background-color: inherit;
+    font-family: Helvetica, sans-serif;
+    padding-bottom: 20px;
+  }
+  .timeline::after {
+    display: none;
+  }
+
+  .timeline:before {
+    top: 0;
+    bottom: 0;
+    position: absolute;
+    content: " ";
+    width: 2px;
+    border: 1px solid $gray20;
+    -webkit-transform: translateX(-50%);
+    transform: translateX(-50%);
+    left: 243px;
+  }
+  
+  .edu-container, .work-container {
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    margin-left: 133px;
+  }
+ 
+  .edu-container::after, .work-container::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background: url(../../../../assets/tick.svg) 0 0 no-repeat;
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+    margin-left: 206px;
+  }
+
+  .edu-container::after {
+    background-color: $green1;
+  }
+
+  .work-container::after {
+    background-color: $orange2;
+  }
+ 
+  .right {
+    left: -144px;
+  }
+  
+  .right::before {
+    display: none;
+  }
+  
+  .right::after {
+    left: 33px;
+    margin-top: 27px;
+  }
+  
+  .content {
+    box-sizing: border-box;
+    background-color:transparent;
+    position: relative;
+    @extend .p-l-4x, .p-t-4x;
+  }
+  .job-details {
+    height: 81px;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.03), 0 1px 5px 0 rgba(0,0,0,0.13);
+  }
+
+  .right1::after {
+    display: none;
+  }
+
+  .position {
+    color: $dark-gray;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    @extend .medium-font;
+  }
+
+  .position1 {
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+  }
+
+  .company {
+    color: $gray8;
+    overflow: hidden;
+    white-space:nowrap;
+    text-overflow: ellipsis;
+    @extend .joined-text, .semi-bold;
+  }
+
+  .from-to {
+    color: $gray8;
+    @extend .medium-font;
+  }
+
+  .number-days {
+    color: $gray8;
+    @extend .small-font;
+  }
+
+  .edit-delete {
+    border: 1px solid $white1;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.03), 0 1px 5px 0 rgba(0,0,0,0.13);
+  }
+
+  .disable {
+    opacity: 0.5;
+  }
+
+  .cursor-default {
+    cursor: default;
+  }
+
+  .hr1 {
+    border: 1px solid $green1;
+    @extend .m-l-4x, .m-t-7x;
+  }
+
+  .hr2 {
+    border: 1px solid $orange2;
+    @extend .m-l-4x, .m-t-7x;
+  }
+
+  .material-icons {
+    float: left;
+    font-size: 15px;
+    margin-top: 1px;
+  }
+
+  mat-form-field {
+    width: 250px;
+  }
+
+.statusdropdown /deep/  {
+  padding-top: 10px;
+  .mat-select-arrow {
+		border: none;
+	}
+	.mat-select{
+		width:50%;
+		margin-top:5px;
+	}
+	.mat-input-infix /deep/ {
+		border:none;
+		padding:0px;
+  }
+  .mat-select-value {
+    display: contents;
+  }
+}
+
+::ng-deep .mat-select-panel {
+  margin-left: 17px;
+  margin-top: 10px;
+}
+
+::ng-deep .material-icons {
+  font-size: 24px!important;
+}
+
+.arrowicon{
+  float: right;
+}
+.text {
+  float: right;
+  color: $gray9;
+  @extend .small-font;
+}
+
+.experience {
+  float: right;
+  color: $gray19;
+  @extend .medium-font, .bold;
+}
+
+.show-education-text {
+  color: $gray8;
+  @extend .small-font;
+}
+
+.line {
+  margin-top: 20px;
+  margin-bottom: 0px;
+}

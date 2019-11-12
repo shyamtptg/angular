@@ -1,0 +1,62 @@
+
+.register-container {
+    background: rgba(8, 14, 21, 0.74);
+    border: 1px solid #979797;
+    position: relative;
+}
+
+.button-text {
+    font-family: $font-family;
+    font-size: 14px;
+    color: #ffffff;
+    letter-spacing: $letter-spacing;
+    text-align: center;
+}
+
+.register-form {
+    background: #ffffff;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.10);
+    width: 454px;
+    height: 333px;
+    position: absolute;
+    top: 300px;
+    left: 804px;
+    .register-header {
+        padding: 43px 44px 0px 67px;
+        margin-bottom: 20px;
+    }
+    .register-input-container {
+        padding: 0px 61px 0px 58px;
+    }
+    .register-input {
+        background: #ffffff;
+        border: 1px solid #c5c5c5;
+        height: 40px;
+    }
+    .label-text {
+        font-family: $font-family;
+        font-size: 14px;
+        color: #575757;
+        letter-spacing: $letter-spacing;
+        text-align: left;
+    }
+    .innominds-logo {
+        width: 168px;
+        height: 43px;
+    }
+    .register-btn {
+        background: rgba(30, 52, 72, 0.96);
+        border-radius: 2px;
+        width: 74px;
+        height: 42px;
+        @extend .button-text;
+        margin-left: 10px;
+    }
+    .register-cancel-btn {
+        background: #9b9b9b;
+        border-radius: 2px;
+        width: 74px;
+        height: 42px;
+        @extend .button-text;
+    }
+}

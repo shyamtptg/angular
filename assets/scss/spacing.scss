@@ -1,0 +1,68 @@
+@mixin spacer($factor, $space-amount){
+    @include padding($factor, $space-amount);
+    @include margin($factor, $space-amount);
+}
+
+@mixin padding($factor, $pad-amount) {
+    .p-#{$factor}x {
+        padding: #{$pad-amount}px;
+    }
+    .p-t-#{$factor}x {
+        padding-top: #{$pad-amount}px;
+    }
+    .p-b-#{$factor}x {
+        padding-bottom: #{$pad-amount}px;
+    }
+    .p-l-#{$factor}x {
+        padding-left: #{$pad-amount}px;
+    }
+    .p-r-#{$factor}x {
+        padding-right: #{$pad-amount}px;
+    }
+    .p-lr-#{$factor}x {
+        padding-right: #{$pad-amount}px;
+        padding-left: #{$pad-amount}px;
+    }
+    .p-tb-#{$factor}x {
+        padding-top: #{$pad-amount}px;
+        padding-bottom: #{$pad-amount}px;
+    }
+}
+  
+@mixin margin($factor, $margin-amount) {
+    .m-#{$factor}x {
+        margin: #{$margin-amount}px;
+    }
+    .m-t-#{$factor}x {
+        margin-top: #{$margin-amount}px;
+    }
+    .m-b-#{$factor}x {
+        margin-bottom: #{$margin-amount}px;
+    }
+    .m-l-#{$factor}x {
+        margin-left: #{$margin-amount}px;
+    }
+    .m-r-#{$factor}x {
+        margin-right: #{$margin-amount}px;
+    }
+    .m-lr-#{$factor}x {
+        margin-right: #{$margin-amount}px;
+        margin-left: #{$margin-amount}px;
+    }
+    .m-tb-#{$factor}x {
+        margin-top: #{$margin-amount}px;
+        margin-bottom: #{$margin-amount}px;
+    }
+}
+
+@include spacer(0, 0);
+@include spacer(1, 5);
+@include spacer(2, 10);
+@include spacer(3, 15);
+@include spacer(4, 20);
+@include spacer(5, 25);
+@include spacer(6, 30);
+@include spacer(7, 35);
+@include spacer(8, 40);
+@include spacer(9, 45);
+@include spacer(10, 50);

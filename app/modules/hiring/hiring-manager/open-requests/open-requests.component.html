@@ -1,0 +1,10 @@
+<div #hiringRequestNeeds [hidden]="false">
+	<p class="heading">OPEN POSITIONS<span class="subheading"> | TOTAL {{recordsCount}}</span></p>
+	<div class="row hiring-request-need-details hiring-need-container">
+		<open-hiring-request [hiringData]="hiringRequest" [reqIndex]="i" *ngFor="let hiringRequest of hiringReqList; let i = index"></open-hiring-request>
+		<p *ngIf="noRecords" style="padding-left: 0.7em">No records found</p>
+	</div>
+</div>
+<div>
+    <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+</div>

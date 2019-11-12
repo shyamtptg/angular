@@ -1,0 +1,183 @@
+<div class="personalDetails-form">
+	<form #personalDetailsForm="ngForm" *ngIf="personalDetailsFrmProspectData" autocomplete="off">
+		<div class="row">
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="firstName">First Name*</label>
+				<input type="text" id="firstName" class="form-control inputText" required name="firstName" maxlength="100" [(ngModel)]="personalDetailsFrmProspectData.firstName"
+				    #firstNameRef="ngModel" [readOnly]="viewMode" pattern=".*\S+.*" />
+				<div [hidden]="firstNameRef.valid || firstNameRef.pristine" class="alert alert-danger">Please enter the First name</div>
+			</div>
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="lastName">Last Name*</label>
+				<input type="text" id="lastName" class="form-control inputText" required maxlength="40" [(ngModel)]="personalDetailsFrmProspectData.lastName"
+				    name="lastName" #lastNameRef="ngModel" [readOnly]="viewMode" pattern=".*\S+.*" />
+				<div [hidden]="lastNameRef.valid || lastNameRef.pristine" class="alert alert-danger">Please enter the Last name</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="personalEmail">Personal Email ID*</label>
+				<input type="email" id="personalEmail" class="form-control inputText" required maxlength="64" [(ngModel)]="personalDetailsFrmProspectData.email"
+				    name="personalEmail" #personalEmailRef="ngModel" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [readOnly]="viewMode" (blur)="checkEmail($event.target.value)" />
+				<div [hidden]="personalEmailRef.valid || personalEmailRef.pristine" class="alert alert-danger">
+						<div [hidden]="!personalEmailRef.hasError('required')"> Please enter the Email ID  </div>
+						<div [hidden]="!personalEmailRef.hasError('pattern')">Email format should be 
+						   <small><b>joe@abc.com</b></small>
+						</div>
+				</div>
+			</div>
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="mobileNumber">Mobile Number*</label>
+				<input type="text" [(ngModel)]="personalDetailsFrmProspectData.mobileNumber" name="mobileNumber" class="form-control inputText"
+				    id="mobileNumber" required minlength="10" maxlength="24" (keypress)="restrictMobilenumber($event)" #mobileNumberRef="ngModel"
+				    [readOnly]="viewMode" (blur)="checkMobile($event.target.value)">
+				<div [hidden]="mobileNumberRef.value != ''" class="alert alert-danger">Please enter Mobile number</div>
+				<div [hidden]="mobileNumberRef.value == ''||mobileNumberRef.valid || mobileNumberRef.pristine" class="alert alert-danger">Please enter valid Mobile number </div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="dateOfBirth">Date of Birth</label>
+				<div class="expected-startdate">
+					<p-calendar name="dateOfBirth" [(ngModel)]="personalDetailsFrmProspectData.dateOfBirth" dateFormat="dd-mm-yy" [monthNavigator]="true"
+					    [yearNavigator]="true" yearRange="1950:2010" [showIcon]="true"   #dateOfBirth="ngModel" readonlyInput="viewMode"  [defaultDate]="defaultDate"
+					    [disabled]="viewMode"></p-calendar>
+				</div>
+				<div [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="alert alert-danger">Please enter the Date of birth</div>
+			</div>
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="nationality">Nationality*</label>
+				<input type="text" id="nationality" class="form-control inputText" required maxlength="32" [(ngModel)]="personalDetailsFrmProspectData.nationality"
+				    name="nationality" #nationalityRef="ngModel" [readOnly]="viewMode" (keypress)="restrictLetters($event)" />
+				<div [hidden]="nationalityRef.valid || nationalityRef.pristine" class="alert alert-danger">Please enter the Nationality</div>
+			</div>
+		</div>
+		<div *ngIf="!commonService.hideFeature('VIEW_PROFILE_CONFIDENTIAL_DETAILS')" class="row">
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="citizenIdentity1Type">Citizen Identity Type</label>
+				<select name="citizenIdentity1Type" class="form-control" [(ngModel)]="personalDetailsFrmProspectData.citizenIdentity1Type"
+				    [disabled]="viewMode" (change)="enableCitizenIdentity()">
+					<option value="AADHAR" [disabled] ="personalDetailsFrmProspectData.citizenIdentity2Type == 'AADHAR'">AADHAR</option>
+                    <option value="PAN" [disabled] ="personalDetailsFrmProspectData.citizenIdentity2Type == 'PAN'">PAN</option>
+                    <option value="VOTER ID" [disabled] ="personalDetailsFrmProspectData.citizenIdentity2Type == 'VOTER ID'">VOTER ID</option>
+                    <option value="SSN" [disabled] ="personalDetailsFrmProspectData.citizenIdentity2Type == 'SSN'">SSN</option>
+                </select>
+			</div>
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="citizenIdentity1">Citizen Identity</label>
+				<input type="text" id="citizenIdentity1" class="form-control inputText" maxlength="16" [(ngModel)]="personalDetailsFrmProspectData.citizenIdentity1"
+				    name="citizenIdentity1" [readOnly]="viewMode" [disabled]="!identityTypeSelected" (blur)="checkCitizenIdentity($event.target.value)" />
+			</div>
+		</div>
+		<div class="addresscheck">
+			<label class="boldText">Current Address</label>
+			<input type="checkbox" id="isSingleAddress" (click)="copyCurrentToPermanentAddress()" class="isSingleAddress" [(ngModel)]="personalDetailsFrmProspectData.permanentAddressSameAsCurrentAddress"
+			    name="isSingleAddress" #isSingleAddressRef="ngModel" [disabled]="viewMode" /><span class="isPermanet">
+			Also mark this as my permanent address</span>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="currentPlotNumber">H.No/Plot.No</label>
+				<input type="text" id="currentPlotNumber" maxlength="100" class="form-control inputText" [(ngModel)]="personalDetailsFrmProspectData.currentAddress.address1"
+				    name="currentPlotNumber" #currentPlotNumberRef="ngModel" [readOnly]="viewMode" />
+				<div [hidden]="currentPlotNumberRef.valid || currentPlotNumberRef.pristine" class="alert alert-danger">Please enter the H.No/Plot.No</div>
+			</div>
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="currentStreetName">House Name & Street</label>
+				<input type="text" id="currentStreetName" class="form-control inputText" [(ngModel)]="personalDetailsFrmProspectData.currentAddress.address2"
+				    name="currentStreetName" #currentStreetNameRef="ngModel" maxlength="100" [readOnly]="viewMode" />
+				<div [hidden]="currentStreetNameRef.valid || currentStreetNameRef.pristine" class="alert alert-danger">Please enter the House name & Street</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="currentCity">City*</label>
+				<input type="text" id="currentCity" maxlength="32" class="form-control inputText" required [(ngModel)]="personalDetailsFrmProspectData.currentAddress.city"
+				    name="currentCity" #currentCityRef="ngModel" [readOnly]="viewMode" pattern=".*\S+.*" />
+				<div [hidden]="currentCityRef.valid || currentCityRef.pristine" class="alert alert-danger">Please enter the City</div>
+			</div>
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="currentState">State*</label>
+				<input type="text" id="currentState" maxlength="32" class="form-control inputText" required [(ngModel)]="personalDetailsFrmProspectData.currentAddress.state"
+				    name="currentState" #currentStateRef="ngModel" [readOnly]="viewMode" pattern=".*\S+.*" />
+				<div [hidden]="currentStateRef.valid || currentStateRef.pristine" class="alert alert-danger">Please enter the State</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="currentCountry">Country*</label>
+				<input type="text" id="currentCountry" maxlength="32" class="form-control inputText" required [(ngModel)]="personalDetailsFrmProspectData.currentAddress.country"
+				    name="currentCountry" #currentCountryRef="ngModel" [readOnly]="viewMode" pattern=".*\S+.*" />
+				<div [hidden]="currentCountryRef.valid || currentCountryRef.pristine" class="alert alert-danger">Please enter the Country</div>
+			</div>
+			<div class="form-group col-md-6 col-xs-12 col-sm-6">
+				<label class="labelText" for="currentZipcode">Zip code*</label>
+				<input type="text" id="currentZipcode" class="form-control inputText" required [(ngModel)]="personalDetailsFrmProspectData.currentAddress.zipcode" maxlength="16"
+				    name="currentZipcode" #currentZipcodeRef="ngModel" [readOnly]="viewMode" (keypress)="restrictNumeric($event)" minlength="6" maxlength="6"/>
+				<div [hidden]="currentZipcodeRef.valid || currentZipcodeRef.pristine" class="alert alert-danger">Please enter a valid Zip code</div>
+			</div>
+		</div>
+		<div class="permanentAddressDetails">
+			<label class="boldText">Permanent Address</label>
+			<div class="row" *ngIf="personalDetailsFrmProspectData.permanentAddressSameAsCurrentAddress">
+				<div class="col-xs-10 pull-left permanentDetailsText">{{ personalDetailsFrmProspectData.currentAddress.address1 }}</div>
+				<div class="col-xs-10 pull-left permanentDetailsText">{{ personalDetailsFrmProspectData.currentAddress.address2 }}</div>
+				<div class="col-xs-10 pull-left permanentDetailsText">{{ personalDetailsFrmProspectData.currentAddress.city }}</div>
+				<div class="col-xs-10 pull-left permanentDetailsText">{{ personalDetailsFrmProspectData.currentAddress.state }}</div>
+				<div class="col-xs-10 pull-left permanentDetailsText">{{ personalDetailsFrmProspectData.currentAddress.country }}</div>
+				<div class="col-xs-10 pull-left permanentDetailsText">{{ personalDetailsFrmProspectData.currentAddress.zipcode }}</div>
+			</div>
+			<div *ngIf="personalDetailsFrmProspectData">
+				<div *ngIf="!personalDetailsFrmProspectData.permanentAddressSameAsCurrentAddress">
+					<div class="row">
+						<div class="form-group col-md-6 col-xs-12 col-sm-6">
+							<label class="labelText" for="permanentPlotNumber">H.No/Plot.No</label>
+							<input type="text" id="permanentPlotNumber" maxlength="100" class="form-control inputText" [(ngModel)]="personalDetailsFrmProspectData.permanentAddress.address1"
+							    name="permanentPlotNumber" #permanentPlotNumberRef="ngModel" [readOnly]="viewMode" />
+							<div [hidden]="permanentPlotNumberRef.valid || permanentPlotNumberRef.pristine" class="alert alert-danger">Please enter the H.No/Plot.No*</div>
+						</div>
+						<div class="form-group col-md-6 col-xs-12 col-sm-6">
+							<label class="labelText" for="permanentStreetName">House Name & Street</label>
+							<input type="text" id="permanentStreetName" maxlength="100" class="form-control inputText" [(ngModel)]="personalDetailsFrmProspectData.permanentAddress.address2"
+							    name="permanentStreetName" #permanentStreetNameRef="ngModel" [readOnly]="viewMode" />
+							<div [hidden]="permanentStreetNameRef.valid || permanentStreetNameRef.pristine" class="alert alert-danger">Please enter the House name & Street</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6 col-xs-12 col-sm-6">
+							<label class="labelText" for="permanentCity">City*</label>
+							<input type="text" id="permanentCity" maxlength="32" class="form-control inputText" required [(ngModel)]="personalDetailsFrmProspectData.permanentAddress.city"
+							    name="permanentCity" #permanentCityRef="ngModel" [readOnly]="viewMode" pattern=".*\S+.*" />
+							<div [hidden]="permanentCityRef.valid || permanentCityRef.pristine" class="alert alert-danger">Please enter the City</div>
+						</div>
+						<div class="form-group col-md-6 col-xs-12 col-sm-6">
+							<label class="labelText" for="permanentState">State*</label>
+							<input type="text" id="permanentState" maxlength="32" class="form-control inputText" required [(ngModel)]="personalDetailsFrmProspectData.permanentAddress.state"
+							    name="permanentState" #permanentStateRef="ngModel" [readOnly]="viewMode" pattern=".*\S+.*" />
+							<div [hidden]="permanentStateRef.valid || permanentStateRef.pristine" class="alert alert-danger">Please enter the State</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="form-group col-md-6 col-xs-12 col-sm-6">
+							<label class="labelText" for="permanentCountry">Country*</label>
+							<input type="text" id="permanentCountry" maxlength="32" class="form-control inputText" required [(ngModel)]="personalDetailsFrmProspectData.permanentAddress.country"
+							    name="permanentCountry" #permanentCountryRef="ngModel" [readOnly]="viewMode" pattern=".*\S+.*" />
+							<div [hidden]="permanentCountryRef.valid || permanentCountryRef.pristine" class="alert alert-danger">Please enter the Country</div>
+						</div>
+						<div class="form-group col-md-6 col-xs-12 col-sm-6">
+							<label class="labelText" for="permanentZipcode">Zip code*</label>
+							<input type="text" id="permanentZipcode" class="form-control inputText" required [(ngModel)]="personalDetailsFrmProspectData.permanentAddress.zipcode" maxlength="16"
+							    name="permanentZipcode" #permanentZipcodeRef="ngModel" [readOnly]="viewMode" (keypress)="restrictNumeric($event)"  minlength="6"
+							/>
+							<div [hidden]="permanentZipcodeRef.valid || permanentZipcodeRef.pristine" class="alert alert-danger">Please enter a valid Zip code</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="row personal-btn-grp" [hidden]="hide">
+			<button class="pull-right login-register-btn btn" (click)="saveNext(personalDetailsFrmProspectData)" [disabled]="!personalDetailsForm.valid || viewMode">Confirm & continue</button>
+			<button class="pull-right login-register-btn btn" (click)="navigateToPrevious()">Close</button>
+		</div>
+	</form>
+</div>

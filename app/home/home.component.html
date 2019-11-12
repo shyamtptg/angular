@@ -1,0 +1,203 @@
+<app-header [title]='title' [backLinkVisibility]="'hide'" [username]='userName' [details]='userDetails'></app-header>
+<div style="margin-top: 70px; margin-bottom: 30px;" class="p-2x">
+	<h4>Applications:</h4>
+	<div class="module-tiles">
+		<!-- <div class="module-tile m-r-3x" *ngFor="let module of modules">
+			<div class="each-module box" (click)="navigate(module.short_name)">
+				<div class="module-top text-center">
+					<span title="{{module.name}}">{{module.name}}</span>
+				</div>
+				<div class="module-bottom text-center">
+					<span title="{{module.name}}">{{module.short_name}}</span>
+				</div>
+			</div>
+		</div> -->
+		<div class="module-tile m-r-3x" fxLayout="row"  fxLayoutGap="5px">
+			<div class="each-module box" (click)="navigate(modules[0].short_name)">
+				<div class="module-top text-center">
+					<span title="{{modules[0].name}}">{{modules[0].name}}</span>
+				</div>
+				<div class="module-bottom text-center">
+					<span title="{{modules[0].name}}">{{modules[0].short_name}}</span>
+				</div>
+			</div>
+			<div class="each-module box" (click)="navigate(modules[1].short_name)">
+				<div class="module-top text-center">
+					<span title="{{modules[1].name}}">{{modules[1].name}}</span>
+				</div>
+				<div class="module-bottom text-center">
+					<span title="{{modules[1].name}}">{{modules[1].short_name}}</span>
+				</div>
+			</div>
+			<div class="each-module box" (click)="navigate(modules[2].short_name)" *ngIf="permissions.request" >
+				<div class="module-top text-center">
+					<span title="{{modules[2].name}}">{{modules[2].name}}</span>
+				</div>
+				<div class="module-bottom text-center">
+					<span title="{{modules[2].name}}">{{modules[2].short_name}}</span>
+				</div>
+			</div>
+		</div>
+
+
+	</div>
+	<div fxLayout="column" class="m-t-2x">
+		<div fxLayout="row" fxLayoutAlign="space-around stretch" *ngIf="permissions.onboarding">
+			<div class="box outer-box-50">
+				<h3>{{"DASHBOARD.STATS.NEW_JOINEE" | translate}}</h3>
+				<div fxLayout="row" fxLayoutAlign="space-around">
+					<div fxLayout="column" fxLayoutAlign="space-evenly" fxFlex="35%">
+						<div>
+							<span class="stats stats-main" (click)="navigateToJoineesTable(1)"><span class="pointer">{{joineeStatistics?.newJoinees}}</span></span> {{"DASHBOARD.STATS.TOTAL_JOINEE" | translate}}
+						</div>
+						<button class="ms-btn ms-btn-primary-filled" style="width: 120px;" (click)="navigateToEmployeeOnboarding()">Show Calendar</button>
+					</div>
+					<div class="dotted-divider" fxFlex="0%"></div>
+					<div fxLayout="column" fxFlex="65%">
+						<div fxLayout="row" fxLayoutAlign="space-around">
+							<div fxLayout="column" fxLayoutAlign="space-around stretch" fxFlex="50%">
+								<div>
+									<span class="stats stats-total"><span>{{joineeStatistics?.offers.released}}</span></span> Total Candidates
+								</div>
+								<div>
+									<span class="stats stats-accepted"><span>{{joineeStatistics?.offers.accepted}}</span></span> Accepted Offer
+								</div>
+								<div>
+									<span class="stats stats-declined"><span>{{joineeStatistics?.offers.declined}}</span></span> Declined Offer
+								</div>
+							</div>
+							<div fxFlex="50%">
+								<donut-chart *ngIf="joineeChartData" [chartData]="joineeChartData"></donut-chart>
+							</div>
+						</div>
+						<div>
+							<span class="pointer" (click)="navigateToJoineesTable(3)"><span class="bold">{{joineeStatistics?.offers.thisWeek}}</span> {{"DASHBOARD.STATS.THIS_WEEK_JOINEE" | translate}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box outer-box-50">
+				<div class="">
+					<div class="">
+						<h3>Admin statistics</h3>
+						<div fxLayout="row">
+							<div class="">
+								<span class="pointer" (click)="navigateToWorkstations()">{{wsStatistics?.pending}}</span> Pending Workstation Allocations
+							</div>
+							<div class="">
+								<span class="pointer" (click)="navigateToEmployeeId()">{{dataObject.employeeid.pending}}</span> Pending Employee ID Card Requests
+							</div>
+						</div>
+					</div>
+					<div class="">
+						<h3>IT statistics</h3>
+						<div fxLayout="row">
+							<div class="">
+								<span class="pointer">{{dataObject.pendingHardwareRequests}}</span> Pending Hardware Requests
+							</div>
+							<div class="">
+								<span class="pointer">{{dataObject.pendingSoftwareRequests}}</span> Pending Software Requests
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div fxLayout="row" fxLayoutAlign="space-around stretch" *ngIf="permissions.Admin">
+			<div class="box outer-box-50">
+				<h3>Workstation Statistics</h3>
+				<div fxLayout="row">
+					<div class="">
+						<div>
+							<span>{{wsStatistics?.pending}}</span> Pending Workstation Allocation Requests
+						</div>
+						<button class="ms-btn ms-btn-primary-filled" (click)="navigateToWorkstations()">Manage Workstations</button>
+					</div>
+					<div class="">
+						<div>
+							<span>{{wsStatistics?.total}}</span> Total Workstations
+						</div>
+						<div>
+							<span>{{wsStatistics?.allocated}}</span> Workstations Allocated
+						</div>
+						<div>
+							<span>{{wsStatistics?.available}}</span> Workstations Available
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="box outer-box-50">
+				<h3>Employee ID card requests</h3>
+				<div fxLayout="row">
+					<div>
+						<span>{{idStatistics?.Pendingrequest}}</span> Employee ID Requests Pending
+					</div>
+					<div>
+						<span>{{idStatistics?.ActiveRequest}}</span> Active requests
+					</div>
+				</div>
+				<button class="ms-btn ms-btn-primary-filled" (click)="navigateToEmployeeId()">View All</button>
+			</div>
+		</div>
+		<div fxLayout="row"   *ngIf="permissions.IT">
+			<div class="box outer-box-50" >
+				<h3>{{"DASHBOARD.STATS.HARDWARE" | translate}}</h3>
+				<div fxLayout="row" fxLayoutAlign="space-around">
+					<div fxLayout="column" fxLayoutAlign="space-evenly" fxFlex="35%">
+						<div>
+							<span class="stats stats-main" (click)="navigateToAssets()"><span class="pointer">{{itStats?.systemAllocationRequests}}</span></span> {{"DASHBOARD.STATS.SYS_ALLOC_REQ" | translate}}
+						</div>
+						<button class="ms-btn ms-btn-primary-filled" style="width: 120px;" (click)="navigateToAssets()">View All</button>
+					</div>
+					<div class="dotted-divider" fxFlex="0%"></div>
+					<div fxLayout="column" fxFlex="65%">
+						<div fxLayout="row" fxLayoutAlign="space-around">
+							<div fxLayout="column" fxLayoutAlign="space-around stretch" fxFlex="50%">
+								<div>
+									<span class="stats stats-total"><span>{{itStats?.totalAvailableSystems}}</span></span> Total Available Systems
+								</div>
+								<div>
+									<span class="stats stats-accepted"><span>{{itStats?.availableLaptops}}</span></span> Laptops Available
+								</div>
+								<div>
+									<span class="stats stats-declined"><span>{{itStats?.availableDesktops}}</span></span> Desktops Available
+								</div>
+							</div>
+							<div fxFlex="50%">
+								<donut-chart *ngIf="assetChartData" [chartData]="assetChartData"></donut-chart>
+							</div>
+						</div>
+						<div>
+							<span (click)="navigateToAssets()"><span class="bold">{{itStats.availableDesktops}}</span> {{"DASHBOARD.STATS.THIS_WEEK_JOINEE" | translate}}</span>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- <div class="box outer-box-50">
+					<h3>{{"DASHBOARD.STATS.SOFTWARE" | translate}}</h3>
+					<div fxLayout="row" fxLayoutAlign="space-around" class="software-stats p-t-4x">
+						<div fxLayout="column" fxLayoutAlign="space-evenly" fxFlex="35%">
+							<div>
+								<span class="stats stats-main" (click)="navigateToJoineesTable(1)"><span class="pointer">{{itSoftwareStats.pendingRequests}}</span></span> {{"DASHBOARD.STATS.SOFTWARE_REQ_PENDING" | translate}}							
+							</div>
+							<div>
+									<span class="stats stats-declined p-l-2x"><span>{{itSoftwareStats?.inProgress}}</span></span> In Progress
+							</div>
+							<button class="ms-btn ms-btn-primary-filled" style="width: 120px;" (click)="navigateToAssets()">View All</button>
+						</div>
+						<div class="dotted-divider" fxFlex="0%"></div>
+						<div fxLayout="column" fxFlex="65%">
+							<div fxLayout="row" fxLayoutAlign="space-around">							
+								<div fxFlex="50%">
+									<donut-chart *ngIf="sortwareChartData" [chartData]="sortwareChartData"></donut-chart>
+								</div>
+							</div>
+						
+						</div>
+					</div>
+				</div> -->
+		
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>

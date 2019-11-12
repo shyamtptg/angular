@@ -1,0 +1,62 @@
+<div class="offer-title">
+    <div class="no-padding col-md-5 col-sm-5">
+        <p class="heading">OFFERS<span class="subheading"> | TOTAL {{recordsCount}}</span></p>
+    </div>
+    <div class="col-md-6 col-xs-12 res-prioritymain col-sm-11">
+        <div class="prioritydropdrown-main no-padding col-md-12">
+            <div class="no-padding col-md-offset-7 col-md-5 col-sm-10">
+                <div class="col-md-3 col-sm-3">
+                    <label class="labelText" for="status">Status</label>
+                </div>
+                <div class="col-md-9 col-sm-7">
+                    <select name="status" class="form-control" [(ngModel)]="status" #statusRef="ngModel" (change)="filterChanged()">
+                        <option value="ALL">All</option>
+                        <option *ngFor="let status of statusOptions" [value]="status.code">{{status.description}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class=" col-sm-1">
+        <p class="heading">
+            <a class="pull-right" (click)="exportData()"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a>
+        </p>
+    </div>
+</div>
+<div class="offer">
+    <ag-grid-angular #agGrid class="ag-fresh grid_ag"
+    	[gridOptions]="gridOptions" 
+    	enableColResize
+    	enableSorting
+    	enableFilter
+    	rowSelection="single"
+    	paginationPageSize=20
+        rowDeselection=true
+    	(selectionChanged)="checkModes()"
+        (gridReady)="onGridInitialize()"
+        (gridSizeChanged)="resizeColumns()">
+ 	</ag-grid-angular>
+    <nav class="grid_nav">
+        <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+    </nav>
+</div>
+<div class="pull-left attach-div">
+    <p class="heading attached-text fast_track_offers_text">
+        <svg width="10" height="10">
+            <rect width="10" height="10" style="fill:rgb(69, 135, 255);" />
+        </svg>
+        <span>FastTrack Offers</span>
+    </p>
+</div>
+<div class="pull-right grid_btn">
+    <button *ngIf="!commonService.hideFeature('VIEW_OFFER')" class="offer-create-button" (click)="openOffer()" [disabled]="buttonModes.open">Open</button>
+    <button *ngIf="!commonService.hideFeature('UPDATE_OFFER')" class="offer-create-button" [disabled]="buttonModes.edit" (click)="editOffer()">Edit</button>
+    <button *ngIf="!commonService.hideFeature('DELETE_OFFER')" class="offer-create-button" [disabled]="buttonModes.delete" (click)="deleteOffer()">Delete</button>
+    <remarks-modal *ngIf="!commonService.hideFeature('CANCEL_OFFER')" [modalId]="'cancelOffer'" [remarkTitle]="'Cancel Offer'" (updateReason)="submitOffer('CANCEL', $event)" [required]="true" [message]="'Please enter the reason for cancelling the offer'" [isDisable]="buttonModes.cancel"></remarks-modal>
+    <button *ngIf="!commonService.hideFeature('SUBMIT_OFFER_FOR_APPROVAL')" class="offer-create-button" [disabled]="buttonModes.submit" (click)="submitOffer('SUBMIT')">Submit</button>
+    <remarks-modal *ngIf="(commonService.hideFeature('APPROVE_OFFER')) && (!commonService.hideFeature('BYPASS_OFFER_APPROVAL'))" [modalId]="byPassId" #offerModal [remarkTitle]="byPassTitle" [required]="true" [message]="'Please enter the reason for bypassing the approval'" (updateReason)="byPassApproval($event)" [isDisable]="buttonModes.byPassApproval"></remarks-modal>
+    <button *ngIf="!commonService.hideFeature('APPROVE_OFFER')" class="offer-create-button" [disabled]="buttonModes.approve" (click)="submitOffer('APPROVE')">Approve</button>
+    <remarks-modal *ngIf="!commonService.hideFeature('REJECT_OFFER')" [modalId]="'rejectOffer'" [remarkTitle]="'Reject'" (updateReason)="submitOffer('REJECT', $event)" [required]="true" [message]="'Please enter the reason for rejection'" [isDisable]="buttonModes.reject"></remarks-modal>
+    <button *ngIf="!commonService.hideFeature('RELEASE_OFFER')" class="offer-create-button" [disabled]="buttonModes.release" (click)="submitOffer('RELEASE')">Release</button>
+    <button *ngIf="!commonService.hideFeature('VIEW_OFFER_LETTER')" class="offer-create-button" [disabled]="buttonModes.view" (click)="viewOffer()">View</button>
+</div>

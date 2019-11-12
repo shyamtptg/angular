@@ -1,0 +1,68 @@
+[
+    {
+        "index": 1, "workstation": "Workstation W-348", "availiability": 0, "selected": false
+    },
+    {
+        "index": 2, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 3, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 4, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 5, "workstation": "Workstation W-347", "availiability": 2, "selected": false
+    },
+    {
+        "index": 6, "workstation": "Workstation W-347", "availiability": 2, "selected": false
+    },
+    {
+        "index": 7, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 8, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 9, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 10, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 11, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 12, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 13, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 14, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 15, "workstation": "Workstation W-347", "availiability": 2, "selected": false
+    },
+    {
+        "index": 16, "workstation": "Workstation W-347", "availiability": 2, "selected": false
+    },
+    {
+        "index": 17, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 18, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 19, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 20, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 21, "workstation": "Workstation W-347", "availiability": 0, "selected": false
+    },
+    {
+        "index": 22, "workstation": "Workstation W-390", "availiability": 0, "selected": false
+    }
+]

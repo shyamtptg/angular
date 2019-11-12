@@ -1,0 +1,65 @@
+@import '../../../../assets/scss/colors.scss';
+@import '../../../../assets/scss/fonts.scss';
+@import '../../../../assets/scss/spacing.scss';
+
+.request {
+    height: 100%;
+}
+.options {
+    color: $gray11;
+    @extend .medium-font;
+}
+.img {
+    height: 70px;
+    width: 70px;
+}
+.dropdownchange /deep/ {
+  float: left;
+  .mat-input-underline{
+    display: none;
+  }
+  .mat-select-trigger {
+    height: 2.125em;
+  }
+  .mat-select{
+      border: 1px solid $gray5;
+      height: 33px;
+      position: relative;
+      top: -6px;
+      border-radius:10px;
+      border-radius: 5px;
+      background: $pure-white;
+  }
+  .mat-form-field-infix {
+      position: relative;
+      top: -4px;
+  }
+  .mat-select-value{
+      position: relative;
+      top: 7px;
+      left: 7px;
+      font-family: Lato;
+      font-size: 14px;
+      line-height: 17px;
+      color: $gray11;
+  }
+  .mat-select-arrow {
+      border:none;
+  }
+  .mat-form-field-infix {
+      height: 43px;
+  }
+  .mat-select-content {
+      width: 10px;
+  }
+}
+.arrowicon{
+  position: relative;
+  float: right;
+  top:-33px;
+}
+.textedit{
+    resize: none;
+    height: 50px;
+    overflow: hidden;
+}

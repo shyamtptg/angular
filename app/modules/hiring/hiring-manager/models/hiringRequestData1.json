@@ -1,0 +1,229 @@
+{
+    "primaryHiringDetails": {
+        "hiringReason": "ACCOUNT_GROWTH",
+        "clientId": 70,
+        "departmentId": 5,
+        "hiringType": "PERMANENT",
+        "hiringManager": 3,
+        "hiringPriority": "HIGH"
+    },
+    "secondaryHiringDetails": [
+        {
+            "needNumber": 1,
+            "needDetails": {
+                "practice": null,
+                "competency": "Android",
+                "workLocation": "InnomindsHyd",
+                "experienceReq": {
+                    "from": 4,
+                    "to": 7
+                },
+                "expectedRole": "Senior / lead level",
+                "numberOfResources": "2",
+                "expectedStartDate": "2016-09-01",
+                "model": "OffShore",
+                "jobDescription": "JDUX00231",
+                "interviewPanels": [
+                    {
+                        "panelNumber": 1,
+                        "name": "UX Communication",
+                        "level": "level 1",
+                        "panelMembers": [
+                            "sreeharsha.T",
+                            "pavan.T"
+                        ],
+                        "selectionCriterion": [
+                            "flexibility"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "needNumber": 2,
+            "needDetails": {
+                "practice": null,
+                "competency": "Android",
+                "workLocation": "InnomindsHyd",
+                "experienceReq": {
+                    "from": 5,
+                    "to": 7
+                },
+                "expectedRole": "Senior / lead level",
+                "numberOfResources": "3",
+                "expectedStartDate": "2016-09-01",
+                "model": "OffShore",
+                "jobDescription": "JDUX00231",
+                "interviewPanels": [
+                    {
+                        "panelNumber": 1,
+                        "name": "UX Communication",
+                        "level": "level 1",
+                        "panelMembers": [
+                            "sreeharsha.T",
+                            "pavan.T"
+                        ],
+                        "selectionCriterion": [
+                            "flexibility"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "needNumber": 3,
+            "needDetails": {
+                "practice": "UX",
+                "competency": "Android",
+                "workLocation": "InnomindsHyd",
+                "experienceReq": {
+                    "from": 5,
+                    "to": 7
+                },
+                "expectedRole": "Senior / lead level",
+                "numberOfResources": "3",
+                "expectedStartDate": "2016-09-01",
+                "model": "OffShore",
+                "jobDescription": "JDUX00231",
+                "interviewPanels": [
+                    {
+                        "panelNumber": 1,
+                        "name": "UX Communication",
+                        "level": "level 1",
+                        "panelMembers": [
+                            "sreeharsha.T",
+                            "pavan.T"
+                        ],
+                        "selectionCriterion": [
+                            "flexibility"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "needNumber": 4,
+            "needDetails": {
+                "practice": "UX",
+                "competency": "Android",
+                "workLocation": "InnomindsHyd",
+                "experienceReq": {
+                    "from": 5,
+                    "to": 7
+                },
+                "expectedRole": "Senior / lead level",
+                "numberOfResources": "3",
+                "expectedStartDate": "2016-09-01",
+                "model": "OffShore",
+                "jobDescription": "JDUX00231",
+                "interviewPanels": [
+                    {
+                        "panelNumber": 1,
+                        "name": "UX Communication",
+                        "level": "level 1",
+                        "panelMembers": [
+                            "sreeharsha.T",
+                            "pavan.T"
+                        ],
+                        "selectionCriterion": [
+                            "flexibility"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "needNumber": 5,
+            "needDetails": {
+                "practice": "UX",
+                "competency": "Android",
+                "workLocation": "InnomindsHyd",
+                "experienceReq": {
+                    "from": 5,
+                    "to": 7
+                },
+                "expectedRole": "Senior / lead level",
+                "numberOfResources": "3",
+                "expectedStartDate": "2016-09-01",
+                "model": "OffShore",
+                "jobDescription": "JDUX00231",
+                "interviewPanels": [
+                    {
+                        "panelNumber": 1,
+                        "name": "UX Communication",
+                        "level": "level 1",
+                        "panelMembers": [
+                            "sreeharsha.T",
+                            "pavan.T"
+                        ],
+                        "selectionCriterion": [
+                            "flexibility"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "needNumber": 6,
+            "needDetails": {
+                "practice": "UX",
+                "competency": "Android",
+                "workLocation": "InnomindsHyd",
+                "experienceReq": {
+                    "from": 5,
+                    "to": 7
+                },
+                "expectedRole": "Senior / lead level",
+                "numberOfResources": "3",
+                "expectedStartDate": "2016-09-01",
+                "model": "OffShore",
+                "jobDescription": "JDUX00231",
+                "interviewPanels": [
+                    {
+                        "panelNumber": 1,
+                        "name": "UX Communication",
+                        "level": "level 1",
+                        "panelMembers": [
+                            "sreeharsha.T",
+                            "pavan.T"
+                        ],
+                        "selectionCriterion": [
+                            "flexibility"
+                        ]
+                    }
+                ]
+            }
+        },
+        {
+            "needNumber": 7,
+            "needDetails": {
+                "practice": "UX",
+                "competency": "Android",
+                "workLocation": "InnomindsHyd",
+                "experienceReq": {
+                    "from": 5,
+                    "to": 7
+                },
+                "expectedRole": "Senior / lead level",
+                "numberOfResources": "3",
+                "expectedStartDate": "2016-09-01",
+                "model": "OffShore",
+                "jobDescription": "JDUX00231",
+                "interviewPanels": [
+                    {
+                        "panelNumber": 1,
+                        "name": "UX Communication",
+                        "level": "level 1",
+                        "panelMembers": [
+                            "sreeharsha.T",
+                            "pavan.T"
+                        ],
+                        "selectionCriterion": [
+                            "flexibility"
+                        ]
+                    }
+                ]
+            }
+        }
+    ]
+}

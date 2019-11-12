@@ -1,0 +1,79 @@
+<form #interviewPanelForm="ngForm" class="interview-panel-form" novalidate>
+    <p class="heading">INTERVIEW PANEL {{panelDetails.panelNumber}}<span class="subheading"> | ALL MANDATORY*</span></p>
+    <div class="row">
+        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+            <label class="labelText" for="level">Level*</label>
+            <select name="level" class="form-control" [(ngModel)]="panelDetails.level" required #panelLevelRef="ngModel" [disabled]="viewMode">
+                <option *ngFor="let level of interviewLevel" [value]="level.code">{{level.description}}</option>
+            </select>
+            <div [hidden]="panelLevelRef.valid || panelLevelRef.untouched" class="alert alert-danger">Please select the Panel level</div>
+        </div>
+        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+            <label class="labelText" for="panelName">Panel Name*</label>
+            <input type="text" name="panelName" class="form-control" [(ngModel)]="panelDetails.name" required #panelNameRef="ngModel" [readOnly]="viewMode"/>
+            <div [hidden]="panelNameRef.valid || panelNameRef.pristine" class="alert alert-danger">Please enter the Panel Name</div>
+        </div>
+        <!--<div class="form-group col-md-4 col-xs-12 col-sm-12">
+            <label class="labelText" for="practice">Practice</label>
+            <select name="practice" class="form-control" [(ngModel)]="panelDetails.practice">
+                <option value="0">Select</option>
+                <option value="UX">UX</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4 col-xs-12 col-sm-12">
+            <label class="labelText" for="department">Department</label>
+            <select name="department" class="form-control" [(ngModel)]="panelDetails.department">
+                <option value="0">Select</option>
+                <option value="design">design</option>
+            </select>
+        </div>-->
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 col-sm-12">
+            <label class="labelText" for="panelMembers">Panel Members*</label>
+            <div class="tag-section">
+                <div class="input-group selection-group tag-input-control tag-input">
+                    <tag-input name="panelMembers" [(ngModel)]="panelDetails.panelMembers" #panelInput required #panelMemberRef="ngModel">
+                    <ng-template let-item="item" let-index="index">
+                    <span>
+                        {{ item }}
+                    </span>
+                    <delete-icon (click)="panelInput.removeItem(item, index)">
+                    </delete-icon>
+                    </ng-template>
+                    </tag-input>
+                    <!--<div class="input-group-addon">
+                        <multi-select-modal *ngIf="panelMemberTags" [title]="panelsTagTitle" [items]="panelMemberTags.panelMembers" class="multi-select" (loadSelectedItems)="loadPanelMembers($event)"></multi-select-modal>
+                    </div>-->
+                </div>
+                <div [hidden]="panelMemberRef.valid || panelMemberRef.pristine" class="alert alert-danger">Please select the Panel Nembers</div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-group col-md-12 col-xs-12 col-sm-12">
+            <label class="labelText" for="selectionCriterion">Selection Criterion*</label>
+            <div class="tag-section">
+                <div class="input-group selection-group tag-input-control tag-input">
+                    <tag-input name="selectionCriterion" [(ngModel)]="panelDetails.selectionCriterion" #selectionInput required #selectionCritRef="ngModel">
+                    <ng-template let-item="item" let-index="index">
+                    <span>
+                        {{ item }}
+                    </span>
+                    <delete-icon (click)="selectionInput.removeItem(item, index)">
+                    </delete-icon>
+                    </ng-template>
+                    </tag-input>
+                    <!--<div class="input-group-addon"><multi-select-modal *ngIf="panelMemberTags" [title]="criterionTagTitle" [items]="panelMemberTags.panelCriterion" class="multi-select" (loadSelectedItems)="loadSelectionCriterion($event)"></multi-select-modal></div>-->
+                </div>
+                <div [hidden]="selectionCritRef.valid || selectionCritRef.pristine" class="alert alert-danger">Please select the Selection Criterion</div>
+            </div>
+        </div>
+    </div>
+    <!--<div class="pull-right interview-panel-btns">
+        <button class="interview-panel-cancel-button" (click)="removePanel()">Cancel</button>
+        <button class="interview-panel-next-button" (click)="loadHiringRequestSummary()"  [disabled]="disableButton">Next</button>
+        <button class="interview-panel-next-button" (click)="loadHiringDetails()">Back</button>
+        <button class="interview-panel-save-add-new-button" (click)="saveAddNew()">Save & Add New</button>
+    </div>-->
+</form>

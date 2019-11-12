@@ -1,0 +1,50 @@
+.hiring-details-modal {
+    input {
+        font-size: 13px !important;
+    }
+    .max-exp {
+        margin-left: 10px;
+    }
+    delete-icon {
+        pointer-events: none;
+    }
+    .modal-dialog {
+        width: 75%;
+        height: 80%;
+        position: relative;
+        top: 5em;
+        left: 0.6em;
+    }
+    .modal-header {
+        background: #e5e5e5;
+        border-radius: 3px;
+    }
+    .remarks-button {
+        border-radius: 2px;
+        min-width: 72px;
+        height: 35px;
+        margin-left: 0.5em;
+    }
+    .remarks-details-button {
+        @extend .remarks-button;
+        margin-bottom: 2em;
+        color: #ffffff;
+        background: rgba(39, 70, 98, 0.96);
+    }
+    .remarks-close {
+        font-size: 1.3em;
+        margin: 0 0.5em 0 0;
+    }
+    .remarks-body {
+        padding: 0 15px 15px 15px;
+    }
+}
+
+.job-desc-popup {
+    .ui-dialog .ui-dialog-titlebar-close {
+        color: grey !important;
+    }
+    .ui-dialog-content.ui-dialog-widget {
+        height: 500px;
+    }
+}

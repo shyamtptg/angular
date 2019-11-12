@@ -1,0 +1,32 @@
+<div class="offer-history-container row">
+	<div id="infinite-scroller" class="timeline-container" [immediateCallback]="true" [scrollCallback]="onScrollCallback" infinite-scroll>
+		<div class="timeline-header">
+			<h5>Hiring Timeline</h5>
+		</div>
+		<ul class="timeline col-sm-12 col-md-12 col-lg-12">
+			<li>
+				<div class="timeline-badge timeline-start"><i class="timeline-start-icon"></i></div>
+			</li>
+			<li *ngFor="let comment of commentHistory">
+				<div class="timeline-badge"><i class="timeline-notification-icon"></i></div>
+				<div class="timeline-panel col-sm-5 col-md-5 col-lg-5 col-xs-5">
+					<div class="timeline-heading">
+						<h5 class="timeline-title">{{comment.lastModifiedUserName}}</h5>
+					</div>
+					<div class="timeline-body ">
+						<p>{{comment.description}}</p>
+					</div>
+					<div class="history-comment-time">
+						<p>{{getDate(comment.creationTimestamp)}} {{getTime(comment.creationTimestamp)}}</p>
+					</div>
+				</div>
+			</li>
+			<li>
+				<div class="timeline-badge timeline-end"><i class="timeline-end-icon"></i></div>
+			</li>
+		</ul>
+	</div>
+	<div class="timeline-buttons">
+		<button class="profile-screening-view-button pull-right" (click)="navigateToPrevious()">Close</button>
+	</div>
+</div>

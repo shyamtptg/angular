@@ -1,0 +1,153 @@
+$font-stack: sans-serif;
+$primary-color:#2f4d68;
+
+.btn-primary{
+    width: 130px;
+    vertical-align: middle;
+    margin-top: 15px;
+    background-color: $primary-color;
+    margin-right: 70px;
+    color: white;
+   
+}
+button{
+    width: 130px;
+    vertical-align: middle;
+    margin-top: 15px;
+}
+.indicate-leave{
+    margin-top: 2px;
+    .leave_info{
+        display: inline-block;
+        .leaves{
+            font-size: 20px;
+          
+            font-weight: bold;
+            .leaves-optn{
+                font-size: 13px;
+                color: 	#969494;
+             }
+             
+        }
+    }
+    
+}
+.emp_head{
+    padding-bottom:20px;
+    .get_request{
+        margin-top:25px;
+    }
+    }
+.editleave{
+    cursor: pointer;
+    color: #7f7fea;
+   
+  
+}
+.deleteleave{
+    @extend .editleave;
+    margin-left: 5px;
+}
+.side_nav{
+    background-color:#f9ecf9;
+}
+
+.cal-border-right{
+    border-right: 2px solid #eee;
+}
+
+
+
+a:hover{
+    text-decoration: none;
+}
+.status-btn{
+    width: 120px;
+}
+
+.Pending{
+    color:#d6a254;
+}
+.CancelPending{
+    color:#d6a254;
+}
+.CancellationRejected{
+    color: red;
+}
+.Approved{
+    color: #099409; 
+}
+.Cancelled{
+    color: #d6a254;
+}
+.Rejected{
+    color: red;
+}
+.PHPending{
+    color:#d6a254;
+}
+.HRPending{
+    color:#d6a254;
+}
+
+h4 {
+    margin-top: 9px;
+    margin-bottom: -10px;
+    font-size: 16px;
+}
+hr {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.color-code {
+    float: left;
+    width: 10px;
+    height:10px;
+    margin: 5px;
+    border: 1px solid rgba(0, 0, 0, .2);
+  }
+  
+  .Leave {
+      background-color: #6d496d;
+  }
+  
+  .Holiday {
+      background-color: teal;
+  }
+  .wfh {
+    background-color: maroon;
+  }
+  .comp-off {
+    background-color: #3B5988;
+  }
+  .calendar-colors {
+    overflow: hidden;
+    margin: 0.7em 0 1.2em 0;
+    padding-left: 0;
+    font-size: 12px;
+  }
+  .color-title {
+    line-height: 1.7em;
+  }
+  .color-item {
+    float:left;
+    margin: 0em 1em 0 0;
+  }
+.swal2-popup {
+    font-size: none;
+}
+.column{
+    width: 217px;
+}
+h3{
+    font-size: 16px;
+}
+.apply-leave-btn {
+    margin-top: 12px;
+    margin-right: 0;
+}
+.calendar-title {
+    font-size: 1.15em;
+    padding: 1em 0 1em 0;
+    display: inline-block;
+}

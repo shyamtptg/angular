@@ -1,0 +1,65 @@
+.feedback-details {
+  background: #ffffff;
+  margin: 0.7em 0 0.7em 0;
+  padding: 0.7em;
+  box-shadow:0 2px 5px 0 rgba(0,0,0,0.10);	
+}
+.feedback-heading{
+  font-family:$font-family;
+  font-size:14px;
+  color:#000000;
+  letter-spacing:$letter-spacing;
+  text-align:left;
+  font-weight: bold;
+}
+.labelText {
+  font-family:$font-family;
+  font-size:14px;
+  color:#575757;
+  letter-spacing:$letter-spacing;
+  text-align:left;
+  font-weight: $font-weight;
+}
+.feedback-details-text{
+  font-family:$font-family;
+  font-size:14px;
+  color:#575757;
+  letter-spacing:$letter-spacing;
+  text-align:left;
+}
+.feedback-date-icon{
+  color:#767676;
+  width:19px;
+  height:20px;
+}
+.divider{
+  background: #d0cece;
+  height: 1.2px;
+  margin: 0 0 1em 0;
+}
+.feedback-button{
+  border-radius:2px;
+  min-width:72px;
+  height:35px;
+  margin-left: 0.5em;
+}
+.feedback-cancel-button {
+  @extend .feedback-button;
+  color:#ffffff;
+  background:rgba(39,70,98,0.96);
+}
+.feedback-save-button {
+  @extend .feedback-button;
+  color:#ffffff;
+  background:rgba(39,70,98,0.96);
+}
+.feedback-submit-button {
+  @extend .feedback-save-button;
+}
+.feedback-editor .ui-editor-container {
+  height: 100px;
+  margin: 0.5em 0 4em 0;
+}
+.feedback-radio {
+  margin: 0.5em 0 0 0.8em;
+}

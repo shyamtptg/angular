@@ -1,0 +1,2 @@
+
+<ng-fullcalendar [options]="calendarOptions" (viewRender)="viewChange($event)" (dayClick)="getStatus($event.detail.date)" *ngIf="dataLoaded" ></ng-fullcalendar>

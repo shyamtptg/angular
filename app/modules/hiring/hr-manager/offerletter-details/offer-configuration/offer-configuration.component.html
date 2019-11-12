@@ -1,0 +1,59 @@
+<div class="col-md-12 hiring-need-div"><span class="pull-left need-text"><span class="need-heading">CTC CONFIGURATION</span></span><span class="pull-right"><a class="glyphicon glyphicon-chevron-right plus-icon" (click)="toggleHiringNeedDetails()"></a><a class="glyphicon glyphicon-chevron-down minus-icon" (click)="toggleHiringNeedDetails()"></a></span><span class="fa-stack fa-lg pull-right"><i class="fa fa-pencil fa-stack-1x offer-edit-icon" (click)="enableConfig()"></i></span></div>
+	<div hiringNeed class="config-details close">
+		<div class="row">
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="basicPayPercentage">Basic Pay Percentage*</label>
+				<input type="number" name="basicPayPercentage" class="form-control" [(ngModel)]="configData['BASIC_PAY_PERCENTAGE'] && configData['BASIC_PAY_PERCENTAGE']['value']" [readOnly]="viewMode" required/>
+			</div>
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="houseRentAllowance">House Rent Allowance Percentage*</label>
+				<input type="number" name="houseRentAllowance" class="form-control" [(ngModel)]="configData['HOUSE_RENT_ALLOWANCE_PERCENTAGE'] && configData['HOUSE_RENT_ALLOWANCE_PERCENTAGE']['value']" [readOnly]="viewMode" required/>
+			</div>
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="fixedAllowance">Fixed Travel Allowance*</label>
+				<input type="number" name="fixedAllowance" class="form-control" [(ngModel)]="configData['FIXED_TRAVEL_ALLOWANCE'] && configData['FIXED_TRAVEL_ALLOWANCE']['value']" [readOnly]="viewMode" required/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="mealCoupons">Meal Coupons*</label>
+				<input type="number" name="mealCoupons" class="form-control" [(ngModel)]="configData['MEAL_COUPONS'] && configData['MEAL_COUPONS']['value']" [readOnly]="viewMode" required/>
+			</div>
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="providentFund">Provident Fund Percentage*</label>
+				<input type="number" name="providentFund" class="form-control" [(ngModel)]="configData['PROVIDENT_FUND_PERCENTAGE'] && configData['PROVIDENT_FUND_PERCENTAGE']['value']" [readOnly]="viewMode" required/>
+			</div>
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="gratuity">Gratuity Percentage*</label>
+				<input type="number" name="gratuity" class="form-control" [(ngModel)]="configData['GRATUITY_PERCENTAGE'] && configData['GRATUITY_PERCENTAGE']['value']" [readOnly]="viewMode" required/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="statutoryBonus">Statutory Bonus Percentage*</label>
+				<input type="number" name="statutoryBonus" class="form-control" [(ngModel)]="configData['STATUTORY_BONUS_PERCENTAGE'] && configData['STATUTORY_BONUS_PERCENTAGE']['value']" [readOnly]="viewMode" required/>
+			</div>
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="performancePay">Company Performance Linked Pay Percentage*</label>
+				<input type="number" name="performancePay" class="form-control" [(ngModel)]="configData['COMPANY_PERFORMANCE_LINKED_PAY_PERCENTAGE'] && configData['COMPANY_PERFORMANCE_LINKED_PAY_PERCENTAGE']['value']" [readOnly]="viewMode" required/>
+			</div>
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="individualPay">Individual Performance Linked Pay Percentage*</label>
+				<input type="number" name="individualPay" class="form-control" [(ngModel)]="configData['INDIVIDUAL_PERFORMANCE_LINKED_PAY_PERCENTAGE'] && configData['INDIVIDUAL_PERFORMANCE_LINKED_PAY_PERCENTAGE']['value']" [readOnly]="viewMode" required/>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="medicalReimbursment">Medical Reimbursement*</label>
+				<input type="number" name="medicalReimbursment" class="form-control" [(ngModel)]="configData['MEDICAL_REIMBURSEMENT'] && configData['MEDICAL_REIMBURSEMENT']['value']" [readOnly]="viewMode" required/>
+			</div>
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="haulage">Haulage*</label>
+				<input type="number" name="haulage" class="form-control" [(ngModel)]="configData['HAULAGE'] && configData['HAULAGE']['value']" [readOnly]="viewMode" required/>
+			</div>
+			<div class="col-md-4 form-group">
+				<label class="labelText" for="performanceIncentive">Performance Incentive*</label>
+				<input type="number" name="performanceIncentive" class="form-control" [(ngModel)]="configData['PERFORMANCE_INCENTIVE'] && configData['PERFORMANCE_INCENTIVE']['value']" [readOnly]="viewMode" required/>
+			</div>
+		</div>
+    </div>

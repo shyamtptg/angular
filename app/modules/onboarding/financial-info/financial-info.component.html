@@ -1,0 +1,52 @@
+<form class="financialformwidth m-t-8x p-l-10x"  [formGroup]="financialInfoForm">
+    <div class="fullwidth" cellspacing="0" >
+        <div fxLayout="column" fxLayoutGap="10px">
+            <div fxLayout="row" fxLayoutGap="40px">
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="PAN Number" formControlName="panNumber" required name="panNumber" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="financialInfoForm.get('panNumber').hasError('required')"></mat-error> 
+                    </mat-form-field>
+
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Aadhar Number" formControlName="aadharNumber" required name="aadharNumber" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="financialInfoForm.get('aadharNumber').hasError('required')"></mat-error>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" fxLayoutGap="40px">
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Banck Account Number" formControlName="bankAccountNumber" required name="bankAccountNumber" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="financialInfoForm.get('bankAccountNumber').hasError('required')"></mat-error> 
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="SSC Number" formControlName="sscNumber" required name="sscNumber" [errorStateMatcher]="matcher">
+                        <mat-error *ngIf="financialInfoForm.get('sscNumber').hasError('required')"></mat-error> 
+                    </mat-form-field>
+                </div>  
+            </div>
+            <div fxLayout="row" fxLayoutGap="40px">
+                <div>
+                    <mat-form-field>
+                            <input matInput type="text" placeholder="Previous PF Account Number" formControlName="previousPfAccountNumber" required name="previousPfAccountNumber" [errorStateMatcher]="matcher">
+                            <mat-error *ngIf="financialInfoForm.get('previousPfAccountNumber').hasError('required')"></mat-error> 
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                            <input matInput type="text" placeholder="UAN Account Number" formControlName="uanAccountNumber" required name="uanNumber" [errorStateMatcher]="matcher">
+                            <mat-error *ngIf="financialInfoForm.get('uanAccountNumber').hasError('required')"></mat-error> 
+                    </mat-form-field>
+                </div>
+                <div class="next-btn p-t-1x">
+                    <button class="ms-btn ms-btn-secondary-bordered"  [disabled]="!isFinancialFormValid" (click)="gotoNext()">Next</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

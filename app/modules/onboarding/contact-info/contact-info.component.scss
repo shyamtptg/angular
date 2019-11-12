@@ -1,0 +1,91 @@
+@import '../../../../assets/scss/colors.scss';
+@import '../../../../assets/scss/fonts.scss';
+.contactformwidth{
+	padding-bottom: 42.5px;
+	padding-right:230.14px;
+}
+.address{
+	 ::ng-deep .mat-input-infix{
+		padding-bottom:11px;	
+		width: 529.87px;
+	}
+}
+.pincode{
+	::ng-deep .mat-input-infix{
+		width: 250px;		
+	}
+}
+.country{
+	::ng-deep .mat-input-infix{
+		padding-bottom:0px;
+		margin-top:-6px;		
+	}
+}
+.state{
+	::ng-deep .mat-input-infix{
+		width: 250px;	
+	}
+}
+.mobilenumber{
+	::ng-deep .mat-input-infix{
+		width: 250px;	
+		padding-bottom:11px;
+		padding-top:11px;
+	}
+}
+.Personalcontact{
+	::ng-deep .mat-input-infix{
+		width: 250px;	
+		padding-top:11px;
+		padding-bottom:8.5px;	
+	}
+}
+.Permanentaddress h4{
+	height: 19px;	
+	width: 140px;	
+	color: $gray8;	
+	@extend .semi-bold
+}
+.Permanentaddress.checkpresent{
+	height: 18px;	
+	width: 18px;
+}
+.checkpresent span{
+	height: 15px;	
+	width: 133px;	
+	color: $gray8;	
+	text-align: right
+}
+.contactdetails{
+	margin-top:57px;
+	height: 19px;	
+	width: 137px;	
+	color: $gray8;	
+	@extend .semi-bold;		
+}
+
+/*dropdown customization*/
+.pincode  /deep/  {  
+  .mat-select-arrow {
+		border: none;
+	}
+	.mat-select{
+	 	width:50%;
+	 	margin-top:10px;
+	}	
+}
+.state /deep/{
+	.mat-select-arrow {
+		border: none;
+	}
+	.mat-select{
+		width:50%;
+		margin-top:10px;
+	}	
+}
+.arrowicon{
+	float: right;	
+}
+.nextbtn{
+	margin-top:13px;
+}

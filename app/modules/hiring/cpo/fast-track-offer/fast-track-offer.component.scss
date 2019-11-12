@@ -1,0 +1,134 @@
+.prospectRadioBtn {
+    margin-bottom: 10px;
+}
+
+.new-hiring-details {
+    .new-details-form {
+        padding-top: 1em;
+    }
+}
+
+.fastrack-upload-btn {
+    background: rgba(30, 52, 72, 0.96);
+    border-radius: 2px;
+    width: 74px;
+    height: 34px;
+    margin-top: 0.9em;
+    font-family: $font-family;
+    font-size: 13px;
+    color: #ffffff;
+    letter-spacing: 0.2px;
+    line-height: 1.7em;
+    text-align: center;
+    font-weight: normal;
+    margin: 24px 0px 0 -15px;
+}
+
+.fastrack-upload-btn:hover {
+    background: rgba(30, 52, 72, 0.96);
+    font-family: $font-family;
+    font-size: 13px;
+    color: #ffffff;
+    cursor: pointer;
+    letter-spacing: 0.2px;
+    text-align: center;
+    font-weight: normal;
+}
+
+.image-preview-input input[type=file] {
+    position: absolute;
+    top: 26px;
+    right: 0;
+    left:0;
+    width: 75px;
+    margin: 0;
+    padding: 0;
+    font-size: 21px;
+    opacity: 0;
+    cursor: pointer;
+    filter: alpha(opacity=0);
+}
+
+.fasttrack-offer-detail-tabs {
+    .resume-link {
+        a {
+            font-size: 12px;
+        }
+    }
+    .nav>li>a {
+        position: relative;
+        display: block;
+        padding: 4px 15px;
+        height: auto;
+        font-size: 15px;
+        cursor: pointer;
+    }
+    .nav li.active a {
+        background: rgba(39, 70, 98, 0.96);
+    }
+    .nav li.disable a {
+        cursor: not-allowed;
+        opacity: 0.65;
+    }
+    .nav {
+        margin-top: 0.7em;
+    }
+    .config-details .delete-icon {
+        right: 2em;
+    }
+    .profile-details {
+        margin: 1em 0 0 0;
+    }
+    .Professional-details {
+        label {
+            font-size: 13px;
+            color: #333;
+        }
+    }
+    .modal-dialog .modal-content {
+        .form-group.col-md-4 {
+            /*width: 50% !important;*/
+        }
+        .currentaddress-row .col-md-4 {
+            /*@extend .form-group.col-md-4*/
+        }
+        .modal-footer {
+            padding-right: 30px;
+        }
+    }
+    .currentctc-input .ctc-words {
+        font-size: 12px;
+        position: relative;
+        top: 3px;
+    }
+}
+
+.offer-details-tab {
+    padding: 1.3em 0 0 1em;
+    margin: -0.2em 0 0 0.5em;
+}
+p-calendar .ui-calendar input {
+    font-size: 13px;
+}
+
+#fileupload-input {
+  height: 0;
+  width: 0;
+  margin-top: 24px;
+  outline: none;
+}
+
+#fileupload-label {
+   border: 1px solid rgba(30, 52, 72, 0.96);
+   padding: 5px 10px 5px 16px;
+   min-width: 75px;
+   font-family: $font-family;
+   font-weight: normal;
+   height: 34px;
+   border-radius: 0.2px;
+   line-height: 21px;
+   color: #ffffff;
+   cursor: pointer;
+   font-size: 12px;
+   background: rgba(39, 70, 98, 0.96);
+}

@@ -1,0 +1,42 @@
+<div class="matdialogbox">
+  <div fxLayout="row" class="Dialogtop large-font">
+    <div mat-dialog-title fxFlex="95%" class="dialogtitle">Asset Details</div>
+    <div fxFlex="5%" (click)="closedialog()" fxLayoutAlign="end" class="close-img p-15 pointer">
+      <img src="../../../../../assets/close.svg">
+    </div>
+  </div>
+  <mat-dialog-content class="mat-content p-t-6x" fxLayout="column" fxLayoutGap="20px">    
+      <div fxLayout="row" class="dialogcontent">
+          <div fxFlex="20%" class="keys small-font">AssetId</div>
+          <div fxFlex="80%" class="kevalues medium-font">{{data.assestId}}</div>
+      </div>
+      <div fxLayout="row" class="dialogcontent">
+          <div fxFlex="20%" class="keys small-font">Configuration</div>
+          <div fxFlex="80%" class="kevalues medium-font">{{data.configuration}}</div>
+      </div>
+      <div fxLayout="row" class="dialogcontent">
+          <div fxFlex="20%" class="keys small-font">Asset Type</div>
+          <div fxFlex="80%" class="kevalues medium-font">{{data.assestType}}</div>
+      </div>
+      <div fxLayout="row" class="dialogcontent">
+          <div fxFlex="20%" class="keys small-font">Make</div>
+          <div fxFlex="80%" class="kevalues medium-font">{{data.make}}</div>
+      </div>
+      <div fxLayout="row" class="dialogcontent">
+          <div fxFlex="20%" class="keys small-font">Model</div>
+          <div fxFlex="80%" class="kevalues medium-font">{{data.model}}</div>
+      </div>
+      <div fxLayout="row" class="dialogcontent">
+          <div fxFlex="20%" class="keys small-font">Identification Number</div>
+          <div fxFlex="80%" class="kevalues medium-font">{{data.identificationNum}}</div>
+      </div>
+      <div fxLayout="row" class="dialogcontent">
+          <div fxFlex="20%" class="keys small-font">Asset Value</div>
+          <div fxFlex="80%" class="kevalues medium-font">{{data.assestValue}}</div>
+      </div>
+      <div fxLayout="row" class="dialogcontent">
+          <div fxFlex="20%" class="keys small-font">Asset Monthly Rent</div>
+          <div fxFlex="80%" class="kevalues medium-font">{{data.assetmonthlyrent}}</div>
+      </div>  
+  </mat-dialog-content>
+</div>

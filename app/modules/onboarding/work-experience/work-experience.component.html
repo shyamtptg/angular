@@ -1,0 +1,68 @@
+<div class="experience-container p-t-3x" fxLayout="column">
+    <div fxLayout="row">
+    <div class="experience" fxLayout="column" fxFlex="0 0 20%">
+        <span class="text">Overall experience</span>
+        <span class="experience">{{experience}}</span>
+    </div>
+    <div class="show-education" fxFlex="0 0 70%">
+        <mat-checkbox #myCheckbox class="show-education-text" (click)="showHideEducation()">Show Education</mat-checkbox>
+    </div>
+    <div class="add" fxFlex="0 0 10%">
+        <button class="ms-btn ms-btn-primary-filled" [ngClass]="{'ms-btn-disabled':btnDisable}" (click)="addWorkExperience()">Add</button>
+    </div>
+    </div>
+</div>
+<hr class="line">
+<div class="timeline">
+  <div *ngFor="let i of workInfo | sortBy: 'startDate': false" class="work-container right p-0x">
+    <div *ngIf="!i.data" class="content" fxLayout="row" fxFlex="0 0 1100px">
+      <div class="duration" fxFlex="0 0 calc(100% - 865px)" fxLayout="column">
+        <span class="from-to p-t-4x" align="right" fxFlex="0 0 50%">{{i.duration}}</span>
+        <span class="number-days p-t-0x" align="right" fxFlex="0 0 50%">{{i.period}}</span>
+      </div>
+      <div class="space" fxFlex="0 0 80px"><hr class="hr2"></div>
+      <div class="job-details p-t-3x p-l-4x" fxLayout="row" fxFlex="0 0 575px">
+        <div class="company-details" fxFlex="0 0 280px" fxLayout="column">
+          <span class="company" fxFlex="0 0 25px">{{i.company}}</span>
+          <span class="position" fxFlex="0 0 25px"><i class="material-icons">
+              check_box_outline_blank
+              </i>{{i.designation}}</span>
+        </div>
+        <span class="position p-t-5x" fxFlex="0 0 calc(100% - 280px)"><i class="material-icons">
+            pin_drop
+            </i>{{i.place}}</span>
+      </div>
+        <div class="edit-delete pointer" [ngClass]="{'cursor-default': btnDisable}" (click)="editWorkExperience(i.sequence)" align="center" fxLayout="column" fxLayoutAlign="center" fxFlex="0 0 80px"><div class="edit" [ngClass]="{'disable': btnDisable}">Edit icon</div></div>
+        <div class="edit-delete pointer" [ngClass]="{'cursor-default': btnDisable}" (click)="openDeleteDialog(i.sequence)" align="center" fxLayout="column" fxLayoutAlign="center" fxFlex="0 0 80px"><div class="delete" [ngClass]="{'disable': btnDisable}">Delete icon</div></div>
+    </div>
+  </div>
+  <app-add-work #child [childData]="childObject" (cancelEdit)="cancelEditFn($event)" (saveEdit)="getDetailsAgain($event)"></app-add-work>
+  <div *ngIf="showEducation === 1">
+  <div *ngFor="let i of educationInfo | sortBy: 'startDate': false" class="edu-container right p-0x" >
+      <div class="content" fxLayout="row" fxFlex="0 0 1100px">
+        <div class="duration" fxFlex="0 0 calc(100% - 865px)" fxLayout="column">
+          <span class="from-to p-t-4x" align="right" fxFlex="0 0 50%">{{i.duration}}</span>
+          <span class="number-days p-t-0x" align="right" fxFlex="0 0 50%">{{i.period}}</span>
+        </div>
+        <div class="space" fxFlex="0 0 80px"><hr class="hr1"></div>
+        <div class="job-details p-t-3x p-l-4x" fxLayout="row" fxFlex="0 0 735px">
+          <div *ngIf="i.stream" fxFlex="0 0 280px" fxLayout="column">
+            <span class="company" fxFlex="0 0 23px">{{i.degree}}</span>
+            <span class="position" fxFlex="0 0 30%">{{i.stream}}</span>
+          </div>
+          <div *ngIf="!i.stream" class="m-t-2x" fxFlex="0 0 280px">
+            <span class="company p-t-3x">{{i.degree}}</span>
+          </div>
+          <div fxLayout="column" fxFlex="0 0 calc(100% - 280px)">
+            <span class="position1" fxFlex="0 0 23px"><i class="material-icons">
+                check_box_outline_blank
+                </i>{{i.university}}</span>
+            <span class="position1" fxFlex="0 0 30%"><i class="material-icons">
+                pin_drop
+                </i>{{i.place}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+</div>

@@ -1,0 +1,104 @@
+/* You can add global styles to this file, and also import other style files */
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import '../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss';
+
+@import './assets/scss/fonts.scss';
+@import './assets/scss/colors.scss';
+@import './assets/scss/spacing.scss';
+@import './assets/scss/variables.scss';
+@import './assets/scss/agGrid.scss';
+@import './assets/scss/common.scss';
+@import './assets/scss/buttons.scss';
+
+@import './app/shared/common-style/variable-styles.scss';
+@import './app/modules/auth/register/register.component.scss';
+@import './app/modules/hiring/hiring.component.scss';
+@import './app/modules/hiring/slidenavigation/slide-navigation.component.scss';
+@import './app/modules/hiring/job-description/job-description.component.scss';
+@import './app/shared/modal-window/modal-window.component.scss';
+@import './app/shared/multiselection/multiselection-modal/multi-selection.component.scss';
+@import './app/shared/remarks/remarks-modal/remarks-modal.component.scss';
+@import './app/shared/email/email-modal.component.scss';
+@import './app/shared/upload-doc/upload-doc.component.scss';
+@import './app/modules/hiring/hiring-manager/hiring-manager.component.scss';
+@import './app/shared/left-nav/LeftNavigation/left-navigation.scss';
+@import './app/modules/hiring/hiring-manager/dashboard/dashboard.component.scss';
+@import './app/modules/hiring/dashboard/dashboard.component.scss';
+@import './app/modules/hiring/hiring-manager/new-hiring-request/new-hiring-request.component.scss';
+@import './app/modules/hiring/hiring-manager/new-hiring-request-1/new-hiring-request-component-1.scss';
+@import './app/modules/hiring/hiring-manager/new-hiring-request-1/update-hiring-request.component.scss';
+@import './app/modules/hiring/hiring-manager/new-hiring-request-1/hiring-request-need/hiring-request-need.component.scss';
+@import './app/modules/hiring/hiring-manager/new-hiring-request-1/update-hiring-request-need/update-hiring-request-need.component.scss';
+@import './app/modules/hiring/hiring-manager/new-hiring-request-1/job-description/job-description.component.scss';
+@import './app/modules/hiring/hiring-manager/new-hiring-request-1/new-job-description/new-job-description.component.scss';
+@import './app/modules/hiring/hiring-manager/new-hiring-request-1/job-description-list/job-description-list.component.scss';
+@import './app/modules/hiring/hiring-manager/new-hiring-request/interviewpanel/interview-panel.component.scss';
+@import './app/modules/hiring/hiring-manager/hiring-request-summary/hiring-request-summary.component.scss';
+@import './app/modules/hiring/hiring-manager/hiringrequests/hiring-requests.component.scss';
+@import './app/modules/hiring/hiring-manager/my-hiring-requests/my-hiring-requests.component.scss';
+@import './app/modules/hiring/hiring-manager/all-hiring-requests/all-hiring-requests.component.scss';
+@import './app/modules/hiring/hiring-manager/open-requests/hiring-request/hiring-request.component.scss';
+@import './app/modules/hiring/interviewer/interviews/interviews.component.scss';
+@import './app/modules/hiring/interviewer/interviews/interview-feedback/interview-feedback.component.scss';
+@import './app/modules/hiring/interviewer/interviews/profile-details/profile-details.component.scss';
+@import './app/modules/hiring/interviewer/interviews/job-description/job-description.component.scss';
+@import './app/modules/hiring/interviewer/interviews/view-feedback/view-feedback.component.scss';
+@import './app/modules/hiring/recruiter/profiles/all/profiles.component.scss';
+@import './app/modules/hiring/recruiter/profiles/shortlisted/shortlisted.component.scss';
+@import './app/modules/hiring/recruiter/profiles/shortlisted/scheduleinterview/schedule-interview.component.scss';
+@import './app/modules/hiring/recruiter/profiles/selected/selected.component.scss';
+@import './app/modules/hiring/recruiter/profiles/verified/verified.component.scss';
+@import './app/modules/hiring/recruiter/profiles/verification/verification-details.component.scss';
+@import './app/modules/hiring/recruiter/profiles/deactivated/deactivated.component.scss';
+@import './app/modules/hiring/recruiter/profiles/search/search.component.scss';
+@import './app/modules/hiring/recruiter/profilescreening/profiles.component.scss';
+@import './app/modules/hiring/recruiter/profilescreening/profile-details/profile-details.component.scss';
+@import './app/modules/hiring/recruiter/addprofile/add-profile.component.scss';
+@import './app/modules/hiring/recruiter/addprofile/personal/personal.component.scss';
+@import './app/modules/hiring/recruiter/addprofile/professional/professional.component.scss';
+@import './app/modules/hiring/recruiter/addprofile/skillset/skillset.component.scss';
+@import './app/modules/hiring/hr-manager/prospective-hires/prospective-hires.component.scss';
+@import './app/modules/hiring/hr-manager/offerletter-details/offerletter-details.component.scss';
+@import './app/modules/hiring/cpo/fast-track-offer/fast-track-offer.component.scss';
+@import './app/modules/hiring/cpo/hiring-details-modal/hiring-details-modal.component.scss';
+@import './app/modules/hiring/cpo/profile-details-modal/profile-details-modal.component.scss';
+@import './app/modules/hiring/hr-manager/offerletter-details/offer-configuration/offer-configuration.component.scss';
+@import './app/modules/hiring/hr-manager/offerletter-details/ctc-line-item/ctc-line-item.component.scss';
+@import './app/modules/hiring/hr-manager/offerletter-details/annexure/annexure.component.scss';
+@import './app/modules/hiring/hr-manager/offerletter-details/attachments/attachments.component.scss';
+@import './app/modules/hiring/cpo/assignexecutive/assign-executive.component.scss';
+@import './app/modules/hiring/cpo/assignexecutive/assign-executive-modal/assign-executive-modal.component.scss';
+@import './app/modules/hiring/cpo/profiles/profiles.component.scss';
+@import './app/modules/hiring/cpo/offers/offers.component.scss';
+@import './app/modules/hiring/cpo/offer-letter-details/offer-letter-details.component.scss';
+@import './app/modules/hiring/cpo/offer-letter-details/offer-history/offer-history.component.scss';
+@import './app/modules/hiring/cpo/offer-letter-details/offer-confirmation/offer-confirmation.component.scss';
+@import './app/modules/leave-management/team-requests/team-requests.component.scss';
+@import './app/modules/leave-management/encashment-request/encashment-request.component.scss';
+@import './app/modules/leave-management/managerwfh/managerwfh.component.scss';
+@import './app/modules/leave-management/compoffmanager/compoffmanager.component.scss';
+@import './app/modules/leave-management/dashboard/modal.component.scss';
+@import './app/shared/common-style/common-styles.scss';
+@import '../node_modules/fullcalendar/dist/fullcalendar.min.css';
+@import '../node_modules/ag-grid/dist/styles/ag-grid.css';
+@import '../node_modules/ag-grid/dist/styles/theme-fresh.css';
+@import '../node_modules/font-awesome/css/font-awesome.min.css';
+@import '../node_modules/primeng/resources/themes/omega/theme.css';
+@import '../node_modules/primeng/resources/primeng.min.css';
+@import '../node_modules/quill/dist/quill.core.css';
+@import '../node_modules/quill/dist/quill.snow.css';
+@import '../node_modules/c3/c3.css';
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import './assets/scss/ms-material.scss';
+@import './assets/scss/ms-fullcalendar.scss';
+
+
+@font-face {
+    font-family: 'Lato';
+    src: url('./assets/fonts/Lato.woff2') format('woff2'),
+        url('./assets/fonts/Lato.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+ag-grid-angular { clear: both !important;}

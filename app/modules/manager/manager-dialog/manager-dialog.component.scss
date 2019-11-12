@@ -1,0 +1,136 @@
+@import '../../../../assets/scss/colors.scss';
+@import '../../../../assets/scss/fonts.scss';
+@import '../../../../assets/scss/spacing.scss';
+.assettype{
+  height: 17px;
+  width: 69px;
+  color:$mat-sort-header-button;  
+}
+.dropdownchange /deep/  {  
+  .mat-input-underline{
+    display: none;
+  }
+  .mat-select-trigger {
+    height: 2.125em;
+}
+.mat-select{  
+  border:1px solid $ripple-background;
+  height: 33px;
+  position: relative; 
+  border-radius:10px;
+  border-radius: 5px; 
+  background: $mat-select;
+}
+.mat-form-field-infix {
+  position: relative;
+  top: -4px;
+}
+.mat-select-value{
+  position: relative;
+  top: 3px;
+  left: 7px;
+  font-size: 14px;
+  line-height: 17px; 
+ 	color:$mat-select-value;
+}
+.mat-select-arrow {
+  border:none;
+}
+ .mat-form-field-infix {
+  height: 43px!important;
+}
+  }
+  .arrowicon{
+    position: relative;
+    float: right;   
+    top:-28px;
+	}
+	.editcomment /deep/ {
+		.mat-form-field-infix{
+			width:320px;
+		}
+	}
+	.textedit{
+		resize: none;
+		height: 50px;
+		overflow: hidden;
+	}
+	.dialogcontent{
+    padding-left:23px
+}
+.statusdropdown /deep/  {  
+  .mat-select-arrow {
+		border: none;
+	}
+	.mat-select{
+		width:50%;
+		margin-top:5px;
+	}
+	.mat-input-infix /deep/ {
+		border:none;
+		padding:0px;
+	}
+}
+.arrowicon{
+	float: right;
+	background-repeat: no-repeat;
+	height: 24px;
+	width: 24px;
+	font-family: 'Material Icons';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	-webkit-font-smoothing: antialiased;
+}
+.previouscomment {
+	width: 350px; 
+	border: 1px solid $gray13; 
+	box-shadow: 0 2px 10px 0 rgba(0, 0, 0, 0.1); 
+ }
+ 
+.commentlist{
+	padding-left: 16px;
+} 
+.scroll {
+	height: inherit;
+	overflow-y: auto;
+	overflow-x: hidden;
+	@extend .p-tb-1x, .p-lr-1x;
+		::-webkit-scrollbar {
+		width: 6px;
+		}
+	::-webkit-scrollbar-track {
+		border-radius: 10px;
+		margin-bottom: 0px !important;
+		margin-top: 0px !important;
+		background-color: $gray17;
+	}
+	::-webkit-scrollbar-thumb {
+		border-radius: 10px;
+		background-color: $orange;
+	}
+} 
+.contents { 
+	height: 98px; 
+	margin-top: 0px; 
+} 
+.scroll ul li { 
+	height: auto; 
+	word-break: break-all; 
+	list-style: none; 
+	@extend .m-b-2x; 
+}
+ 
+.name-designation {
+	float: left;
+} 
+.timestamp {
+	float: right;
+}
+

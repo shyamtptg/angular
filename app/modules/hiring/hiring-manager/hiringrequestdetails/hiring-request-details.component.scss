@@ -1,0 +1,9 @@
+.card {
+    .icondisable{
+        -webkit-appearance: none
+    }
+   select.icondisable::-ms-expand {
+       display: none;
+   }
+ }
+ 

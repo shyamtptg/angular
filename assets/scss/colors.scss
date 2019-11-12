@@ -1,0 +1,76 @@
+/** Pure Colors **/
+$pure-white: #FFFFFF;
+$pure-black: #000000;
+$pure-red: #FF0000;
+$pure-yellow: #FFFF00;
+$pure-black: #000000;
+$pure-green: #009A44;
+$light-black : #333333;
+$transparent: rgba(0, 0, 0, 0);
+
+
+$blue: #0076A8;
+$blue-1 : transparentize($blue, 0.9);
+$blue-3 : transparentize($blue, 0.7);
+$blue-8 : transparentize($blue, 0.2);
+
+/** InVision Exracted Colors **/
+$orange: #FF562D;
+$orange2: #FF623C;
+$orange-8: transparentize($orange, 0.2);
+$disable-orange: #FFDFD7;
+$gray1: #777777;
+$disable-gray1: #D3D3D3; //TODO
+$gray2: #DEDEDE;
+$gray3: #727272;
+$gray4: #FBFBFB;
+$gray5: #CBCBCB;
+$gray6: #E1E1E1;
+$gray7: #7C7C7C;
+$gray8: #444444;
+$gray9: #888888;
+$gray10: #323232;
+$gray11: #4A4A4A;
+$gray12: #CACACA;
+$gray13: #D4D4D4;
+$gray14: #979797;
+$gray15: #D6D6D6;
+$gray16: #767676;
+$gray17: #E8E8E8;
+$gray18: #D7D7D7;
+$gray19: #363636;
+$gray20: #C9C9C9;
+$dark-gray: #3F444A;
+$light-gray: rgba(248, 247, 247, 0.6);
+$yellow1: #C9BE7E;
+$yellow2: #F7F0C6;
+$yellow3: #FFBE01;
+$red1: #B32806;
+$blue1: #2572C7;
+
+$mat-gray:#bdbb96;
+$mat-toggle:#DDDDDD;
+/** Defined Colors **/
+$border-color: $gray2;
+$border1: #E0E8F1;
+$ripple-background: $gray5;
+$mat-field-label: $gray7;
+$mat-input: $gray8;
+$comment: #193657;
+
+/*header tabs */
+$white1:#EDECEC;
+$green:#008000;
+$green1: #75BF36;
+$orange1:#ffa500;
+$orange2: #FBA574;
+$white2:#E9E9E9;
+
+$mat-radio-checked: $orange;
+$lightgray: $mat-gray;
+$mat-sort-header-button:$gray9;
+$mat-select: $pure-white;
+$mat-gray16: $gray16;
+$imgname: $gray10;
+$mat-select-value: $gray11;
+$asset-details-btn: $orange2;

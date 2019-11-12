@@ -1,0 +1,96 @@
+<div *ngIf="childData.data" class="timeline">
+    <div class="container right p-0x">
+        <div class="content" fxLayout="row" fxFlex="0 0 1100px">
+        <div class="duration" fxFlex="0 0 calc(100% - 865px)" fxLayout="column">
+        </div>
+        <div class="space" fxFlex="0 0 80px"><hr class="hr1"></div>
+        <div class="job-edit p-t-3x p-l-4x" fxLayout="column" fxFlex="0 0 735px">
+            <div class="new-company-text m-t-2x">
+                <div *ngIf="!childData.body">Add New Company</div>
+                <div *ngIf="childData.body">Edit Company Details</div>
+            </div>
+            <form class="formwidth" [formGroup]="addWorkFormGroup" #formDirective="ngForm" (ngSubmit)="submitData()">
+            <div class="fullwidth" cellspacing="0">
+                    <div fxLayout="row" fxLayoutGap="35px" class="m-b-3x m-t-6x">
+                        <div>
+                            <mat-form-field>
+                                <input id="company" matInput type="text" placeholder="Company"  required name="MiddleName" [errorStateMatcher]="matcher" formControlName="company">
+                                <mat-error class="error-message" *ngIf="addWorkFormGroup.get('company').hasError('required')"></mat-error>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="Designation" required name="lastName" [errorStateMatcher]="matcher" formControlName="designation">
+                                <mat-error class="error-message" *ngIf="addWorkFormGroup.get('designation').hasError('required')"></mat-error>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="35px"  class="m-tb-3x">
+                        <div>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="startDate" [(ngModel)]="planModel.start_time" required placeholder="Start Date" class="startDate" [errorStateMatcher]="matcher" formControlName="startDate">
+                                <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                                <mat-datepicker #startDate disabled="false"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field>
+                                <input matInput [matDatepicker]="endDate" [(ngModel)]="planModel.end_time" placeholder="End Date" class="endDate" required [errorStateMatcher]="matcher" formControlName="endDate">
+                                <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                                <mat-datepicker #endDate disabled="false"></mat-datepicker>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="35px" class="m-tb-3x">
+                        <div>
+                            <mat-form-field class="dropdown">
+                                <mat-select [(ngModel)]="countryName" required placeholder="Country" (selectionChange)="changeStateValue()" [errorStateMatcher]="matcher" [(value)]="country" formControlName="country">
+                                    <mat-option *ngFor="let country of countries" [value]="country">
+                                        {{country}}
+                                    </mat-option>
+                                </mat-select>
+                                <span class="arrowicon">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                                </span>
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="dropdown">
+                                <mat-select [(ngModel)]="stateName" required placeholder="State" (selectionChange)="changeCityValue(state)" [(value)]="state" [errorStateMatcher]="matcher" formControlName="state">
+                                    <mat-option *ngFor="let state of statenames" [value]="state">
+                                        {{state}}
+                                    </mat-option>
+                                </mat-select>
+                                <span class="arrowicon">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                                </span>
+                            </mat-form-field>
+                        </div>
+                    </div>
+                    <div fxLayout="row" fxLayoutGap="35px" class="m-tb-3x">
+                        <div>
+                            <mat-form-field class="dropdown">
+                                <mat-select [(ngModel)]="cityName" required placeholder="City" [errorStateMatcher]="matcher" formControlName="city">
+                                    <mat-option *ngFor="let city of currentCities" [value]="city">
+                                        {{city}}
+                                    </mat-option>
+                                </mat-select>
+                                <span class="arrowicon">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                                </span>
+                            </mat-form-field>
+                        </div>
+                    </div>
+            <div fxLayout="row" fxLayoutGap="35px" class="m-tb-3x">
+                <div>
+                <button class="ms-btn ms-btn-secondary-bordered action-buttons m-r-2x" (click)="cancelClick()" type="button">Cancel</button>
+                <button class="ms-btn ms-btn-primary-bordered action-buttons" [disabled]="addWorkFormGroup.invalid || !planModel.end_time || !planModel.start_time" type="submit">Save</button>
+                </div>
+            </div>
+        </div>
+        </form>
+    </div>
+</div>
+</div>
+</div>
+        

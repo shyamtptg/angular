@@ -1,0 +1,30 @@
+<div class="upload_comp">
+    <label>{{labelText}}</label>
+    <div class="upload_inputdiv">
+        <input type="text" class="form-control prejoining-text" [(ngModel)]="fileName" readonly/>
+        <div class="image-upload" #docBrowse [hidden]="hideBrowse">
+            <label [attr.for]="uniqueId">
+                <img  src="../../assets/add_icon.png" />
+            </label>
+            <input #docUpload type="file" [attr.id]="uniqueId" (change)="fileChangeEvent($event)" multiple/>
+        </div>
+        <div class="upload-button">
+            <button #uploadButton [hidden]="hideUpload" type="button" class="btn btn-success btn-xs" (click)="uploadDocument()">
+            <span class="glyphicon glyphicon-upload"></span> Upload
+            </button>
+        </div>
+        <div class="upload-button">
+            <button #removeButton [hidden]="hideDelete" type="button" class="btn btn-danger btn-xs" (click)="deleteDocument()">
+            <span class="glyphicon glyphicon-trash"></span> Remove
+            </button>
+        </div>
+        <div class="upload-button">
+            <button #downloadButton [hidden]="hideDownload" type="button" class="btn btn-primary btn-xs" (click)="downloadDocument()">
+            <span class="glyphicons glyphicons-download"></span> Download
+            </button>
+        </div>
+          <div class="remove-document" [hidden]="hideRemove" *ngIf="index!=0">
+            <span class="delete-icon"  (click)="removeIndexDocument()"></span>
+        </div>
+    </div>
+</div>

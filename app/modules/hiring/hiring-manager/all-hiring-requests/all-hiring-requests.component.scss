@@ -1,0 +1,86 @@
+.ag-header-cell-label {
+  font-weight: bold;
+}
+
+.hiring-request-grid {
+  width: 99%;
+  margin: 0.5% 0 6% 1%;
+  height: 30em;
+}
+
+.all-hiring-requests-title {
+  margin-left: 0.8em;
+}
+
+.all-hiring-requests-btns {
+  margin-top: -6em;
+  @media (max-width: 767px) {
+    margin-top: -2.5em !important;
+  }
+  @media (max-width: 767px) {
+    margin-top: -3.5em;
+  }
+  @media (min-width: 768px) and (max-width: 1023px) {
+    margin-top: -4em;
+  }
+}
+
+.hiring-requests-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 33px;
+  margin-left: 0.5em;
+}
+
+.hiring-requests-cancel-button {
+  @extend .hiring-requests-button;
+  color: #ffffff;
+  background: #9b9b9b;
+}
+
+.hiring-requests-create-button,
+.hiring-requests-update-button {
+  @extend .hiring-requests-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}
+
+// .grid-pagination {
+//   position: relative;
+//   top: -5.5em;
+// }
+
+.no-padding {
+  padding: 0px;
+}
+
+.prioritydropdrown-main {
+  margin-top: 8px;
+  .labelText {
+    padding-top: 8px;
+  }
+}
+
+@media (max-width: 767px) {
+  .all-hiring-requests-title {
+    .no-padding {
+      .col-xs-12 {
+        padding: 0px;
+      }
+    }
+    .col-xs-12 {
+      padding: 0px;
+      .pull-right {
+        padding-right: 15px;
+      }
+    }
+    .prioritydropdrown-main {
+      .no-padding {
+        .col-xs-4,
+        .col-xs-8 {
+          padding: 0px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+	"departmentId": null,
+    "practiceId": null,
+    "templateName": null,
+    "details": {
+        "companyOverview": null,
+        "practiceOverview": null,
+        "jobDesc": null,
+        "responsibilities": null,
+        "skills": {
+      "uxDesignSkills": [],
+      "technicalSkills": [],
+      "certifications": [],
+      "others": []
+    },
+    "education": null,
+    "screeningQuestions": null
+    },
+    "deprecated": null
+}

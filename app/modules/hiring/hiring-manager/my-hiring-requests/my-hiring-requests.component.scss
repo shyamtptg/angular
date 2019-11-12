@@ -1,0 +1,85 @@
+.ag-header-cell-label {
+   font-weight: bold;	
+}
+.hiring-request-grid {
+   width: 99%;
+   margin: 0.5% 0 6% 1%;
+   height: 30em;
+}
+.grid_ag {
+    width: 99%;
+    margin: 0.5% 10px 0% 10px;
+    height: 30em;
+    padding-top: 5px;
+}
+.grid_btn {
+  margin-top: 0px !important;
+}
+.grid_nav {
+  position: relative;
+  top: 0em !important;
+  padding: 5px 0px;
+  .pager {
+    margin: 12px 0px;
+  }
+}
+.search_grid_btn {
+  padding: 15px 0px;
+}
+.search_grid_nav {
+  .pager {
+      margin: 15px 0px 0px 0px;
+  }
+}
+.hiring-requests-title {
+  margin-left: 0.8em;
+  @media only screen and (max-width: 767px) {
+  }
+  .heading {
+    @media (max-width: 767px) {
+        padding-top: 8px;
+        font-size: 12px;
+        margin-bottom: 0px;
+    }
+  }
+}
+.hiring-requests-button{
+  border-radius:2px;
+  min-width:72px;
+  height:35px;
+  margin-left: 0.5em;
+}
+.hiring-requests-cancel-button {
+  @extend .hiring-requests-button;
+  color:#ffffff;
+  background:#9b9b9b;
+}
+.hiring-requests-create-button, .hiring-requests-update-button {
+  @extend .hiring-requests-button;
+  color:#ffffff;
+  background:rgba(39,70,98,0.96);
+  @media (max-width: 767px) {
+    height: 30px !important;
+    font-size: 11px;
+  }
+}
+.no-padding { 
+  padding: 0px;
+}
+.hiring-dropdown {
+  margin: 0.5em 0 0 0;
+}
+.prioritydropdrown-main {
+    margin-top: 8px;
+    .labelText {
+      padding-top: 8px;
+    }
+}
+.hiring-stats {
+  table {
+    margin: 10px;
+    td:last-child {
+      padding-left: 5px;
+    }
+  }
+}

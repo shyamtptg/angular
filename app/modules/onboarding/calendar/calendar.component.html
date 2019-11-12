@@ -1,0 +1,11 @@
+<div class="joinees m-t-6x pointer" (click)="navigateToJoineesTable(1)" fxLayout="row" fxflex><div class="count">{{total}}&nbsp;</div><div class="text">{{totalText}}</div></div>
+<div *ngIf="calendarOptions" class="calender">
+    <ng-fullcalendar
+        #ucCalendar
+        [(options)]="calendarOptions"
+        (viewRender)="viewChange($event)"
+        (eventClick)="eventClick($event.detail)"
+        (eventDrop)="updateEvent($event.detail)"
+        (eventResize)="updateEvent($event.detail)"
+    ></ng-fullcalendar>
+</div>

@@ -1,0 +1,46 @@
+export interface ProfileDetails {
+    "displayName": string,
+    "firstName": string,
+    "lastName": string,
+    "email": string,
+    "mobileNumber": string,
+    "dateOfBirth": number,
+    "nationality": string,
+    "citizenIdentity1Type": string,
+    "citizenIdentity1": string,
+    "citizenIdentity2Type": string,
+    "citizenIdentity2": string,
+    "currentAddress": {
+        "address1": string,
+        "address2": string,
+        "city": string,
+        "state": string,
+        "zipcode": string,
+        "country": string
+    },
+    "permanentAddress": {
+        "address1": string,
+        "address2": string,
+        "city": string,
+        "state": string,
+        "zipcode": string,
+        "country": string
+    },
+    "skillSets": any;
+    "permanentAddressSameAsCurrentAddress": boolean,
+    "unemployed": boolean,
+    "currentEmployer": string,
+    "currentWorkLocation": string,
+    "currentCTC": number,
+    "noticePeriod": string,
+    "expectedCTC": number,
+    "totalExperienceInYears": number,
+    "relevantExperienceInYears": number,
+    "status": string,
+    "documents": any,
+    "documentTitle": string,
+    "documentPath": string,
+    "documentType": string,
+    "source": string,
+    "referralDetails": any
+}

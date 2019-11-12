@@ -1,0 +1,73 @@
+<tabs class="offer-detail-tabs" (tabSelect)="tabSelect($event)">
+<tab [tabTitle]="'Offer Letter'">
+<div class="offer-letter-details">
+	<div class="row">
+		<div class="offer-letter-container col-md-9 col-xs-12 col-sm-9">
+			<div class="offer-letter">
+        <div id="pdf-view" title="Offer Letter" style="height:1029px"></div>
+</div>
+		<div class="button-grp pull-right">
+		</div>
+	</div>
+	<div class='notification-container col-md-3 col-xs-12 col-sm-3'>
+		<form #commentsForm="ngForm" novalidate>
+			<div class="notification">
+				<div class="notification-header">
+					<p>Comments</p>
+				</div>
+				<div class="notification-body">
+					<textarea class="form-control" name="name" cols="39" rows="6" placeholder="Write a comment" [(ngModel)]="offerPayload.comments" required></textarea>
+					<div class="checkbox">
+						<label><input type="checkbox" name="makePublic" [(ngModel)]="offerPayload.isPublic">Make this comment as public (visible to external candidate)</label>
+					</div>
+					<button class="notify-btn pull-right" *ngIf="!commonService.hideFeature('ADD_OFFER_COMMENT')" [disabled]="!commentsForm.valid" (click)="postMessage()">Post</button>
+					<div id="snackbar" class="{{className}}">Posted Comments..</div>
+				</div>
+				<div *ngIf="(!commonService.hideFeature('VIEW_OFFER_ATTACHMENT') && (attachments.length>0))" class="row offer-attachments">
+					<div class="offer-letter-margin"></div>
+					<div class="notification-header attachment_head">
+						<p>Attachments</p>
+					</div>
+					<ul class="attachment-list">
+						<li *ngFor="let attachment of attachments" style="margin-bottom:0.7em;"><a class="attachment-link" (click)="downloadAttachment(attachment.offerId, attachment.id, attachment.attachmentName)">{{attachment.attachmentName}}</a></li>
+					</ul>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+</div>
+</tab>
+<tab *ngIf="!commonService.hideFeature('VIEW_OFFER_TIMELINE')" [tabTitle]="'History'">
+<div class="offer-history-container row">
+<div class="timeline-container" [scrollCallback]="onScrollCallback" infinite-scroll>
+	<div class="timeline-header">
+		<h5>Offer Timeline</h5>
+	</div>
+	<ul class="timeline col-sm-12 col-md-12 col-lg-12">
+		<li>
+			<div class="timeline-badge timeline-start"><i class="timeline-start-icon"></i></div>
+		</li>
+		<li *ngFor="let comment of commentHistory">
+			<div class="timeline-badge"><i class="timeline-notification-icon"></i></div>
+			<div class="timeline-panel col-sm-5 col-md-5 col-lg-5 col-xs-5">
+				<div class="timeline-heading">
+					<h5 class="timeline-title">{{comment.commentsBy && comment.commentsBy.split('(')[0]}}</h5>
+				</div>
+				<div class="timeline-body ">
+					<p>{{comment.comments}}</p>
+				</div>
+				<div class="history-comment-time">
+					<p>{{getDate(comment.creationTimestamp)}} {{getTime(comment.creationTimestamp)}}</p>
+				</div>
+			</div>
+		</li>
+		<li>
+			<div class="timeline-badge timeline-end"><i class="timeline-end-icon"></i></div>
+		</li>
+	</ul>
+</div>
+</div>
+</tab>
+</tabs>
+<button class="close-btn pull-right" (click)="navigateToPrevious()">Close</button>

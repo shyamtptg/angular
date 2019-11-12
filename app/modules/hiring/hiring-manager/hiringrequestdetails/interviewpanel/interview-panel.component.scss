@@ -1,0 +1,73 @@
+.heading {
+  padding-top: 15px;
+  font-family: $font-family;
+  font-size: 13px;
+  color: #000000;
+  letter-spacing: $letter-spacing;
+  text-align: left;
+  font-weight: $font-weight;
+  clear: both;
+  .subheading {
+    color: #575757;
+  }
+}
+
+.labelText {
+  font-family: $font-family;
+  font-size: 14px;
+  color: #575757;
+  letter-spacing: $letter-spacing;
+  text-align: left;
+  font-weight: $font-weight;
+}
+
+.interview-panel-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 35px;
+  margin-left: 0.5em;
+}
+
+.interview-panel-cancel-button {
+  @extend .interview-panel-button;
+  color: #ffffff;
+  background: #9b9b9b;
+}
+
+.interview-panel-next-button {
+  @extend .interview-panel-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}
+
+.interview-panel-save-button {
+  @extend .interview-panel-next-button;
+}
+
+.interview-panel-save-add-new-button {
+  @extend .interview-panel-next-button;
+}
+
+interview-panel .ng2-tag-input {
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.multi-select {
+  cursor: pointer;
+}
+
+.interview-panel-icon {
+  margin: 0 0.7em 0 0;
+  font-size: 1.3em;
+  cursor: pointer;
+  color: #4a4a4a;
+}
+
+.interview-panel-icon:hover {
+  text-decoration: none;
+}
+
+.tag-input-control {
+  width: 96%;
+}

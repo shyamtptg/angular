@@ -1,0 +1,27 @@
+.comments-modal .modal-dialog {
+    width: 400px;
+    position: relative;
+    top: 10em;
+    left: 0.6em;
+}
+
+.remark-button {
+    height: 33px;
+    margin-left: 0.5em;
+}
+
+
+.remarks-details-button {
+    @extend .remarks-button;
+    margin-bottom: 1em;
+    color: #ffffff;
+    background: rgba(39, 70, 98, 0.96);
+}
+
+.remarks-close {
+    font-size: 1.4em;
+}
+
+.remarks-body {
+    padding: 0 15px 15px 15px;
+}

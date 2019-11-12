@@ -1,0 +1,53 @@
+.update-hiring-request-need-btns {
+    margin: 0.7em 0.6em 0 0.7em;
+}
+
+.update-hiring-request-button {
+    border-radius: 2px;
+    min-width: 72px;
+    height: 35px;
+    margin-left: 0.5em;
+}
+
+.update-hiring-request-back-button {
+    @extend .update-hiring-request-button;
+
+    color: #ffffff;
+    background: rgba(39, 70, 98, 0.96);
+}
+
+.hiring-request-need-details {
+    margin: 4.5em 0 0 0;
+}
+
+.hiring-need-container {
+    clear: both;
+    margin: 1em 0 0 0;
+}
+
+.labelText {
+    font-size: 13px;
+    font-weight: $font-weight;
+}
+
+.update-spinner {
+    position: fixed;
+    top: 45%;
+    right: 45%;
+    z-index: 1053;
+
+    .loader {
+        width: 4em;
+    }
+}
+
+.overlay,
+.overlays {
+    background-color: rgba(0, 0, 0, .288);
+    position: fixed;
+    top: 0px;
+    bottom: 0px;
+    left: 0px;
+    right: 0px;
+    z-index: 1052;
+}

@@ -1,0 +1,156 @@
+<div class="row marginTop">
+    <div class="col-md-7 container-border">
+        <form autocomplete="off" name="compoffForm" (ngSubmit)="createcompoff(cmpData)" #compoffForm="ngForm">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row ">
+                        <div class="leavesbox_starts">
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Date
+                                            <span class="required">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <p-calendar required readonlyInput="true" [(ngModel)]="cmpData.date" dateFormat="dd/mm/yy" [minDate]="minDate" [maxDate]="maxDate"
+                                            [disabledDates]=holidaysList [showIcon]=true name="from"
+                                            #from="ngModel"></p-calendar>
+                                    </div>
+                                    <div *ngIf="from.dirty && from.errrors" class="text-danger">
+                                        <div *ngIf="from.errors.required">
+                                            Date field can't be blank
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Alternative Contact Info
+                                            <span class="required">*</span>
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <input type="tel" required id="alternativeContact" minlength="10" class="form-control" name="alternativeContact" maxlength="24"
+                                            placeholder="Please enter mobile number" (keypress)="restrictMobilenumber($event)"
+                                            [(ngModel)]="cmpData.alternativeContactInfo" #alternativeContact="ngModel">
+                                    </div>
+                                    <div class="text-danger">
+                                        <div *ngIf="alternativeContact.dirty  && alternativeContact.pristine &&  alternativeContact.errors && alternativeContact.errors.required">
+                                            Alternate Contact number can't be blank
+                                        </div>
+                                        <div *ngIf="alternativeContact.errors && (alternativeContact.dirty || alternativeContact.touched) && alternativeContact.errors.minlength ">
+                                            Please enter valid mobile number
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Comments</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <textarea rows="4" pattern="(.|\n){0,}\S+(.|\n){0,}" cols="50" name="comments" maxlength="500"
+                                            #comments="ngModel" [(ngModel)]="cmpData.comments" name="comments" type="text" class="form-control"
+                                            id="comments" placeholder="Please enter maximum 500 characters"></textarea>
+                                    </div>
+                                    <div *ngIf="comments.dirty && comments.errors" class="text-danger">
+                                        <div *ngIf="comments.errors.maxlength">
+                                            Comments can't be more than 500 characters long.
+                                        </div>
+                                        <div *ngIf="comments.errors.pattern ">
+                                            Please enter valid text.
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Apply To</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <span *ngFor="let manager of managerInfo.projectManagerDto">
+                                            <button type="button" class="btn-default btn-xs" disabled>{{manager.projectManagerName}}</button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12" *ngIf="managerInfo.reportingManagerDto!=null">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Copy To</label>
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <div class="form-group" *ngIf="managerInfo.reportingManagerDto!=null">
+                                        <button type="button" class="btn-default btn-xs" disabled>{{managerInfo.reportingManagerDto.reportingManagerName}}</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-12">
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <label for="type">Notify To</label>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6">
+                                    <div class="form-group">
+                                        <p-autoComplete [(ngModel)]="cmpData.addPeople" name="people" #people="ngModel" [suggestions]="filteredCountriesMultiple"
+                                            (completeMethod)="filterCountryMultiple($event)" field="fullName" styleClass="wid100"
+                                            [minLength]="1" placeholder="Add people..." [multiple]="true">
+                                        </p-autoComplete>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <div class="col-sm-12">
+                                <div class="col-sm-6 col-sm-offset-6">
+                                    <div class="form-group">
+                                        <button [disabled]="!compoffForm.valid" class="btn Encash" data-color="primary">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row" style=" border-top: 1px solid #eee;padding-right:2px">
+                <div class="col-md-12">
+                    <div>
+                        <h4>Compensatory Off History</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <ag-grid-angular #agGrid style="width:100%; height:300px;" enableColResize enableSorting enableFilter (gridReady)="onGridReady($event)"
+                    (gridSizeChanged)="resizeColumns($event)" [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize"
+                    class="ag-theme-fresh teamreqst-grid" [columnDefs]="columnDefs"></ag-grid-angular>
+                <nav class="grid-pagination">
+                    <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages" (onPageChange)="paginate($event)"></p-paginator>
+                </nav>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-5 desc-content">
+        <h4>Compensatory Off</h4>
+        <div>
+            <ol>
+                <li *ngFor="let desc of compOffData.leaveTypeDescription[2].detailedDescription.split('*')">{{desc}}</li>
+            </ol>
+        </div>
+    </div>
+</div>

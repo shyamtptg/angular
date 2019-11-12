@@ -1,0 +1,5 @@
+<div class="pager">
+	<button [hidden]="!enablePages()" [disabled]="prevPageDisabled()" class="ag-paging-button" (click)="prevPage()">Previous</button>
+	<span [hidden]="!enablePages()" style="font-size:11px">{{pageNumber + 1}} of {{pageCount}}</span>
+	<button [hidden]="!enablePages()" [disabled]="nextPageDisabled()" class="ag-paging-button" (click)="nextPage()">Next</button>
+</div>

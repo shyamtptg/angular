@@ -1,0 +1,128 @@
+.maindiv{
+  margin-left: 6px; 
+  //box-shadow:0 2px 5px 0 rgba(0,0,0,0.10);
+  //background-color: #ffffff;
+
+  .heading{
+    padding-top: 15px;
+    font-family:$font-family;
+    font-size:13px;
+    color:#000000;
+    letter-spacing:$letter-spacing;
+    text-align:left;
+    font-weight: $font-weight;
+
+    .subheading{
+      color:#575757;
+    }
+  }
+}
+
+.labelText {
+    font-family:$font-family;
+    font-size:13px;
+    color:#575757;
+    letter-spacing:$letter-spacing;
+    text-align:left;
+    font-weight: $font-weight;
+  }
+
+.alreadyjddiv{
+  background:#f6f6f6;
+  border:1px solid #c5c5c5;
+  height: 58px;
+  line-height: 58px;
+
+  font-family:$font-family;
+  font-size:16px;
+  color:#575757;
+  letter-spacing:$letter-spacing;  
+
+  .arrow-img1{
+    float: right;    
+    margin-right: 17px;
+    margin-top:17px;
+    content:url("./assets/leftarrow_grey.png");
+  }
+}
+
+.newjddiv{
+  background:rgba(39,70,98,0.96);
+  border:1px solid #c5c5c5;
+  height: 58px;
+  line-height: 58px;
+
+  font-family:$font-family;
+  font-size:16px;
+  color:#ffffff;
+  letter-spacing:$letter-spacing; 
+
+  .arrow-img2{
+    float: right;    
+    margin-right: 17px;
+    margin-top:17px;
+    content:url("./assets/leftarrow_white.png");
+  } 
+}
+.job-description-container {
+    padding:15px 0px 0px 32px;
+    line-height:27px;
+}
+.job-description-details{
+  .nav li a {
+    height:26px;
+    line-height: 0.5em
+  }
+  .nav li.active a {
+    background:rgba(39,70,98,0.96);
+  }
+  tabs tab .pane {
+    padding: 1em 1em 1em 0 !important;
+    textarea.form-control {
+      border: 1px solid #c5c5c5;
+      width: 77em;
+      height: 161px;
+    }
+  }
+}
+.job-description-button{
+  border-radius:2px;
+  width:72px;
+  height:42px;
+  margin-left: 0.5em;
+}
+.job-description-cancel-button {
+  @extend .job-description-button;
+  color:#ffffff;
+  background:#9b9b9b;
+}
+.job-description-next-button {
+  @extend .job-description-button;
+  color:#ffffff;
+  background:rgba(39,70,98,0.96);
+}
+.job-description-finish-button {
+  @extend .job-description-next-button;
+}
+.job-description-save-button {
+  @extend .job-description-next-button;
+}
+.job-description-progress{
+  .progress {
+    margin: 19px 0 0 0;
+    background: #ffffff;
+  }
+}
+.tag-section .ng2-tags-container{
+  span {
+    position: relative;
+    bottom: 1em;
+  }
+  delete-icon {
+    position: relative;
+    top: 0.8em;
+  }
+}
+.new-hiring-request-btns{
+  margin: 2em -1em 0 0;
+}

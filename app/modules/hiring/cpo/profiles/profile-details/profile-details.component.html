@@ -1,0 +1,124 @@
+<p-dialog header={{title}} [(visible)]="display" modal="modal" width="700" (onAfterHide)="onAfterHide()">
+  <tabs class="profile-detail-tabs">
+    <tab [tabTitle]="'Personal Info'">
+      <div class="personal-details">
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="firstName">First Name</label>
+            <div class="profile-details-text">Ashish</div>
+          </div>
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="clientName">Last Name</label>
+            <div class="profile-details-text">Gupta</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="personalEmailId">Personal Email Id</label>
+            <div class="profile-details-text">agupta@gmail.com</div>
+          </div>
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="mobileNumber">Mobile Number</label>
+            <div class="profile-details-text">9176147163</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="dateOfBirth">Date Of Birth</label>
+            <div class="profile-details-text">07/12/1986</div>
+          </div>
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="nationality">Nationality</label>
+            <div class="profile-details-text">Indian</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="firstName">Permanent Address</label>
+            <div class="profile-details-text">
+              H.No. 1-2-123/4 <br>
+              My Home, Madhapur, <br>
+              Hyderabad, <br>
+              Telangana, India, <br>
+              500072.
+            </div>
+          </div>
+        </div>
+      </div>
+    </tab>
+  <tab [tabTitle]="'Professional Info'">
+    <div class="Professional-details">
+      <div class="row">
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="workingStatus">Working Status</label>
+            <div class="profile-details-text">Active</div>
+          </div>
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="currentEmployer">Current Employer</label>
+            <div class="profile-details-text">Infosys Pvt Ltd</div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="currentWorkLocation">Current Work Location</label>
+            <div class="profile-details-text">Bangalore</div>
+          </div>
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="noticePeriod">Notice Period (Months)</label>
+            <div class="profile-details-text">2 months</div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="currentCtc">Current CTC</label>
+            <div class="profile-details-text">12</div>
+          </div>
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="expectedCtc">Expected CTC</label>
+            <div class="profile-details-text">14 Lacs</div>
+          </div>
+      </div>
+      <div class="row">
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="reasonForChange">Reason For Change</label>
+            <div class="profile-details-text">Relocation</div>
+          </div>
+          <div class="col-md-6 form-group">
+            <label class="labelText" for="remarks">Remarks</label>
+            <div class="profile-details-text">None</div>
+          </div>
+      </div>  
+    </div>
+    <div class="divider"></div>
+    <p class="subheading">Ashish.CV 16 KB</p>
+    <div class="professional-details-btns">
+      <button class="profile-details-view-button">View</button>
+      <button class="profile-details-download-button">Download</button>
+    </div>
+  </tab>
+  <tab [tabTitle]="'Skill Set'">
+    <div class="skill-details">
+      <div class="row">
+          <div class="col-md-4 form-group">
+            <label class="labelText" for="designSkills">Design Skills</label>
+            <div class="profile-details-text">Sketch<br>Omnigraffie<br>Adobe Photoshop<br>Adobe Illustrtor<br>Corel Draw<br>InDesign<br></div>
+          </div>
+          <div class="col-md-4 form-group">
+            <label class="labelText" for="technicalSkills">Technical Skills</label>
+            <div class="profile-details-text">CSS/HTML Prototyping<br>Java</div>
+          </div>
+          <div class="col-md-4 form-group">
+            <label class="labelText" for="certifications">Certifications</label>
+            <div class="profile-details-text">CUA for Human Factors International<br>IELTS</div>
+          </div>
+      </div>
+    </div>
+    <div class="skill-details-btns">
+      <remarks-modal [modalId]="shortListId" #rejectModal [remarkTitle]="rejectTitle"></remarks-modal>
+      <remarks-modal [modalId]="rejectId" #shortListModal [remarkTitle]="shortListTitle" ></remarks-modal>
+      <remarks-modal [modalId]="onHoldId" #onHoldModal [remarkTitle]="onHoldTitle"></remarks-modal>
+    </div>
+  </tab>
+  </tabs>
+</p-dialog>
+<button class="profile-screening-view-button" (click)="showDialog()">View</button>

@@ -1,0 +1,22 @@
+<div class="row">
+    <div style="padding: 1em 0 0.6em 1em;">
+        <div class="radio-info radio-inline">
+            <input type="radio" value="option2" name="Pending" (click)="getRequests('ALL')">
+            <label for="Pending"> All </label>
+        </div>
+        <div class=" radio-inline">
+            <input type="radio" value="option2" checked name="Pending" (click)="getRequests('PENDING')">
+            <label for="Pending" checked> Pending </label>
+        </div>
+    </div>
+</div>
+<div class="row team-encashment-requests">
+    <div class="col-md-9">
+        <ag-grid-angular #agGrid style="width:90%; height:400px;" enableColResize enableSorting enableFilter (gridReady)="onGridReady($event)"
+            (gridSizeChanged)="resizeColumns()" [getRowHeight]="getRowHeight" [context]="context" [paginationPageSize]="paginationPageSize"
+            class="ag-theme-fresh teamreqst-grid" [columnDefs]="columnDefs"></ag-grid-angular>
+        <nav class="grid-pagination">
+            <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages" (onPageChange)="paginate($event)"></p-paginator>
+        </nav>
+    </div>
+</div>

@@ -1,0 +1,33 @@
+.feedback-details {
+    .labelText {
+        font-weight: 800;
+    }
+}
+
+.view-interview-feedback-btns {
+    margin-bottom: 0.5em;
+}
+.result-status {
+	height: 25px;
+}
+.result-status-heading {
+    color: #575757;
+    font-weight: bold;
+}
+.view-feedback {
+	.need-text {
+      height: 2.6em;
+      font-size: 12px;
+	}
+}
+.view-feedback-editor {
+  .ui-editor-toolbar {
+    display: none !important;
+  }
+  .ui-editor-container {
+    margin: 0.5em 0 1.5em 0;
+  }
+  .ui-editor-container {
+    border-top: 1px solid #ccc;
+  }
+}

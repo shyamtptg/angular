@@ -1,0 +1,12 @@
+.offer-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 42px;
+  margin-left: 0.5em;
+}
+
+.offer-confirmation-button {
+  @extend .offer-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}

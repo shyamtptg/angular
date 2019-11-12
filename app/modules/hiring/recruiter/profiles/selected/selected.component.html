@@ -1,0 +1,63 @@
+<div class="selected-details res-readytoverify">
+    <div class="selected-requests-title">
+        <div class="no-padding col-md-3 col-sm-6 col-xs-10">
+            <p class="heading">SELECTED PROFILES<span class="subheading"> | TOTAL {{totalRecords}}</span></p>
+        </div>
+        <div class="col-md-8 col-xs-12 res-prioritymain col-sm-11">
+            <div class="prioritydropdrown-main no-padding col-md-12">
+                <div class="no-padding col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <select name="hiringrequest" class="form-control" [(ngModel)]="hiringRequestId" (change)="loadNeedsByHiringId()">
+                        <option value="">Select Hiring Request</option>
+                        <option *ngFor="let hiringRequest of hiringRequestOptions" [value]="hiringRequest.id">{{hiringRequest.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <select name="hiringneed" class="form-control" [(ngModel)]="hiringRequestNeedId" (change)="filterChanged()">
+                        <option value="">Select Hiring Request Need</option>
+                        <option *ngFor="let hiringNeed of hiringNeedOptions" [value]="hiringNeed.id">{{hiringNeed.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-4 col-sm-4 col-xs-12">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <select name="priority" class="form-control" [(ngModel)]="noticePeriod" #noticePeriodRef="ngModel" (change)="filterChanged()">
+                            <option value="ALL">Select Notice Period</option>
+                            <option *ngFor="let noticePeriod of noticePeriodOptions" [value]="noticePeriod.code">{{noticePeriod.description}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-1 col-sm-1">
+            <p class="heading">
+                <a class="pull-right" (click)="exportData()"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a>
+            </p>
+        </div>
+    </div>
+    <div class="selected-requests">
+        <ag-grid-angular class="ag-fresh grid_ag"
+            [gridOptions]="gridOptions"
+            enableColResize
+            enableSorting
+            enableFilter
+            rowSelection="single"
+            paginationPageSize=20
+            rowDeselection=true
+            (selectionChanged)="checkModes()"
+            (gridReady)="onGridInitialize()"
+            (gridSizeChanged)="resizeColumns()">
+        </ag-grid-angular>
+        <nav class="grid_nav">
+        <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+    </nav>
+</div>
+<div class="pull-right grid_btn">
+    <button *ngIf="!commonService.hideFeature('VIEW_PROFILE')" class="profile-screening-view-button" (click)="showProfileDetails()" [disabled]="buttonModes.open">Open</button>
+    <button *ngIf="!commonService.hideFeature('VIEW_INTERVIEW_FEEDBACK')" class="profile-screening-view-button" (click)="viewFeedBack()" [disabled]="buttonModes.viewFeedback">View Feedback</button>
+    <button *ngIf="!commonService.hideFeature('VIEW_PROFILE_TIMELINE')" class="profile-screening-view-button" (click)="showProspectTimeline()" [disabled]="buttonModes.timeline">Show Timeline</button>
+    <button class="selected-requests-notify-button" *ngIf="!commonService.hideFeature('NOTIFY_SELECTED_CANDIDATE_TO_UPLOAD_SUPPORTING_DOCUMENTS')" (click)="notifyCandidate()" [disabled]="buttonModes.notifyCandidate">Notify Candidate</button>
+</div>
+</div>

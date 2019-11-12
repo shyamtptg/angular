@@ -1,0 +1,46 @@
+<div class="row marginTop">
+    <div class="col-md-7" style=" border-right: 1px solid #eee;">
+        <form name="encashForm" #encashForm="ngForm" (submit)="applyEncash(encash);encashForm.reset()">
+            <div class="dropdown">
+                <div class="option">
+                    <label class="label-text">Select Number Of Leaves To Encash
+                        <span class="required">*</span>
+                    </label>
+                    <select #select=ngModel [(ngModel)]="encash.encashmentEls" class="form-control" style=" width: 47%;" name="encash-days" (change)="selectLeave(select.value)" required>
+                        <option value="0">Select Days</option>
+                        <option *ngFor="let day of encashmentDay" [ngValue]="day">{{day}}</option>
+                    </select>
+                </div>
+                <div class="option avaliable_days">
+                    <h5>Available El's For Encashment: {{encashData.availableEl}} Days</h5>
+                </div>
+            </div>
+            <div *ngIf="select.dirty && select.errors">
+                Please select.
+            </div>
+            <div>
+                <button type="submit" [disabled]="!encashForm.valid || disableApply" class="btn Encash" data-color="primary">Apply</button>
+            </div>
+        </form>
+        <hr>
+        <div>
+            <h4>Encashment History</h4>
+        </div>
+        <div>
+            <ag-grid-angular #agGrid style="width:100%; height:280px;" enableColResize enableSorting enableFilter (gridReady)="onGridReady($event)"
+                [paginationPageSize]="paginationPageSize" class="ag-theme-fresh teamreqst-grid" (gridSizeChanged)="resizeColumns()"
+                [columnDefs]="columnDefs"></ag-grid-angular>
+        </div>
+        <nav class="grid-pagination">
+            <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages" (onPageChange)="paginate($event)"></p-paginator>
+        </nav>
+    </div>
+    <div class="col-md-5 desc-content">
+        <h5 class="aside-heading">Earned Leaves & Encashment</h5>
+        <div>
+            <ol>
+                <li *ngFor="let desc of leaveDetails[1].detailedDescription.split('*')">{{desc}}</li>
+
+            </ol>
+        </div>
+    </div>

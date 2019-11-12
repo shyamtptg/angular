@@ -1,0 +1,44 @@
+.profile-screening-grid {
+   width: 99%;
+   margin: 0.5% 0 6% 1%;
+   height: 30em;
+}
+.profile-screening-title {
+	margin-left: 0.45em;
+}
+.profile-screening-btns {
+   margin-top: -3em;	
+}
+.profile-screening-button{
+  border-radius:2px;
+  min-width:72px;
+  height:33px;
+  margin-left: 0.5em;
+}
+.profile-screening-view-button {
+  @extend .profile-screening-button;
+  color:#ffffff;
+  background:rgba(39,70,98,0.96);
+}
+.profile-screening-approve-button {
+  margin-top: 2.2px;
+  @extend .profile-screening-view-button;
+}
+.profile-screening-reject-button {
+  @extend .profile-screening-view-button;
+}
+.profile-screening-title {
+  .profile-details {
+     margin:1em 0 0 0;
+  }
+  .profile-details-buttons {
+     margin:1.7em 0 0 0;
+  }
+  .dropdrown-main select {
+    height: 29px;
+    margin-top: 4px;
+    padding: 4px;
+  }
+}
+
+

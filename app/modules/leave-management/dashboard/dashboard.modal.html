@@ -1,0 +1,240 @@
+<div class="modal-content leave-apply-modal">
+    <div class="modal-header">
+        <button type="button" class="close" (click)="close()">&times;</button>
+        <h4 class="modal-title">{{title}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-sm-7 mdl_bdy">
+                <form autocomplete="off" action="" (keydown.enter)="$event.preventDefault()" name="" (ngSubmit)="confirm(leaveData)" #homemodal="ngForm">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="">Type
+                                <span class="required">*</span>
+                            </label>
+                            <select (change)="change()" (ngModelChange)="checkLeaveType($event)" [(ngModel)]="leaveData.selectedLeaveType" class="form-control"
+                                name="leave-types" required ngModel #leavetypes="ngModel">
+                                <option [disabled]=true value="">Select Type</option>
+                                <option *ngFor="let type of data.leaveTypes" [ngValue]="type">{{type.description}}</option>
+                            </select>
+                            <div *ngIf="leavetypes.dirty && leavetypes.errors " class="text-danger">
+                                <div *ngIf="leavetypes.errors.required">
+                                    Select holiday type!
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" *ngIf="leaveData.selectedLeaveType.leaveTypeCode !='LOP' ">
+                            <p class="availble_blance" *ngIf="availableLeaves && availableLeaves.balance!=null && availableLeaves.balance!='-'">
+                                Available:
+                                <span> {{availableLeaves.balance}} Days</span>
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row marginTop10" *ngIf="leaveData.selectedLeaveType.leaveTypeCode=='ML'">
+                        <div class="col-md-6">
+                            <label for="">Expected Date
+                                <span class="required">*</span>
+                            </label>
+                            <div class="datepicker-container">
+                                <p-calendar readonlyInput="true" [defaultDate]="fromDate" [minDate]="fromDate" [maxDate]="toDate" (ngModelChange)="mlDate($event)"
+                                    [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" placeholder="Expected Date"
+                                    required [(ngModel)]="leaveData.mlExpectedDate" dateFormat="dd/mm/yy" [showIcon]=true name="expectedDate"
+                                    #expectedDate="ngModel"></p-calendar>
+                            </div>
+                            <div *ngIf="expectedDate.dirty && expectedDate.errors" class="text-danger">
+                                <div *ngIf="expectedDate.errors.required">
+                                    Date field can't be blank
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row marginTop10">
+                        <div class="col-md-6">
+                            <label for="">From
+                                <span class="required">*</span>
+                            </label>
+                            <div class="datepicker-container">
+                                <p-calendar readonlyInput="true" [disabled]="isDisable" required [(ngModel)]="leaveData.from" dateFormat="dd/mm/yy" (onSelect)="onSelectFromDate($event)"
+                                    [minDate]="fromMinDate" [defaultDate]="fromMinDate" [maxDate]="maxDate" [disabledDays]="[0,6]"
+                                    [disabledDates]=holidaysList [showIcon]=true name="from" #from="ngModel">
+                                </p-calendar>
+                            </div>
+                            <div *ngIf="from.dirty && from.errors" class="text-danger">
+                                <div *ngIf="from.errors.required">
+                                    Date field can't be blank
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-5" [hidden]="compoffHalfDay">
+                            <input type="checkbox" class="checkbok" name="fromHalfDay" [checked]=fromHalfDay [(ngModel)]="leaveData.fromHalfDay" (change)=toggleFromHalfday($event)> Half Day
+                        </div>
+                    </div>
+                    <div class="row marginTop10">
+                        <div class="col-md-6">
+                            <label for="">To
+                                <span class="required">*</span>
+                            </label>
+                            <div class="datepicker-container">
+                                <p-calendar readonlyInput="true" [disabled]="isDisable" required [(ngModel)]="leaveData.to" dateFormat="dd/mm/yy" (onSelect)="onSelectToDate($event)"
+                                    [minDate]="toMinDate" [maxDate]="maxDate" [disabledDays]="[0,6]" [disabledDates]=holidaysList
+                                    [showIcon]=true name="to" #to="ngModel"></p-calendar>
+                            </div>
+                            <div *ngIf="to.dirty && to.errors" class="text-danger">
+                                <div *ngIf="to.errors.required">
+                                    Date field can't be blank
+                                </div>
+                            </div>
+                        </div>
+                        <div *ngIf="halfDay" class="col-md-5">
+                            <input type="checkbox" class="checkbok" name="toHalfDay" [disabled]=compoffHalfDay (change)=toggleToHalfday($event) [checked]=toHalfDay
+                                [(ngModel)]="leaveData.toHalfDay"> Half Day
+                        </div>
+                    </div>
+                    <div class="row marginTop10" *ngIf="leaveData && leaveData.selectedLeaveType && leaveData.selectedLeaveType.leaveTypeCode=='PL'">
+                        <div class="col-md-6">
+                            <label for="">Baby Born Date
+                                <span class="required">*</span>
+                            </label>
+                            <div class="datepicker-container">
+                                <p-calendar readonlyInput="true" [defaultDate]="serverDate" [minDate]="fromDate" [maxDate]="toDate" required [(ngModel)]="leaveData.babyBornDate"
+                                    (ngModelChange)="babyBorn($event)" dateFormat="dd/mm/yy" [showIcon]=true name="babyBornDate"
+                                    #babyBornDate="ngModel"></p-calendar>
+                            </div>
+                            <div *ngIf="babyBornDate.dirty && babyBornDate.errors " class="text-danger">
+                                <div *ngIf="babyBornDate.errors.required">
+                                    Date field can't be blank
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-10 marginTop10">
+                            <label for="">Baby Gender:
+                                <span class="required">*</span> &nbsp; &nbsp;
+                                <input type="radio" name="baby-gender" [(ngModel)]="leaveData.babyGender" value="M" ng-model required #gender="ngModel" /> Male
+                                <input type="radio" name="baby-gender" [(ngModel)]="leaveData.babyGender" value="F" ng-model required #gender="ngModel" /> Female
+                            </label>
+                            <div *ngIf="gender.dirty && gender.errors">
+                                Gender required.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row marginTop10">
+                        <div class="col-sm-12">
+                            <label>
+                                Alternative Contact Info
+                                <span class="required">*</span>
+                            </label>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="tel" required id="alternativeContact" minlength="10" class="form-control" name="alternativeContact" maxlength="24"
+                                placeholder="Please enter mobile number" (keypress)="restrictMobilenumber($event)" [(ngModel)]="leaveData.alternativeContactNo"
+                                #alternativeContact="ngModel">
+                        </div>
+                    </div>
+                    <div *ngIf="alternativeContact.dirty && alternativeContact.errors" class="text-danger">
+                        <div *ngIf="alternativeContact.errors.required">
+                            Alternate Contact number can't be blank
+                        </div>
+                        <div *ngIf=" alternativeContact.touched && alternativeContact.errors.minlength">
+                            Please enter valid mobile number
+                        </div>
+                        <div *ngIf="alternativeContact.errors.maxlength">
+                            Alternative contact maximum 24 digits
+                        </div>
+                    </div>
+                    <div class="row marginTop10">
+                        <div class="col-sm-12">
+                            <label for="type">Comments
+                                <span class="required">*</span>
+                            </label>
+                        </div>
+                        <div class="col-md-9">
+                            <textarea rows="3" (keydown.enter)="$event.stopPropagation()" pattern="(.|\n){0,}\S+(.|\n){0,}"
+                                cols="50" required name="comments" maxlength="500" #comments="ngModel" [(ngModel)]="leaveData.comments"
+                                name="comments" type="text" class="form-control" id="comments" placeholder="Please enter maximum 500 characters"></textarea>
+                        </div>
+                    </div>
+                    <div *ngIf="comments.dirty && comments.errors" class="text-danger">
+                        <div *ngIf="comments.errors.required">
+                            Please add comments.
+                        </div>
+                        <div *ngIf="comments.errors.maxlength">
+                            Comments can't be more than 500 characters long.
+                        </div>
+                        <div *ngIf="comments.errors.pattern ">
+                            Please enter valid text.
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="marginTop10">
+                                <p class="pull-left">Apply To &nbsp; &nbsp;</p>
+                                <div class="applyto" *ngFor="let manager of managerInfos">
+                                    <button *ngIf="(leaveData.selectedLeaveType.leaveTypeCode=='EL') && (isMore) && (managerInfo.reportingManagerDto != null)"
+                                        type="button" class="btn-default btn-round-xs btn-xs" disabled>
+                                        {{manager.projectManagerName}}
+                                    </button>
+                                </div>
+                                <div class="applyto" *ngFor="let manager of managerInfo.projectManagerDto">
+                                    <button *ngIf="isMore" type="button" class="btn-default btn-round-xs btn-xs" disabled>
+                                        {{manager.projectManagerName}}
+                                    </button>
+                                </div>
+                                <div class="applyto" *ngFor="let manager of managerInfo.practiceHeadDto">
+                                    <button *ngIf="(leaveData.selectedLeaveType.leaveTypeCode=='EL') &&(isMore) && (managerInfo.reportingManagerDto == null)"
+                                        type="button" class="btn-default btn-round-xs btn-xs" disabled>
+                                        {{manager.projectManagerName}}
+                                    </button>
+                                </div>
+                                <div class="applyto" *ngFor="let manager of managerInfo.projectManagerDto">
+                                    <button *ngIf="(leaveData.selectedLeaveType.leaveTypeCode=='CO'  || 'LOP' ||'PL' || 'OL' || 'CL') && (!isMore)" type="button"
+                                        class="btn-default btn-round-xs btn-xs" disabled>
+                                        {{manager.projectManagerName}}
+                                    </button>
+                                </div>
+                            </div>
+                            <div *ngIf="managerInfo.reportingManagerDto!=null" class="marginTop10">
+                                <p class="pull-left">Copy To &nbsp; </p>
+                                <div >
+                                    <button type="button" class="copyTo btn-default btn-round-xs btn-xs" disabled>
+                                        {{managerInfo.reportingManagerDto.reportingManagerName}}
+                                    </button>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
+                            <div class="marginTop10">
+                                <p class="pull-left">Notify To &nbsp; </p>
+                                <div>
+                                    <p-autoComplete [(ngModel)]="leaveData.addPeople" name="people" #people="ngModel" [suggestions]="filteredCountriesMultiple"
+                                        (completeMethod)="filterCountryMultiple($event)" field="fullName" styleClass="wid100"
+                                        [minLength]="1" placeholder="Add people..." [multiple]="true">
+                                    </p-autoComplete>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="apply" class="row">
+                        <div class="col-md-6">
+                            <button type="submit" [disabled]="true" class="btn btn-apply" data-color="primary">
+                                Apply</button>
+                        </div>
+                    </div>
+                    <div *ngIf="availableLeaves && (availableLeaves.balance != null || !apply)" class="row">
+                        <div class="col-md-6">
+                            <button type="submit" [disabled]="!homemodal.valid" class="btn btn-apply" data-color="primary">
+                                Apply for {{leaveCount}} Days</button>
+                        </div>
+                        <div *ngIf="successMsg" class="col-md-6 status-messages">
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div *ngIf="availableLeaves && availableLeaves.balance!=null" class="col-sm-5 desc-content">
+                <h4 class="aside-heading">Description</h4>
+                <ol class="rule-list" type="1" *ngIf="availableLeaves.detailedDescription.length>0">
+                    <li *ngFor="let desc of availableLeaves.detailedDescription.split('*')">{{desc}}</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,226 @@
+<div class="contanier-fluid">
+    <div class="row">
+        <div class="col-md-8 cal-border-right">
+            <span class="calendar-title">My Calendar</span>
+            <button type="button" class="btn btn-primary pull-right apply-leave-btn" (click)="openModalWithComponent()">Apply Leave</button>
+            <app-calender *ngIf="dateLoaded" [dates]="serverDate" #calendar (myClick)="getLeaveDetailsByDate($event)"></app-calender>
+        </div>
+        <div class="col-md-4" *ngIf="user.role=='employee'">
+            <div class="row">
+                <div class="col-md-12">
+                    <h5 class="dateselect">{{selectedDate}}</h5>
+                </div>
+
+            </div>
+            <table class="table">
+                <tbody>
+                    <ng-container *ngIf="isLeaveApplied">
+                        <tr *ngFor="let leave of leave">
+                            <td>
+                                {{leave.title}}
+                            </td>
+                            <td [ngClass]="setcolor(leave.status)">
+                                {{leave.status}}
+                            </td>
+
+                        </tr>
+                    </ng-container>
+                    <tr *ngIf="!isLeaveApplied">
+                        <td>No Leaves Applied</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!-- Team leave status for manager role -->
+        <div class="col-md-4" *ngIf="(user.role=='manager') || (user.role=='hr') ||  (user.role=='hrEmployee')">
+            <div class="row">
+                <div class=" col-md-12">
+                    <h5 class="dateselect">{{selectedDate}}</h5>
+                </div>
+
+            </div>
+            <table class="table">
+                <tbody>
+                    <ng-container *ngIf="isLeaveApplied">
+                        <tr *ngFor="let leave of leave">
+                            <td>
+                                {{leave.title}}
+                            </td>
+                            <td [ngClass]="setcolor(leave.status)">
+                                {{leave.status}}
+                            </td>
+
+                        </tr>
+                    </ng-container>
+                    <tr *ngIf="!isLeaveApplied">
+                        <td>No Leaves Applied</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="col-md-9 calendar-colors">
+        <div class="color-item">
+            <div class="color-code Leave"></div>
+            <span class="color-title">Leave</span>
+        </div>
+        <div class="color-item">
+            <div class="color-code wfh"></div>
+            <span class="color-title">Work From Home</span>
+        </div>
+        <div class="color-item">
+            <div class="color-code Holiday"></div>
+            <span class="color-title">Holiday</span>
+        </div>
+        <div class="color-item">
+            <div class="color-code comp-off"></div>
+            <span class="color-title">Comp Off</span>
+        </div>
+    </div>
+
+    <hr>
+    <!-- My requests for employee role -->
+    <div *ngIf="user.role=='employee'">
+        <div class="row">
+            <div class="col-md-10 emp_head">
+                <h4>Recent Requests</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive" style="background: white;border: 1px solid #cfc0c0;border-radius: 4px;">
+                    <table id="mytable" class="table table-striped">
+                        <thead class="table-head">
+                            <th>Applied On</th>
+                            <th>Type</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Days</th>
+                            <th>Applied To</th>
+                            <th>Approved/Rejected By</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let leave of leavesSummary && leavesSummary.leaveRequestSummaryDto && leavesSummary.leaveRequestSummaryDto.employeeLeaveRequestSummary.content">
+                                <td>{{leave.appliedOn}}</td>
+                                <td>{{leave.leaveType}}</td>
+                                <td>{{leave.from}}</td>
+                                <td>{{leave.to}}</td>
+                                <td>{{leave.days}}</td>
+                                <td class="column">{{leave.appliedTo}}</td>
+                                <td>{{leave.approverName}}</td>
+                                <ng-container *ngIf="leave.status!='Pending' && leave.status!='Approved'&& leave.status=='Reverted by HR' ">
+                                    <td [ngClass]="setcolor(leave.status)">{{leave.status}}</td>
+                                    <td>-</td>
+                                </ng-container>
+                                <ng-container *ngIf="leave.status=='Pending'">
+                                    <td [ngClass]="setcolor(leave.status)">{{leave.status}}</td>
+                                    <!-- To remove the cancel button if the to date applied is before the current date -->
+                                    <td *ngIf="leave.cancelDateCheck >= currentDate">
+                                        <span class="editleave" (click)=editLeave(leave)>Edit</span>
+                                        <span class="deleteleave" (click)=deleteLeave(leave)>Cancel</span>
+                                    </td>
+                                    <td *ngIf="leave.cancelDateCheck < currentDate">
+                                        <span>-</span>
+                                    </td>
+                                </ng-container>
+                                <ng-container *ngIf="leave.status=='Approved'||leave.status=='PH Pending'||leave.status=='HR Pending'">
+                                    <td>
+                                        <span [ngClass]="setcolor(leave.status)">{{leave.status}}</span>
+                                    </td>
+                                    <td *ngIf="leave.cancelDateCheck >= currentDate">
+                                        <span class="deleteleave" (click)=deleteLeave(leave)>Cancel</span>
+                                    </td>
+                                    <td *ngIf="leave.cancelDateCheck < currentDate">
+                                        <span>-</span>
+                                    </td>
+                                </ng-container>
+                                <ng-container *ngIf="leave.status =='Cancelled' || leave.status =='Cancel Pending' || leave.status =='Cancellation Rejected'|| leave.status =='Rejected' ">
+                                    <td>
+                                        <span [ngClass]="setcolor(leave.status)">{{leave.status}}</span>
+                                    </td>
+                                    <td>
+                                        <span>-</span>
+                                    </td>
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Team requests for manager role -->
+    <div *ngIf="(user.role=='manager') || (user.role=='hr')">
+        <div class="row">
+            <div class="col-md-10 emp_head">
+                <h4>Recent Requests</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="table-responsive" style="background: white;border: 1px solid #cfc0c0;border-radius: 4px;">
+                    <table id="mytable" class="table table-striped">
+                        <thead style="background: #e7eeee;">
+                            <th>Applied On</th>
+                            <th>Type</th>
+                            <th>From</th>
+                            <th>To</th>
+                            <th>Days</th>
+                            <th class="column">Applied To</th>
+                            <th>Approved/Rejected By</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let leave of leavesSummaryManager && leavesSummaryManager.leaveRequestSummaryDto && leavesSummaryManager.leaveRequestSummaryDto.employeeLeaveRequestSummary.content">
+                                <td>{{leave.appliedOn}}</td>
+                                <td>{{leave.leaveType}}</td>
+                                <td>{{leave.from}}</td>
+                                <td>{{leave.to}}</td>
+                                <td>{{leave.days}}</td>
+                                <td>{{leave.appliedTo}}</td>
+                                <td>{{leave.approverName}}</td>
+                                <ng-container *ngIf="leave.status!='Pending' && leave.status!='Approved'&& leave.status=='Reverted by HR' ">
+                                    <td [ngClass]="setcolor(leave.status)">{{leave.status}}</td>
+                                    <td>-</td>
+                                </ng-container>
+                                <ng-container *ngIf="leave.status=='Pending'">
+                                    <td [ngClass]="setcolor(leave.status)">{{leave.status}}</td>
+                                    <!-- To remove the cancel button if the to date applied is before the current date -->
+                                    <td *ngIf="leave.cancelDateCheck >= currentDate">
+                                        <span class="editleave" (click)=editLeave(leave)>Edit</span>
+                                        <span class="deleteleave" (click)=deleteLeave(leave)>Cancel</span>
+                                    </td>
+                                    <td *ngIf="leave.cancelDateCheck < currentDate">
+                                        <span>-</span>
+                                    </td>
+                                </ng-container>
+                                <ng-container *ngIf="leave.status=='Approved'||leave.status=='PH Pending'||leave.status=='HR Pending'">
+                                    <td>
+                                        <span [ngClass]="setcolor(leave.status)">{{leave.status}}</span>
+                                    </td>
+                                    <td *ngIf="leave.cancelDateCheck >= currentDate">
+                                        <span class="deleteleave" (click)=deleteLeave(leave)>Cancel</span>
+                                    </td>
+                                    <td *ngIf="leave.cancelDateCheck < currentDate">
+                                        <span>-</span>
+                                    </td>
+                                </ng-container>
+                                <ng-container *ngIf="leave.status =='Cancelled' || leave.status =='Cancel Pending' || leave.status =='Cancellation Rejected'|| leave.status =='Rejected' ">
+                                    <td>
+                                        <span [ngClass]="setcolor(leave.status)">{{leave.status}}</span>
+                                    </td>
+                                    <td>
+                                        <span>-</span>
+                                    </td>
+                                </ng-container>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>

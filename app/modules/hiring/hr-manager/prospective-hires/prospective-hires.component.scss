@@ -1,0 +1,26 @@
+.prospective-grid {
+  width: 99%;
+  margin: 0.5% 0 6% 1%;
+  height: 30em;
+}
+
+.prospective-profile-title {
+  margin-left: 0.8em
+}
+
+// .prospective-profile-btns {
+//   margin-top: -5em;
+// }
+
+.prospective-profile-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 42px;
+  margin-left: 0.5em;
+}
+
+.prospective-profile-verify-button {
+  @extend .prospective-profile-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}

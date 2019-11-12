@@ -1,0 +1,245 @@
+
+.dashboard-card {
+  background: #ffffff;
+  margin: 0.7em 0 0 0.7em;
+  padding: 0.7em;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.10);
+}
+
+p.dashboard-text {
+  font-family: $font-family;
+  font-size: 12px;
+  color: #4a4a4a;
+  letter-spacing: $letter-spacing;
+  text-align: center;
+}
+
+.dashboard-value {
+  font-size: 24px;
+  text-align: center;
+}
+
+.dashboard-content {
+  text-align: center;
+  margin-left: 0px;
+  margin-right: 0px;
+  svg {
+    max-height: 200px !important;
+  }
+}
+
+.dashboard-details {
+  margin-bottom: 0.8em;
+  donut-chart {
+    .c3-chart-arcs-title {
+      font-size: 2.5em;
+    }
+  }
+  .dashboard-dropdown {
+    margin-bottom: 0px;
+    margin-top: 0px;
+    label {
+      padding-top: 10px;
+    }
+  }
+}
+
+.dashboardpanel-main.panel-info {
+  border-color: #737373;
+  margin: 10px 0px;
+}
+
+.dashboardpanel-main.panel-info>.panel-heading {
+  background-color: #737373;
+  border-color: #737373;
+  color: #fff;
+  cursor: pointer;
+  padding: 5px 15px;
+  font-size: 12px;
+}
+
+.dashboardpanel-main .panel-heading.collapsed .fa-chevron-down,
+.dashboardpanel-main .panel-heading .fa-chevron-right {
+  display: none;
+}
+
+.dashboardpanel-main .panel-heading.collapsed .fa-chevron-right,
+.dashboardpanel-main .panel-heading .fa-chevron-down {
+  display: inline-block;
+}
+
+.dashboardpanel-main i.fa {
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.dashboardpanel-main .collapsed~.panel-body {
+  padding: 0;
+}
+
+.dashboardpanel-main .dashboard-card {
+  margin-left: 2.0em !important;
+  margin-top: 15px;
+  margin-bottom: 15px;
+}
+
+.dashboardpanel-main .panel-collapse {
+  background-color: #eaeaea;
+}
+
+.charts-main {
+  padding-top: 5px;
+}
+
+@media only screen and (min-width: 768px) {
+  .dashboard-quarter-dropdown {
+    .form-horizontal-dropdowns {
+      padding-top: 10px;
+      select {
+        width: 100%;
+      }
+    }
+    .col-md-2.selectpractise-dropdown {
+      padding-left: 15px;
+    }
+    .col-md-2 {
+      padding: 0px 8px;
+    }
+    .year-dropdown {
+      border-right: 1px solid #999;
+      padding-right: 15px;
+    }
+    .selectquarter-dropdown {
+      padding-left: 0px;
+      padding-right: 0px;
+    }
+    .or-text {
+      padding: 5px 10px;
+      label {
+        font-weight: normal;
+      }
+    }
+    .selectmonth-dropdown {
+      padding-left: 0px;
+    }
+  }
+  .dashboardpanel-main {
+    .charts-row {
+      .col-md-4 {
+        width: 30%;
+        @media screen and (min-width: 1024px) and (max-width: 1200px) {
+          width: 45%;
+        }
+        .heading {
+          min-height: 51px;
+          font-size: 11px;
+          padding-left: 10px;
+          margin-bottom: 0px;
+        }
+        bar-chart {
+          .c3-legend-item {
+            text {
+              font-size: 10px;
+              letter-spacing: 0.2px;
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .dashboard-quarter-dropdown {
+    .form-horizontal-dropdowns {
+      padding-top: 10px;
+      .dashboard-dropdown {
+        margin-bottom: 10px !important;
+      }
+      .selectquarter-dropdown,
+      {
+        padding: 0px;
+        padding-top: 10px;
+        border-top: 1px solid #999;
+      }
+      .selectmonth-dropdown {
+        padding: 0px;
+      }
+      .or-text {
+        margin-top: -5px;
+        text-align: center;
+      }
+    }
+  }
+  .hiring-feature {
+    .sidebar_menu {
+      background-color: #272525;
+      opacity: 1;
+      padding-bottom: 20vh;
+      ul.navigation-selection.menu {
+        margin: 10px 20px;
+      }
+      ul li {
+        padding: 6px 0px;
+        a,
+        a:hover,
+        a:focus {
+          color: #a2a2a2;
+          font-size: 12px;
+        }
+        ul.nav-route-items {
+          padding-top: 8px;
+        }
+      }
+    }
+  }
+  .dashboardpanel-main {
+    .charts-row {
+      .col-md-4 {
+        margin: 0px 17px !important;
+        padding: 5px;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1023px) {
+  .form-horizontal-dropdowns {
+    .or-text {
+      padding: 5px 20px;
+    }
+  }
+  .dashboardpanel-main {
+    .charts-row {
+      .col-sm-6 {
+        width: 44%;
+        margin: 10px 10px 5px 25px !important;
+        padding: 0px;
+      }
+    }
+  }
+  .hiring-feature {
+    .sidebar_menu {
+      background-color: #272525;
+      opacity: 1;
+      ul li {
+        padding: 8px 0px;
+        a,
+        a:hover,
+        a:focus {
+          color: #a2a2a2;
+        }
+      }
+    }
+  }
+  // .hiring-requests {
+  //   .grid-pagination {
+  //     top: -2.5em !important;
+  //   }
+  // }
+  // .job-descriptions {
+  //   .grid-pagination {
+  //     top: -2.5em !important;
+  //   }
+  // }
+}

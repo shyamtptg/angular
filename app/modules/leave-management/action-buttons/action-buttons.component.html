@@ -1,0 +1,37 @@
+<div *ngIf="ModelType!='MR'">
+    <div class="status-btn" *ngIf="status!='Pending' &&  status!='Cancel Pending'">{{status}}</div>
+    <div class="status-btn" *ngIf="status=='Pending' || status=='Cancel Pending' ">
+        <button (click)="approveLeave(params.data,'APPROVED')" type="button" class="btn btn btn-default btn-sm action-btn bt-ok">
+            <span class="glyphicon glyphicon-ok"></span>
+        </button>
+        <button (click)="approveLeave(params.data,'REJECTED')" type="button" class="btn btn-default action-btn btn-sm bt-rejct">
+            <span class="glyphicon glyphicon-remove"></span>
+        </button>
+        <span *ngIf="ModelType=='TR'" (click)="requestData()" routerLink="../leave-request-details">
+            <span style="cursor:pointer" class="glyphicon glyphicon-user"></span>
+        </span>
+    </div>
+</div>
+<div *ngIf="ModelType=='MR'">
+    <div *ngIf="status=='Pending'">
+        <!-- To remove the cancel button if the to date applied is before the current date -->
+        <div *ngIf="toDate">
+            <a style="cursor:pointer" class="editleave" (click)=editLeave(requestDetails)>Edit</a>
+            <a style="cursor:pointer; padding-left: 10px" class="deleteleave" (click)=deleteLeave(requestDetails)>Cancel</a>
+        </div>
+        <div *ngIf="!toDate">
+            <span>-</span>
+        </div>
+    </div>
+    <div *ngIf="status =='Approved' || status =='PH Pending' || status =='HR Pending' ">
+        <div *ngIf="toDate">
+            <a style="cursor:pointer" class="deleteleave" (click)=deleteLeave(requestDetails)>Cancel</a>
+        </div>
+        <div *ngIf="!toDate">
+            <span>-</span>
+        </div>
+    </div>
+    <div *ngIf="status =='Cancelled' || status =='Cancel Pending' || status =='Cancellation Rejected'|| status == 'Reverted by HR'||status == 'Rejected' ">
+        <span>-</span>
+    </div>
+</div>

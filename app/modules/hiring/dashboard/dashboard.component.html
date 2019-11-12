@@ -1,0 +1,75 @@
+<div class="dashboard-details">
+	<div class="row dashboard-quarter-dropdown">
+		<form class="form-horizontal-dropdowns" action='' method="POST">
+			<div class="row col-md-12 col-sm-12">
+				<div class="col-md-2 col-sm-3 selectpractise-dropdown">
+					<div class="form-group dashboard-dropdown">
+						<div class="selectContainer">
+							<div class="form-group dashboard-dropdown">
+								<select name="practices" class="form-control selectpicker" [(ngModel)]="filterObject.practice" (change)="onFilterChange()">
+									<option [value]='i.id' *ngFor="let i of practices">{{i.name}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-2 col-sm-3 year-dropdown">
+					<div class="form-group dashboard-dropdown">
+						<div class="selectContainer">
+							<div class="form-group dashboard-dropdown">
+								<select name="years" class="form-control selectpicker" [(ngModel)]="filterObject.year" (change)="onFilterChange()">
+									<option [value]='i.value' *ngFor="let i of years">{{i.display}}</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-5 col-sm-6">
+					<div class="col-md-5 col-sm-5 selectquarter-dropdown">
+						<div class="form-group dashboard-dropdown">
+							<div class="selectContainer">
+								<div class="form-group dashboard-dropdown">
+									<select name="quarters" class="form-control selectpicker" placeHolder="select" [(ngModel)]="filterObject.quarter" (change)="onFilterChange();filterObject.month=''">
+										<option [value]='i.value'  *ngFor="let i of quarters">{{i.display}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+					<div class="col-md-1 col-sm-2 or-text">
+						<label class="control-label">or</label>
+					</div>
+					<div class="col-md-5 col-sm-5 selectmonth-dropdown">
+						<div class="form-group dashboard-dropdown">
+							<div class="selectContainer">
+								<div class="form-group dashboard-dropdown">
+									<select name="months" class="form-control selectpicker" placeHolder="select" [(ngModel)]="filterObject.month" (change)="onFilterChange();filterObject.quarter=''">
+										<option [value]='i.code'  *ngFor="let i of months">{{i.description}}</option>
+									</select>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+	<div class="row">
+		<div class="col-md-12 panel-group charts-main" id="accordion" *ngIf="catgData">
+			<div class="dashboardpanel-main panel panel-default panel-info" *ngFor="let category of catgData ;let k =index">
+				<div   class="panel-heading" data-toggle="collapse" [attr.data-target]="'#'+k">{{category.category}}  <span class="pull-right">
+					<i class="fa fa-fw fa-chevron-down"></i>
+					<i class="fa fa-fw fa-chevron-right"></i>
+				</span></div>
+				<div [id]="k"  class="panel-collapse collapse in">
+					<div  class ="row charts-row" *ngIf="category.metricsData">
+						<div class="{{(i%2==0)? 'col-md-4 col-sm-6': 'col-md-4 col-sm-6'}} dashboard-card" *ngFor="let metric of category.metricsData; let i=index">
+							<p class="heading">{{metric.name}}<span class="subheading"> | TOTAL {{metric.total}}</span></p>
+							<bar-chart *ngIf="metric" [chartData]="metric"></bar-chart>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

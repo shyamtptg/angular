@@ -1,0 +1,61 @@
+<div class="ms-header" fxLayout="row" fxLayout.xs="column" fxLayoutAlign="space-between stretch">
+  <div>
+    <div *ngIf="!backLinkVisibility" class="back-btn-wrapper" (click)="navigateLanding()">
+      <span class="fa fa-angle-left"></span>
+    </div>
+    <!-- <span class="fa fa-th app-launcher"></span> -->
+    <span class="app-name">myspace</span>
+    <span class="dashboard-name p-l-2x m-l-2x">{{title}}</span>
+  </div>
+  <div>
+    <span class="fa fa-search pointer"></span>
+    <span class="fa fa-bell pointer p-l-2x"></span> <span class="badge badge-light pointer">4</span>
+    {{username}}
+    <span class="fa fa-user-circle user-image"></span>
+    <span class="fa fa-angle-down pointer" data-toggle="dropdown"></span>
+    <ul class="dropdown-menu user-preferences">
+        <li (click)="reportanissue()" title="Report an Issue"><span class="fa fa-bug"></span> Report an Issue</li>
+        <li (click)="openHelp(helpDocUrl)" title="Help"><span class="fa fa-question-circle"></span> Help</li>
+        <li (click)="logout()" title="Logout"><span class="fa fa-sign-out"></span> Logout</li>
+    </ul>
+  </div>
+</div>
+
+<div class="app-launcher-wrapper" *ngIf="false">
+  <span class="fa fa-th app-launcher"></span>
+  <div class="module-tiles">
+    <div class="module-tile" *ngFor="let module of modules">
+      <div class="each-module" (click)="navigate(module)">
+        {{module}}
+      </div>
+    </div>
+  </div>
+</div>
+
+<p-dialog class="report-issue-popup" header="Report an Issue" [(visible)]="display" modal="modal" width="500" [responsive]="true" (onHide)="resetData()">
+  <form #issueFormRef="ngForm">
+    <div class="row report-issue-main">
+      <div class="form-group col-md-12">
+        <label class="labelText" for="problemname">Issue*</label>
+        <input type="text" class="form-control" (keypress)="restrictSpace($event,issueDetails.issue)" [(ngModel)]="issueDetails.issue" placeholder="Enter the issue statement" required name="problemname" />
+      </div>
+      <div class="form-group col-md-12">
+        <label class="labelText" for="description">Description*</label>
+        <textarea type="text" class="form-control" rows="5" (keypress)="restrictSpace($event,issueDetails.issueDescription)" [(ngModel)]="issueDetails.issueDescription" placeholder="Enter the details about the issue" required name="description"></textarea>
+      </div>
+      <div class="form-group col-md-12" style="margin-bottom:-5px">
+        <label class="labelText" for="file">Screenshot if any</label>
+      </div>
+      <div class="form-group col-md-12">
+        <div class="fileUpload btn btn-primary">
+          <span>Browse</span>
+          <input type="file" class="upload" (change)="uploadScreenshot($event)" />
+        </div>
+        <span id="upFileTxt">No file choosen</span>
+      </div>
+      <div class="form-group col-md-12 report_submit_btn">
+        <button type="button" [disabled]="!issueFormRef.valid" (click)="submitIssue()" class="btn btn-primary pull-right">Submit</button>
+      </div>
+    </div>
+  </form>
+</p-dialog>

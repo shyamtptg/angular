@@ -1,0 +1,18 @@
+.officialformwidth{
+		padding-left:17.5px;
+		padding-top:54.5px;
+		padding-bottom: 82.5px;
+}
+.officialformwidth{
+		::ng-deep	.mat-input-flex{
+			width: 231px;		
+		}
+}
+.officialformwidth /deep/{
+	.mat-input-infix{
+		padding-top:9px;
+		padding-bottom: 7px;	 
+}
+}
+
+

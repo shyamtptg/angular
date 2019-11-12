@@ -1,0 +1,66 @@
+@import './../../../../assets/scss/colors.scss';
+@import './../../../../assets/scss/fonts.scss';
+@import './../../../../assets/scss/variables.scss';
+@import './../../../../assets/scss/common.scss';
+
+.ms-login-container {
+    width: 800px;
+    margin: $space-10x auto;
+    font-family: 'Lato';
+    .ms-login-header {
+        color: $orange;
+        margin: 0;
+        padding: $space-2x 0 $space-2x $space-8x;
+        @extend .app-login-head;
+    }
+    .ms-login-info {
+        border-right: 1px dashed $border-color;
+        .ms-text {
+            font-size: 24px;
+            margin: 0;
+        }
+        ul {
+            @extend .plain-text;
+            padding-left: $space-4x;
+            margin-top: $space-3x;
+            color: $gray1;
+        }
+    }
+    .ms-login-form {
+        padding: $space-3x;
+        .login-text {
+            margin: 0 0 $space-3x 0;
+        }
+        .ms-login-button {
+            width: 100%;
+            margin-top: $space-2x;
+        }
+    }
+}
+
+body {
+    font-family: $font-family;
+}
+
+.login_spinner {
+    img {
+        width: 3.5em;
+        z-index: 999;
+        position: relative;
+        margin: 0px auto;
+        display: table;
+        top: -11.4em;
+    }
+}
+
+@media only screen and (max-width: 1024px) {
+}
+
+@media only screen and (min-width: 768px) {
+}
+
+@media only screen and (min-width: 520px) and (max-width: 767px) {
+}
+
+@media only screen and (min-width: 1024px) {
+}

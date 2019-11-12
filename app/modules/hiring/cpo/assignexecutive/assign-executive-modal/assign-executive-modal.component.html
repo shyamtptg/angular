@@ -1,0 +1,51 @@
+<form #dialog="ngForm" autocomplete="off">
+  <p-dialog class="assign-dialog" header="Assign Executive" [(visible)]="display" (onHide)="hideDialog()" modal="modal" width="510">
+    <input type="text" class="form-control" style="margin: 0 0 1em 0;" placeholder="Search by recruiter" name="search" [(ngModel)]="search"/>
+    <div class="btn-group" style="margin: 0 0 0.5em 0;">
+      <button type="button" class="btn btn-info btn-filter loadfactor-status">Very Critical</button>
+      <button type="button" class="btn btn-primary btn-filter loadfactor-status">Critical</button>
+      <button type="button" class="btn btn-danger btn-filter loadfactor-status">Very High</button>
+      <button type="button" class="btn btn-warning btn-filter loadfactor-status">High</button>
+      <button type="button" class="btn btn-default btn-filter loadfactor-status">Normal</button>
+      <button type="button" class="btn btn-success btn-filter loadfactor-status">Low</button>
+    </div>
+    <section class="content">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="table-container">
+            <table class="table table-filter">
+              <tbody>
+                <tr *ngFor ="let item of items | recruiterFilter:search" data-status="pagado">
+                  <td>
+                    <div class="media">
+                      <span class="pull-left checkbox">
+                        <input type="checkbox" name={{item.recruiterId}} id={{item.recruiterId}} [(ngModel)]="item.checked" class="selection-item" (change)="checkModes()">
+                        <label for={{item.recruiterId}}>
+                          <span class="title">
+                            {{item.recruiterName}}
+                          </span>
+                          <br>
+                          <span class="title"><span class="very-critical">VC: {{item.load && (item.load.details.VERY_CRITICAL)? item.load.details.VERY_CRITICAL: 0}}</span><span class="critical">C: {{item.load && (item.load.details.CRITICAL)? item.load.details.CRITICAL: 0}}</span><span class="very-high">VH: {{item.load && (item.load.details.VERY_HIGH)? item.load.details.VERY_HIGH: 0}}</span><span class="high">H: {{item.load && (item.load.details.HIGH)? item.load.details.HIGH: 0}}</span><span>N: {{item.load && (item.load.details.NORMAL)? item.load.details.NORMAL: 0}}</span><span class="low">L: {{item.load && (item.load.details.LOW)? item.load.details.LOW: 0}}</span></span>
+                        </label>
+                      </span>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="ui-dialog-buttonpane ui-widget-content ui-helper-clearfix">
+        <button class="assign-executive-create-button" (click)="hideDialog()">Cancel</button>
+        <button [disabled]="disableButton" class="assign-executive-create-button" (click)="addSelection(dialog.value)">{{(buttonMode && buttonMode['isAssignDisable'])? 'Reassign' : 'Assign'}}</button>
+      </div>
+    </footer>
+  </p-dialog>
+</form>
+<button *ngIf="!commonService.hideFeature('VIEW_HIRING_REQUEST')" class="assign-executive-create-button" (click)="open()" [disabled]="buttonMode.open">Open</button>
+<button *ngIf="!commonService.hideFeature('ASSIGN_RECRUITERS_TO_HIRING_REQUEST')" class="assign-executive-create-button" [hidden]="buttonMode.isAssignDisable" (click)="showDialog()">Assign</button>
+<button *ngIf="!commonService.hideFeature('EDIT_RECRUITERS_ASSIGNMENT_FOR_HIRING_REQUEST')" class="assign-executive-create-button" [hidden]="buttonMode.isEditAssignDisable" (click)="showDialog('edit')">Edit Assignment</button>
+<button *ngIf="!commonService.hideFeature('VIEW_HIRING_REQUEST_TIMELINE')" class="assign-executive-create-button" [disabled]="buttonMode.timeline" (click)="showHiringTimeline()">Show Timeline</button>

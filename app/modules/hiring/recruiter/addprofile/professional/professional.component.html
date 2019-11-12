@@ -1,0 +1,138 @@
+<div class="professional-details-form"  *ngIf="ProfessionalDataFrmProspectData">
+    <form #professionalDetailsForm="ngForm" autocomplete="off">
+        <div class="row">
+            <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container professional-row-container">
+                <label class="professional-label-text" for="working-status">Working Status</label>
+                <div class="working-status-radio">
+                    <label class="radio-inline">
+                        <input type="radio" name="unemployed" [(ngModel)]="ProfessionalDataFrmProspectData.unemployed" [value]="false" [readonly]="viewmode" > Active
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="unemployed" [(ngModel)]="ProfessionalDataFrmProspectData.unemployed" [value]="true" [disabled]="viewMode" [readonly]="viewmode"> Inactive
+                    </label>
+                </div>
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                <label class="professional-label-text" for="current-employer">Current Employer</label>
+                <input type="text" name="currentEmployer" class="form-control" id="current-employer" maxlength="120" [(ngModel)]="ProfessionalDataFrmProspectData.currentEmployer" value="Infosys Private Ltd,Banglore" #currentEmployerRef="ngModel" [readOnly]="viewMode" />
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                <label class="professional-label-text" for="country">Current Work Location</label>
+                <input type="text" class="form-control" name="currentWorkLocation" maxlength="30" [(ngModel)]="ProfessionalDataFrmProspectData.currentWorkLocation" #currentWorkLocationRef="ngModel" [readOnly]="viewMode" />
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                <label class="professional-label-text" for="country">Notice Period (in months)</label>
+                <select name="noticePeriod" class="form-control" [(ngModel)]="ProfessionalDataFrmProspectData.noticePeriod" [disabled]="viewMode" >
+                    <option *ngFor="let noticePeriod of comboData.noticeperiod" value= {{noticePeriod.code}}>
+                     {{noticePeriod.description}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div *ngIf="!commonService.hideFeature('VIEW_PROFILE_CTC_DETAILS')" class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                <label class="professional-label-text" for="country">Current CTC</label>
+                <input type="number" class="form-control" name="currentCTC"  min="0" [(ngModel)]="ProfessionalDataFrmProspectData.currentCTC" #currentCTCRef="ngModel" (keypress)="restrictFloatnumber($event) && restrictCharcters(currentCTCRef.value)" (keyup)="convertToWords(currentCTCRef.value,'ctc');hide=false" (change)="convertToWords(currentCTCRef.value,'ctc');hide=false" [readOnly]="viewMode" />
+                <span class="ctc-words" [hidden]="hide">{{ctcToWord}}</span>
+            </div>
+            <div *ngIf="!commonService.hideFeature('VIEW_PROFILE_CTC_DETAILS')" class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                <label class="professional-label-text" for="country">Expected CTC</label>
+                <input type="number" class="form-control" name="expectedCTC" min="0" [(ngModel)]="ProfessionalDataFrmProspectData.expectedCTC" #expectedCTCRef="ngModel" (keypress)="restrictFloatnumber($event) && restrictCharcters(expectedCTCRef.value)" (keyup)="convertToWords(expectedCTCRef.value,'etc');eHide=false" (change)="convertToWords(expectedCTCRef.value,'etc');eHide=false;" [readOnly]="viewMode" />
+                <span class="ctc-words" [hidden]="eHide">{{etcToWord}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                    <label class="professional-label-text" for="totalExperienceInYears">Total Experience (in years)*</label>
+                    <input type="number" class="form-control" name="totalExperienceInYears" min="0" max="100" #totalExp="ngModel" [(ngModel)]="ProfessionalDataFrmProspectData.totalExperienceInYears" [readOnly]="viewMode" required (keypress)="restrictFloatnumber($event) && validateExperience(totalExp.value)" (change)="totalExpirenece(ProfessionalDataFrmProspectData.totalExperienceInYears,ProfessionalDataFrmProspectData.relevantExperienceInYears)" />
+                    <div [hidden]="(totalExp.valid || totalExp.pristine)" class="alert alert-danger experience-alert" style="margin-top:0;">Please enter the valid experience</div>
+                </div>
+                <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                    <label class="professional-label-text" for="relevantExperienceInYears">Relevant Experience (in years)*</label>
+                    <input type="number" class="form-control" name="relevantExperienceInYears" #relExp="ngModel"  min="0" max="100" [(ngModel)]="ProfessionalDataFrmProspectData.relevantExperienceInYears" [readOnly]="viewMode" required (keypress)="restrictFloatnumber($event) && validateExperience(relExp.value)" (change)="releventExpirence(ProfessionalDataFrmProspectData.totalExperienceInYears,ProfessionalDataFrmProspectData.relevantExperienceInYears)"/>
+                    <div [hidden]="(relExp.valid || relExp.pristine)" class="alert alert-danger experience-alert" style="margin-top:0;">Please enter the valid experience</div>
+                </div>
+            </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                <label class="professional-label-text" for="employementtype">Employement Type</label>
+                <select name="employementtype" class="form-control" [(ngModel)]="ProfessionalDataFrmProspectData.employmentType" [disabled]="viewMode">
+                    <option *ngFor="let employementtype of comboData.employmenttype" value= {{employementtype.code}}>
+                     {{employementtype.description}}
+                    </option>
+                </select>
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                <label class="professional-label-text" for="documenttype">Document Type</label>
+                <select name="documenttype" class="form-control" [(ngModel)]="ProfessionalDataFrmProspectData.documentType" [disabled]="true">
+                    <option *ngFor="let documenttype of comboData.documenttype" value= {{documenttype.code}}>
+                     {{documenttype.description}}
+                    </option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                <label class="labelText" for="prospectsource">Prospect Source</label>
+                <select name="prospectsource" class="form-control" [(ngModel)]="ProfessionalDataFrmProspectData.source" [disabled]="viewMode" (change)="propsectSourceChange()">
+                    <option *ngFor="let prospectSource of comboData && comboData.prospectSource" [value]="prospectSource.code">{{prospectSource.description}}</option>  
+                </select>
+            </div>
+            <div class="col-md-6">
+                <div class="row upload_resume_starts">
+                    <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                        <label class="professional-label-text" for="uploadResume">Upload Your Resume</label>
+                        <input type="text" name="fileNamePreview" id="fileNamePreview" class="form-control image-preview-filename" style="pointer-events: none;" [readOnly]="true" [(ngModel)]="resumeDetails && resumeDetails.title">
+                    </div>
+                    <div class="col-md-6 col-xs-12 col-sm-6" style="padding-left:0;padding-right:0">
+                    <span class="pull-left resume-upload-button">
+                        <div class="btn btn-default image-preview-input professional-upload-btn resume_btn">
+
+                            <span class="image-preview-input-title">Browse</span>
+                            <input type="file" name="resumeFileUpload" (change)="uploadFile($event)" [disabled]="viewMode || uploaded" multiple/>
+                        </div>
+                    </span>
+                    <button #removeButton type="button" class="btn btn-danger btn-xs remove-resume" [disabled]="viewMode || !uploaded" (click)="deleteDocument()">
+                        <span class="glyphicon glyphicon-trash"></span> Remove
+                    </button>
+                    </div>
+                </div>
+                <div *ngIf="resumeDetails" class="row professional-row-container resume-title">
+                    <a href="javascript:void(0)" (click)="downloadFile(resumeDetails)">{{resumeDetails.title}}</a>
+                </div>
+            </div>
+        </div>
+        <div class="row referral-show" *ngIf="isReferral">
+            <div class="col-md-6 col-xs-12 col-sm-12 professional-row-container">
+                <label class="professional-label-text" for="referral">Referral</label><br>
+                <p-autoComplete [style]="{'width':'100%', 'height': '2.8em'}" [inputStyle]="{'width':'100%', 'height': '2.8em'}" name="referralSearch" [(ngModel)]="referralData[0]" [readonly]="viewMode" [suggestions]="results" (completeMethod)="search($event)" [minLength]="3" [delay]="500" placeholder="Search by Name or Emp Id or Mail Id (min 3 characters)" field="fullName" (onSelect)="loadReferralDetails($event)"></p-autoComplete>
+                </div>
+            <div class="col-md-6 col-xs-12 col-sm-12 professional-row-container">
+                <label class="professional-label-text" for="referralEmail">Referral Email</label>
+                <input type="text" class="form-control" name="referralEmail" [(ngModel)]="ProfessionalDataFrmProspectData.referralDetails[0] && ProfessionalDataFrmProspectData.referralDetails[0].referralEmail" [readOnly]="true"/>
+            </div>
+            <div class="col-md-6 col-xs-12 col-sm-12 professional-row-container">
+                <label class="professional-label-text" for="referralMobile">Referral Mobile</label>
+                <input type="text" class="form-control" name="referralMobile" [(ngModel)]="ProfessionalDataFrmProspectData.referralDetails[0] && ProfessionalDataFrmProspectData.referralDetails[0].referralPhone" [readOnly]="true"/>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                <div class="addresscheck">
+                    <input type="checkbox" class="isSingleAddress" [(ngModel)]="ProfessionalDataFrmProspectData.willingToRelocate" (click)="locationsdisplay()"
+                        name="willingtorelocate" [disabled]="viewMode" /><span class="isPermanet">
+                    Willing to Relocate</span>
+                </div>
+                <div class="willingtorelocate-locations" *ngIf="ProfessionalDataFrmProspectData.willingToRelocate">
+                    <input type="text" [className]="viewMode?'form-control selectdisable':'form-control'" name="willingToRelocate" maxlength="40" [(ngModel)]="ProfessionalDataFrmProspectData.locationName" placeholder="Enter the location" [disabled]="viewMode"/>
+                </div>
+            </div>
+        </div>
+        <div class="row professional-btn-grp" [hidden]="attachHide" >
+            <button class="pull-right login-register-btn btn" (click)="saveNext(ProfessionalDataFrmProspectData)" [disabled]="!professionalDetailsForm.valid || viewMode">Confirm & continue</button>
+            <button class="pull-right login-register-btn btn" (click)="navigateToPrevious()">Close</button>
+        </div>
+    </form>
+</div>

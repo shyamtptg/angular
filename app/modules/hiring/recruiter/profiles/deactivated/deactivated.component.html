@@ -1,0 +1,45 @@
+<div class="deactivated-details">
+    <div class="deactivated-requests-title">
+        <p class="heading">DEACTIVATED PROFILES<span class="subheading"> | TOTAL 18</span><a class="pull-right"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a></p>
+    </div>
+    <div class="deactivated-requests">
+        <ag-grid-angular class="ag-fresh grid_ag"
+            [gridOptions]="gridOptions"
+            enableColResize
+            enableSorting
+            enableFilter
+            rowSelection="single"
+            paginationPageSize=20
+            rowDeselection=true
+            (cellClicked)="onCellClicked($event)"
+            (gridReady)="onGridInitialize()"
+            (gridSizeChanged)="resizeColumns()">
+        </ag-grid-angular>`
+    </div>
+    <div class="pull-right search_grid_btn">
+        <button class="deactivated-requests-delete-button">Delete</button>
+        <button type="button" class="deactivated-requests-activate-button" data-toggle="modal" data-target="#activateProfile">Activate</button>
+    </div>
+    <div class="modal" id="activateProfile" tabindex="-1" role="dialog" aria-labelledby="activateProfileLabel">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true" class="modal-close">&times;</span>
+                    </button>
+                    <h3 class="modal-title" id="activateProfileLabel">Activate Profile</h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label class="labelText" for="remarks">Remarks</label>
+                        <textarea  rows=6 name="remarks" maxlength="250"  class="form-control"></textarea>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary modal-details-btn" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary modal-details-btn" data-dismiss="modal">Activate</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

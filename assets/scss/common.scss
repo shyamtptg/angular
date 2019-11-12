@@ -1,0 +1,119 @@
+@import './colors.scss';
+@import './variables.scss';
+@import './fonts.scss';
+
+@font-face {
+    font-family: 'avenirbook';
+    src: url("/assets/fonts/AvenirLTStd-Book.eot") format("embedded-opentype");
+
+    /* IE9 Compat Modes */
+    src: url("/assets/fonts/AvenirLTStd-Book.eot?#iefix") format("embedded-opentype"), url("/assets/fonts/AvenirLTStd-Book.woff") format("woff"), url("/assets/fonts/AvenirLTStd-Book.ttf") format("truetype");
+}
+
+$font-family: "avenirbook";
+$font-weight: normal;
+$letter-spacing: 0.2px;
+
+body {
+    background-color: $gray4;
+}
+
+.badge {
+    color: $pure-white;
+    background-color: $orange;
+    width: 13px;
+    height: 13px;
+    padding: 1px 0;
+    
+    position: relative;
+    top: -6px;
+    left: -12px;
+
+    @extend .badge-text;
+}
+
+.no-spacing {
+    margin: 0;
+    padding: 0;
+}
+.pointer {cursor: pointer;}
+
+.module-tiles {
+    display: flex;
+    .module-tile {
+        .each-module {
+            width: 100px;
+            height: 105px;
+            margin: 0 auto;
+            background-color: $pure-white;
+            border-radius: $border-radius;
+            cursor: pointer;
+            &:hover {
+                background-color: $pure-white;
+                box-shadow: 0 8px 16px 0 rgba(0, 0, 0, .1);
+            }
+            .module-top {
+                height: 80px;
+                width: 100px;
+                display: table-cell;
+                vertical-align: middle;
+                span {
+                    font-size: 16px;
+                    font-weight: bold;
+                }
+            }
+            .module-bottom {
+                height: 20px;
+                color: $orange;
+                background-color: aliceblue;
+            }
+        }
+    }
+}
+
+.display-block {
+    display: block;
+}
+.display-inline {
+    display: inline;
+}
+.display-inline-block {
+    display: inline-block;
+}
+.display-none {
+    display: none;
+}
+.display-flex {
+    display: flex;
+}
+.full-width {
+    width: 100%;
+}
+
+.box {
+    border: 1px solid $border-color;
+    border-radius: 3px;
+    background-color: $pure-white;
+    box-shadow: 0px 0px $space-3x 0 rgba(0, 0, 0, .1);
+}
+
+.ms_icon_edit {
+    cursor: pointer;
+}
+
+.fc-day-grid-event {
+    width: 84px;
+}
+
+tr:first-child>td>.fc-day-grid-event {
+    margin-top: $space-2x;
+    margin-left: $space-2x;
+}
+
+.fc-content {
+    margin-left: 2px;
+    background-color: $pure-white;
+    color: $blue1;
+    cursor: pointer;
+    @extend .calendar-events-text;
+}

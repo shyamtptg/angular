@@ -1,0 +1,62 @@
+[
+	{
+		"id": 135,
+		"client_name": "Innominds (Vizag)",
+		"client_city": "Vizag",
+		"country": "IN"
+	},
+	{
+		"id": 136,
+		"client_name": "Innominds (Marathahalli, Bangalore)",
+		"client_city": "Bangalore",
+		"country": "IN"
+	},
+	{
+		"id": 140,
+		"client_name": "Innominds (Kondapur, Hyd)",
+		"client_city": "Hyderabad",
+		"country": "IN"
+	},
+	{
+		"id": 153,
+		"client_name": "Innominds (Kapil Towers, Hyd)",
+		"client_city": "Hyderabad",
+		"country": "IN"
+	},
+	{
+		"id": 1,
+		"client_name": "Innominds (HYD)",
+		"client_city": "Hyderabad",
+		"country": "IN"
+	},
+	{
+		"id": 3,
+		"client_name": "Innominds (Bangalore)",
+		"client_city": "Bangalore",
+		"country": "IN"
+	},
+	{
+		"id": 19,
+		"client_name": "Innominds SEZ (HYD)",
+		"client_city": "Hyderabad",
+		"country": "IN"
+	},
+	{
+		"id": 167,
+		"client_name": "Innominds SEZ (Waverock 2.3)",
+		"client_city": "Hyderabad",
+		"country": "IN"
+	},
+	{
+		"id": 74,
+		"client_name": "Innominds SEZ (Waverock 2.1)",
+		"client_city": "Hyderabad",
+		"country": "IN"
+	},
+	{
+		"id": 177,
+		"client_name": "Innominds(Pune)",
+		"client_city": "Pune",
+		"country": "IN"
+	}
+]

@@ -1,0 +1,63 @@
+<div class="row hiring-dropdown">
+    <div class="prioritydropdrown-main no-padding col-md-12 col-sm-11 col-xs-12">
+        <div class="form-group col-md-3 col-xs-12 col-sm-6">
+            <label class="labelText" for="department">Department</label>
+            <select name="department" class="form-control" [(ngModel)]="filterData.department" (change)="loadPracticesByDepartment()">
+                <option value="">All</option>
+                <option *ngFor="let department of departmentOptions" [value]="department.id">{{department.name}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3 col-xs-12 col-sm-6">
+            <label class="labelText" for="practice">Practice</label>
+            <select name="practice" class="form-control" [(ngModel)]="filterData.practice" (change)="filterChanged()">
+                <option value="">All</option>
+                <option *ngFor="let practice of practiceOptions" [value]="practice.id">{{practice.name}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3 col-xs-12 col-sm-6">
+            <label class="labelText" for="priority">Priority</label>
+            <select name="priority" class="form-control" [(ngModel)]="filterData.priority" (change)="filterChanged()">
+                <option value="">All</option>
+                <option *ngFor="let priority of priorityOptions" [value]="priority.code">{{priority.description}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3 col-xs-12 col-sm-6">
+            <label class="labelText" for="status">Status</label>
+            <select name="status" class="form-control" [(ngModel)]="filterData.status" (change)="filterChanged()">
+                <option value="">All</option>
+                <option *ngFor="let status of statusOptions" [value]="status.code">{{status.description}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="assign-executive-title">
+    <div class="no-padding col-md-12 col-sm-12">
+        <p class="heading">ASSIGN EXECUTIVE<span class="subheading"> | TOTAL {{recordsCount}}</span></p>
+    </div>
+</div>
+<div class="alert alert-warning alert-dismissible" role="alert" *ngIf="recordNotSelected">
+    <button type="button" class="close" (click)="this.recordNotSelected = false" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong *ngIf="recordNotSelected">Please select a record!</strong>
+</div>
+<div class="assign-executive">
+    <ag-grid-angular #agGrid class="ag-fresh grid_ag"
+    	[gridOptions]="gridOptions" 
+    	enableColResize
+    	enableSorting
+    	enableFilter
+    	rowSelection="single"
+        paginationPageSize=20
+        rowDeselection=true
+    	(selectionChanged)="setModes()"
+    	(gridReady)="onGridInitialize()"
+        (gridSizeChanged)="resizeColumns()"
+        >
+ 	</ag-grid-angular>
+    <nav class="grid_nav">
+        <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+    </nav>
+</div>
+<div class="pull-right grid_btn">
+    <assign-executive-modal [requestId]="hiringReqId" [buttonMode]="buttonModes" class="multi-select" (loadSelectedItems)="loadRecruiters($event)" (checkSelection)="checkRecordSelection()" (opened)="navigateToHiringRequestDetails()" (showTimeline)="showHiringTimeline()"></assign-executive-modal>
+</div>
+

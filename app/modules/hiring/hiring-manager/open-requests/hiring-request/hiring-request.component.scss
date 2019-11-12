@@ -1,0 +1,30 @@
+.open-req-div {
+	@extend .hiring-need-div;
+	height: auto;
+}
+.open-need-details {
+    .need-well {
+	  margin: 0 0.1em 0.7em 0.1em;
+	  padding: 15px 8px 3px 15px;
+    }
+	.labelText {
+	  font-weight: bold;
+	}
+	.hiring-requests-create-button {
+	  margin: 0 2em 0.5em 0;
+	}
+	.job-desc{
+	    text-decoration: underline;
+		cursor: pointer;
+	}
+	.job-desc:hover, .job-link:hover {
+	   text-decoration: none;
+	}
+	.job-link {
+       cursor: pointer;
+       text-decoration:underline;
+	}
+	.feedback-details-text {
+		font-size: 12px;
+	}
+}

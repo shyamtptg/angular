@@ -1,0 +1,34 @@
+<div class="row add-profile">
+	<div class="container">
+		<div class="add-profile-container col-md-10">
+			<div *ngIf="!(viewMode || editMode) || (attachMode)" class="row hiring-details">
+				<div class="form-group col-md-5 col-xs-12 col-sm-6">
+					<label class="labelText" for="hiringrequest">Hiring Request</label>
+					<select name="hiringrequest" class="form-control" [(ngModel)]="addProfileData && addProfileData.hiringRequestId" (change)="loadNeedsByHiringId()">
+						<option value="">Select</option>
+						<option *ngFor="let hiringRequest of hiringRequestOptions" [value]="hiringRequest.id">{{hiringRequest.purpose}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-5 col-xs-12 col-sm-6">
+					<label class="labelText" for="hiringneed">Hiring Need</label>
+					<select name="hiringneed" class="form-control" [(ngModel)]="addProfileData && addProfileData.hiringRequestNeedId" (change)="updateAddProfileData()">
+					    <option value="">Select</option>
+						<option *ngFor="let hiringNeed of hiringNeedOptions" [value]="hiringNeed.id">{{hiringNeed.purpose}}</option>
+					</select>
+				</div>
+			</div>
+			<ul class="nav-route-items">
+				<li><a [routerLink]="['personal']" routerLinkActive="active-link">Personal Info</a></li>
+				<li><a [routerLink]="['professional']" routerLinkActive="active-link">Professional Info</a></li>
+				<li><a [routerLink]="['skillset']" routerLinkActive="active-link" >Skillset</a></li>
+				<li><a [routerLink]="['miscellaneous']" class="miscellaneous-link" routerLinkActive="active-link" >Confidential Documents</a></li>
+			</ul>
+			<div class="row add-profile-header"></div>
+			<router-outlet></router-outlet>
+			<div class="row attach-btn" [hidden]="!hide">
+			    <button class="pull-right login-register-btn btn" (click)="navigateToSearch()" >Close</button>
+                <button *ngIf="!commonService.hideFeature('ATTACH_PROFILE_TO_HIRING_REQUEST_NEED')" class="pull-right login-register-btn btn" (click)="attachProfile()" >Attach</button>
+			</div>
+		</div>
+	</div>
+</div>

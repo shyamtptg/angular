@@ -1,0 +1,102 @@
+<div class="col-md-5 jddiv">{{jobDescTemplateName}}<span class="pull-right"><a class="glyphicon glyphicon-search search-icon jobdesc-disabled" (click)="modalOpen()" data-toggle="modal" [attr.data-target]="'#' + modalId"></a><a class="collapse-job-desc glyphicon glyphicon-chevron-right search-icon" (click)="showJobDescription($event)"></a></span></div>
+<div class="modal" id="{{modalId}}" tabindex="-1" role="dialog" [attr.aria-labelledby]="modalId+ 'Label'">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form>
+                <div class="modal-header">
+                    <button type="button" (click)="resetIndex()" class="close" data-dismiss="modal" aria-label="close">
+                    <span aria-hidden="true" class="modal-close">&times;</span>
+                    </button>
+                    <h3 class="modal-title" [attr.id]="modalId+ 'Label'">Choose Job Description Template</h3>
+                </div>
+                <div class="modal-body" *ngIf="jobDescData">
+                    <div class="form-group">
+                        <label class="labelText" for="department">Department</label>
+                        <select name="hiringfor" class="form-control" (change)="loadTemplateNames()" [(ngModel)]="jobDescData.departmentId" [disabled]="true">
+                            <option *ngFor="let department of departmentOptions" [value]="department.id">{{department.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="labelText" for="practice">Practice</label>
+                        <select name="clientname" class="form-control" (change)="loadTemplateNames()" [(ngModel)]="jobDescData.practiceId" [disabled]="true">
+                            <option *ngFor="let practice of practiceOptions" [value]="practice.id">{{practice.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label class="labelText" for="template">Choose Template</label>
+                        <select name="template" class="form-control" [(ngModel)]="jobDescData.templateName" >
+                            <option *ngFor="let template of templateNames" [value]="template.jobDescriptionId">{{template.templateName}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" (click)="resetIndex()" class="modal-details-btn" data-dismiss="modal">No, Thanks</button>
+                    <button type="button" (click)="loadJobDescriptionDetails()" class="modal-details-btn" data-dismiss="modal">Continue</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<div class="row maindiv job-desc-content">
+    <div class="job-desc-details">
+        <p class="heading">JOB DESCRIPTION</p>
+        <tabs #tablist *ngIf="jobDescData">
+        <tab #companyBackground [tabTitle]="'Company Background'">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="companyBackground" class="labelText">Company Background</label>
+                <textarea class="form-control" [(ngModel)]="jobDescData.details.companyOverview" [readonly]="true"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="practiceBackground" class="labelText">Practice Background</label>
+                <textarea class="form-control" [(ngModel)]="jobDescData.details.practiceOverview" [readonly]="true"></textarea>
+            </div>
+        </div>
+        </tab>
+        <tab #jobDescription [tabTitle]="'Job Description'">
+        <div class="form-group">
+            <label for="jobDescription" class="labelText">Job Description</label>
+            <textarea class="form-control" [(ngModel)]="jobDescData.details.jobDesc" [readonly]="true"></textarea>
+        </div>
+        </tab>
+        <tab [tabTitle]="'Position/Responsibilities'">
+        <div class="form-group">
+            <label for="positionResponsibility" class="labelText">Position/Responsibilities</label>
+            <textarea class="form-control" [(ngModel)]="jobDescData.details.responsibilities" [readonly]="true"></textarea>
+        </div>
+        </tab>
+        <tab [tabTitle]="'Skills'">
+        <div class="row">
+            <div class="form-group col-md-6">
+                <label for="companyBackground" class="labelText">Design Skills</label>
+                <textarea class="form-control" [(ngModel)]="jobDescData.details.skills && jobDescData.details.skills.uxDesignSkills" [readonly]="true"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="practiceBackground" class="labelText">Technical Skills</label>
+                <textarea class="form-control" [(ngModel)]="jobDescData.details.skills && jobDescData.details.skills.technicalSkills" [readonly]="true"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="companyBackground" class="labelText">Certifications</label>
+                <textarea class="form-control" [(ngModel)]="jobDescData.details.skills && jobDescData.details.skills.certifications" [readonly]="true"></textarea>
+            </div>
+            <div class="form-group col-md-6">
+                <label for="practiceBackground" class="labelText">Other Skills</label>
+                <textarea class="form-control" [(ngModel)]="jobDescData.details.skills && jobDescData.details.skills.others" [readonly]="true"></textarea>
+            </div>
+        </div>
+        </tab>
+        <tab [tabTitle]="'Education'">
+        <div class="form-group">
+            <label for="education" class="labelText">Education</label>
+            <textarea class="form-control" [(ngModel)]="jobDescData.details.education" [readonly]="true"></textarea>
+        </div>
+        </tab>
+        <tab [tabTitle]="'Initial Screening Questions'">
+        <div class="form-group">
+            <label for="initialScrreningQuestions" class="labelText">Initial Screening Questions</label>
+            <textarea class="form-control" [(ngModel)]="jobDescData.details.screeningQuestions" [readonly]="true"></textarea>
+        </div>
+        </tab>
+        </tabs>
+    </div>
+</div>

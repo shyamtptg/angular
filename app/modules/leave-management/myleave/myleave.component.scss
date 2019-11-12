@@ -1,0 +1,62 @@
+.Encash{
+    width: 130px;
+    vertical-align: middle;
+    margin-top: 20px;
+    background-color: #2f4d68;
+    color: white;
+}
+.option{
+    display: inline-block;
+}
+.avaliable_days{
+    margin-left: -100px;
+}
+
+.Pending{
+    color:#ffc266;
+}
+.Approved{
+    color: green; 
+}
+.Cancelled{
+    color: #ff8533;
+}
+.Rejected{
+    color: red;
+}
+.indicate-leave{
+    margin-top: -16px;
+    .leave_info{
+        display: inline-block;
+        .leaves{
+            font-size: 20px;
+            margin-top: 1.1em;
+            font-weight: bold;
+            .leaves-optn{
+                font-size: 13px;
+                color: 	#969494;
+             }
+             
+        }
+    }
+    
+}
+
+.required{
+    color: #e32;
+}
+h4{
+    font-size: 16px;
+}
+label{
+    font-size: 14px; 
+    font-weight: unset;
+}
+.marginTop{
+    margin-top: 10px;
+}
+.label-text {
+    padding-top: 0.4em;
+    padding-bottom: 0.4em;
+    font-size: 15px;
+}

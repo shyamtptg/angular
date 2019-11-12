@@ -1,0 +1,13 @@
+<h1 *ngIf="modaldata.title" mat-dialog-title>{{modaldata.title}}</h1>
+<mat-divider></mat-divider>
+<div mat-dialog-content>
+  <p *ngIf="modaldata.message">{{modaldata.message}}</p>
+  <mat-form-field class="full-width" *ngIf="modaldata.hasRequiredInput">
+    <textarea matInput placeholder="Leave a comment" required [(ngModel)]="modaldata.comment"></textarea>
+  </mat-form-field>
+</div>
+<div mat-dialog-actions class="pull-right">
+  <button *ngIf="modaldata.noLabel" class="ms-btn ms-btn-secondary-bordered m-r-2x" mat-dialog-close>{{modaldata.noLabel}}</button>
+  <button *ngIf="modaldata.hasRequiredInput" class="ms-btn ms-btn-primary-filled" [disabled]="!(modaldata.comment && modaldata.comment.trim())" [mat-dialog-close]="modaldata.comment" cdkFocusInitial>{{modaldata.yesLabel}}</button>
+  <button *ngIf="!modaldata.hasRequiredInput" class="ms-btn ms-btn-primary-filled" [mat-dialog-close]="true" cdkFocusInitial>{{modaldata.yesLabel}}</button>
+</div>

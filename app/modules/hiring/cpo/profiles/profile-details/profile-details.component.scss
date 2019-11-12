@@ -1,0 +1,51 @@
+.profile-details-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 42px;
+  margin-left: 0.5em;
+}
+
+.profile-details-view-button {
+  @extend .profile-details-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}
+
+.profile-detail-tabs {
+  .nav li.active a {
+    background: rgba(39, 70, 98, 0.96);
+  }
+}
+
+.profile-details-download-button {
+  @extend .profile-details-view-button;
+}
+
+.professional-details-btns,
+.skill-details-btns {
+  margin-left: -0.5em;
+}
+
+.skill-details-shortlist-button {
+  @extend .profile-details-view-button;
+}
+
+.skill-details-reject-button {
+  @extend .profile-details-view-button;
+}
+
+.skill-details-on-hold-button {
+  @extend .profile-details-view-button;
+}
+
+remarks-modal button {
+  @extend .profile-details-view-button;
+}
+
+.modal-backdrop.in {
+  opacity: 0.5;
+}
+
+.modal-backdrop {
+  z-index: 0;
+}

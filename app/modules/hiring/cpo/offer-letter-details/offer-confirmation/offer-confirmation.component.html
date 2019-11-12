@@ -1,0 +1,14 @@
+<p-dialog header={{headerTitle}} [(visible)]="display" modal="modal" width="700" (onAfterHide)="onAfterHide()">
+    <p class="subheading">Please state your reason(s)</p>
+    <div class="form-group">
+      <label for="remarks" class="labelText">Remarks</label>
+      <textarea class="form-control remarks" name="remarks" maxlength="250"  style="height:200px;"></textarea>
+    </div>
+    <footer>
+      <div class="pull-right">
+        <button class="offer-confirmation-button" (click)="display=false">Cancel</button>
+        <button class="offer-confirmation-button" (click)="display=false">{{title}}</button>
+      </div>
+    </footer>
+</p-dialog>
+<button class="offer-confirmation-button" (click)="showDialog()">{{title}}</button>

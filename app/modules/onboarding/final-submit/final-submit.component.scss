@@ -1,0 +1,13 @@
+@import '../../../../assets/scss/colors.scss';
+@import '../../../../assets/scss/fonts.scss';
+@import '../../../../assets/scss/spacing.scss';
+
+.request {
+    height: 100%;
+}
+.textedit {
+    resize: none;
+    height: 50px;
+    overflow: hidden;
+    color: $dark-gray;
+}

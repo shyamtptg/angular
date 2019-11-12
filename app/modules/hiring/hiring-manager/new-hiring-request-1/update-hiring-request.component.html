@@ -1,0 +1,82 @@
+<form #basicHiringDetailsForm="ngForm" autocomplete="off" novalidate>
+	<div #basicHiringDetails [hidden]="false" *ngIf="detailsFrmHiringRequestData">
+		<div class="row card">
+			<p class="heading">HIRING REQUEST DETAILS<span *ngIf="detailsFrmHiringRequestData.uid">&nbsp;({{detailsFrmHiringRequestData.uid}})</span><span class="subheading"> | All fields with * are mandatory</span></p>
+			<div class="row">
+				<div class="form-group col-md-4 col-xs-12 col-sm-4">
+					<label class="labelText" for="hiringfor">Hiring For*</label>
+					<select name="hiringfor" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.hiringReason" [disabled]="editMode" required>
+						<option *ngFor="let reason of hiringForOptions" [value]="reason.code">{{reason.description}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4 col-xs-12 col-sm-4">
+					<label class="labelText" for="clientname">Client Name*</label>
+					<select name="clientname" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.clientId" [disabled]="editMode" (change)="setWorkLocation()" required>
+						<option *ngFor="let client of clientNameOptions" [value]="client.id">{{client.clientName}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4 col-xs-12 col-sm-4">
+					<label class="labelText" for="department">Department*</label>
+					<select name="department" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.departmentId" [disabled]="true" required (change)="loadPracticesForDepartment()">
+						<option *ngFor="let dept of departmentOptions" [value]="dept.id">{{dept.name}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-4 col-xs-12 col-sm-4">
+					<label class="labelText" for="hiringtype">Hiring Type*</label>
+					<select name="hiringtype" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.hiringType" [disabled]="editMode" required>
+						<option *ngFor="let type of hiringTypeOptions" [value]="type.code">{{type.description}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4 col-xs-12 col-sm-4">
+					<label class="labelText" for="hiringmanager">Hiring Manager*</label>
+					<select name="hiringmanager" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.hiringManagerId" [disabled]="true" required>
+						<option *ngFor="let hiringManager of hiringManagerOptions" [value]="hiringManager.id">{{hiringManager.fullName}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4 col-xs-12 col-sm-4">
+					<label class="labelText" for="priority">Priority*</label>
+					<select name="priority" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.hiringPriority" [disabled]="editMode" required>
+						<option *ngFor="let priority of priorityOptions" [value]="priority.code">{{priority.description}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-8 col-xs-12 col-sm-8">
+                    <label class="labelText" for="purpose">Purpose*</label>
+                    <input type="text" name="purpose" class="form-control" maxlength="128" [(ngModel)]="detailsFrmHiringRequestData.purpose" [disabled]="editMode" required/>
+                </div>
+			</div>
+			<div class="row screening-panel">
+                <div class="form-group col-md-12 col-xs-12 col-sm-12">
+                    <label class="labelText" for="screeningMembers">Profile Screening Members</label>
+                    <div class="tag-section">
+                        <div class="input-group selection-group tag-input-control tag-input">
+                            <tag-input name="screeningMembers" [(ngModel)]="screeningList" [disable]="true" placeholder="" secondaryPlaceholder="" #screeningPanel>
+                            <ng-template let-item="item" let-index="index">
+                            <span>
+                                {{ item }}
+                            </span>
+                            <delete-icon (click)="screeningPanel.removeItem(item, index)">
+                            </delete-icon>
+                            </ng-template>
+                            </tag-input>
+                            <div class="input-group-addon">
+                                <multi-select-modal [title]="'Profile Screening Members'" [listName]="'profile_screening_list'" [searchTitle]="'screening member name'" (loadSelectedItems)="loadScreeningMembers($event)"></multi-select-modal>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+			<div class="pull-right hiringreq-btns">
+				<button class="hiring-request-new-save-button" (click)="updateHiringRequests()" [hidden]="commonService.hideFeature('UPDATE_HIRING_REQUEST')" [disabled]="!basicHiringDetailsForm.valid">Update</button>
+				<button class="hiring-request-new-save-button" (click)="addHiringRequestNeed()" [hidden]="commonService.hideFeature('CREATE_HIRING_REQUEST_NEED')" [disabled]="!basicHiringDetailsForm.valid">Add New Need</button>
+				<button class="hiring-request-new-next-button" (click)="navigateToHiringRequests()">Close</button>
+			</div>
+		</div>
+	</div>
+</form>
+<div #hiringRequestNeeds [hidden]="false">
+	<div class="row hiring-request-need-details hiring-need-container">
+		<update-hiring-request-need [hideFeature]="needButtonStatus" [hiringReqId]="hiringId" [loadDefaultPractice]="loadDefaultPractice" [comboData]="hiringNeedComboData" [needData]="need" [needIndex]="i" *ngFor="let need of needList; let i = index" (remove)="removeNeed($event)" (hideConfirmationDailog)="hideConfirmationDailog()" (showConfirmationDailog)="showConfirmationDailog()"></update-hiring-request-need>
+	</div>
+</div>

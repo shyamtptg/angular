@@ -1,0 +1,27 @@
+.job-desc-popup {
+    .ui-dialog .ui-dialog-titlebar-close {
+        color: grey !important;
+    }
+    font-size: 0.9em;
+}
+
+.job-desc-details {
+    .nav li a {
+        height: 26px;
+        line-height: 0.5em;
+    }
+    .nav li a {
+        color: grey !important;
+    }
+    .nav li.active a {
+        color: white !important;
+        background: rgba(39, 70, 98, 0.96);
+    }
+    tabs tab .pane {
+        padding: 1em 1em 1em 0 !important;
+        textarea.form-control {
+            border: 1px solid #c5c5c5;
+            height: 80px;
+        }
+    }
+}

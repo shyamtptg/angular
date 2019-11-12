@@ -1,0 +1,57 @@
+.schedule-interview-details {
+    background: #ffffff;
+    margin: 0.7em 0 7em 0.7em;
+    padding: 0.7em;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    .ui-inputtext {
+        width: 91%;
+        height: 2.3em;
+        border-radius: 5px;
+    }
+    p-calendar {
+        input {
+            padding: 6px 12px;
+            font-size: 12px;
+        }
+        .ui-widget:disabled {
+            opacity: 1 !important;
+        }
+    }
+}
+
+.schedule-interview-heading {
+    font-family: $font-family;
+    font-size: 14px;
+    color: #000000;
+    letter-spacing: $letter-spacing;
+    text-align: left;
+    font-weight: bold;
+}
+
+.labelText {
+    font-family: $font-family;
+    font-size: 14px;
+    color: #575757;
+    letter-spacing: $letter-spacing;
+    text-align: left;
+    font-weight: $font-weight;
+}
+
+.schedule-interview-button {
+    border-radius: 2px;
+    min-width: 72px;
+    height: 35px;
+    margin-left: 0.5em;
+}
+
+.schedule-interview-cancel-button {
+    @extend .summary-button;
+    color: #ffffff;
+    background: #9b9b9b;
+}
+
+.schedule-interview-confirm-send-button {
+    @extend .schedule-interview-button;
+    color: #ffffff;
+    background: rgba(39, 70, 98, 0.96);
+}

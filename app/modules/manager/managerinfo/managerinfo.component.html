@@ -1,0 +1,71 @@
+<div class="dataTable m-b-9x">                 
+        <div class="example-container mat-elevation-z8 display-flex" >
+            <div class="flexlayout toplayout" fxLayout="row">
+                <mat-toolbar>
+                <span fxFlex="30" class="Hardware-requests  p-l-4x">IT and Workstation Requests</span>
+                    <mat-radio-group fxFlex="70">
+                        <span class="view  m-r-1x small-font">view:</span>
+                        <mat-radio-button  value="all"   (change)="change($event.value)" class="radiobtngroup">All</mat-radio-button>
+                        <mat-radio-button  value="joiningThisWeek" [checked]="true" (change)="change($event.value)" class="radiobtngroup" >Joining this week</mat-radio-button>                    
+                        <mat-radio-button  value="joinedLastWeek"  (change)="change($event.value)" class="radiobtngroup">Joined Last week</mat-radio-button>   
+                        <mat-radio-button  value="joinedNextWeek"  (change)="change($event.value)" class="radiobtngroup">Joined Next week</mat-radio-button>                                  
+                    </mat-radio-group>                     
+                </mat-toolbar>
+            </div>               
+             <mat-divider></mat-divider> 
+             <mat-table #table [dataSource]="dataSource1" *ngIf="requestinfo && (requestinfo.length>0); else Norequest"  matSortActive="joiningDate" matSortDirection="asc" [@.disabled]="true" matSort>                       
+              <ng-container matColumnDef="src">
+                <mat-header-cell *matHeaderCellDef="let e" class="display-flex"></mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1"><img class="image" [src]="url" /></mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="name">
+                <mat-header-cell *matHeaderCellDef="let e"   class="mat-header-cell1 ">Joinee</mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                  <div class="details" fxLayout="column" fxflex>
+                    <div class="name medium-font ">{{e.joinee}}</div>
+                    <div class="id medium-font" *ngIf="employeeCode">Emp ID: {{e.employeeCode}}</div>
+                    <div class="id medium-font" *ngIf="!employeeCode">Emp ID: Not Available</div>
+                  </div>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="joiningDate">
+                <mat-header-cell *matHeaderCellDef="let e" mat-sort-header  class="mat-header-cell1 ">Joining Date</mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                  <span class="id">{{e.joiningDate |date:'dd/MM/yyyy'}}</span>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="jobStatus">
+                <mat-header-cell *matHeaderCellDef="let e"  class="mat-header-cell1 ">Job Status</mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                  <span class="status status-text">{{e.jobStatus}}</span>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="designation">
+                <mat-header-cell *matHeaderCellDef="let e"   class="mat-header-cell1 ">designation</mat-header-cell>
+                <mat-cell *matCellDef="let e" class="matCell1">
+                  <span class="designation status-text">{{e.designation}}</span>
+                </mat-cell>
+              </ng-container>              
+              <ng-container matColumnDef="IT Request">
+                <mat-header-cell *matHeaderCellDef="let e"  class="display-flex">IT Request</mat-header-cell>
+                <mat-cell *matCellDef="let e;let i = index;" class="matCell1">
+                  <button (click)="openDialog(e)" class="ms-btn ms-btn-primary-bordered">IT Request</button>
+                </mat-cell>
+              </ng-container>
+              <ng-container matColumnDef="Workstation Request">
+                  <mat-header-cell *matHeaderCellDef="let e"  class="display-flex">Workstation Request</mat-header-cell>
+                  <mat-cell *matCellDef="let e;let i = index;" class="matCell1">
+                    <button (click)="navigateToAllocateWS(e)" class="ms-btn ms-btn-primary-bordered">WS Request</button>
+                    <!-- <ng-template #EditBtn>
+                        <button (click)="navigateToAllocateWS(e)" class="ms-btn ms-btn-primary-bordered">Edit</button>
+                    </ng-template> -->
+                  </mat-cell>
+                </ng-container>
+               <mat-header-row *matHeaderRowDef="displayedColumns1;"></mat-header-row> 
+              <mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row> 
+            </mat-table>
+            <ng-template #Norequest>
+              <div class="no-requests">No request available for selected time period.</div>
+          </ng-template> 
+        </div>
+  </div>

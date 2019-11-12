@@ -1,0 +1,405 @@
+<tabs #tablist class="fasttrack-offer-detail-tabs" (tabSelect)="tabSelect($event)">
+<tab [tabTitle]="'Purpose'">
+<div class="prospectRadioBtn">
+    <span>
+        <input #existingHiringRadio type="radio" name="hiringRequest"
+        [checked]="true"
+        [value]="1" (change)="showOrHideDetails($event)">  
+
+    </span>
+    <span>Existing Hiring Request</span>
+</div>
+<div class="prospectRadioBtn">
+    <span>
+        <input #newHiringRadio type="radio" name="hiringRequest"
+        [value]="2" (change)="showOrHideDetails($event)">
+    </span>
+    <span>New Hiring Request</span>
+</div>
+<div class="row prospect-header"></div>
+<div #existingHiringDetails class="search-details">
+    <div class="row profile-details">
+        <div class="form-group col-md-12 col-xs-12 col-sm-12">
+            <label class="labelText" for="hiringrequest">Hiring Request</label>
+            <select name="hiringrequest" class="form-control" [(ngModel)]="hiringRequestId" (change)="loadNeedsByHiringId()">
+                <option value="">Select</option>
+                <option *ngFor="let hiringRequest of hiringRequestOptions" [value]="hiringRequest.id">{{hiringRequest.purpose}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-12 col-xs-12 col-sm-12">
+            <label class="labelText" for="hiringneed">Hiring Need</label>
+            <select name="hiringneed" class="form-control" [(ngModel)]="hiringRequestNeedId" (change)="enableNext()">
+                <option value="">Select</option>
+                <option *ngFor="let hiringNeed of hiringNeedOptions" [value]="hiringNeed.id">{{hiringNeed.purpose}}</option>
+            </select>
+        </div>
+    </div>
+    <!--<div class="search-profiles-grid" *ngIf="hiringGridOptions">
+        <div class="search-requests-title">
+            <div class="no-padding col-md-6 col-sm-6">
+                <p class="heading">HIRING REQUESTS<span class="subheading"> | TOTAL {{totalProfiles}}</span></p>
+            </div>
+        </div>
+        <div class="selected-requests">
+            <ag-grid-angular class="ag-fresh search-requests-grid"
+                [gridOptions]="hiringGridOptions"
+                enableColResize
+                enableSorting
+                enableFilter
+                rowSelection="single"
+                paginationPageSize=10
+                (gridReady)="onGridInitialize()">
+            </ag-grid-angular>
+        </div>
+    </div>-->
+    <button #existingHiringNext class="offer-create-button pull-right" (click)="navigateToNext()" [disabled]="hiringNext">Next</button>
+   <!-- <button class="offer-create-button pull-right">Cancel</button>-->
+    <hiring-details-modal [hiringId]="hiringRequestId" [needId]="hiringRequestNeedId" [disable]="viewHiring"></hiring-details-modal>
+</div>
+<div #newHiringDetails [hidden]="true" class="new-hiring-details">
+    <form class="new-details-form" #newHiringDetailsForm="ngForm" autocomplete="off" novalidate>
+        <div class="row">
+            <div class="form-group col-md-12 col-xs-12 col-sm-12">
+                <label class="labelText" for="hiringfor">Purpose*</label>
+                <input type="text" name="purpose" for="hiringPurpose" class="form-control" maxlength="128" [(ngModel)]="newHiringData.purpose" required />
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-xs-12 col-sm-12">
+                <label class="labelText" for="department">Department*</label>
+                <select name="department" class="form-control" [(ngModel)]="newHiringData.depId" (change)="loadPracticesByDepartment()" required>
+                    <option value="">Select</option>
+                    <option *ngFor="let dept of comboData.deptOptions" value= {{dept.id}}>
+                        {{dept.name}}
+                    </option>
+                </select>
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-12">
+                <label class="labelText" for="practice">Practice*</label>
+                <select name="practice" class="form-control" [(ngModel)]="newHiringData.pracId" (change)="loadCompetenciesByPractice()" required>
+                    <option value="">Select</option>
+                    <option *ngFor="let practice of comboData.practice" [value]="practice.id">{{practice.name}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-12">
+                <label class="labelText" for="competency">Competency*</label>
+                <select name="competency" class="form-control" [(ngModel)]="newHiringData.compId" required>
+                    <option value="">Select</option>
+                    <option *ngFor="let competency of comboData.competency" [value]="competency.id">{{competency.name}}</option>
+                </select>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group col-md-4 col-xs-12 col-sm-12">
+                <label class="labelText" for="clientname">Client Name*</label>
+                <select name="clientname" class="form-control" [(ngModel)]="newHiringData.clientId" required>
+                    <option value="">Select</option>
+                    <option *ngFor="let client of comboData.clientNameOptions" [value]="client.id">{{client.clientName}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-12">
+                <label class="labelText" for="hiringManager">Hiring Manager*</label>
+                <select name="hiringManager" class="form-control" [(ngModel)]="newHiringData.hiringManagerId" required>
+                    <option value="">Select</option>
+                    <option *ngFor="let hiringManager of hiringManagerOptions" [value]="hiringManager.id">{{hiringManager.fullName}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-12">
+                <label class="labelText" for="expectedStartDate">Expected Start Date*</label>
+                <!-- <input type="date" for="expectedStartDate" name="expectedStartDate" class="form-control" [(ngModel)]="newHiringData.expectedStartDate" required/> -->
+                <p-calendar name="interviewDate"   [(ngModel)]="newHiringData.expectedStartDate"  [minDate] = "today" showIcon="true" readonlyInput required></p-calendar>
+            </div>
+        </div>
+        <button #newHiringNext class="close-btn pull-right" [disabled]="!newHiringDetailsForm.valid" (click)="navigateToNext()">Next</button>
+        <!--<button class="close-btn pull-right">Cancel</button>-->
+    </form>
+</div>
+</tab>
+<tab [tabTitle]="'Prospect Details'">
+<div class="prospectRadioBtn">
+    <span>
+        <input #existingProspectRadio type="radio" name="prospectRadio"
+        [checked]="true"
+        [value]="1"
+        (change)="onSelectionChange($event)">
+    </span>
+    <span>Existing Prospect</span>
+</div>
+<div class="prospectRadioBtn">
+    <span>
+        <input #newProspectRadio type="radio" name="prospectRadio"
+        [value]="2"
+        (change)="onSelectionChange($event)">
+    </span>
+    <span>New Prospect</span>
+</div>
+<div class="row form-group prospect-header"></div>
+<div #existProspect class="search-details" [hidden]="false">
+    <div class="row existprospect-form">
+        <form autocomplete="off">
+            <div class="col-md-12">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="firstname">First Name</label>
+                    <input type="text" class="form-control" name="firstName" maxlength="100" [(ngModel)]="searchData.firstName">
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="lastname">Last Name</label>
+                    <input type="text" class="form-control" name="lastName" maxlength="40" [(ngModel)]="searchData.lastName">
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="hiringrequest">Email ID</label>
+                    <input type="email" class="form-control" name="email" maxlength="64" [(ngModel)]="searchData.email">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="relevantexperience">Relavant Experience</label>
+                    <input type="text" class="form-control" name="relevantexperience" [(ngModel)]="searchData.relevantExperience">
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="matchingskills">Matching Skills</label>
+                    <input type="text" class="form-control" name="matchingskills"  [(ngModel)]="searchData.skills">
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="panno">PAN No.</label>
+                    <input type="text" class="form-control" name="panno" [(ngModel)]="searchData.panNo">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="mobno">Mobile No.</label>
+                    <input type="text" class="form-control" name="mobno" maxlength="24"  (keypress)="restrictMobilenumber($event)" [(ngModel)]="searchData.mobileNumber" >
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4 search-details-buttons">
+                    <button class="profile-screening-approve-button" (click)="searchProfiles()">Search</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="search-profiles-grid" *ngIf="gridOptions">
+        <div class="search-requests-title">
+            <div class="no-padding col-md-6 col-sm-6">
+                <p class="heading">PROFILES<span class="subheading"> | TOTAL {{totalProfiles}}</span></p>
+            </div>
+        </div>
+        <div class="selected-requests">
+            <ag-grid-angular class="ag-fresh grid_ag"
+                [gridOptions]="gridOptions"
+                enableColResize
+                enableSorting
+                enableFilter
+                rowSelection="single"
+                paginationPageSize=10
+                rowDeselection=true
+                (cellClicked)="onCellClicked($event)"
+                (gridReady)="onGridInitialize()"
+                (gridSizeChanged)="resizeColumns()">
+            </ag-grid-angular>
+        </div>
+        <nav *ngIf="totalPages" class="grid_nav">
+            <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+        </nav>
+    </div>
+    <div class="pull-right grid_btn">
+        <button #existingProspectNext class="offer-create-button pull-right" (click)="navigateToNext()" [disabled]="prospectNext">Next</button>
+        <button class="offer-create-button pull-right" (click)="navigateToPrevious()">Back</button>
+        <!--<button class="close-btn pull-right">Cancel</button>-->
+        <profile-details-modal [disable]="viewProspect" [profileId]="prospectId"></profile-details-modal>
+    </div>
+</div>
+<div #newProspect [hidden]="true">
+    <div class="row search-form">
+        <form #newProspectDetailsForm="ngForm" autocomplete="off" novalidate>
+            <div class="col-md-12">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="firstname">First Name*</label>
+                    <input type="text" class="form-control" name="firstName" maxlength="100" [(ngModel)]="newProspectData.firstName" required>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="lastname">Last Name*</label>
+                    <input type="text" class="form-control" name="lastName" maxlength="40" [(ngModel)]="newProspectData.lastName" required>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="hiringrequest">Email ID*</label>
+                    <input type="email" class="form-control" name="email" maxlength="64" pattern="^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$" [(ngModel)]="newProspectData.email" required>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="mobno">Mobile No.*</label>
+                    <input type="text" class="form-control" name="mobno" maxlength="24" [(ngModel)]="newProspectData.mobileNumber" required>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="citizenIdentityType">Citizen Identity Type</label>
+                    <select name="citizenIdentityType" class="form-control" [(ngModel)]="newProspectData.citizenIdentityType">
+                        <option value="AADHAR">AADHAR</option>
+                        <option value="PAN" >PAN</option>
+                        <option value="VOTER ID" >VOTER ID</option>
+                        <option value="SSN" >SSN</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="citizenIdentity">Citizen Identity</label>
+                    <input type="text" id="citizenIdentity1" class="form-control inputText" [(ngModel)]="newProspectData.citizenIdentity"
+                    name="citizenIdentity" maxlength="16" />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="current-employer">Current Employer*</label>
+                    <input type="text" name="currentEmployer" class="form-control" maxlength="120" [(ngModel)]="newProspectData.currentEmployer" value="Infosys Private Ltd,Banglore" #currentEmployerRef="ngModel" required/>
+                    <div [hidden]="currentEmployerRef.valid || currentEmployerRef.pristine" class="alert alert-danger">Please enter the current employer</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="country">Notice Period (in months)*</label>
+                    <select name="noticePeriod" class="form-control" [(ngModel)]="newProspectData.noticePeriod" required>
+                        <option *ngFor="let noticePeriod of prospectComboData.noticeperiod" value= {{noticePeriod.code}}>
+                            {{noticePeriod.description}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                    <label class="labelText" for="totalExperienceInYears">Total Experience (in years)*</label>
+                    <input type="number" class="form-control" min="0" name="totalExperience" [(ngModel)]="newProspectData.totalExperience" required />
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="col-md-3 col-xs-8 col-sm-3">
+                    <label class="labelText" for="uploadResume">Upload Your Resume</label>
+                    <input type="text" id="resumeNamePreview" class="form-control image-preview-filename" [readOnly]="true" style="pointer-events: none">
+                </div>
+                <div class="col-md-1 col-xs-3 col-sm-1" style="margin-left:-1em;margin-right: 1em;padding-right: 0;">
+                    <!--<span class="pull-left resume-upload-button">
+                        <div class="btn btn-default image-preview-input fastrack-upload-btn">
+                            <span class="image-preview-input-title">Browse</span>
+                            <input type="file" name="resumeFileUpload" (change)="uploadFile($event)" [disabled]="viewMode" />
+                        </div>
+                    </span>-->
+                    <input type="file" id="fileupload-input" (change)="uploadFile($event)" />
+                    <label id="fileupload-label" for="fileupload-input">Browse</label>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4 currentctc-input">
+                    <label class="labelText" for="country">Current CTC </label>
+                    <input type="number" class="form-control" name="currentCTC" min="0" [(ngModel)]="newProspectData.currentCTC" (keypress)="restrictFloatnumber($event) && restrictCharcters(currentCTCRef.value)"  #currentCTCRef="ngModel" (keyup)="convertToWords(currentCTCRef.value,'ctc');hide=false" />
+                    <!--<input type="number" class="form-control" name="currentCTC" [(ngModel)]="ProfessionalDataFrmProspectData.currentCTC" #currentCTCRef="ngModel" (keyup)="convertToWords(currentCTCRef.value)" [readOnly]="viewMode" required />-->
+                    <span class="ctc-words" [hidden]="hide">{{ctcToWord}}</span>
+                    <!--<span>{{toWord}}</span>-->
+                    <div [hidden]="currentCTCRef.valid || currentCTCRef.pristine" class="alert alert-danger">Please enter the current CTC</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-4 currentctc-input">
+                    <label class="labelText" for="country">Expected CTC</label>
+                    <input type="number" class="form-control" name="expectedCTC"  min="0" [(ngModel)]="newProspectData.expectedCTC" #expectedCTCRef="ngModel" (keypress)="restrictFloatnumber($event) && restrictCharcters(expectedCTCRef.value)"  (keyup)="convertToWords(expectedCTCRef.value,'etc');eHide=false" />
+                    <span class="ctc-words" [hidden]="eHide">{{etcToWord}}</span>
+                    <div [hidden]="expectedCTCRef.valid || expectedCTCRef.pristine" class="alert alert-danger">Please enter the expected CTC</div>
+                </div>
+            </div>
+        <button #newProspectNext class="close-btn pull-right" (click)="navigateToNext()" [disabled]="!newProspectDetailsForm.valid">Next</button>
+        <button class="close-btn pull-right" (click)="navigateToPrevious()">Back</button>
+        <!--<button class="close-btn pull-right">Cancel</button>-->
+        </form>
+    </div>
+</div>
+</tab>
+<tab [tabTitle]="'Offer Details'">
+<form #offerDetailsForm="ngForm" autocomplete="off" novalidate>
+    <div class="row offerletter-details offer-details-tab">
+        <div class="row col-md-11 col-sm-12 col-xs-12">
+            <div class="row">
+                <!--<div class="col-md-4 form-group">
+                    <label class="labelText" for="name">Name</label>
+                    <div class="offerletter-details-text">{{prospectName}}</div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label class="labelText" for="experience">Total Years Of Experience</label>
+                    <div class="offerletter-details-text">6 years</div>
+                </div>
+                <div class="col-md-4 form-group">
+                    <label class="labelText" for="relevantExperience">Relevant Experience</label>
+                    <div class="offerletter-details-text">4 years</div>
+                </div>-->
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-sm-3 col-xs-6 form-group" style="padding-right:5px;">
+                    <label class="labelText" for="designation">Offered Designation*</label>
+                    <select name="designation" class="form-control" style="padding-left:4px;padding-right:3px;" [(ngModel)]="offerDetails.offeredDesignationId" required>
+                        <option value="">Select</option>
+                        <option *ngFor="let desig of comboData.designation" [value]="desig.id">{{desig.designation}}</option>
+                    </select>
+                </div>
+                <div class="col-md-2 col-sm-2 col-xs-6 form-group" style="padding-left:0;padding-right:4px;">
+                   <label class="labelText" for="suffix">Designation Suffix</label>
+                   <input type="text" class="form-control" name="designationSuffix" title="{{desigSuffix}}" [(ngModel)]="desigSuffix" />
+                </div>
+                <div class="col-md-3 col-sm-3 col-xs-12 form-group currentctc-input">
+                    <label class="labelText" for="finalCtc">Offered CTC*</label>
+                    <input type="number" class="form-control" name="finalCtc" min="0" (keypress)="restrictFloatnumber($event) && restrictCharcters(offeredctc.value)"  [(ngModel)]="offerDetails.offerCtc" (keyup)="convertToWords(offerDetails.offerCtc,'octc');hide=false" #offeredctc="ngModel" required/>
+                    <div [hidden]="offeredctc.valid || offeredctc.pristine" class="alert alert-danger">Please enter the Offered CTC</div>
+                    <span class="ctc-words" [hidden]="hide">{{octcToWord}}</span>
+                    <div></div>
+                </div>
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label class="labelText" for="workLocation">Work Location*</label>
+                    <select name="workloc" class="form-control" [(ngModel)]="offerDetails.workLocationId" required>
+                        <option value="">Select</option>
+                        <option *ngFor="let location of comboData.workLocation" [value]="location.id">{{location.clientName}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label class="labelText" for="dateOfJoining">Date Of Joining*</label>
+                    <p-calendar name="dateOfJoining" [(ngModel)]="offerDetails.expecJoiningDate" [defaultDate]="today" [minDate]="today" showIcon="true" dateFormat="dd-mm-yy" (onSelect)="onBlurMethod($event)">
+                        </p-calendar> 
+                </div>
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label class="labelText" for="reportingTime">Reporting Time*</label>
+                    <p-calendar name="reportingTime" [(ngModel)]="offerDetails.reportingTime" showTime="true" hourFormat="12" [timeOnly]="true" (onSelect)="getTime($event)" required></p-calendar>
+                </div>
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label class="labelText" for="location">Reporting Location*</label>
+                    <input type="text" name="location" class="form-control" maxlength="128" [(ngModel)]="offerDetails.location" #reportinglocation="ngModel" required/>
+                    <div [hidden]="reportinglocation.valid || reportinglocation.pristine" class="alert alert-danger">Please enter Reporting Location</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label class="labelText" for="expiryDate">Offer Expiry Date*</label>
+                    <p-calendar *ngIf="offerexpirydate" name="expiryDate" [(ngModel)]="offerDetails.expDate" [defaultDate]="today" [minDate]="today" [maxDate]="yesterday|| today"  showIcon="true" dateFormat="dd-mm-yy" required (onSelect)="checkExpiryDate()" (onFocus)="setDatesForExpiry()"></p-calendar> 
+                    
+                </div>
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label class="labelText" for="expiryGracePeriod">Expiry Grace Period (In Days)*</label>
+                    <input type="number" name="expiryGracePeriod" class="form-control" min="0" [(ngModel)]="offerDetails.expiryGracePeriod" (change)="checkExpiryDate()" #graceperiod="ngModel" required/>
+                    <div [hidden]="graceperiod.valid || graceperiod.pristine" class="alert alert-danger">Please enter Expiry Grace Period (In Days)</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label class="labelText" for="signature">HR Signature*</label>
+                    <textarea name="signature" rows=6 class="form-control" maxlength="128" [(ngModel)]="offerDetails.signature" #hrsignature="ngModel" required></textarea>
+                </div>
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label class="labelText" for="address">Office Address*</label>
+                    <textarea name="address" rows=6 class="form-control" [(ngModel)]="offerDetails.officeAddress" #officeaddress="ngModel" required></textarea>
+                </div>
+                <div class="col-md-4 col-sm-4 form-group">
+                    <label class="labelText" for="remarks">Remarks</label>
+                    <textarea name="remarks" rows=6 class="form-control" maxlength="250" [(ngModel)]="offerDetails.comments"></textarea>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row hiring-request-need-details config-container" style="margin-top:0.7em;">
+        <ctc-line-item [configList]="configList" [lineItems]="lineItems" [paymentPeriods]="paymentPeriods" (addItem)="addLineItem()" (deleteItem)="deleteLineItem($event)"></ctc-line-item>
+    </div>
+    <div class="row hiring-request-need-details config-container res-hiringreqneed">
+        <annexure [annexure]="annexure"></annexure>
+    </div>
+    <div class="pull-right offerletter-btns">
+        <button class="pull-right offerletter-save-button" (click)="saveFastrackOffer()" [disabled]="!offerDetailsForm.valid">Save</button>
+        <button class="pull-right offerletter-save-button" (click)="navigateToPrevious()">Back</button>
+    </div>
+</form>
+</tab>
+</tabs>
+

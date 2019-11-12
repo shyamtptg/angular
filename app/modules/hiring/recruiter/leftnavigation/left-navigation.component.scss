@@ -1,0 +1,20 @@
+.recruiter-navigation {
+    ul {
+        li {
+            a {
+                color: grey;
+            }
+            ul {
+                li {
+                    margin-left: 1em;
+                }
+            }
+        }
+    }
+    .active-link {
+        font-family: $font-family;
+        color: mediumblue;
+        letter-spacing: $letter-spacing;
+        background: none !important;
+    }
+}

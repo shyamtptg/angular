@@ -1,0 +1,27 @@
+.borderless td, .borderless th {
+    border: none;
+  
+}
+.borderless tr td,{
+margin-left: -12px;
+}
+.btn-apply{
+    width: 130px;
+    vertical-align: middle;
+    margin-top: 20px;
+    background-color: #2f4d68;
+    margin-left: 50px;
+    color: white;
+  
+}
+.btn-reject{
+    width: 130px;
+    vertical-align: middle;
+    margin-top: 20px;
+    background-color: white;
+    margin-left: 50px;
+    color: black;
+    border: 1px solid grey;
+    
+  
+}

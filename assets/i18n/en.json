@@ -1,0 +1,13 @@
+{
+    "DASHBOARD": {
+        "STATS": {
+            "NEW_JOINEE": "New Joinees Statistics",
+            "TOTAL_JOINEE": "Total New Joinees Onboarding",
+            "THIS_WEEK_JOINEE": "More Candidates will be added this week",
+            "HARDWARE": "Hardware Requests Statistics",
+            "SOFTWARE": "Software Requests Statistics",
+            "SYS_ALLOC_REQ": "System Allocation Requests",
+            "SOFTWARE_REQ_PENDING": "Software Requests are in Pending"
+        }
+    }
+}

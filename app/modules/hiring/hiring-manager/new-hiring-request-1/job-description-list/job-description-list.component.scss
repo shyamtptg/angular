@@ -1,0 +1,62 @@
+.ag-header-cell-label {
+   font-weight: bold;	
+}
+
+.job-desc-title {
+	margin-left: 0.8em
+}
+
+.job-desc-button{
+  border-radius:2px;
+  min-width:72px;
+  height:35px;
+  margin-left: 0.5em;
+}
+.job-desc-cancel-button {
+  @extend .hiring-requests-button;
+  color:#ffffff;
+  background:#9b9b9b;
+}
+.job-desc-create-button, .job-desc-update-button {
+  @extend .hiring-requests-button;
+  color:#ffffff;
+  background:rgba(39,70,98,0.96);
+}
+.job-grid-download-icon{
+  color: #4a4a4a;
+  cursor: pointer;
+}
+.no-padding { 
+  padding: 0px;
+}
+.prioritydropdrown-main {
+    margin-top: 8px;
+    .labelText {
+      padding-top: 8px;
+    }
+}
+.jobdesc-dropdown {
+   margin: 1em 0 0 -1.3em;
+   select {
+    height: 29px;
+   }
+}
+@media (max-width: 767px) { 
+  
+  .hiringreq-btns {
+    padding-bottom: 1.5em;
+  }
+  .job-desc-col ul.nav-pills li {
+    padding: 4px 0px;
+  }
+  
+  .row.card {
+    margin-top: 0em !important;
+    padding: 0em 0.7em !important;
+  }
+}
+@media (min-width : 768px) and (max-width: 1023px) {
+  .job-desc-col ul.nav-pills li {
+    padding: 7px 0px;
+  }
+}

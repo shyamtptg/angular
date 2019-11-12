@@ -1,0 +1,38 @@
+.ag-header-cell-label {
+  font-weight: bold;
+}
+
+// .profile-summary-grid {
+//   width: 99%;
+//   margin: 0.5% 0 6% 1%;
+//   height: 30em;
+// }
+
+.profile-summary-title {
+  margin-left: 0.8em
+}
+
+// .profile-summary-btns {
+//   margin-top: -5em;
+// }
+
+.profile-summary-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 34px;
+  margin-left: 0.5em;
+}
+
+.profile-summary-view-button {
+  @extend .profile-summary-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}
+
+.profile-summary-approve-button {
+  @extend .profile-summary-view-button;
+}
+
+.profile-summary-reject-button {
+  @extend .profile-summary-view-button;
+}

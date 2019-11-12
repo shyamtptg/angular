@@ -1,0 +1,18 @@
+<div class="request p-tb-3x p-lr-3x" fxLayout="column" fxFlex="0 0 100%" fxLayoutGap="10px">
+  <div fxLayout="row" class="dialogcontent p-t-3x" > 
+    <div class="field p-t-4x" fxFlex="0 0 40%">Notes</div>
+    <div class="separator p-t-4x" fxFlex="0 0 2%">:</div>
+    <div fxFlex="58%" class="medium-font">
+      <mat-form-field>
+        <textarea  matInput [(ngModel)]="comments" class="textedit"></textarea >  
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="actions p-t-2x" fxLayout="row" fxFlex="30px">
+    <mat-dialog-actions>
+      <button class="ms-btn ms-btn-primary-filled" mat-button (click)="save()">Save</button>
+      <button class="ms-btn ms-btn-secondary-bordered" mat-button mat-dialog-close>Cancel</button>
+    </mat-dialog-actions>
+  </div>
+</div>
+  

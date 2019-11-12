@@ -1,0 +1,18 @@
+<div class="sidebar_menu" left-menu-nav>
+	<i class="fa fa-times"></i>
+	<ul class="nav-route-items navigation-selection menu">
+		<li><a [routerLink]="['/leave-management/dashboard']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Dashboard</span></a></li>
+		<li><a [routerLink]="['/leave-management/my-requests']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">My Leave Requests</span></a></li>
+		<li><a [routerLink]="['/leave-management/my-leave-credit']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">My Leave Credit</span></a></li>
+		<li><a [routerLink]="['/leave-management/my-leave-encashment']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">My Leave Encashment</span></a></li>
+		<li *ngIf="!this.permissions.encashmentRequest"><a [routerLink]="['/leave-management/encashment-history']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Leave Encashment Requests</span></a></li>
+		<li *ngIf="!this.permissions.teamRequests"><a [routerLink]="['/leave-management/team-requests']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Team Leave Requests</span></a></li>
+		<li *ngIf="!this.permissions.teamReport"><a [routerLink]="['/leave-management/team-report']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Team Report</span></a></li>
+		<li><a [routerLink]="['/leave-management/work-from-home']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Work From Home</span></a></li>
+		<li *ngIf="!this.permissions.workFromHomeRequest"><a [routerLink]="['/leave-management/work-from-home-manager']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Work From Home Requests</span></a></li>
+		<li><a [routerLink]="['/leave-management/compoff']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Comp Off</span></a></li>
+		<li *ngIf="!this.permissions.compoffRequest"><a [routerLink]="['/leave-management/compoff-manager']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Comp Off Requests</span></a></li>
+		<li *ngIf="!this.permissions.leaveCredits"><a [routerLink]="['/leave-management/leave-credits']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Leave Credits</span></a></li>
+		<li *ngIf="!this.permissions.leaveCredits"><a [routerLink]="['/leave-management/leaveadjustment']" routerLinkActive="active-link" class="menu_list"><span class="fa fa-hand-o-right"></span><span class="menu_list">Leave Adjustment</span></a></li>
+	</ul>
+</div>

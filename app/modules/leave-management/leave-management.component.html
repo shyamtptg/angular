@@ -1,0 +1,35 @@
+<div class="hiring-feature img-responsive">
+<app-header [title]='title' [username]='userName' [details]='userDetails'></app-header>
+<div class="container hiring">
+	<div class="container hiring-manager-container">
+		<div class="slide-navigation">
+			<lms-slide-navigation></lms-slide-navigation>
+		</div>
+		<div  class="left-navigation">
+			<div class="col-md-2 col-sm-2 col-xs-12 left-shadow left-sidebar">
+				<lms-left-navigation></lms-left-navigation>
+			</div>
+		</div>
+		<div class="col-md-10 col-sm-12 col-xs-12 left-shadow content-wrapper">
+			<div class="sub-header-container clearfix">
+				<div  class="slide-navigation">
+					<span class="pull-left"><i class="fa fa-bars toggle_menu"></i></span>
+				</div>
+				<div class="left-navigation">
+					<span class="pull-left left-menu-icon"><i class="fa fa-bars fa-lg sidebaricon"></i></span>
+				</div>
+				<span class="sub-header" class="page-title">{{URLtitle}}</span>
+				<span *ngIf="leave" class="pull-right leave-container">
+					<div class="col-xs-3" style="padding-left:7px;padding-right:7px"><div class="leave">{{leave['CO'] && leave['CO'].balance}}</div><div class="leave-text">Comp Off</div></div>
+					<div class="col-xs-3"><div class="leave">{{leave['CL'] && leave['CL'].balance}}</div><div class="leave-text">Casual</div></div>
+					<div class="col-xs-3"><div class="leave">{{leave['OL'] && leave['OL'].balance}}</div><div class="leave-text">Optional</div></div>
+					<div class="col-xs-3"><div class="leave">{{leave['EL'] && leave['EL'].balance}}</div><div class="leave-text">Earned</div></div>
+				</span>
+			</div>
+			<div class="row prospect-header"></div>
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
+</div>

@@ -1,0 +1,33 @@
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { EmployeeidComponent } from './employeeid.component';
+import { CommonService } from './../../shared/services/common.service';
+import { MockCommonService } from '../../../mock/mock.service';
+
+describe('EmployeeidComponent', () => {
+  let component: EmployeeidComponent;
+  let fixture: ComponentFixture<EmployeeidComponent>;
+
+  beforeEach(() => {
+    TestBed.configureTestingModule({
+      declarations: [
+        EmployeeidComponent
+      ],
+      providers: [
+        {provide: CommonService, useClass: MockCommonService}
+      ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+    })
+    .compileComponents();
+  });
+
+  beforeEach(() => {
+    fixture = TestBed.createComponent(EmployeeidComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

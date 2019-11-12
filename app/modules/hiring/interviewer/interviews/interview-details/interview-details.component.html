@@ -1,0 +1,56 @@
+<form #scheduleInterviewForm="ngForm" novalidate>
+    <div class="row schedule-interview-details">
+        <div class="col-md-12">
+            <!--<p class="schedule-interview-heading">ADD INTERVIEW DETAILS</p>-->
+            <div class="row">
+                <div class="col-md-4 form-group col-sm-4">
+                    <label class="labelText" for="prospectiveHireName">Prospective Hire Name</label>
+                    <input type="text" name="prospectiveHireName" class="form-control" [(ngModel)]="interviewDetails.prospectiveHireName" [readOnly]="true"/>
+                </div>
+                <div class="col-md-4 form-group col-sm-4">
+                    <label class="labelText" for="clientName">Level*</label>
+                    <select name="level" class="form-control" [(ngModel)]="interviewDetails.interviewLevel" required (change)="loadPanels()" [disabled]="true">
+                        <option value="">Select</option>
+                        <option *ngFor="let level of interviewLevelOptions" [value]="level.id">{{level.description}}</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group col-sm-4">
+                    <label class="labelText" for="selectPanel">Select Panel*</label>
+                    <select name="selectPanel" class="form-control" [(ngModel)]="interviewDetails.interviewPanelId" (change)="getInterviewers()" required [disabled]="true">
+                        <option value="">Select</option>
+                        <option *ngFor="let panel of panels" [value]="panel.id">{{panel.name}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 form-group col-sm-4">
+                    <label class="labelText" for="selectInterview">Select Interviewer*</label>
+                    <select name="selectInterview" class="form-control" [(ngModel)]="interviewDetails.interviewerId" required [disabled]="true">
+                        <option value="">Select</option>
+                        <option *ngFor="let interviewer of interviewers" [value]="interviewer.id">{{interviewer.fullName}}</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group col-sm-4">
+                    <label class="labelText" for="interviewMode">Interview Mode*</label>
+                    <select name="interviewMode" class="form-control" [(ngModel)]="interviewDetails.interviewMode" required [disabled]="true">
+                        <option value="">Select</option>
+                        <option *ngFor="let mode of interviewModeOptions" [value]="mode.code">{{mode.description}}</option>
+                    </select>
+                </div>
+                <div class="col-md-4 form-group col-sm-4">
+                    <label class="labelText" for="interviewDate">Interview Date</label>
+                    <p-calendar name="interviewDate"  [(ngModel)]="interviewDate" showIcon="true" [showTime]="true" hourFormat="12" [disabled]="true"></p-calendar>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-11">
+                    <label class="labelText" for="interviewRemarks">Remarks</label>
+                    <textarea rows=6 class="form-control" name="interviewRemarks" maxlength="250"  placeholder="Add Your Remarks Here" [(ngModel)]="interviewDetails.recruiterComments" [disabled]="true"></textarea>
+                </div>
+            </div>
+            <div class="pull-right">
+          <button class="schedule-interview-confirm-send-button" (click)="navigateToPrevious()">Close</button>
+        </div>
+        </div>
+    </div>
+</form>

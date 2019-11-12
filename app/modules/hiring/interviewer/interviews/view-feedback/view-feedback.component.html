@@ -1,0 +1,25 @@
+<form>
+	<div class="row feedback-details">
+		<p class="feedback-heading">HIRING DETAILS</p>
+		<div class="row">
+			<div class="col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="requestPurpose">Hiring Request Purpose</label>
+				<div class="feedback-details-text">{{hiringDetails.hiringPurpose}}</div>
+			</div>
+			<div class="col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="needPurpose">Hiring Request Need Purpose</label>
+				<div class="feedback-details-text">{{hiringDetails.needPurpose}}</div>
+			</div>
+			<div class="col-md-4 col-sm-6 form-group col-xs-12">
+				<label class="labelText" for="clientName">Client</label>
+				<div class="feedback-details-text">{{hiringDetails.clientName}}</div>
+			</div>
+		</div>
+	</div>
+</form>
+<div class="row hiring-request-need-details hiring-need-container">
+<panel-details [needData]="interview" [needIndex]="i" *ngFor="let interview of interviewList; let i = index"></panel-details>
+</div>
+<div class="pull-right view-interview-feedback-btns">
+<button class="scheduled-interview-feedback-button" (click)="navigateToPrevious()">Close</button>
+</div>

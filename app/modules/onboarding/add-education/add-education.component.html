@@ -1,0 +1,277 @@
+<div *ngIf="childData.data" class="timeline">
+  <div class="container right p-0x">
+    <div class="content" fxLayout="row" fxFlex="0 0 1100px">
+      <div class="duration" fxFlex="0 0 calc(100% - 865px)" fxLayout="column">
+      </div>
+      <div class="space" fxFlex="0 0 80px"><hr class="hr1"></div>
+      <div class="job-edit p-t-3x p-l-4x" fxLayout="row" fxFlex="0 0 735px">
+        <div class="new-company-text m-t-2x"><div *ngIf="!childData.body">Add New Qualification</div>
+        <div *ngIf="childData.body">Edit Qualification</div>
+        <form class="formwidth" [formGroup]="selectedFormGroup" (ngSubmit)="submitData()">
+          <div fxLayout="column" class="fullwidth" cellspacing="0">
+                  <div *ngIf="certificationValue !== '12th' && certificationValue !== '10th'" fxLayout="row" fxLayoutGap="35px" class="m-b-3x m-t-6x">
+                    <div>
+                        <mat-form-field *ngIf="!selectedCertification; else NoEdit" class="dropdown">
+                            <mat-select [(ngModel)]="selectedCertification" required placeholder="Certification Type" name="certification" [errorStateMatcher]="matcher" formControlName="certification" (change)="changeCertification($event)">
+                                <mat-option *ngFor="let selectedValue of certificationValues" [value]="selectedValue.value">
+                                    {{selectedValue.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <span class="arrowicon">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </span>
+                        </mat-form-field>
+                        <ng-template #NoEdit>
+                            <div fxLayout="column" class="certification">
+                                <span class="certification-heading">Certification Type</span>
+                                <span class="certification-text">{{selectedCertification}}</span>
+                            </div> 
+                        </ng-template>
+                    </div>
+                  </div>
+                  <div *ngIf="certificationValue === '12th' || certificationValue === '10th'" fxLayout="row" fxLayoutGap="35px" class="m-b-3x m-t-6x">
+                        <div>
+                            <mat-form-field *ngIf="!selectedCertification; else NoEdit" class="dropdown">
+                                <mat-select [(ngModel)]="selectedCertification" required placeholder="Certification Type" name="certification" [errorStateMatcher]="matcher" formControlName="certification" (change)="changeCertification($event)">
+                                    <mat-option *ngFor="let selectedValue of certificationValues" [value]="selectedValue.value">
+                                        {{selectedValue.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                                <span class="arrowicon">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                                </span>
+                            </mat-form-field>
+                            <ng-template #NoEdit>
+                                <div fxLayout="column" class="certification">
+                                    <span class="certification-heading">Certification Type</span>
+                                    <span class="certification-text">{{selectedCertification}}</span>
+                                </div> 
+                            </ng-template>
+                        </div>
+                        <div>
+                            <mat-form-field class="dropdown">
+                                <mat-select required placeholder="Board" name="board" [errorStateMatcher]="matcher" formControlName="board">
+                                    <mat-option *ngFor="let selectedValue of boardValues" [value]="selectedValue.value">
+                                        {{selectedValue.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                                <span class="arrowicon">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                                </span>
+                            </mat-form-field>
+                        </div>
+                      </div>
+                  <div *ngIf="certificationValue === '10th'" fxLayout="row" fxLayoutGap="35px"  class="m-tb-1x">
+                    <div>
+                        <mat-form-field>
+                            <input  matInput type="text" placeholder="School Name"  required name="school" [errorStateMatcher]="matcher" formControlName="school">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="startDate" placeholder="Year" class="startDate" required [errorStateMatcher]="matcher" formControlName="year" [(ngModel)]="planModel.end_time">
+                            <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                            <mat-datepicker #startDate disabled="false"></mat-datepicker>
+                        </mat-form-field>
+                    </div>
+                  </div>
+                  <div *ngIf="certificationValue === '10th'" fxLayout="row" fxLayoutGap="35px" class="m-tb-1x">
+                      <div>
+                            <mat-form-field class="dropdown">
+                                <mat-select required placeholder="Country" [(ngModel)]="countryName" (selectionChange)="changeStateValue()" [errorStateMatcher]="matcher" [(value)]="country" formControlName="country">
+                                    <mat-option *ngFor="let country of countries" [value]="country">
+                                        {{country}}
+                                    </mat-option>
+                                </mat-select>
+                                <span class="arrowicon">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                                </span>
+                            </mat-form-field>
+                      </div>
+                      <div>
+                            <mat-form-field class="dropdown">
+                                <mat-select required placeholder="State" [(ngModel)]="stateName" (selectionChange)="changeCityValue(state)" [(value)]="state" [errorStateMatcher]="matcher" formControlName="state">
+                                    <mat-option *ngFor="let state of statenames" [value]="state">
+                                        {{state}}
+                                    </mat-option>
+                                </mat-select>
+                                <span class="arrowicon">
+                                        <mat-icon>keyboard_arrow_down</mat-icon>
+                                </span>
+                            </mat-form-field>
+                    </div>
+                  </div>
+                  <div *ngIf="certificationValue === '10th'" fxLayout="row" fxLayoutGap="35px" class="m-tb-1x">
+                      <div>
+                            <mat-form-field class="dropdown">
+                                <mat-select required placeholder="City" [(ngModel)]="cityName" [errorStateMatcher]="matcher" formControlName="city">
+                                    <mat-option *ngFor="let city of currentCities" [value]="city">
+                                        {{city}}
+                                    </mat-option>
+                                </mat-select>
+                                <span class="arrowicon">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                                </span>
+                            </mat-form-field>
+                      </div>
+                  </div>
+                <div *ngIf="certificationValue === '12th'" fxLayout="row" fxLayoutGap="35px"  class="m-tb-1x">
+                        <div>
+                            <mat-form-field>
+                                <input matInput type="text" placeholder="School Name"  required name="school" [errorStateMatcher]="matcher" formControlName="school">
+                            </mat-form-field>
+                        </div>
+                        <div>
+                            <mat-form-field class="dropdown">
+                                <mat-select required placeholder="Subject" name="subject" [errorStateMatcher]="matcher" formControlName="subject">
+                                    <mat-option *ngFor="let selectedValue of subjectValues" [value]="selectedValue.value">
+                                        {{selectedValue.viewValue}}
+                                    </mat-option>
+                                </mat-select>
+                                <span class="arrowicon">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                                </span>
+                            </mat-form-field>
+                        </div>
+                      </div>
+                      <div *ngIf="certificationValue === '12th'" fxLayout="row" fxLayoutGap="35px" class="m-tb-1x">
+                            <div>
+                                <mat-form-field>
+                                    <input matInput [matDatepicker]="startDate" placeholder="Year" class="startDate" required [errorStateMatcher]="matcher" formControlName="year" [(ngModel)]="planModel.end_time">
+                                    <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                                    <mat-datepicker #startDate disabled="false"></mat-datepicker>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field class="dropdown">
+                                    <mat-select required placeholder="Country" [(ngModel)]="countryName" (selectionChange)="changeStateValue()" [errorStateMatcher]="matcher" [(value)]="country" formControlName="country">
+                                        <mat-option *ngFor="let country of countries" [value]="country">
+                                            {{country}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <span class="arrowicon">
+                                        <mat-icon>keyboard_arrow_down</mat-icon>
+                                    </span>
+                                </mat-form-field>
+                            </div>
+                      </div>
+                      <div *ngIf="certificationValue === '12th'" fxLayout="row" fxLayoutGap="35px" class="m-tb-1x">
+                          <div>
+                                <mat-form-field class="dropdown">
+                                    <mat-select required placeholder="State" [(ngModel)]="stateName" (selectionChange)="changeCityValue(state)" [(value)]="state" [errorStateMatcher]="matcher" formControlName="state">
+                                        <mat-option *ngFor="let state of statenames" [value]="state">
+                                            {{state}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <span class="arrowicon">
+                                            <mat-icon>keyboard_arrow_down</mat-icon>
+                                    </span>
+                                </mat-form-field>
+                          </div>
+                          <div>
+                                <mat-form-field class="dropdown">
+                                    <mat-select required placeholder="City" [(ngModel)]="cityName" [errorStateMatcher]="matcher" formControlName="city">
+                                        <mat-option *ngFor="let city of currentCities" [value]="city">
+                                            {{city}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <span class="arrowicon">
+                                        <mat-icon>keyboard_arrow_down</mat-icon>
+                                    </span>
+                                </mat-form-field>
+                          </div>
+                      </div>
+                    <div *ngIf="certificationValue === 'Degree'" fxLayout="row" fxLayoutGap="35px"  class="m-tb-1x">
+                            <div>
+                                <mat-form-field class="dropdown">
+                                    <mat-select required placeholder="Degree Type" name="Degree" [errorStateMatcher]="matcher" formControlName="degree">
+                                        <mat-option *ngFor="let selectedValue of degreeValues" [value]="selectedValue.value">
+                                            {{selectedValue.viewValue}}
+                                        </mat-option>
+                                    </mat-select>
+                                    <span class="arrowicon">
+                                        <mat-icon>keyboard_arrow_down</mat-icon>
+                                    </span>
+                                </mat-form-field>
+                            </div>
+                            <div>
+                                <mat-form-field>
+                                    <input  matInput type="text" placeholder="Specialization"  required name="specialization" [errorStateMatcher]="matcher" formControlName="specialization">
+                                </mat-form-field>
+                            </div>
+                          </div>
+                          <div *ngIf="certificationValue === 'Degree'" fxLayout="row" fxLayoutGap="35px" class="m-tb-1x">
+                              <div>
+                                    <mat-form-field>
+                                        <input  matInput type="text" placeholder="University / College"  required name="university" [errorStateMatcher]="matcher" formControlName="university">
+                                    </mat-form-field>
+                              </div>
+                              <div>
+                                    <mat-form-field>
+                                        <input matInput [matDatepicker]="startDate" placeholder="Enrollment Year" class="startDate" required [errorStateMatcher]="matcher" formControlName="enrollment" [(ngModel)]="planModel.start_time">
+                                        <mat-datepicker-toggle matSuffix [for]="startDate"></mat-datepicker-toggle>
+                                        <mat-datepicker #startDate disabled="false"></mat-datepicker>
+                                    </mat-form-field>
+                              </div>
+                          </div>
+                          <div *ngIf="certificationValue === 'Degree'" fxLayout="row" fxLayoutGap="35px" class="m-tb-1x">
+                                <div>
+                                    <mat-form-field>
+                                        <input matInput [matDatepicker]="endDate" placeholder="Graduation Year" class="endDate" required [errorStateMatcher]="matcher" formControlName="graduation" [(ngModel)]="planModel.end_time">
+                                        <mat-datepicker-toggle matSuffix [for]="endDate"></mat-datepicker-toggle>
+                                        <mat-datepicker #endDate disabled="false"></mat-datepicker>
+                                    </mat-form-field>
+                                </div>
+                              <div>
+                                    <mat-form-field class="dropdown">
+                                        <mat-select required placeholder="Country" [(ngModel)]="countryName" (selectionChange)="changeStateValue()" [errorStateMatcher]="matcher" [(value)]="country" formControlName="country">
+                                            <mat-option *ngFor="let country of countries" [value]="country">
+                                                {{country}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <span class="arrowicon">
+                                            <mat-icon>keyboard_arrow_down</mat-icon>
+                                        </span>
+                                    </mat-form-field>
+                              </div>
+                          </div>
+                          <div *ngIf="certificationValue === 'Degree'" fxLayout="row" fxLayoutGap="35px" class="m-tb-1x">
+                                <div>
+                                    <mat-form-field class="dropdown">
+                                        <mat-select required placeholder="State" [(ngModel)]="stateName" (selectionChange)="changeCityValue(state)" [(value)]="state" [errorStateMatcher]="matcher" formControlName="state">
+                                            <mat-option *ngFor="let state of statenames" [value]="state">
+                                                {{state}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <span class="arrowicon">
+                                                <mat-icon>keyboard_arrow_down</mat-icon>
+                                        </span>
+                                    </mat-form-field>
+                                </div>
+                                <div>
+                                    <mat-form-field class="dropdown">
+                                        <mat-select required placeholder="City" [(ngModel)]="cityName" [errorStateMatcher]="matcher" formControlName="city">
+                                            <mat-option *ngFor="let city of currentCities" [value]="city">
+                                                {{city}}
+                                            </mat-option>
+                                        </mat-select>
+                                        <span class="arrowicon">
+                                            <mat-icon>keyboard_arrow_down</mat-icon>
+                                        </span>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        <div fxLayout="row" fxLayoutGap="35px" class="m-tb-1x">
+                            <div>
+                              <button class="ms-btn ms-btn-secondary-bordered action-buttons m-r-2x" (click)="cancelClick()" type="button">Cancel</button>
+                              <button class="ms-btn ms-btn-primary-bordered action-buttons" [disabled]="selectedFormGroup.invalid" type="submit">Save</button>
+                            </div>
+                        </div>
+                    </div>
+      </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+  

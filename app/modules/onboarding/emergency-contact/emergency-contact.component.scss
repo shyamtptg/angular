@@ -1,0 +1,23 @@
+.emergencyformwidth{
+	padding-bottom:143px;
+	padding-right:208.01px;	
+	::ng-deep .mat-input-infix{
+				width: 250px;	
+				padding-bottom:9px;	
+	} 
+}
+.arrowicon{
+	float: right;
+}
+.emergencyformwidth /deep/ {
+	.mat-select-arrow {
+		border: none;
+	}
+	.mat-input-infix /deep/ {
+		border:none;
+	}
+	.mat-select{
+		width:50%;	
+		padding-top:10px
+	}
+} 

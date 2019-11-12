@@ -1,0 +1,78 @@
+@import './../../../../../../assets/scss/common.scss';
+
+.personalDetails-form {
+    padding: 15px 50px 0 10px;
+    .labelText {
+        font-family: $font-family;
+        font-size: 13px;
+        color: #575757;
+        letter-spacing: $letter-spacing;
+        text-align: left;
+        font-weight: $font-weight;
+    }
+    .inputText {
+        background: #ffffff;
+        border: 1px solid #c5c5c5;
+    }
+    .boldText {
+        font-family: $font-family;
+        font-size: 16px;
+        line-height: 18px;
+        color: #000000;
+        letter-spacing: $letter-spacing;
+        text-align: left;
+        font-weight: normal;
+    }
+    .addresscheck {
+        margin-bottom: 15px !important;
+        font-family: $font-family;
+        font-weight: normal;
+        font-size: 13px;
+        letter-spacing: $letter-spacing;
+        .isPermanet {
+            font-family: $font-family !important;
+            font-size: 13px !important;
+            color: #9b9b9b;
+            letter-spacing: $letter-spacing !important;
+            text-align: left;
+            font-weight: normal;
+        }
+        .isSingleAddress {
+            background: rgba(30, 52, 72, 0.96);
+            width: 14px;
+            height: 14px;
+            margin-left: 5px;
+        }
+    }
+    .permanentAddressDetails {
+        .permanentDetailsText {
+            font-family: $font-family;
+            font-size: 13px;
+            color: #767676;
+            letter-spacing: $letter-spacing;
+            text-align: left;
+            font-weight: normal;
+        }
+    }
+    .personal-btn-grp {
+        margin: 0 0.1em 0.5em 0;
+        .btn {
+            font-family: $font-family;
+            font-size: 13px;
+            letter-spacing: $letter-spacing;
+            font-weight: normal;
+        }
+    }
+    .expected-startdate {
+        p-calendar {
+            input {
+                padding: 6px 12px;
+                font-size: 12px;
+                width: 91.5%;
+            }
+            .ui-widget:disabled {
+                opacity: 1 !important;
+            }
+        }
+    }
+}

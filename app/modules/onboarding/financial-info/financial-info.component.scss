@@ -1,0 +1,13 @@
+.financialformwidth{
+    padding-bottom:249px;
+    padding-right:213.01px;	
+	::ng-deep .mat-input-infix{
+        width: 250px;
+        padding-bottom:7.5px;	
+       } 
+}
+.financialformwidth /deep/{
+    .mat-input-infix{
+        padding-top:9px;       
+    }
+}

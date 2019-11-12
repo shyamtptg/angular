@@ -1,0 +1,26 @@
+@import './../../../../../assets/scss/colors.scss';
+.mat-content{
+     border-top: 1px solid $lightgray; 
+}
+.Dialogtop{
+    color:$mat-input;
+    height: 60px;
+    .close-img{
+        height: 32px;
+    }
+}
+.dialogtitle{
+    padding-left:23px;
+}
+.dialogcontent{
+    padding-left:23px
+}
+.material-icons{
+    padding-top:3px
+}
+.keys{
+    color:$mat-gray16;
+}
+.keyvalues{
+    color:$mat-field-label;
+}

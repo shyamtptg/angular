@@ -1,0 +1,154 @@
+<div class="row" style="margin-top:0.9em;">
+    <div class="form-group col-md-2">
+        <div *ngIf="yearRange">
+            <p-calendar readonlyInput="true" [disabled]="isDisable" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange"
+                placeholder="FromDate" (onSelect)="getDateFrom($event)" required [(ngModel)]="leave" dateFormat="dd/mm/yy" [showIcon]=true
+                name="from" #from="ngModel"></p-calendar>
+        </div>
+        <div *ngIf="defaultRange">
+            <p-calendar readonlyInput="true" [disabled]="isDisable" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="defaultRange"
+                placeholder="FromDate" (onSelect)="getDateFrom($event)" required [(ngModel)]="leave" dateFormat="dd/mm/yy" [showIcon]=true
+                name="from" #from="ngModel"></p-calendar>
+        </div>
+    </div>
+    <div class="form-group col-md-2">
+        <div *ngIf="yearRange">
+            <p-calendar readonlyInput="true" [disabled]="isDisable" placeholder="ToDate" [monthNavigator]="true" [yearNavigator]="true"
+                [yearRange]="yearRange" (onSelect)="getDateTO($event)" required [(ngModel)]="default" dateFormat="dd/mm/yy" [showIcon]=true
+                name="to" #to="ngModel"></p-calendar>
+        </div>
+        <div *ngIf="defaultRange">
+            <p-calendar readonlyInput="true" [disabled]="isDisable" placeholder="ToDate" [monthNavigator]="true" [yearNavigator]="true"
+                [yearRange]="defaultRange" (onSelect)="getDateTO($event)" required [(ngModel)]="default" dateFormat="dd/mm/yy"
+                [showIcon]=true name="to" #to="ngModel"></p-calendar>
+        </div>
+    </div>
+    <div *ngIf=" user && user.role == 'hr'" class="form-group col-md-2">
+        <select (ngModelChange)="Department($event)" [(ngModel)]='departments' class="form-control ">
+            <option [value]=0>Department</option>
+            <option *ngFor="let departments of departmentDetails" [ngValue]="departments.id">{{departments.name}}</option>
+        </select>
+    </div>
+    <div *ngIf=" user && user.role == 'hr'" class="form-group col-md-2">
+        <select (ngModelChange)="Practices($event)" [disabled]="isDepartment" [(ngModel)]='practices' class="form-control ">
+            <option [value]=0>Practices</option>
+            <option *ngFor="let practices of practiceDetails" [ngValue]="practices.id">{{practices.name}}</option>
+        </select>
+    </div>
+    <div *ngIf=" user && user.role == 'hr'" class="form-group col-md-2">
+        <select (ngModelChange)="Manager($event)" [disabled]="isPractice" [(ngModel)]='managers' class="form-control ">
+            <option [value]=0>Manager</option>
+            <option *ngFor="let managers of managerDetails" [ngValue]="managers.managerId">{{managers. projectManagerName}}</option>
+        </select>
+    </div>
+    <div *ngIf=" user && user.role == 'hr'" class="form-group col-md-2">
+        <select [(ngModel)]='project' [disabled]="isManager" (ngModelChange)="projects($event)" class="form-control ">
+            <option [value]=0>Projects</option>
+            <option *ngFor="let project of projectDetails" [ngValue]="project.id">{{project.projectName}}</option>
+        </select>
+    </div>
+    <div *ngIf=" user && user.role == 'hr'" class="form-group col-md-2">
+        <select [disabled]="activeTab !== 0" (ngModelChange)="filterAll($event)" [(ngModel)]="type" class="form-control" name="leave-types" required ngModel #leavetypes="ngModel">
+            <option [value]=0>Leave Type</option>
+            <option *ngFor="let type of data" [value]="type.id">{{type.description}}</option>
+        </select>
+    </div>
+    <div class="form-group col-md-2 col-md-offset-8" style="margin-top: -5px;">
+        <select [(ngModel)]='exportDropdown' (ngModelChange)="exportData($event)" class="form-control export-as-dropdown">
+            <option [selected]="export" [disabled]="true" value=0>Export As</option>
+            <option value=1>Leaves CSV</option>
+            <option value=2>WFH CSV</option>
+            <option value=3>Comp Off CSV</option>
+        </select>
+    </div>
+</div>
+<div class="row">
+
+    <ul class="nav nav-tabs">
+        <li class="active">
+            <a data-toggle="tab" (click)="activeTab = 0" href="#home">Leaves</a>
+        </li>
+        <li>
+            <a data-toggle="tab" (click)="activeTab = 1" href="#menu1">Work From Home</a>
+        </li>
+        <li>
+            <a data-toggle="tab" (click)="activeTab = 2" href="#menu2">Compensatory Off</a>
+        </li>
+    </ul>
+
+    <div *ngIf="dataLoad" class="tab-content">
+        <div id="home" class="tab-pane fade in active">
+            <h4 *ngIf=" user && user.role == 'manager'" class="tm-rpt-grid-title">Delivery Team (Leaves)</h4>
+            <div class="col-md-12">
+                <ag-grid-angular #agGrid style="width:100%; height:300px;" class="ag-theme-fresh " enableColResize enableSorting enableFilter
+                    [headerHeight]="headerHeight" [rowSelection]="rowSelection" [getRowHeight]="getRowHeight" (cellClicked)="onCellClicked($event)"
+                    (gridSizeChanged)="resizeColumns($event)" [paginationPageSize]="paginationPageSize" [columnDefs]="columnDefs"
+                    (gridReady)="onGridReady($event)">
+                </ag-grid-angular>
+                <nav class="grid-pagination">
+                    <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages" (onPageChange)="paginatePm($event)"></p-paginator>
+                </nav>
+            </div>
+            <div *ngIf=" user && user.role == 'manager'">
+                <h4 class="tm-rpt-grid-title">Reporting Team (Leaves)</h4>
+                <div class="col-md-12">
+                    <ag-grid-angular #agGrid style="width:100%; height:300px;" class="ag-theme-fresh " enableColResize enableSorting enableFilter
+                        [headerHeight]="headerHeight" [rowSelection]="rowSelection" [getRowHeight]="getRowHeight" (cellClicked)="onCellClicked($event)"
+                        (gridSizeChanged)="resizeColumns($event)" [paginationPageSize]="paginationPageSize" [columnDefs]="columnDefs"
+                        (gridReady)="onGridReadyrmManager($event)">
+                    </ag-grid-angular>
+                    <nav>
+                        <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages1" (onPageChange)="paginateRm($event)"></p-paginator>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="menu1" class="tab-pane fade">
+            <h4 *ngIf=" user && user.role == 'manager'" class="tm-rpt-grid-title">Delivery Team (Work From Home)</h4>
+            <div class="col-md-12">
+                <ag-grid-angular #agGrid style="width:100%; height:300px;" class="ag-theme-fresh " enableColResize enableSorting enableFilter
+                    [headerHeight]="headerHeight" [rowSelection]="rowSelection" [getRowHeight]="getRowHeight" (gridSizeChanged)="resizeColumns($event)"
+                    [paginationPageSize]="paginationPageSize" [columnDefs]="columnDefsWfh" (gridReady)="onGridWorkFromHomeReady($event)">
+                </ag-grid-angular>
+                <nav class="grid-pagination">
+                    <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPagesWfhpm" (onPageChange)="paginateWfhPm($event)"></p-paginator>
+                </nav>
+            </div>
+            <div *ngIf=" user && user.role == 'manager'">
+                <h4 class="tm-rpt-grid-title">Reporting Team (Work From Home)</h4>
+                <div class="col-md-12">
+                    <ag-grid-angular #agGrid style="width:100%; height:300px;" class="ag-theme-fresh " enableColResize enableSorting enableFilter
+                        [headerHeight]="headerHeight" [rowSelection]="rowSelection" [getRowHeight]="getRowHeight" (gridSizeChanged)="resizeColumns($event)"
+                        [paginationPageSize]="paginationPageSize" [columnDefs]="columnDefsWfh" (gridReady)="onGridReadyrmManagerWfh($event)">
+                    </ag-grid-angular>
+                    <nav>
+                        <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPagesWfhrm" (onPageChange)="paginateWfhRm($event)"></p-paginator>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <div id="menu2" class="tab-pane fade">
+            <h4 *ngIf=" user && user.role == 'manager'" class="tm-rpt-grid-title">Delivery Team (Comp Off)</h4>
+            <div class="col-md-12">
+                <ag-grid-angular #agGrid style="width:100%; height:300px;" class="ag-theme-fresh " enableColResize enableSorting enableFilter
+                    [headerHeight]="headerHeight" [rowSelection]="rowSelection" [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize"
+                    (gridSizeChanged)="resizeColumns($event)" [columnDefs]="columnDefsCompOff" (gridReady)="onGridCompOffReady($event)">
+                </ag-grid-angular>
+                <nav class="grid-pagination">
+                    <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPagesCompOffpm" (onPageChange)="paginateCompOffPm($event)"></p-paginator>
+                </nav>
+            </div>
+            <div *ngIf=" user && user.role == 'manager'">
+                <h4 class="tm-rpt-grid-title">Reporting Team (Comp Off)</h4>
+                <div class="col-md-12">
+                    <ag-grid-angular #agGrid style="width:100%; height:300px;" class="ag-theme-fresh " enableColResize enableSorting enableFilter
+                        [headerHeight]="headerHeight" [rowSelection]="rowSelection" [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize"
+                        (gridSizeChanged)="resizeColumns($event)" [columnDefs]="columnDefsCompOff" (gridReady)="onGridReadyrmManagerCompOff($event)">
+                    </ag-grid-angular>
+                    <nav>
+                        <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPagesCompOffrm" (onPageChange)="paginateCompOffRm($event)"></p-paginator>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>

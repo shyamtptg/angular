@@ -1,0 +1,44 @@
+.ag-header-cell-label {
+  font-weight: bold;
+}
+
+// .offer-grid {
+//   width: 99%;
+//   margin: 0.5% 0 6% 1%;
+//   height: 30em;
+// }
+
+.offer-title {
+  margin-left: 0.8em
+}
+
+.offer-btns {
+  margin-top: -5.5em;
+}
+
+.offer-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 35px !important;
+  margin-left: 0.5em;
+}
+
+.offer-create-button {
+  @extend .offer-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}
+
+.offerletter-btns {
+  margin-bottom: 0.5em;
+}
+
+.attach-div {
+  position: relative;
+  bottom: 0px;
+}
+
+.attached-text {
+  text-align: right;
+  padding: 0px 15px;
+}

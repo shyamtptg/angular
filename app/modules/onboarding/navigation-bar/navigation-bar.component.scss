@@ -1,0 +1,258 @@
+@import '../../../../assets/scss/colors.scss';
+@import '../../../../assets/scss/spacing.scss';
+@import '../../../../assets/scss/fonts.scss';
+
+  .mat-sidenav-content {
+    min-height: 410px;
+    background: $pure-white;
+  }
+  .hrFlow {
+    margin-top: 8px;
+  }
+  .mat-list-item {
+    margin: 10px;
+    /*added*/
+  }
+  #workstation {
+    margin: 10px auto;
+    width:83%;
+    border: 1px solid $white1 ;   
+    background: $pure-white;   
+  //  height:200px;
+    height: 212px;
+  }
+  .tab-text {
+    color: $pure-black;
+    font-size: 15px;
+  }
+  .allocated {
+    color: $green;
+  }
+  .inprogress {
+    color: $orange1;
+  }
+  .initiated {
+    color: gray;
+  }
+  p span {
+    display: block;
+  }
+  .space {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  .tabs {
+    background-color: $pure-white;   
+    border: 1px solid $white1;
+    border-radius: 2px;
+    /*added*/
+    height: 75px;
+  }
+.experience-container {
+  height: 61px;
+  box-shadow: 0 2px 4px 0 rgba(0,0,0,0.03), 0 1px 5px 0 rgba(0,0,0,0.13);
+}
+.work-container {
+  height: 500px;
+}
+
+mat-step .mat-step-label {
+  overflow: visible;
+}
+
+mat-step .mat-step-icon-not-touched span,
+mat-step .mat-step-icon span,
+mat-step .mat-step-icon-not-touched .mat-icon,
+mat-step .mat-step-icon .mat-icon {
+display: none;
+}
+
+mat-step:nth-of-type(1) .mat-step-icon-not-touched:after,
+mat-step:nth-of-type(1) .mat-step-icon:after {
+content: 'New 1';
+}
+
+.active-step-1 mat-step:nth-of-type(1) .mat-step-icon-not-touched::after,
+.active-step-1 mat-step:nth-of-type(1) .mat-step-icon::after {
+content: 'add_circle' !important;
+font-family: 'Material Icons' !important;
+font-feature-settings: 'liga' 1;
+}
+
+.active {
+  background-color: $pure-white;
+  border-right: 3px solid $gray8;
+  color: $gray8;
+  font-family: Lato;
+  font-size: 16px;
+  transform: none!important;
+}
+.active:active {
+  transform: none!important;
+  background-color: $pure-white!important;
+}
+.links /deep/{
+  padding: 0!important;
+  margin: 0!important;
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+.links:active /deep/{
+  -webkit-transition: none !important;
+  -moz-transition: none !important;
+  -o-transition: none !important;
+  transition: none !important;
+}
+mat-sidenav-content {
+  margin-left: 172px!important;
+}
+
+.education-experience {
+  display: none
+}
+
+.work-experience {
+  display: none
+}
+
+  button {
+    background: none;
+    color: inherit;
+    border: none;
+    font: inherit;
+    cursor: pointer;
+    outline: inherit;
+    float: right;
+  }
+  a:link,
+  a:visited {
+    color: none;
+    text-decoration: none;
+  }
+  .topright {
+    float: right;
+    color: black;
+  }
+  /*added css*/
+  .personalInfo {
+    ::ng-deep.mat-horizontal-content-container {
+      box-sizing: border-box;
+      padding: 0 24px 0px 26px;
+      margin-left: 117px;
+      margin-right: 117px;
+      height: 57.34%;
+      width:1131px;
+      margin: 0 auto;
+      border: 1px solid $white1;
+      border-radius: 2px;
+      background-color: $pure-white;
+      box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.03), 0 1px 5px 0 rgba(0, 0, 0, 0.13);
+    }
+  }
+  .personalInfo {
+    ::ng-deep .mat-sidenav {
+      width: 318px;
+    }
+
+    ::ng-deep .personalInfolist .mat-list-item-content {
+      @extend .semi-bold, .person-font;
+      background: #ffff; /*added*/
+    }
+    ::ng-deep .personalInfolist .mat-list-item {
+      height: 77px;
+      padding-top: 0px;
+    }
+    .mat-sidenav {
+      border-right: 1px solid $white2;
+    }
+    .mat-divider {
+      margin-left: 15px;
+      color: $white2;
+    }
+  }
+  .footerSection {
+    box-sizing: border-box;
+    height: 72px;    
+    border: 1px solid $border-color;
+    background-color: $mat-select;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.1);
+    
+  }
+  /*added css end*/
+
+  .links:active,
+  .links:link,
+  .links:visited,
+  .links:hover {
+    background-color: $pure-white;
+    height: 75px;
+    color: $gray8;
+  }
+  .disabled {
+    color: $gray7;
+  }
+  .active {
+    background-color: $pure-white;
+    border-right: 3px solid $gray8;
+    color: $gray8;
+    font-family: Lato;
+    font-size: 16px;
+  }
+  .links.disabled {
+    color: $gray7;
+    font-family: Lato;
+    font-size: 16px;
+    cursor: pointer;
+    border: none;
+  }
+  mat-sidenav-content {
+    margin-left: 324px !important;
+  }
+  .personalInfo {
+    .mat-list, .mat-nav-list, .mat-selection-list {
+      padding-top:0px;
+    }
+  }
+  ::ng-deep .navigationStepper .mat-horizontal-stepper-header-container .mat-horizontal-stepper-header{
+    pointer-events: none !important;
+  }
+  .closeimg{
+    float:right;
+    width: 14px;
+    height: 14px;  
+    margin: 15px;
+  }
+  .tabs>::ng-deep .mat-figure{
+    align-items: flex-start;
+    justify-content: flex-start;
+  }
+  .location,.workstation,.system,.operating,.processor,.comment {
+    color:$gray7
+  }
+  .locationinfo,.workstationinfo,.systeminfo,.Operatinginfo,.processorinfo,.commentinfo{
+    color:$gray8
+  }  
+  .tile-btn{
+    color:$gray8
+  }
+.mat-grid-list {   
+    margin: 0px auto;
+    align-items: center;
+    width: 83%;
+}
+.emailid,.empid {
+    cursor: default;
+}  
+.firsttile{
+  height: 75px;
+  border :1px solid #EDECEC;  
+}
+.secondtile{
+  height: 82px;
+  border-bottom:none;
+}
+.thirdtile {
+  height: 82px;
+  border-bottom:none;
+}

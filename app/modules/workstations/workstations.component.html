@@ -1,0 +1,9 @@
+<div fxLayout="column" fxFlex>
+  <div fxFlex>
+    <app-header [title]='title' [username]='userName' [details]='userDetails'></app-header>
+  </div>
+    <div class="data" fxFlex>
+      <router-outlet></router-outlet>
+    </div>
+  <app-footer></app-footer>
+</div>

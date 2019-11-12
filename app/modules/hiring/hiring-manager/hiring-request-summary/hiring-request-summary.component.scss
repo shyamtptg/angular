@@ -1,0 +1,88 @@
+.summary-details {
+  background: #ffffff;
+  margin: 0.7em 0 0.7em 0.7em;
+  padding: 0.7em;
+  box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.10);
+}
+
+.summary-edit-icon {
+  margin: 0.7em 0 0 0;
+  font-size: 1.2em;
+  cursor: pointer;
+  color: #4a4a4a;
+}
+
+.summary-edit-icon:hover {
+  text-decoration: none;
+}
+
+.summary-heading {
+  font-family: $font-family;
+  font-size: 14px;
+  color: #000000;
+  letter-spacing: $letter-spacing;
+  text-align: left;
+  font-weight: bold;
+}
+
+.labelText {
+  font-family: $font-family;
+  font-size: 14px;
+  color: #575757;
+  letter-spacing: $letter-spacing;
+  text-align: left;
+  font-weight: $font-weight;
+}
+
+.summary-details-text {
+  font-family: $font-family;
+  font-size: 14px;
+  color: #575757;
+  letter-spacing: $letter-spacing;
+  text-align: left;
+}
+
+.summary-date-icon {
+  color: #767676;
+  width: 19px;
+  height: 20px;
+}
+
+.divider {
+  background: #d0cece;
+  height: 1.2px;
+  margin: 0 0 1em 0;
+}
+
+.summary-button {
+  border-radius: 2px;
+  min-width: 72px;
+  height: 42px;
+  margin-left: 0.5em;
+}
+
+.summary-cancel-button {
+  @extend .summary-button;
+  color: #ffffff;
+  background: #9b9b9b;
+}
+
+.summary-save-button {
+  @extend .summary-button;
+  color: #ffffff;
+  background: rgba(39, 70, 98, 0.96);
+}
+
+.summary-submit-button {
+  @extend .summary-save-button;
+}
+
+button[ng-reflect-icon="fa-check"] {
+  @extend .summary-save-button;
+  background: rgba(39, 70, 98, 0.96) !important;
+}
+
+button[ng-reflect-icon="fa-close"] {
+  @extend .summary-cancel-button;
+  background: #9b9b9b !important;
+}

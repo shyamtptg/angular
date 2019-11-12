@@ -1,0 +1,117 @@
+@import './../../../assets/scss/colors.scss';
+@import './../../../assets/scss/fonts.scss';
+@import './../../../assets/scss/variables.scss';
+
+.ms-header {
+    background-color: $pure-white;
+    box-shadow: 0 2px 10px 0 rgba(0,0,0,0.1);
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+    padding: $space-2x $space-6x;
+    font-family: 'Lato';
+
+    .app-name {
+        color: $orange;
+        cursor: default;
+        @extend .app-head-text;
+    }
+    .dashboard-name {
+        color: $dark-gray;
+        cursor: default;
+        border-left: 2px solid $gray5;
+        @extend .plain-text;
+    }
+    
+    .fa-angle-down {
+        color: $orange;
+        font-size: 22px;
+        vertical-align: middle;
+    }
+    .user-image {
+        width: 35px;
+        height: 35px;
+        background: $gray5;
+        vertical-align: middle;
+        text-align: center;
+        padding-top: 10px;
+    }
+
+    .back-btn-wrapper {
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 25px;
+        background-color: $light-gray;
+        border-right: 2px solid $gray6;
+        text-align: center;
+        cursor: pointer;
+
+        span {
+            position: relative;
+            text-align: center;
+            font-size: 24px;
+            top: 12px;
+        }
+
+        &:hover {
+            background-color: $gray6;
+        }
+    }
+
+    .open > .dropdown-menu {
+        right: 0;
+        left: auto;
+    }
+    .user-preferences {
+    
+        li {
+            padding: 0 $space-2x;
+            cursor: pointer;
+            span {
+                &.fa {
+                    padding-right: $space-1x;
+                    color: $orange;
+                }
+            }
+            &:hover {
+                background-color: $gray6;
+            }
+        }
+    }
+
+    .app-launcher {
+        cursor: pointer;
+        padding: $space-1x;
+        border-radius: $border-radius;
+        color: $orange;
+        background-color: $pure-white;
+        &:hover {
+            background-color: $orange-8;
+            color: $pure-white;
+        }
+    }
+    .app-launcher-wrapper {
+        position: absolute;
+        height: calc(100vh);
+        top: 0;
+        left: 0;
+        width: 380px;
+        padding: $space-2x;
+        background-color: $pure-white;
+        box-shadow: 0 0 15px 0 rgba(0, 0, 0, 0.3);
+        .app-launcher {
+            margin: $space-1x $space-4x;
+        }
+        .module-tiles {
+            display: block;
+            .module-tile {
+                width: 100px;
+                float: left;
+                margin: $space-2x;
+            }
+        }
+    }
+}

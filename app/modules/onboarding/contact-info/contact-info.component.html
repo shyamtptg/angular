@@ -1,0 +1,160 @@
+<form class="contactformwidth p-l-10x" [formGroup]="contactInfoFormGroup">
+    <div class="fullwidth" cellspacing="0" >
+        <div fxLayout="column" >
+            <div fxLayout="row">
+                <div>
+                    <h4  class="addresheading p-t-6x">Present Address</h4>
+                </div>
+            </div>
+            <div fxLayout="row">
+                <div class="address">
+                    <mat-form-field>
+                        <input matInput placeholder="Address" formControlName="address" required name="address" [errorStateMatcher]="matcher">                            
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" class="pincode" fxLayoutGap="25px">
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Pincode" formControlName="pincode" required name="pincode" [errorStateMatcher]="matcher">                            
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field class="country">
+                        <mat-select required placeholder="Country" (change)="getstates(country)" [(value)]="country" formControlName="country" name="country" [errorStateMatcher]="matcher">
+                            <mat-option *ngFor="let country of countries" [value]="country">
+                                {{country}}
+                            </mat-option>                            
+                        </mat-select>
+                        <span class="arrowicon">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                        </span>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" class="state m-t-1x"  fxLayoutGap="20px">
+                <div>
+                    <mat-form-field>
+                        <mat-select required placeholder="State" formControlName="state" (change)="getcities(state)" [(value)]="state" required name="state" [errorStateMatcher]="matcher">
+                            <mat-option *ngFor="let state of statenames" [value]="state">
+                                {{state}}
+                            </mat-option>                                
+                        </mat-select>
+                        <span class="arrowicon">
+                            <mat-icon>keyboard_arrow_down</mat-icon>
+                        </span>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <mat-select required placeholder="City" formControlName="city" required name="city" [errorStateMatcher]="matcher">
+                            <mat-option *ngFor="let city of currentCities" [value]="city">
+                                {{city}}
+                            </mat-option>                                
+                        </mat-select>
+                        <span class="arrowicon">
+                            <mat-icon>keyboard_arrow_down</mat-icon>
+                        </span>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" class="Permanentaddress m-t-5x joined-text"  fxLayoutGap="212px">
+                <div>
+                    <h4>Permanent Address</h4>
+                </div>
+                <div>
+                    <p>
+                        <mat-checkbox class="checkpresent small-font" formControlName="permanentAddressSameAsCurrentAddress" (change)="changeaddress($event)"><span>Same as Present Address</span></mat-checkbox>
+                    </p>
+                </div>
+            </div>                
+
+            <div *ngIf="addressCheck">
+                <div fxLayout="row">
+                    <div class="address">
+                        <mat-form-field>
+                            <input matInput placeholder="Address" name="address" formControlName="address1" [errorStateMatcher]="matcher">                                   
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" class="pincode" fxLayoutGap="25px">
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Pincode"  name="pincode"  formControlName="pincode1" [errorStateMatcher]="matcher">                                
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="country">
+                            <mat-select required placeholder="Country"  name="country1" (change)="changecountry(country1)"  formControlName="country1" [(value)]="country1" [errorStateMatcher]="matcher">
+                                <mat-option *ngFor="let country1 of countries" [value]="country1">
+                                    {{country1}}
+                                </mat-option>                                
+                            </mat-select>
+                            <span class="arrowicon">
+                                    <mat-icon>keyboard_arrow_down</mat-icon>
+                            </span>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" class="state m-t-1x"  fxLayoutGap="20px">
+                    <div>
+                        <mat-form-field>
+                            <mat-select required placeholder="State"  name="state1" [(value)]="state1" (change)="getpermenentcities(state1)"  formControlName="state1" [errorStateMatcher]="matcher">
+                                <mat-option *ngFor="let state1 of permenentstatenames" [value]="state1">
+                                    {{state1}}
+                                </mat-option>                                
+                            </mat-select>
+                            <span class="arrowicon">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </span>
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <mat-select required placeholder="City"  name="city1"  formControlName="city1" [errorStateMatcher]="matcher">
+                                <mat-option *ngFor="let city1 of permenentCities" [value]="city1">
+                                    {{city1}}
+                                </mat-option>                                
+                            </mat-select>
+                            <span class="arrowicon">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </span>
+                        </mat-form-field>
+                    </div>
+                </div>
+            </div>
+            <div fxLayout="row">
+                <div>
+                    <h4 class="contactdetails joined-text">My Contact Details</h4>
+                </div>
+            </div>
+            <div fxLayout="row" class="mobilenumber m-t-4x"  fxLayoutGap="20px">
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Mobile Number" formControlName="mobileNumber" required name="mobileNumber" [errorStateMatcher]="matcher">                               
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Alternative Mobile" formControlName="alternativeMobile" name="alternativeMobile" [errorStateMatcher]="matcher">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div fxLayout="row" class="Personalcontact m-t-1x"  fxLayoutGap="18px">
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Personal Email ID" formControlName="personalEmailId" required name="personalEmailId" [errorStateMatcher]="matcher">                            
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Skype ID"formControlName="skypeId" name="skypeId">
+                    </mat-form-field>
+                </div>
+                <div class="nextbtn">
+                    <button class="ms-btn ms-btn-secondary-bordered"  [disabled]="!iscontactFormValid" (click)="gotoNext()">Next</button> 
+                </div>
+            </div>
+        </div>
+    </div>
+</form>

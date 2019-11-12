@@ -1,0 +1,110 @@
+{
+    "id": "1234567",
+    "displayName": "Suresh",
+    "recruiterName": "Gayatri",
+    "referenceName": "DileepKumar",
+    "personal": {
+        "firstName": "Suresh",
+        "middleName": "SVB",
+        "lastName": "Vasabhaktula",
+        "email": "svasabhaktula@innominds.com",
+        "mobileNumber": "1234567891",
+        "dateOfBirth": "01-01-2010",
+        "nationality": "Indian",
+        "address": {
+            "currentAddress": {
+                "id": "addressId",
+                "address1": "WaveRock Campus",
+                "address2": "Gachibowli",
+                "city": "Hyderabad",
+                "state": "Telangana",
+                "country": "India",
+                "zipcode": "500014"
+            }
+        },
+        "permanentAddressSameAsCurrentAddress": true,
+        "permanentAddress": {
+            "id": "addressId",
+            "address1": "WaveRock Campus",
+            "address2": "Gachibowli",
+            "city": "Hyderabad",
+            "state": "Telangana",
+            "country": "India",
+            "zipcode": "500014"
+        }
+    },
+    "professional": {
+        "basic": {
+            "workingStatus": "Active",
+            "employmentHistory": [
+                {
+                    "id": "34567182",
+                    "employerName": "ADP India Pvt Limited",
+                    "designation": "Senior Software Engineer",
+                    "fromDate": 12042012,
+                    "toDate": 30042015,
+                    "current": true
+                },
+                {
+                    "id": "678653342",
+                    "employerName": "CA Technologies",
+                    "designation": "Software Engineer",
+                    "fromDate": 16062008,
+                    "toDate": 10042012,
+                    "current": false
+                }
+            ],
+            "currentWorkLocation": "Hyderabad",
+            "noticePeriod": "noticePeriod-11",
+            "currentCTC": "currentCTC",
+            "expectedCTC": "expectedCTC",
+            "passportDetails": "passportDetails-11",
+            "comments": "comments"
+        },
+        "advanced": {
+            "totalExperienceInYears": 9,
+            "relevantExperienceInYears": 9,
+            "unemployed": false,
+            "employmentType": {
+                "id": 1234455,
+                "name": "PERMANENT"
+            },
+            "expectedJoiningDate": 10012017,
+            "reasonsForChange": "Better Career Prospects",
+            "preferredLocation1": "Hyderabad",
+            "preferredLocation2": "Bengaluru",
+            "status": "DRAFT"
+        },
+        "documents": [
+            {
+                "id": 12112122,
+                "profileId": 76543322,
+                "title": "3 months Payslips",
+                "description": "Last 3 month pay slips",
+                "documentPath": "documents.com/docs/123455",
+                "signature": "signature",
+                "ownerId": "ownerId",
+                "documentType": {
+                    "id": 1234432,
+                    "name": "payslips"
+                }
+            },
+            {
+                "id": 9865221,
+                "profileId": 542122,
+                "title": "6 months Bank Statement",
+                "description": "6 months bank statement",
+                "documentPath": "documents.com/docs/67133",
+                "signature": "signature",
+                "ownerId": "ownerId",
+                "documentType": {
+                    "id": 2131234,
+                    "name": "Account statement"
+                }
+            }
+        ]
+    },
+    "skills": {
+        "skillSet": []
+    }
+}

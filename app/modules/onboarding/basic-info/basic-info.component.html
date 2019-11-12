@@ -1,0 +1,128 @@
+<form class="formwidth p-t-6x p-l-10x" [formGroup]="basicInfoFormGroup" >
+        <div class="fullwidth" cellspacing="0" >
+            <div fxLayout="column" fxLayoutGap="25px">
+                <div fxLayout="row"  >
+                    <div>
+                        <mat-form-field>
+                            <input matInput placeholder="First Name" formControlName="firstName" required  name="firstName" [errorStateMatcher]="matcher" >                       
+                            <mat-error class="error-message" *ngIf="basicInfoFormGroup.get('firstName').hasError('required')"></mat-error>  
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="40px">
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Middle Name" formControlName="MiddleName" name="MiddleName" [errorStateMatcher]="matcher">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="Last Name" formControlName="lastName" required name="lastName" [errorStateMatcher]="matcher">                                    
+                        </mat-form-field>
+                    </div>    
+                </div>
+                <div fxLayout="row">
+                    <div>
+                        <mat-radio-group formControlName="gender"  required>
+                            <div class="gender small-font">Gender<span class="genderrequire">*</span></div>
+                            <div class="radiogroup">
+                                <mat-radio-button value="M" class="male">Male</mat-radio-button>
+                                <mat-radio-button value="F" class="female p-l-4x">Female</mat-radio-button>    
+                            </div>                                
+                        </mat-radio-group>    
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="40px">
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="father Name" formControlName="fatherName" name="fatherName" [errorStateMatcher]="matcher">
+                        </mat-form-field>    
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input matInput type="text" placeholder="mother Name" formControlName="motherName"  name="motherName" [errorStateMatcher]="matcher">                            
+                        </mat-form-field>    
+                    </div>
+                </div>
+                <div fxLayout="row" fxLayoutGap="40px">
+                    <div>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="dobRecords" required formControlName="dateOfBirthRecords" placeholder="Date of Birth (Records)" [errorStateMatcher]="matcher">
+                            <mat-datepicker-toggle matSuffix [for]="dobRecords"></mat-datepicker-toggle>
+                            <mat-datepicker #dobRecords></mat-datepicker>                                
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field>
+                            <input matInput [matDatepicker]="dobActual" formControlName="dateOfBirthActual" placeholder="Date of Birth (Actual)" >
+                            <mat-datepicker-toggle matSuffix [for]="dobActual"></mat-datepicker-toggle>
+                            <mat-datepicker #dobActual></mat-datepicker>
+                        </mat-form-field>    
+                    </div>    
+                </div>
+                <div fxLayout="row" fxLayoutGap="40px">
+                    <div>
+                        <mat-form-field class="statusdropdown">
+                            <mat-select required placeholder="Marital Status" formControlName="maritalStatus" name="maritalStatus" [errorStateMatcher]="matcher">
+                                <mat-option *ngFor="let status of status" [value]="status.value">
+                                    {{status.viewValue}}
+                                </mat-option>                           
+                            </mat-select>
+                            <span class="arrowicon">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </span>
+                        </mat-form-field>                        
+                    </div>
+                    <div>
+                        <mat-form-field class="bloodGroupdropdown"> 
+                            <mat-select required placeholder="Blood Group" name="bloodGroup" formControlName="bloodGroup" [errorStateMatcher]="matcher">
+                                <mat-option *ngFor="let bloodGroup of bloodGroups" [value]="bloodGroup.value">
+                                    {{bloodGroup.viewValue}}
+                                </mat-option>
+                            </mat-select>
+                            <span class="arrowicon">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </span>                       
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row" >
+                    <div>
+                        <mat-form-field class="relocationdropdown">
+                            <mat-select placeholder="Relocation" name="relocation" formControlName="relocation">
+                                <mat-option *ngFor="let relocation of relocation" [value]="relocation.viewValue">
+                                    {{relocation.value}}
+                                </mat-option>
+                            </mat-select>
+                            <span class="arrowicon">  
+                                <mat-icon>keyboard_arrow_down</mat-icon>                            
+                            </span>
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div fxLayout="row"  fxLayoutGap="40px" >
+                    <div>
+                        <mat-form-field  class="vehiclenumber">
+                            <input matInput type="text" placeholder="Vehicle Number" formControlName="vehicleNumber"  name="vehicleNumber">
+                        </mat-form-field>
+                    </div>
+                    <div>
+                        <mat-form-field class="vehicledropdown p-t-2x">
+                            <mat-select placeholder="Vehicle Type" name="vehicleType" formControlName="vehicleType">
+                                <mat-option *ngFor="let vehicleType of vehicleTypes" [value]="vehicleType.value">
+                                    {{vehicleType.viewValue}}
+                                </mat-option>                           
+                            </mat-select>
+                            <span class="arrowicon">
+                                <mat-icon>keyboard_arrow_down</mat-icon>
+                            </span>
+                        </mat-form-field>
+                    </div>
+                    <div class="next-btn">
+                        <button class="ms-btn ms-btn-secondary-bordered"  [disabled]="!isBasicFormValid" (click)="gotoNext()">Next</button> 
+                    </div>
+                </div>
+            </div>
+        </div>  
+    
+</form>

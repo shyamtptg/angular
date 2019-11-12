@@ -1,0 +1,142 @@
+<form *ngIf="detailsFrmHiringSummaryData">
+	<div class="row summary-details">
+		<div class="col-md-11">
+			<p class="summary-heading">PRIMARY HIRING DETAILS</p>
+			<div class="row">
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="hiringFor">Hiring For</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.primaryHiringDetails.hiringFor}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="clientName">Client Name</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.primaryHiringDetails.clientName}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="department">Department</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.primaryHiringDetails.department}}</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="hiringType">Hiring Type</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.primaryHiringDetails.hiringType}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="hiringManager">Hiring Manager</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.primaryHiringDetails.hiringManager}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="priority">Priority</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.primaryHiringDetails.priority}}</div>
+				</div>
+			</div>
+		<!--<div class="row">
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="model">Model</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.primaryHiringDetails.model}}</div>
+				</div>
+			</div>-->
+		</div>
+		<div class="col-md-1">	
+			<a class="glyphicon glyphicon-pencil summary-edit-icon"></a>
+		</div>
+	</div>
+	<div class="row summary-details">
+		<div class="col-md-11">
+			<p class="summary-heading">SECONDARY HIRING DETAILS</p>
+			<div class="row">
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="practice">Practice</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.secondaryHiringDetails.practice}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="competency">Competency</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.secondaryHiringDetails.competency}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="workLocation">Work Location</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.secondaryHiringDetails.workLocation}}</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="experienceReq">Experience Req(Yrs)</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.secondaryHiringDetails.experienceReq.from}} to {{detailsFrmHiringSummaryData.secondaryHiringDetails.experienceReq.to}} Yrs</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="expectedRole">Expected Role</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.secondaryHiringDetails.expectedRole}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="numberOfResources">Number Of Resources</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.secondaryHiringDetails.numberOfResources}}</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="expectedStartDate">Expected Start Date</label>
+                    <div class="summary-details-text"><span class="glyphicon glyphicon-calendar summary-date-icon"></span>{{detailsFrmHiringSummaryData.secondaryHiringDetails.expectedStartDate}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="model">Model</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.secondaryHiringDetails.model}}</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="jobDescription">Job Description</label>
+                    <div class="summary-details-text">{{detailsFrmHiringSummaryData.secondaryHiringDetails.jobDescription}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<a class="glyphicon glyphicon-pencil summary-edit-icon"></a>
+		</div>
+	</div>
+	<div class="row summary-details">
+		<div class="col-md-11">
+			<p class="summary-heading">INTERVIEW PANEL(S)</p>
+			<div *ngFor="let panel of panelList">
+			<p class="summary-heading">PANEL {{panel.panelNumber}} - {{panel.name}}</p>
+			<div class="row">
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="Level">Level</label>
+                    <div class="summary-details-text">{{panel.level}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="panelMembers">Panel Members</label>
+                    <div class="summary-details-text">{{panel.panelMembers && panel.panelMembers.join(', ')}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="SelectionCriterion">Selection Criterion</label>
+                    <div class="summary-details-text">{{panel.selectionCriterion && panel.selectionCriterion.join(', ')}}</div>
+				</div>
+				<!--<div class="col-md-4 form-group">
+					<label class="labelText" for="practice">Practice</label>
+                    <div class="summary-details-text">{{panel.practice}}</div>
+				</div>
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="design">Design</label>
+                    <div class="summary-details-text">{{panel.department}}</div>
+				</div>-->
+			</div>
+			<!--<div class="row">
+				<div class="col-md-4 form-group">
+					<label class="labelText" for="expectedStartDate">Interview Date</label>
+                    <div class="summary-details-text"><span class="glyphicon glyphicon-calendar summary-date-icon"></span>{{panel.interviewDate}}</div>
+				</div>
+			</div>-->
+			<div class="divider"></div>
+			</div>
+		</div>
+		<div class="col-md-1">
+			<a class="glyphicon glyphicon-pencil summary-edit-icon"></a>
+		</div>
+	</div>
+	<div class="pull-right summary-btns">
+    <button class="summary-cancel-button">Cancel</button>
+    <!--<button class="summary-save-button">Save</button>-->
+    <button class="summary-save-button" (click)="loadInterviewPanels()">Back</button>
+    <button class="summary-submit-button" (click)="confirmSubmit()">Submit</button>
+</div>
+</form>

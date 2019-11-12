@@ -1,0 +1,72 @@
+<div class="profile-screening-title">
+    <div class="row profile-details">
+        <div class="col-md-12" style="padding-left: 6px;margin-left:-1.2em;margin-bottom:11px">
+            <div class="dropdrown-main no-padding col-md-12">
+                <div class="no-padding col-md-3">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="hiringrequest" class="form-control" [(ngModel)]="hiringRequestId" (change)="loadNeedsByHiringId()">
+                        <option value="">Select Hiring Request</option>
+                        <option *ngFor="let hiringRequest of hiringRequestOptions" [value]="hiringRequest.id">{{hiringRequest.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-3">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="hiringneed" class="form-control" [(ngModel)]="hiringRequestNeedId" (change)="filterChanged()">
+                        <option value="">Select Hiring Request Need</option>
+                        <option *ngFor="let hiringNeed of hiringNeedOptions" [value]="hiringNeed.id">{{hiringNeed.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-3">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="priority" class="form-control" [(ngModel)]="noticePeriod" #noticePeriodRef="ngModel" (change)="filterChanged()">
+                            <option value="ALL">Select Notice Period</option>
+                            <option *ngFor="let noticePeriod of noticePeriodOptions" [value]="noticePeriod.code">{{noticePeriod.description}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-3">
+                    <div class="col-md-12 col-sm-12">
+                        <!--<select name="status" class="form-control" [(ngModel)]="status" #statusRef="ngModel" (change)="filterChanged()">
+                            <option value="ALL">Select Status</option>
+                            <option *ngFor="let status of statusOptions" [value]="status.code">{{status.description}}</option>
+                        </select>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="profile-screening-title">
+        <div class="no-padding col-md-6 col-sm-6 col-xs-9">
+            <p class="heading">PROFILES<span class="subheading"> | TOTAL {{totalRecords}}</span></p>
+        </div>
+        <div class="col-md-6 col-sm-6 col-xs-3">
+            <p class="heading">
+                <a class="pull-right" [hidden]="true"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a>
+            </p>
+        </div>
+    </div>
+</div>
+<div class="screening-profiles">
+    <ag-grid-angular class="ag-fresh grid_ag"
+    	[gridOptions]="gridOptions" 
+    	enableColResize
+    	enableSorting
+    	enableFilter
+    	rowSelection="single"
+    	paginationPageSize=20
+        rowDeselection=true
+    	(selectionChanged)="checkModes()"
+    	(gridReady)="onGridInitialize()"
+        (gridSizeChanged)="resizeColumns()"
+        >
+     </ag-grid-angular>
+     <nav class="grid_nav">
+        <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+    </nav>
+</div>
+<div class="pull-right grid_btn">
+    <button *ngIf="!commonService.hideFeature('VIEW_PROFILE_TIMELINE')" [disabled]="buttonModes.timeline" class="profile-screening-view-button" (click)="showProspectTimeline()">Show Timeline</button>
+    <button *ngIf="!commonService.hideFeature('VIEW_PROFILE')" [disabled]="buttonModes.open" class="profile-screening-view-button" (click)="showProfileDetails()">Open</button>
+</div>

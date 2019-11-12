@@ -1,0 +1,14 @@
+ ul {
+     li {
+         a {
+             color: grey;
+         }
+     }
+ }
+
+ .active-link {
+     font-family: $font-family;
+     color: mediumblue;
+     letter-spacing: $letter-spacing;
+     background: none !important;
+ }

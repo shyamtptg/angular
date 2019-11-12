@@ -1,0 +1,51 @@
+<div class="email-container">
+	<button type="button" [disabled]="!formValidationState" class="modal-details-btn" data-toggle="modal" [attr.data-target]="'#' + modalId">{{modalTitle}}</button>
+	<div class="modal" id="{{modalId}}" tabindex="-1" role="dialog" [attr.aria-labelledby]="modalId+ 'Label'">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="close">
+					<span aria-hidden="true" class="modal-close">&times;</span>
+					</button>
+					<h3 class="modal-title" [attr.id]="modalId+ 'Label'">New Message</h3>
+				</div>
+				<div class="modal-body">
+					<div class="panel panel-default">
+						<div class="panel-body message">
+							<form class="form-horizontal" role="form">
+								<div class="form-group">
+									<label for="to" class="col-sm-1 control-label">To:</label>
+									<div class="col-sm-11">
+										<input type="email" class="form-control email-address">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="cc" class="col-sm-1 control-label">CC:</label>
+									<div class="col-sm-11">
+										<input type="email" class="form-control email-address">
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="bcc" class="col-sm-1 control-label">BCC:</label>
+									<div class="col-sm-11">
+										<input type="email" class="form-control email-address">
+									</div>
+								</div>
+							</form>
+							<div class="col-sm-12">
+								<div class="form-group">
+								<p-editor class="email-editor" name="emailBody" placeholder="Click here to reply"></p-editor>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<button (click)="sendMail()" data-dismiss="modal" class="btn btn-secondary modal-details-btn">Send</button>
+				<button class="btn btn-default"><span class="fa fa-trash-o"></span></button>
+				<button class="btn btn-default"><span class="fa fa-paperclip"></span></button>
+			</div>
+		</div>
+	</div>
+</div>
+</div>

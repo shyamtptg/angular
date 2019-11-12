@@ -1,0 +1,50 @@
+.recruiter-hiring-requests {
+    // .hiring-requests-grid {
+    //     width: 97.6%;
+    //     margin: 0.5% 0 6% 1%;
+    //     height: 32em;
+    //     font-family: $font-family;
+    //     font-size: 13px;
+    //     color: #4a4a4a;
+    //     letter-spacing: $letter-spacing;
+    //     text-align: left;
+    // }
+    .hiring-requests-title {
+        // margin-left: 0.8em;
+    }
+    // .assigned-hiring-requests-btns {
+    //     margin-top: -5.8em;
+    // }
+    .hiring-requests-button {
+        border-radius: 2px;
+        min-width: 72px;
+        height: 42px;
+        @media (max-width: 1024px) {
+            margin-top: 3em;
+        }
+        @media (max-width: 768px) {
+            margin-top: 3em;
+        }
+        margin-right: 0.6em;
+    }
+    .hiring-requests-view-button {
+        @extend .hiring-requests-button;
+        color: #ffffff;
+        background: rgba(39, 70, 98, 0.96);
+        height: 35px;
+    }
+    .grid-download-icon {
+        margin-right: 1.1em;
+    }
+}
+
+@media (max-width: 767px) {
+    .prioritydropdrown-main {
+        .no-padding {
+            .col-xs-4,
+            .col-xs-8 {
+                padding: 0px;
+            }
+        }
+    }
+}

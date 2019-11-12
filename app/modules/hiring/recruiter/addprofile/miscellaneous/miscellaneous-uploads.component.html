@@ -1,0 +1,15 @@
+<div class="professional-details-form miscellaneous-uploads-main col-md-12">
+    <p>Upload documents like background verification etc.</p>
+	<div class="row col-md-12 col-sm-12 col-xs-12">
+		<div class="form-group" *ngFor="let document of addDocuments let i = index">
+			<upload-doc id="{{'confidentialDoc'+(i+1)}}" (onFileChange)="setFileData($event, ('OTHERS' + (i+1)))" [isUpload]="uploaded['OTHERS' + (i+1)]" (onUpload)="uploadDocument('OTHERS' + (i+1))" (onDelete)="deleteDocument('OTHERS' + (i+1))" [docTitle]="loadDocumentName('OTHERS' + (i+1))" [index]="i" (onRemove)="remove(i)" (onDownload)="downloadDocument('OTHERS' + (i+1))" [hideRemove]="true">
+			</upload-doc>
+		</div>
+	</div>
+	<div class="row col-md-12 col-sm-12 col-xs-12">
+		<div class="form-group add-confidential-item">
+			<span class="glyphicon glyphicon-plus add-more" (click)="addMore()"></span>
+			<span (click)="addMore()" style="cursor:pointer;">Add Item</span>
+		</div>
+	</div>
+</div>

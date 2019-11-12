@@ -1,0 +1,43 @@
+<div class="col-md-12 hiring-need-div"><span class="pull-left need-text"><span class="need-heading" style="padding-left:0.5em;">INCLUDE ADDITIONAL CTC LINE ITEMS</span></span><span class="pull-right"><a class="glyphicon glyphicon-chevron-right plus-icon" (click)="toggleHiringNeedDetails()"></a><a class="glyphicon glyphicon-chevron-down minus-icon" (click)="toggleHiringNeedDetails()"></a></span></div>
+<div hiringNeed class="config-details close">
+<table cellspacing="0" cellpadding="0" class="table" id="ToolsID">
+	<tbody>
+		<tr class="table-header">
+			<th class="col-md-4 col-xs-12 col-sm-4">Addon*</th>
+			<th class="col-md-4 col-xs-12 col-sm-4">Amount*</th>
+			<th class="col-md-4 col-xs-12 col-sm-4">Payment Period*</th>
+		</tr>
+		<ng-container *ngFor="let config of configList; let rowIndex=index">
+		<tr>
+			<td class="col-md-4 col-xs-12 col-sm-4">
+				<div>
+					<select class="form-control" id="lineItems" required name="lineItems" [disabled]="readonly" [(ngModel)]="config && config.code">
+						<option *ngFor="let lineItem of lineItems" [value]="lineItem.code">{{lineItem.description}}</option>
+					</select>
+				</div>
+			</td>
+			<td class="col-md-4 col-xs-12 col-sm-4">
+				<input class="form-control" id="amount" type="text" [(ngModel)]="config && config.amount" [readonly]="readonly" required name="amount" placeholder="Monthly amount" (keypress)="restrictNumeric($event)" autocomplete="off" />
+			</td>
+			<td class="col-md-4 col-xs-5 col-sm-5">
+				<div>
+					<select class="form-control" id="paymentPeriods" required name="paymentPeriods" [disabled]="readonly" [(ngModel)]="config && config.paymentPeriod && config.paymentPeriod.code">
+						<option *ngFor="let paymentPeriod of paymentPeriods" [value]="paymentPeriod.code">{{paymentPeriod.description}}</option>
+					</select>
+				</div>
+			</td>
+			<td class="col-md-2 col-xs-2 col-sm-2">
+				<span [className]="!readonly?'delete-icon':'hide-element' " (click)="deleteLineItem(rowIndex)"></span>
+			</td>
+		</tr>
+		<tr>
+		  <td>
+			<textarea name="lineItemDescription" rows=2 placeholder="Enter description about the line item" class="form-control" [readonly]="readonly" style="width:311%;margin-top:-0.3em;margin-bottom:1em;" [(ngModel)]="config.lineItemDescription"></textarea>
+		  </td>
+		</tr>
+		</ng-container>
+	</tbody>
+</table>
+<span [className]="!readonly?'glyphicon glyphicon-plus add-more':'hide-element' "  (click)="addLineItem()" disabled></span>
+<span [className]="!readonly?'pointer-icon':'hide-element' "(click)="addLineItem()">Add Item</span>
+</div>

@@ -1,0 +1,161 @@
+.professional-details-form {
+    padding: 15px 20px 0 10px;
+    .cancel-upload a,
+    .working-status-radio .radio-inline {
+        font-family: $font-family;
+        font-size: 13px;
+        letter-spacing: $letter-spacing;
+        font-weight: normal;
+    }
+    .professional-row-container {
+        margin-bottom: 20px;
+        .addresscheck {
+            margin-top: -10px;
+        }
+    }
+    .professional-label-text {
+        font-family: $font-family;
+        font-size: 13px;
+        color: #575757;
+        letter-spacing: $letter-spacing;
+        text-align: left;
+        font-weight: normal;
+    }
+    .professional-details-text {
+        font-family: $font-family;
+        font-size: 13px;
+        color: #575757;
+        letter-spacing: $letter-spacing;
+        text-align: left;
+        font-weight: normal;
+    }
+    .form-horizontal {
+        .form-group {
+            margin-left: 5px !important;
+        }
+        .control-label {
+            text-align: left;
+        }
+    }
+    .visa-details {
+        font-family: $font-family;
+        font-size: 13px;
+        color: #575757;
+        letter-spacing: $letter-spacing;
+        text-align: left;
+        padding-left: 1em;
+        font-weight: normal;
+    }
+    .image-preview-input {
+        position: relative;
+        overflow: hidden;
+        margin: 0px;
+        color: #333;
+        background-color: #fff;
+        border-color: #ccc;
+    }
+    .image-preview-input input[type=file] {
+        position: absolute;
+        top: 0;
+        right: 0;
+        margin: 0;
+        padding: 0;
+        font-size: 20px;
+        cursor: pointer;
+        opacity: 0;
+        filter: alpha(opacity=0);
+    }
+    .preview-input-title {
+        margin-left: 2px;
+    }
+    .resume-upload-button {
+        margin-top: 0.9em;
+        font-family: $font-family;
+        font-size: 13px;
+        color: #ffffff;
+        letter-spacing: $letter-spacing;
+        line-height: 2em;
+        text-align: center;
+        font-weight: normal;
+    }
+    .remove-resume {
+        margin: 2.2em 0 2em 0.5em;
+        line-height: 2.3;
+    }
+    .professional-upload-btn {
+        background: rgba(30, 52, 72, 0.96);
+        border-radius: 2px;
+        width: 70px;
+        height: 35px;
+        line-height: 21px;
+        @extend .resume-upload-button;
+    }
+    .resume_btn {
+        margin-top: 13.5px !important;
+        height: 33px !important;
+        border-radius: 4px;
+    }
+    .cancel-upload {
+        color: rgba(30, 52, 72, 0.96);
+        margin: 2.2em 0 0 0.5em;
+    }
+    .professional-btn-grp {
+        margin: 0 0 0.5em 0;
+        .btn {
+            font-family: $font-family !important;
+            font-size: 13px !important;
+            letter-spacing: $letter-spacing!important;
+            font-weight: normal;
+        }
+    }
+    .form-control[readonly] {
+        background-color: #ffffff;
+    }
+    input[disabled] {
+        cursor: not-allowed !important;
+    }
+    .close {
+        margin-right: 0.5em;
+    }
+    .referral-show {
+        border-top: 1px solid #d4d4d4;
+        padding-top: 15px;
+    }
+    .resume-title {
+        padding: 0px 15px;
+        position: relative;
+        top: -15px;
+        margin-bottom: 0px;
+    }
+    .ctc-words {
+        font-size: 12px;
+        position: relative;
+        top: 3px;
+    }
+    .willingtorelocate-locations {
+        padding-top: 10px;
+    }
+    .willingtorelocate_text {
+        font-size: 13px;
+        position: relative;
+        top: -2px;
+    }
+    .selectdisable {
+        pointer-events: none;
+    }
+    .referralListItem {
+        list-style: none;
+        padding-left: 7px;
+        font-size: 12px
+    }
+    .referralListItem:hover {
+        background: dodgerblue;
+        color: white;
+    }
+    .ui-autocomplete {
+        font-size: 12px;
+    }
+    .ui-autocomplete .ui-autocomplete-input {
+        padding-left: 1em;
+    }
+}

@@ -1,0 +1,26 @@
+.search-details {
+    .search_btns { margin-top: 20px !important; }
+    .search-requests-title {
+        margin-left: 0.8em;
+    }
+    .search-request-button {
+        border-radius: 2px;
+        min-width: 72px;
+        height: 35px;
+        margin: 0 0 0.5em 0.5em;
+    }
+    .search-request-view-button {
+        @extend .search-request-button;
+        color: #ffffff;
+        background: rgba(39, 70, 98, 0.96);
+    }
+    .grid-download-icon {
+        margin-right: 0em;
+    }
+    .search-form {
+        padding-top: 15px;
+    }
+    .search-details-buttons {
+        padding-top: 21px;
+    }
+}

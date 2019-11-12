@@ -1,0 +1,27 @@
+.verified-details {
+    
+    .profile-details {
+        margin: 1em 0 0 0;
+    }
+    .verified-requests-title {
+        margin-left: 0.8em;
+    }
+    
+    .verified-requests-button {
+        border-radius: 2px;
+        min-width: 72px;
+        height: 35px;
+        margin-left: 0.5em;
+    }
+    .verified-requests-offer-button {
+        @extend .verified-requests-button;
+        color: #ffffff;
+        background: rgba(39, 70, 98, 0.96);
+    }
+    .grid-download-icon {
+        margin-right: 1.2em;
+    }
+    .profile-details-buttons {
+        margin: 1.7em 0 0 0;
+    }
+}

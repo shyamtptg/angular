@@ -1,0 +1,29 @@
+<div class="hiring-feature img-responsive">
+<app-header [title]='title' [username]='userName' [details]='userDetails'></app-header>
+<div class="container hiring">
+	<div class="container hiring-manager-container">
+		<div class="slide-navigation">
+			<slide-navigation></slide-navigation>
+		</div>
+		<div  class="left-navigation">
+			<div class="col-md-2 col-sm-2 col-xs-12 left-shadow left-sidebar">
+				<left-navigation></left-navigation>
+			</div>
+		</div>
+		<div class="col-md-10 col-sm-12 col-xs-12 left-shadow content-wrapper">
+			<div class="sub-header-container">
+				<div  class="slide-navigation">
+					<span class="pull-left"><i class="fa fa-bars toggle_menu"></i></span>
+				</div>
+				<div class="left-navigation">
+					<span class="pull-left"><i class="fa fa-bars fa-lg sidebaricon"></i></span>
+				</div>
+				<h4 class="sub-header">{{URLtitle}}</h4>
+			</div>
+			<div class="row prospect-header"></div>
+			<router-outlet></router-outlet>
+		</div>
+	</div>
+</div>
+<app-footer></app-footer>
+</div>

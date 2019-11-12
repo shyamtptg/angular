@@ -1,0 +1,38 @@
+.config-details {
+	.table-header {
+		th {
+		  border-top: none;
+		}
+	}
+	tbody>tr>td {
+		border-top: none;
+	}
+	.delete-icon {
+		right: 1.3em;
+		margin: 0.5em 0 0 0;
+		cursor:pointer;
+	}
+}
+.pointer-icon {
+  cursor:pointer;
+}
+.hide-element {
+	visibility: hidden;
+}
+
+@media only screen and (max-width: 767px) {
+ .hiring-need-div {
+  .pull-right {
+   .glyphicon-chevron-right {
+    margin: 5px 10px;
+   }
+  }
+ }
+ .config-details.open {
+  tr.ng-star-inserted {
+   textarea {
+    width: 100% !important;
+   }
+  }
+ }
+}

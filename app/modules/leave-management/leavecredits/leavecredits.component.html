@@ -1,0 +1,36 @@
+
+<div class="row">
+    <div class="form-group col-md-3" style="margin-top: 0.5em;">
+        <div class="form-group">
+            <label for="">Month</label>
+            <p-calendar required (ngModelChange)="selectDate($event)" readonlyInput="true" [(ngModel)]="DefaultDate" ngModel dateFormat="MM yy"
+                [minDate]="minDate" [maxDate]="maxDate" [disabledDays]="[0,6]" [disabledDates]=holidaysList [showIcon]=true name="from"
+                #from="ngModel"></p-calendar>
+        </div>
+        <div *ngIf="from.dirty && from.errrors" class="text-danger">
+            <div *ngIf="from.errors.required">
+                Date field can't be blank
+            </div>
+        </div>
+    </div>
+    <div class="col-md-offset-6 col-md-3">
+            <div class="row" style="margin-top:1.5em;">
+                <div class="col-md-7">
+                    <select (change)="exportData()" class="form-control export-as-dropdown">
+                        <option [disabled]="true" [selected]="export">Export As</option>
+                        <option>CSV</option>
+                    </select>
+                </div>
+            </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-12">
+        <ag-grid-angular #agGrid style="width:90%; height:330px;" enableColResize enableSorting enableFilter (gridReady)="onGridReady($event)"
+            [getRowHeight]="getRowHeight" [paginationPageSize]="paginationPageSize" class="ag-theme-fresh teamreqst-grid" (gridSizeChanged)="resizeColumns()"
+            [columnDefs]="columnDefs"></ag-grid-angular>
+    </div>
+    <nav class="grid-pagination">
+        <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages" (onPageChange)="paginate($event)"></p-paginator>
+    </nav>
+</div>

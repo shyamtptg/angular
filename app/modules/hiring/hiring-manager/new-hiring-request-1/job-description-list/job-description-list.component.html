@@ -1,0 +1,60 @@
+<div class="row jobdesc-dropdown">
+    <div class="col-xs-11">
+        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+            <label class="labelText" for="department">Department</label>
+            <select name="department" class="form-control" [(ngModel)]="filterData && filterData.departmentId" (change)="loadPracticesByDepartment()">
+                <option value="">All</option>
+                <option *ngFor="let department of departmentOptions" [value]="department.id">{{department.name}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+            <label class="labelText" for="practice">Practice</label>
+            <select name="practice" class="form-control" [(ngModel)]="filterData && filterData.practiceId" (change)="filterChanged()">
+                <option value="">All</option>
+                <option *ngFor="let practice of practiceOptions" [value]="practice.id">{{practice.name}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+            <label class="labelText" for="isDeprecated">Deprecated</label>
+            <div class="working-status-radio">
+                <label class="radio-inline">
+                    <input type="radio" name="isDeprecated" [(ngModel)]="filterData.isDeprecated" (change)="filterChanged()" [value]="true"> Yes
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="isDeprecated" [(ngModel)]="filterData.isDeprecated" (change)="filterChanged()" [value]="false"> No
+                </label>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="hiring-requests-title">
+    <div class="no-padding col-md-6 col-sm-6 col-xs-10">
+        <p class="heading">JOB DESCRIPTIONS<span class="subheading"> | TOTAL {{recordsCount}}</span></p>
+    </div>
+</div>
+<!--<div class="alert alert-warning alert-dismissible" role="alert" *ngIf="recordNotSelected">
+    <button type="button" class="close" (click)="this.recordNotSelected = false" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+    <strong *ngIf="recordNotSelected">Please select a record!</strong>
+</div>-->
+<div class="job-descriptions">
+    <ag-grid-angular #agGrid class="ag-fresh grid_ag"
+    	[gridOptions]="gridOptions" 
+    	enableColResize
+    	enableSorting
+    	enableFilter
+    	rowSelection="single"
+    	paginationPageSize=20
+        rowDeselection=true
+        (selectionChanged)="onSelection()"
+    	(gridReady)="onGridInitialize()"
+        (gridSizeChanged)="resizeColumns()">
+ 	</ag-grid-angular>
+    <nav class="grid_nav">
+        <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+    </nav>
+</div>
+<div class="pull-right grid_btn">
+    <button class="job-desc-update-button" [hidden]="commonService.hideFeature('UPDATE_JOB_DESCRIPTION')" (click)="editJobDescription()" [disabled]="isDisable">Edit</button>
+    <button class="job-desc-update-button" [hidden]="commonService.hideFeature('VIEW_JOB_DESCRIPTION')" (click)="viewJobDescription()" [disabled]="recordNotSelected">View</button>
+    <button class="job-desc-create-button" [hidden]="commonService.hideFeature('CREATE_JOB_DESCRIPTION')" (click)="navigateToJobDescriptionCreation()">Create</button>
+</div>

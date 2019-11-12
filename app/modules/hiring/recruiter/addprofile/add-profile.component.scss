@@ -1,0 +1,761 @@
+ .add-profile {
+     margin-left: -1px;
+     .container {
+         width: 90%;
+     }
+ }
+
+ .container .add-profile-container {
+     border-right: 1px solid #e5e5e5;
+     flex: 2;
+     margin-left: -6em;
+     .add-profile-header {
+         border: 1px solid #e5e5e5;
+     }
+     .nav-route-items {
+         padding-left: 0.7em !important;
+         margin: 1em 0 -0.5em 0;
+         li {
+             display: inline-block;
+             border-bottom: none !important;
+             font-family: $font-family !important;
+             font-size: 15px !important;
+             line-height: 40px;
+             letter-spacing: $letter-spacing;
+             font-weight: normal;
+             margin: 0 1em 0 0;
+         }
+     }
+     .attach-btn {
+         margin-bottom: 1em;
+     }
+     .button-text {
+         font-family: $font-family;
+         font-size: 12px;
+         color: #ffffff;
+         letter-spacing: $letter-spacing;
+         text-align: center;
+         font-weight: normal;
+     }
+     .login-register-btn {
+         background: rgba(30, 52, 72, 0.96);
+         border-radius: 2px;
+         height: 35px;
+         @extend .button-text;
+         margin-left: 10px;
+     }
+     .login-cancel-btn {
+         background: #9b9b9b;
+         border-radius: 2px;
+         height: 35px;
+         @extend .button-text;
+     }
+     .button-grp {
+         padding-right: 50px;
+     }
+     .active-link {
+         font-family: $font-family;
+         font-size: 15px;
+         line-height: 40px;
+         color: rgba(30, 52, 72, 0.96);
+         letter-spacing: $letter-spacing;
+         border-bottom: 3px solid rgba(39, 70, 98, 0.96);
+         background: none !important;
+     }
+     a:hover,
+     a:link {
+         text-decoration: none;
+         padding-bottom: 0.2em;
+     }
+     .link-active {
+         background: none !important;
+         border-left: none;
+     }
+     .hiring-details {
+         margin: 1em 0 0 0;
+         .labelText {
+             font-family: $font-family;
+             font-size: 13px;
+             font-weight: $font-weight;
+         }
+     }
+ }
+
+ .icondisable {
+     -webkit-appearance: none;
+     -moz-appearance: none;
+ }
+
+ select.icondisable::-ms-expand {
+     display: none;
+ }
+
+ @media only screen and (min-width: 500px) and (max-width: 767px) {
+     .res-hiringreqneed {
+         .table {
+             textarea {
+                 width: 100% !important;
+             }
+         }
+     }
+ }
+
+ @media only screen and (max-width: 767px) {
+     .add-profile {
+         .container {
+             width: 100%;
+             padding: 0px;
+         }
+         .add-profile-container {
+             margin-left: 0em;
+             padding: 0px;
+             ul.nav-route-items {
+                 margin-top: 0em;
+             }
+             .personalDetails-form {
+                 padding: 15px 10px 0 10px;
+             }
+             .professional-details-form {
+                 .professional-row-container {
+                     margin-bottom: 10px;
+                 }
+                 .resume-upload-button,
+                 .professional-upload-btn {
+                     margin-top: 0px !important;
+                     margin-left: 15px;
+                     .resume_btn {
+                         margin-top: 0px;
+                     }
+                 }
+                 .remove-resume {
+                     margin-top: 0px;
+                 }
+                 .resume-title a {
+                     padding-left: 15px;
+                 }
+             }
+             .skillset-add-category-button {
+                 margin: 0em 0 10px 0;
+             }
+             .skillset-container {
+                 padding: 0px;
+                 .skill-set {
+                     margin-left: 0em;
+                     .table {
+                         #experience {
+                            z-index: 9999;
+                            position: relative;
+                         }
+                     }
+                 }
+                 .category-name {
+                     font-size: 15px;
+                 }
+                 table th {
+                     font-size: 12px;
+                     vertical-align: middle !important;
+                 }
+             }
+             .attach-btn {
+                 margin-right: 15px;
+             }
+             .skillset-button-grp {
+                 margin-right: 15px;
+                 margin-bottom: 15px;
+             }
+             ul.nav-route-items {
+                 li {
+                     line-height: 20px;
+                     margin: 0 0.5em 0 0;
+                 }
+             }
+         }
+     }
+     .search-details {
+         .search-details-buttons {
+             padding: 0px 7px;
+         }
+     }
+     .timeline-container,
+     .offer-history-container {
+         padding: 0px !important;
+         .timeline-header {
+             margin-bottom: 40px;
+         }
+         ul.timeline {
+             li {
+                 margin-bottom: 10px;
+                 .timeline-panel {
+                     padding: 10px 10px;
+                     .timeline-title {
+                         font-size: 12px;
+                     }
+                     .timeline-body p {
+                         font-size: 8.6px;
+                         line-height: 14px;
+                     }
+                     .history-comment-time p {
+                         font-size: 8.6px;
+                         line-height: 14px;
+                         padding-top: 5px;
+                     }
+                 }
+             }
+         }
+     }
+     .recruiter-profiles {
+         .attach-div {
+             position: relative;
+             bottom: 0px;
+         }
+     }
+    //  .hiring-manager-container {
+    //      .res-shortlistbtns-main {
+    //          margin-top: -0.5em;
+    //          button {
+    //              min-width: auto !important;
+    //              height: auto !important;
+    //              margin-left: 0.5em !important;
+    //              padding: 3px 10px;
+    //              font-size: 11px;
+    //          }
+    //      }
+    //  }
+     .no-padding {
+         .heading {
+             font-size: 12px;
+         }
+     }
+    //  .selected-requests-btns {
+    //      button,
+    //      .selected-requests-notify-button {
+    //          min-width: auto;
+    //          height: auto;
+    //          margin-left: 0.5em;
+    //          padding: 3px 10px;
+    //          font-size: 11px;
+    //      }
+    //  }
+    //  .verified-requests-btns.res-prejoiningbtn-main {
+    //      margin-top: -5px !important;
+    //  }
+    //  .res-prejoiningbtn-main {
+    //      margin-top: -25px !important;
+    //      button {
+    //          min-width: auto !important;
+    //          height: auto !important;
+    //          margin-left: 0.5em !important;
+    //          padding: 3px 10px;
+    //          font-size: 11px;
+    //      }
+    //  }
+    //  .res-verifiedbtn-main,
+    //  .assign-executive-btns,
+    //  .offer-btns {
+    //      margin-top: -1em !important;
+    //      button {
+    //          min-width: auto !important;
+    //          height: auto !important;
+    //          margin-left: 0.5em !important;
+    //          padding: 3px 10px;
+    //          font-size: 11px;
+    //      }
+    //  }
+    //  .search-requests-btns {
+    //      margin-top: 0em !important;
+    //      button {
+    //          min-width: auto !important;
+    //          height: auto !important;
+    //          margin-left: 0.5em !important;
+    //          padding: 3px 10px;
+    //          font-size: 11px;
+    //      }
+    //  }
+     .profiles-btns {
+         margin-top: 0em !important;
+         @extend .search-requests-btns;
+     }
+     .res-profilescreeningbtn-main {
+         margin-top: -2em !important;
+         @extend .search-requests-btns;
+     }
+     .job-desc-btns,
+     .hiringreq-btns,
+     .hiring-requests-btns,
+     .all-hiring-requests-btns,
+     .grid_btn,
+     .fasttrack-offer-detail-tabs .search-details, {
+         button {
+             min-width: auto !important;
+             height: auto !important;
+             margin-left: 0.5em !important;
+             padding: 3px 10px;
+             font-size: 11px;
+             margin: 1px 0px !important;
+         }
+     }
+     .ag-body-container {
+         .ag-cell {
+             font-size: 11px;
+             padding: 3px 5px !important;
+         }
+     }
+     .ag-header-cell-text {
+         font-size: 12px !important;
+         padding: 0px 5px;
+     }
+     .res-prioritymain {
+         padding: 0px;
+     }
+     .modal-dialog {
+         .modal-content {
+             width: 300px;
+             .modal-title {
+                 font-size: 14px;
+             }
+         }
+     }
+     .ui-dialog-titlebar {
+         .ui-dialog-title {
+             font-size: 15px;
+         }
+     }
+     .assign-executive,
+     .all-hiring-requests,
+    //  .res-selectedreq-grid,
+    //  .res-readytoverify {
+    //      .grid-pagination {
+    //          top: 0em !important;
+    //      }
+    //  }
+     .offer .grid-pagination {
+         top: -2em !important;
+     }
+     .scheduled-interview-profiles {
+         .grid-pagination {
+             top: -1em !important;
+         }
+     }
+     .navbar-right {
+         li.user-profile.open {
+             .dropdown-menu {
+                 width: 300px;
+                 .logoutbtn {
+                     width: 100px;
+                 }
+                 .navbar-login-session {
+                     .changepswdbtn {
+                         width: 150px;
+                         margin: 0px auto;
+                         display: table;
+                     }
+                 }
+                 .divider {
+                     margin: 0px;
+                 }
+             }
+         }
+     }
+     .offer-letter-details {
+         .notification-container .notification {
+             height: auto !important;
+         }
+     }
+     .offer-detail-tabs {
+         ul.nav-pills {
+             li a {
+                 padding: 6px 10px;
+             }
+         }
+     }
+    //  .scheduled-interview-btns {
+    //      margin-top: -2em;
+    //  }
+     .recruiter-profiles {
+         .profiles-btns {
+             margin-top: -2em !important;
+         }
+     }
+     .recruiter-profile-details {
+         .profile-interview-btns {
+             margin: 0px;
+             float: right;
+             margin-right: 15px;
+         }
+         .skill-details {
+             .skillset-container {
+                 padding: 0px;
+                 .table-responsive {
+                     .table {
+                         margin-left: 0em !important;
+                     }
+                     .category-name {
+                         line-height: 20px !important;
+                     }
+                 }
+             }
+         }
+     }
+     p-dialog .ui-dialog {
+         width: 90% !important;
+         margin: 5% !important;
+         left: 0px !important;
+     }
+     .assign-dialog .ui-dialog-titlebar {
+         padding: 1.0em 1.5em 0em 1.5em !important;
+     }
+     .ui-dialog-content {
+         input {
+             margin: 0px 0 0.5em 0 !important;
+             height: 30px !important;
+         }
+         input[type="checkbox"] {
+             height: auto !important;
+         }
+         .btn-group {
+             button {
+                 margin: 2px;
+             }
+         }
+         .panel {
+             .panel-body {
+                 padding: 5px !important;
+             }
+         }
+         .ui-dialog-buttonpane {
+             button {
+                 margin: 1em .4em .5em 0 !important;
+                 padding: 3px 0px !important;
+                 height: auto !important;
+             }
+             .assign-executive-create-button {
+                 padding: 3px 8px !important;
+                 border: 0px;
+             }
+         }
+         .panel-body {
+             .table-container {
+                 .media {
+                     input[type="checkbox"] {
+                         height: 30px !important;
+                     }
+                 }
+             }
+         }
+     }
+     .schedule-interview-details {
+         padding: 0px;
+     }
+     .offerletter-details {
+         margin: 0px !important;
+         .offerletter-main-heading {
+             margin-bottom: 0px;
+         }
+         .offerletter-details {
+             margin: 0px;
+             .form-group {
+                 margin-bottom: 10px;
+             }
+         }
+         p-calendar {
+            z-index: 9999;
+            position: relative;
+         }
+     }
+     .res-hiringreqneed {
+         margin: 0px;
+         .hiring-need-div {
+             .pull-right {
+                 padding-top: 10px;
+             }
+         }
+         .config-details {
+             margin: 0px;
+             padding: 10px 0px;
+             .table-header {
+                 th {
+                     vertical-align: middle;
+                 }
+             }
+             .table {
+                 td.col-xs-12,
+                 td.col-xs-5,
+                 td.col-xs-2 {
+                     padding: 5px;
+                     select,
+                     input {
+                         padding: 5px 1px;
+                     }
+                     .delete-icon {
+                         right: -0.5em;
+                     }
+                 }
+                 textarea {
+                     width: 200% !important;
+                 }
+             }
+         }
+     }
+     .offer-letter-container.col-xs-12 {
+         padding: 0px !important;
+     }
+     .offer-detail-tabs tab .pane {
+         padding: 0.5em !important;
+     }
+    //  .assigned-hiring-requests-btns {
+    //      margin-top: -2.8em !important;
+    //  }
+     .search-profiles-grid {
+         .search-requests-btns {
+             margin-top: 0em !important;
+         }
+     }
+     .shortlisted-details {
+         .shortlisted-requests {
+             .grid-pagination {
+                 top: 0em !important;
+             }
+         }
+     }
+     .dashboard-card {
+         .heading {
+             font-size: 12px;
+         }
+     }
+     .hiring-request-need-details {
+         .config-details {
+             margin: 0px;
+             padding: 10px 0px;
+             .table-header {
+                 th {
+                     vertical-align: middle;
+                 }
+             }
+             .table {
+                 td.col-xs-12,
+                 td.col-xs-5,
+                 td.col-xs-2 {
+                     padding: 5px;
+                     select,
+                     input {
+                         padding: 5px 1px;
+                     }
+                     .delete-icon {
+                         right: -0.5em;
+                     }
+                 }
+                 textarea {
+                     width: 200% !important;
+                 }
+             }
+         }
+     }
+     .fasttrack-offer-detail-tabs {
+         tab {
+             .pane {
+                 padding: 1em 0em !important;
+             }
+         }
+     }
+     .mainHeader .innominds-logo {
+        margin-left: 23px;
+        width: 105px;
+     }
+     .hiring-feature .opacity_one {
+        position: fixed;
+        top: 11px;
+        color: #fff;
+        z-index: 9999999;
+        font-size: 18px;
+        line-height: 20px;
+        margin: 0px;
+     }
+     .hiring-feature .sidebar_menu {
+         top: 0;
+     }
+     .multi-select-dialog .ui-dialog-buttonpane {
+         margin: 0px !important;
+     }
+     .mainHeader .hiringModuleText {
+         font-size: 16px;
+     }
+    //  .offer .offers-grid {
+    //      top: 0em !important;
+    //  }
+    //  .offer-grid-btns {
+    //      margin-top: -0.5em !important
+    //  }
+    .multi-select-dialog .ui-dialog .ui-dialog-content {
+        margin: 0px 5px !important;
+    }
+    .noof-pages-text {
+        position: relative;
+        top: 2em;
+    }
+    .offer-detail-tabs {
+        ul.nav {
+            li a {
+                position: relative;
+                z-index: 9999;
+            }
+        }
+    }
+    .offer-letter {
+        height: auto !important;
+        #pdf-view {
+                height: auto !important;
+                position: relative;
+                overflow-x: auto;
+                min-height: 500px;
+            iframe {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                margin: 0;
+                border: none;
+                overflow-x: auto;
+                padding: 0px 20px;
+                min-width: 600px;
+                min-height: 600px !important;
+            }
+        }
+    }
+ }
+
+ @media only screen and (min-width: 768px) and (max-width: 1023px) {
+     .add-profile-container {
+         .personalDetails-form {
+             padding: 15px 0px 0 10px;
+         }
+     }
+     .recruiter-profiles {
+         .attach-div {
+             position: relative;
+             bottom: 0px;
+         }
+     }
+    //  .hiring-manager-container {
+    //      .res-shortlistbtns-main {
+    //          margin-top: -3em;
+    //      }
+    //  }
+    //  .verified-requests-btns,
+    //  .res-readyverifybtn-main {
+    //      margin-top: -3em !important;
+    //  }
+     .assign-executive,
+     .scheduled-interview-profiles,
+     .all-hiring-requests,
+    //  .res-selectedreq-grid,
+    //  .res-readytoverify {
+    //      .grid-pagination {
+    //          top: -2em !important;
+    //      }
+    //  }
+    //  .assign-executive-btns {
+    //      margin-top: -4.5em !important;
+    //  }
+     .offer .grid-pagination {
+         top: -3.5em !important;
+     }
+    //  .scheduled-interview-btns {
+    //      margin-top: -3em;
+    //  }
+     .attached-text {
+         position: relative;
+         bottom: 80px !important;
+     }
+     .shortlisted-details {
+         .shortlisted-requests {
+             .grid-pagination {
+                 top: -2em !important;
+             }
+         }
+     }
+     .mainHeader .innominds-logo {
+         margin-left: 60px;
+     }
+     .hiring-feature .opacity_one {
+        position: fixed;
+        top: 25px;
+        color: #fff;
+        z-index: 9999999;
+        font-size: 18px;
+        line-height: 20px;
+     }
+     .hiring-feature .sidebar_menu {
+         top: 0;
+     }
+     .fast_track_offers_text {
+         bottom: 0px !important;
+     }
+     .res-prioritymain, .prioritydropdrown-main, .all_hiring_req_main {
+         padding-bottom: 10px;
+     }
+     .job-desc-popup {
+         .ui-dialog.ui-widget {
+            width: 90% !important;
+            margin: 0 5% 0 5% !important;
+            left: 0px !important;
+         }
+     }
+ }
+
+ @media only screen and (min-width: 1024px) and (max-width: 1199px) {
+     .attached-text {
+         position: relative;
+         bottom: 65px !important;
+     }
+     .recruiter-profiles {
+         .grid-pagination {
+             top: -3em !important;
+         }
+     }
+     .assign-executive {
+         .grid-pagination {
+             top: -4em !important;
+         }
+     }
+     .shortlisted-details {
+         .shortlisted-requests {
+             .grid-pagination {
+                 top: -3em !important;
+             }
+         }
+     }
+     .assign-executive,
+     .all-hiring-requests,
+    //  .res-selectedreq-grid,
+    //  .res-readytoverify {
+    //      .grid-pagination {
+    //          top: -2em !important;
+    //      }
+    //  }
+    //  .hiring-manager-container {
+    //      .scheduled-interview-btns {
+    //          margin-top: -3em;
+    //      }
+    //  }
+     .offer .grid-pagination {
+         top: -3.5em !important;
+     }
+ }
+ @media only screen and (max-width: 560px) {
+ .spinner-style{
+     position: absolute;
+     left:10em;
+     top:20em;
+ }
+
+ }
+ .spinner-style .loader{
+    position: fixed;
+     }
+     .action-disabled {
+        pointer-events: none!important;
+          }
+     .show {
+        cursor: pointer;
+          }

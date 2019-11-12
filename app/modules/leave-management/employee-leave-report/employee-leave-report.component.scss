@@ -1,0 +1,115 @@
+.btn-apply{
+    width: 130px;
+    vertical-align: middle;
+    background-color: #2f4d68;
+    margin-left: 20px;
+    color: white;
+}
+
+.submit-section{
+    margin-top: 30px;
+    margin-left:100px;
+}
+
+.reminder{
+    margin-top: 20px;
+}
+
+.vertical-line {
+    border-left: 4px solid #000;
+    height: 500px;
+}
+
+.profile-picture{
+    position: absolute;
+    width:80px;
+    height:100px;
+    right:0px;
+}
+
+.leave_info{
+    display: inline-block;
+}
+.noData{
+    text-align: center;
+}
+.leave_info_text {
+    font-size: 24px;
+    font-weight: bold;  
+}
+
+.leaves-table{
+ margin-top:40px;
+}
+
+.leave-report-calendar {
+  margin-bottom:1em;
+  margin-top:0.3em;
+}
+.left-padding label {
+        display: inline-block;
+        width: 63px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        vertical-align: -12px;
+    }
+
+.left-padding {
+  padding-left:0.1em;
+}
+.year-filters-main{
+  padding-left:0.1em;
+  margin-top:1em;
+}
+.counting_main .col-sm-4 h3 {
+    margin: 0px;
+    font-size: 22px;
+    line-height: 36px;
+    text-align: center;
+  }
+  .counting_main .col-sm-4 p {
+      text-align: center;
+  }
+ .year_dropdown_main {
+    margin-left: -30px;
+  }
+  .year_sliders_main_text p {
+      color: #999;
+  }
+  .year_table_main {
+    background: white;
+    border: 1px solid #cfc0c0;
+    border-radius: 4px;
+    padding-right:0;
+  }
+  .year_table_main th, .year_table_main td {border: 0px !important;}
+  .year_dropdown_col { padding: 0px !important; }
+
+  progress {
+    width: 70%;
+    height: 4px;
+    margin-left: 0px;
+    background: rgb(141, 138, 138);
+  }
+  progress::-moz-progress-bar {
+    border-radius: 12px;
+    background: #6a44f6;
+  }
+  /* webkit */
+  @media screen and (-webkit-min-device-pixel-ratio:0) {
+  }
+
+   progress::-webkit-progress-value {  
+    border-radius: 12px;
+    background: rgb(77, 10, 235); 
+  }
+  @-moz-document url-prefix() {
+      progress {
+        width: 70%;
+        height: 6px;
+        margin-left: 0px;
+        background: rgb(141, 138, 138);
+        border:none;
+      }
+    }

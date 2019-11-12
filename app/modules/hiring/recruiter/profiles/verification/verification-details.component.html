@@ -1,0 +1,154 @@
+<form>
+    <div class="row verification-details">
+		<p class="verification-main-heading">VERIFICATION DETAILS</p>
+	</div>
+	<div class="row verification-details">
+		<div class="col-md-11">
+			<p class="verification-heading">Financial Details</p>
+			<div class="row">
+				<div class="col-md-6 form-group" *ngIf="verificationDeatils && verificationDeatils.citizenIdentity1">
+					<label class="labelText" for="panCard">{{verificationDeatils.citizenIdentity1Type}}</label>
+                    <div class="verification-details-text">{{verificationDeatils.citizenIdentity1}}</div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-11" *ngIf="verificationDeatils && verificationDeatils.referralDetails?.length > 0">
+			<p class="verification-heading">Reference</p>
+			<div *ngFor="let refferal of verificationDeatils.referralDetails">
+			<div class="row">
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="name">Name</label>
+                    <div class="verification-details-text">{{refferal.referralName}}</div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="employeeId">EmployeeId</label>
+                    <div class="verification-details-text">{{refferal.referralId}}</div>
+				</div>
+			</div>
+			<div class="row" >
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="emailId">EmailId</label>
+                    <div class="verification-details-text">{{refferal.referralEmail}}</div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="phone">Phone</label>
+                    <div class="verification-details-text">{{refferal.referralPhone}}</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="col-md-11" *ngIf="verificationDeatils && verificationDeatils.educationHistoryDetails?.length > 0">
+			<p class="verification-heading">Education Details</p>
+			<div *ngFor="let eductionHistory of verificationDeatils.educationHistoryDetails">
+			<div class="row">
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="degree">Degree</label>
+                    <div class="verification-details-text">{{eductionHistory.degree}}</div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="institutionName">Institution Name</label>
+                    <div class="verification-details-text">{{eductionHistory.instituteName}}</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="grade">Specialization / Field Of Study</label>
+                    <div class="verification-details-text">{{eductionHistory.specialization}}</div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="datesAttended">Dates Attended (In Years)</label>
+                    <div class="verification-details-text">{{getYear(eductionHistory.startDate)}} - {{getYear(eductionHistory.endDate)}}</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="col-md-11" *ngIf="verificationDeatils && verificationDeatils.employmentHistoryDetails?.length > 0">
+			<p class="verification-heading">Employment Details</p>
+			<div *ngFor="let employmentHistory of verificationDeatils.employmentHistoryDetails">
+			<div class="row">
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="degree">Employer Name</label>
+                    <div class="verification-details-text">{{employmentHistory.employerName}}</div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="institutionName">Designation</label>
+                    <div class="verification-details-text">{{employmentHistory.designation}}</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="grade">Currently Employed</label>
+                    <div class="verification-details-text">{{(employmentHistory.isCurrent)? 'Yes' : 'No'}}</div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="datesAttended">Previous Work Experience (In Years)</label>
+                    <div class="verification-details-text">{{getYear(employmentHistory.startDate)}} - {{employmentHistory.isCurrent? 'till date':getYear(employmentHistory.endDate)}}</div>
+				</div>
+			</div>
+		</div>
+		</div>
+		<div class="col-md-11">
+			<p class="verification-heading">Upload Documents</p>
+			<div class="row">
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="appointmentLetter">Current Company Appointment Letter</label>
+                    <div class="verification-details-text"  *ngIf="verificationDeatils && verificationDeatils.documents?.length > 0 && appointmentLetter">
+						<a href="javascript:void(0)" (click)="downloadFile(appointmentLetter)">{{appointmentLetter.title}}</a></div>
+				</div>
+				<div class="col-md-6 form-group"  >
+					<label class="labelText" for="lastHikeLetter">Last Hike Letter</label>
+                    <div class="verification-details-text" *ngIf=" verificationDeatils && verificationDeatils.documents?.length > 0 && hikeLetter">
+						<a href="javascript:void(0)" (click)="downloadFile(hikeLetter)">{{hikeLetter.title}}</a></div>
+				</div>
+				<div class="col-md-6 form-group"  >
+					<label class="labelText" for="relievingLetter">Previous Company Relieving Letter</label>
+                    <div class="verification-details-text" *ngIf=" verificationDeatils && verificationDeatils.documents?.length > 0 && relievingLetter">
+						<a href="javascript:void(0)" (click)="downloadFile(relievingLetter)">{{relievingLetter.title}}</a></div>
+				</div>
+				<div class="col-md-6 form-group"  >
+					<label class="labelText" for="idProof">ID Proof</label>
+                    <div class="verification-details-text" *ngIf=" verificationDeatils && verificationDeatils.documents?.length > 0 && idProof">
+						<a href="javascript:void(0)" (click)="downloadFile(idProof)">{{idProof.title}}</a></div>
+				</div>
+				<div class="col-md-6 form-group"  >
+					<label class="labelText" for="addressProof">Address Proof</label>
+                    <div class="verification-details-text" *ngIf=" verificationDeatils && verificationDeatils.documents?.length > 0 && relievingLetter">
+						<a href="javascript:void(0)" (click)="downloadFile(addressProof)">{{addressProof.title}}</a></div>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-11">
+			<p class="verification-heading">Payslips - Last 3 months</p>
+			<div class="row">
+				<div class="col-md-6 form-group" >
+					<label class="labelText" for="payslip1">Payslip 1</label>
+                    <div class="verification-details-text" *ngIf=" verificationDeatils && verificationDeatils.documents?.length > 0 && playships?.length > 0">
+							<a href="javascript:void(0)" (click)="downloadFile(playships)">{{playships[0].title}}</a></div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="payslip2">Payslip 2 </label>
+					<div class="verification-details-text" *ngIf=" verificationDeatils && verificationDeatils.documents?.length > 0 && playships?.length > 1">
+					<a href="javascript:void(0)" (click)="downloadFile(playships)">{{playships[1].title}}</a></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="payslip3">Payslip 3</label>
+					<div class="verification-details-text" *ngIf=" verificationDeatils && verificationDeatils.documents?.length > 0 && playships?.length > 2">
+						<a href="javascript:void(0)" (click)="downloadFile(playships)">{{playships[2].title}}</a></div>
+				</div>
+				<div class="col-md-6 form-group">
+					<label class="labelText" for="bankStatements">Bank Statements in Abscence of Payslips</label>
+                    <div class="verification-details-text"  *ngIf=" verificationDeatils && verificationDeatils.documents?.length > 0 && bankStatement">
+						<a href="javascript:void(0)" (click)="downloadFile(bankStatement)">{{bankStatement.title}}</a></div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="pull-right verification-btns">
+		<button class=" verification-confirm-button" *ngIf="!commonService.hideFeature('PASS_VERIFICATION_OF_SELECTED_CANDIDATE') && !ishide" (click)="verficationPass()">Verification Pass</button>
+		<button class=" verification-confirm-button" *ngIf="!commonService.hideFeature('FAIL_VERIFICATION_OF_SELECTED_CANDIDATE') && !ishide" (click)="verficationFail()">Verification Fail</button>
+		<remarks-modal *ngIf="!commonService.hideFeature('REQUEST_FOR_CORRECTIONS') && !ishide" [modalId]="postBackId" #myModal [remarkTitle]="postBackTitle" [required]="true" (updateReason)="postBack($event)"></remarks-modal>
+		<button class="pull-right verification-confirm-button" (click)="navigateToProfiles()">Close</button>
+	</div>
+</form>

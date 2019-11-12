@@ -1,0 +1,75 @@
+<div fxLayout="row" class="Dialogtop large-font">
+    <div mat-dialog-title fxFlex="95%" class="dialogtitle p-l-5x">IT Requests</div>   
+</div>
+<mat-dialog-content class="mat-content" fxLayout="column" fxLayoutGap="10px"> 
+    <form [formGroup]="itrequestForm" class="manager-flow "  >   
+        <div fxLayout="row" class="dialogcontent" > 
+            <div fxFlex="30%" class="keys smedium-font p-t-3x">Asset Type<span>*</span></div>
+            <div fxFlex="70%" class="kevalues medium-font">
+                <mat-form-field class="dropdownchange">
+                    <mat-select required formControlName="assets"  name="assets"  [errorStateMatcher]="matcher">
+                        <mat-option *ngFor="let assets of assettypes" [value]="assets">	{{assets}}									
+                        </mat-option>
+                    </mat-select>
+                    <span class="arrowicon">
+                        <mat-icon>keyboard_arrow_down</mat-icon>
+                    </span>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" class="dialogcontent" > 
+            <div fxFlex="30%" class="keys smedium-font  p-t-3x">Operating System<span>*</span></div>
+            <div fxFlex="70%" class="kevalues medium-font">
+                <mat-form-field class="dropdownchange">
+                    <mat-select required  formControlName="operatingtypes" name="operatingtypes" [errorStateMatcher]="matcher">
+                        <mat-option *ngFor="let operatingtypes of operatingsystem" [value]=operatingtypes>	{{operatingtypes}}									
+                        </mat-option>
+                    </mat-select>
+                    <span class="arrowicon">
+                        <mat-icon>keyboard_arrow_down</mat-icon>
+                    </span>
+                </mat-form-field>
+            </div>
+        </div>
+        <div fxLayout="row" class="dialogcontent"></div>    
+        <div fxLayout="row" class="dialogcontent" > 
+            <div fxFlex="30%" class="keys smedium-font p-t-3x">Comments:</div>
+                <div fxFlex="70%" class="kevalues medium-font">
+                    <mat-form-field class="">
+                        <textarea  matInput class="textedit" id="disablePipe"  formControlName="comment"  name="comment" ></textarea >  
+                    </mat-form-field>
+                </div>
+        </div>
+    </form>  
+    <div  fxLayout="row" class="dialogcontent scroll"  *ngIf="previouscomments"> 
+        <div fxFlex="30%" class="keys smedium-font p-t-3x">Previous Comments:</div>           
+        <div fxFlex="70%" class="kevalues medium-font previouscomment" >           
+            <div class="contents">           
+                <div class="scroll">           
+                    <ul  class="commentlist">           
+                        <li fxLayout="column" *ngFor="let comments of previouscomments">                            
+                             <div class="person" fxFlex>           
+                                <span class="name-designation bold">{{comments.name}} ({{comments.role}})</span>           
+                            </div>           
+                            <span class="comment" fxFlex>{{comments.comment}} - {{comments.timeStamp | date :'medium'}}</span>          
+                        </li>           
+                    </ul>            
+                </div>           
+            </div>           
+        </div>           
+    </div>
+
+   <div fxLayout="row" class="buttons p-t-2x" fxLayoutGap="10px">
+        <div fxFlex="30%">  </div>
+        <div fxFlex="70%">
+            <button  type="submit" class="ms-btn ms-btn-primary-filled" (click)="onSubmit()" [disabled]="!formvalid">Save</button>
+            <button  class="ms-btn ms-btn-secondary-bordered" (click)="closedialog()">Cancel</button>                       
+        </div>       
+    </div>   
+</mat-dialog-content>
+<!-- <ng-template #NoEdit>
+    <div class="message m-lr-5x p-tb-10x p-lr-3x text-center">   
+        <p class="large-font">No changing of Asset available for the selected employee as the current date has crossed his joining date.</p>   
+        <button class="ms-btn ms-btn-primary-filled" (click)="navigateToHome()">Back To IT/WS Requests</button>   
+    </div>   
+</ng-template> -->

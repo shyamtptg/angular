@@ -1,0 +1,126 @@
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-4" style="padding-top:0.9em">
+            <a routerLink="/leave-management/team-report">
+                <&nbsp;Back to Team Report</a>
+        </div>
+    </div>
+    <hr>
+    <div class="col-md-12">
+        <div class="col-md-6">
+            <div class="col-md-12 year_dropdown_main">
+                <div class="col-md-4 leave-report-calendar">
+                    <div *ngIf="yearRange" style="padding-right:0.3em">
+                        <p-calendar readonlyInput="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange" placeholder="FromDate"
+                            (onSelect)="getSelectedDateFrom($event)" required [(ngModel)]="leave" dateFormat="dd/mm/yy" [showIcon]=true
+                            name="from" #from="ngModel"></p-calendar>
+                    </div>
+                    <div *ngIf="defaultRange">
+                        <p-calendar readonlyInput="true" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="defaultRange" placeholder="FromDate"
+                            (onSelect)="getSelectedDateFrom($event)" required [(ngModel)]="leave" dateFormat="dd/mm/yy" [showIcon]=true
+                            name="from" #from="ngModel"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-md-4 leave-report-calendar">
+                    <div *ngIf="yearRange" style="padding-right:0.3em">
+                        <p-calendar readonlyInput="true" placeholder="ToDate" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="yearRange"
+                            (onSelect)="getSelectedDateTO($event)" required [(ngModel)]="default" dateFormat="dd/mm/yy" [showIcon]=true
+                            name="to" #to="ngModel"></p-calendar>
+                    </div>
+                    <div *ngIf="defaultRange">
+                        <p-calendar readonlyInput="true" placeholder="ToDate" [monthNavigator]="true" [yearNavigator]="true" [yearRange]="defaultRange"
+                            (onSelect)="getSelectedDateTO($event)" required [(ngModel)]="default" dateFormat="dd/mm/yy" [showIcon]=true
+                            name="to" #to="ngModel"></p-calendar>
+                    </div>
+                </div>
+                <div class="col-sm-4 counting_main  year_dropdown_col">
+                    <div *ngIf="overAllEmployee">
+                        <div class="col-sm-4">
+                            <h3>{{overAllEmployee.totalLeaves}}</h3>
+                            <p>Total</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>{{overAllEmployee.usedLeaves}}</h3>
+                            <p>Used</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <h3>{{overAllEmployee.availableLeaves}}</h3>
+                            <p>Available</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 left-padding">
+                <div *ngIf="overAllEmployee">
+                    <label>Casual</label>
+                    <progress value="{{overAllEmployee.appliedCasualLeaves}}" max="{{overAllEmployee.totalCasualLeaves}}"></progress> {{overAllEmployee.totalCasualLeaves}}
+                </div>
+                <div *ngIf="overAllEmployee">
+                    <label>Optional</label>
+                    <progress value="{{overAllEmployee.appliedOptionalLeaves}}" max="{{overAllEmployee.totalOptionalLeaves}}"></progress> {{overAllEmployee.totalOptionalLeaves}}
+                </div>
+                <div *ngIf="overAllEmployee">
+                    <label>Comp Off</label>
+                    <progress value="{{overAllEmployee.appliedCompOffs}}" max="{{overAllEmployee.totalCompOffs}}"></progress> {{overAllEmployee.totalCompOffs}}
+                </div>
+                <div *ngIf="overAllEmployee">
+                    <label>Earned</label>
+                    <progress value="{{overAllEmployee.appliedEarnedLeaves}}" max="{{overAllEmployee.totalEarnedLeaves}}"></progress> {{overAllEmployee.totalEarnedLeaves}}
+                </div>
+                <div class="year_sliders_main_text" *ngIf="this.reportData.gender == 'F'">
+                    <p>*Maternity information is not included in the graph</p>
+                </div>
+                <div class="year_sliders_main_text" *ngIf="this.reportData.gender == 'M'">
+                    <p>*Paternity information is not included in the graph</p>
+                </div>
+            </div>
+            <div class="col-md-12 year-filters-main">
+                <div>
+                    <div class="col-sm-4 left-padding">
+                        <div class="form-group">
+                            <select (ngModelChange)="filterAll($event)" [(ngModel)]="type" class="form-control slect_type" name="leave-types" required
+                                ngModel #leavetypes="ngModel">
+                                <option [value]=0>Filter All</option>
+                                <option *ngFor="let type of data" [value]="type.id">{{type.description}}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-sm-4 col-sm-offset-4 left-padding">
+                        <div class="form-group">
+                            <select [disabled]="!isData" (change)="exportData()" class="form-control" id="sel1">
+                                <option  [selected]="export">Export As</option>
+                                <option>CSV</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 year_table_main left-padding table-responsive">
+                <table class="table table-striped" style="margin-bottom:0">
+                    <thead class="table-head">
+                        <tr>
+                            <th>Type</th>
+                            <th>Used</th>
+                            <th>From</th>
+                            <th>To</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let reports of employeeLeave.content">
+                            <td>{{reports.leaveTypeDesc}}</td>
+                            <td>{{reports.appliedDays}}</td>
+                            <td>{{reports.fromDate}}</td>
+                            <td>{{reports.toDate}}</td>
+                        </tr>
+                        <tr *ngIf="!isData">
+                            <td class="noData" colspan="4">No records found</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class=" col-md-5" style="border-left: 2px solid #eee;">
+            <app-profile [data]='requestedData'></app-profile>
+        </div>
+    </div>
+</div>

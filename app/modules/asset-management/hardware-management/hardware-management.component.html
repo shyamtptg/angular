@@ -1,0 +1,145 @@
+<div class="hardwarecontainer">
+  <div fxLayout="row">
+     <div  class="title" fxFlex="100%">
+					<app-employee-info-badge [employeeObject]='employeeObject'></app-employee-info-badge>
+		</div> 
+	</div>
+	<div fxLayout="row">
+			<div class="titlehardware large-font p-l-9x">
+				<span class="assign-hardware">Assign Hardware</span>
+				<span class="assettype medium-font">Asset Type</span>
+				<mat-form-field class="dropdownchange">
+						<mat-select [(ngModel)]="assestType" >
+								<mat-option  value={{assestType}}>	{{assestType}}									
+								</mat-option>
+						</mat-select>
+						<span class="arrowicon">
+								<mat-icon>keyboard_arrow_down</mat-icon>
+						</span>
+				</mat-form-field>
+						
+						<span class="make medium-font p-l-4x" *ngIf="changeos">Make</span>
+						<mat-form-field class="dropdownchange"   *ngIf="changeos">
+								<mat-select  fxLayoutGap="15px" [(ngModel)]="default"  (change)="changemake($event)">
+										<mat-option *ngFor="let item of make"  [value]="item">
+												{{ item}}
+										</mat-option>
+								</mat-select>
+								<span class="arrowicon">
+										<mat-icon>keyboard_arrow_down</mat-icon>
+								</span>
+						</mat-form-field>
+						
+				</div>
+		</div>
+</div>
+<div class="assignmentblock p-lr-0x p-t-1x">
+	<div fxLayout="row" class="searchinput p-l-9x">
+			<mat-form-field class="example-full-width">
+					<mat-icon matPrefix class="searchicon ">search</mat-icon>
+					<input matInput placeholder="Search" (keyup)="doFilter($event.target.value)">
+			</mat-form-field>
+	</div>
+	<div fxLayout="row" fxLayout.xs="column">
+		<mat-table class="Hardware-mattable  m-l-4x m-b-3x" fxFlex="55%" #table [dataSource]="dataSource1"
+						matSort>
+				<ng-container matColumnDef="assestId">
+						<mat-header-cell *matHeaderCellDef mat-sort-header class="display-flex">
+										AssetId</mat-header-cell>
+						<mat-cell *matCellDef="let e" class="display-flex">
+								<span class="mattable-content">{{e.assestId}}</span>
+
+						</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="configuration">
+						<mat-header-cell *matHeaderCellDef mat-sort-header class="display-flex">
+										Configuration </mat-header-cell>
+						<mat-cell *matCellDef="let e" class="display-flex">
+							<div  fxLayout="column">
+									<div class="mattable-content">{{e.configuration}}</div>							
+									<div class="assetdetailsbtn p-15 pointer" fxFlex="30%" (click)="openDialog(e)">Asset Details</div>
+							</div>	
+						</mat-cell>
+				</ng-container>
+				<ng-container matColumnDef="action">
+						<mat-header-cell *matHeaderCellDef class="display-flex">
+						</mat-header-cell>
+						<mat-cell *matCellDef="let e;let i = index;" class="display-flex">
+								<img fxLayoutAlign="right right"
+														(click)="selectrow(e,i)" class="adduser-icon p-15 pointer p-lr-1x p-tb-1x"
+														[src]="e.assetId==selectedRowIndex ? url1 : url"   />
+						</mat-cell>
+					</ng-container>
+					<mat-header-row *matHeaderRowDef="displayedColumns1"></mat-header-row>
+					<mat-row *matRowDef="let row; columns: displayedColumns1;" [ngClass]="{'highlight': selectedRowIndex == row.assetId}"></mat-row>
+		</mat-table>
+ 		<div class="examplecontainer" fxFlex="45%">
+			<div class="topcontent">
+					<div>
+							<div fxLayout="column" class="first-section" fxLayoutAlign="center center">
+									<div class="topinner" fxLayout="column">
+											<div fxFlex fxLayoutAlign="center"><img class="ideaimg" src="../../../../assets/idea.svg">
+											</div>
+											<div fxFlex fxLayoutAlign="center" class="imgcontent m-t-6x">
+													<span>Select Assets By clicking on Add button</span></div>
+									</div>
+							</div>
+						</div>
+			</div>
+			<div class="footercontent   m-lr-2x" fxLayout="column">
+					<div class="footersection2 p-l-6x p-t-2x"  *ngIf="previouscomments">	
+							<div  fxLayout="row" class="dialogcontent scroll" > 
+									<div fxFlex="30%" class="keys smedium-font p-t-3x">Previous Comments:</div>           
+									<div fxFlex="70%" class="kevalues medium-font previouscomment" >           
+											<div class="contents">           
+													<div class="scroll">           
+															<ul  class="commentlist">           
+																	<li fxLayout="column"  *ngFor="let comments of previouscomments"> 																	 
+																			<div class="person" fxFlex>           
+																					<span class="name-designation bold">{{comments.name}}({{comments.role}})</span>           
+																			</div>           
+																			<span class="comment" fxFlex>{{comments.comment}} - {{comments.timeStamp | date :'medium'}}</span>          
+																	</li>           
+															</ul>            
+													</div>           
+											</div>           
+									</div>           
+							</div>
+					</div>
+				<div>
+					<div class="footersection1 p-t-2x p-l-6x p-b-6x">
+							<div fxLayout="row">
+									<div class="itcomments" fxFlex="100%">
+													<span fxLayoutAlign="left">IT Comments</span>
+									</div>
+							</div>
+							<div fxLayout="row">
+									<div class="itcommentsinfo" fxFlex="100%" >										
+												<div class="editcomment">															
+													<mat-form-field>
+															<textarea  matInput class="textedit"    [(ngModel)]="inputvalue"  ></textarea >                           
+													</mat-form-field>
+												</div>
+									</div>
+							</div>	
+					</div>				
+				</div>				
+					<div class="footersection3 p-l-6x p-t-3x">
+							<div fxLayout="row">
+									<div class="writecomment medium-font" fxFlex="100%">
+											<!-- <span *ngIf="commenttext" fxLayoutAlign="left" class="pointer" (click)="addcomment()">Write your comment</span> -->
+											<div   fxLayout="row" fxLayoutGap="10px" class="comments"> 											
+											<div class="save" >
+													<button  class="ms-btn ms-btn-primary-filled"  (click)="saveDialog()">Save</button>
+											</div>	
+											<!-- <div class="cancel">
+													<button  class="ms-btn ms-btn-secondary-bordered" (click)="cancel()">Cancel</button>
+											</div> -->																				
+											</div>											  
+									</div>
+							</div>
+					</div>
+				</div>
+		</div>
+	</div>
+</div>

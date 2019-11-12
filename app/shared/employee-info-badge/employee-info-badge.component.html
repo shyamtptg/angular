@@ -1,0 +1,18 @@
+<div class="ms-emp-badge">
+    <div class="ms-emp-info" fxLayout="row" fxLayout.lt-md="column" fxLayoutAlign="space-between">
+      <div fxLayout="row" class="m-r-2x">
+        
+        <img [src]="url" alt="{{employeeObject.name}}">
+       
+        <div fxLayout="column">
+          <span class="emp-name">{{employeeObject.name}}</span>
+          <span>Emp ID: {{employeeObject.id}}</span>
+        </div>
+      </div>
+      <div fxLayout="column" fxLayout.lt-md="row" fxLayoutAlign.lt-md="space-between stretch" *ngFor="let info of employeeObject.info" class="m-r-2x">
+        <span ngClass.gt-sm="small-text" fxFlex.lt-md="48%">{{info.attr}}</span>
+        <span fxShow="false" fxShow.lt-md="true" fxFlex.lt-md="2%">:</span>
+        <span fxFlex.lt-md="50%">{{info.val}}</span>
+      </div>
+    </div>
+</div>  

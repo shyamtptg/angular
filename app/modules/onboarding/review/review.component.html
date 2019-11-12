@@ -1,0 +1,303 @@
+<div fxLayout="column" class="p-3x">
+    <div fxLayout="row" class="p-3x">
+        <div fxLayout="column" fxFlex="33%">
+            <div class="review_container">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="review_header">
+                    <span class="review_header_text">Personal Information</span>
+                    <span class="ms_icon_edit" (click)="navigateToPersonalInfo()">icon</span>
+                </div>
+                <div fxLayout="column" class="review_body">
+                    <div fxLayout="row wrap">
+                        <span fxFlex="100%" class="form-header-text m-b-4x">Basic Information</span>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">First Name</span>
+                            <span class="review_value">{{reviewData?.firstName}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">Last Name</span>
+                            <span class="review_value">{{reviewData?.lastName}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Gender</span>
+                            <span class="review_value">{{reviewData?.gender}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">Date of Birth</span>
+                            <span class="review_value">{{reviewData?.dateOfBirthRecords | date: 'dd/MM/yyy'}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Marital Status</span>
+                            <span class="review_value">{{reviewData?.maritalStatus}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">Blood Group</span>
+                            <span class="review_value">{{reviewData?.bloodGroup}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Relocation</span>
+                            <span class="review_value">{{reviewData?.relocate}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">Vehicle Number</span>
+                            <span class="review_value">{{reviewData?.vehicleNumber}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Vehicle Type</span>
+                            <span class="review_value">{{reviewData?.vehicleType}}</span>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row wrap" class="m-t-4x">
+                        <span fxFlex="100%" class="form-header-text m-b-4x">Financial Information</span>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">PAN Number</span>
+                            <span class="review_value">{{reviewData?.panNumber}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">Aadhar Number</span>
+                            <span class="review_value">{{reviewData?.aadharNumber}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Bank Account Number</span>
+                            <span class="review_value">{{reviewData?.bankAccountNumber}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">SSN Number</span>
+                            <span class="review_value">{{reviewData?.sscNumber}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Previous PF Number</span>
+                            <span class="review_value">{{reviewData?.previousPfAccountNumber}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">UAN Number</span>
+                            <span class="review_value">{{reviewData?.uanAccountNumber}}</span>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row wrap" class="m-t-4x">
+                        <span fxFlex="100%" class="form-header-text m-b-4x">Contact Information</span>
+                        <span fxFlex="100%" class="form-header-text m-b-4x">Present Address</span>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Address</span>
+                            <span class="review_value">{{reviewData?.currentAddress.address1}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">Pincode</span>
+                            <span class="review_value">{{reviewData?.currentAddress.zipcode}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Country</span>
+                            <span class="review_value">{{reviewData?.currentAddress.country}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">State</span>
+                            <span class="review_value">{{reviewData?.currentAddress.state}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">City</span>
+                            <span class="review_value">{{reviewData?.currentAddress.city}}</span>
+                        </div>
+                        <span fxFlex="100%" class="form-header-text m-b-4x">Permanent Address</span>                      
+                        <div fxLayout="row wrap" fxFlex="100%" *ngIf="!reviewData?.permanentAddressSameAsCurrentAddress">
+                            <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                                <span class="review_label">Address</span>
+                                <span class="review_value">{{reviewData?.permanentAddress.address2}}</span>
+                            </div>
+                            <div fxLayout="column" fxFlex="50%">
+                                <span class="review_label">Pincode</span>
+                                <span class="review_value">{{reviewData?.permanentAddress.zipcode}}</span>
+                            </div>
+                            <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                                <span class="review_label">Country</span>
+                                <span class="review_value">{{reviewData?.permanentAddress.country}}</span>
+                            </div>
+                            <div fxLayout="column" fxFlex="50%">
+                                <span class="review_label">State</span>
+                                <span class="review_value">{{reviewData?.permanentAddress.state}}</span>
+                            </div>
+                            <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                                <span class="review_label">City</span>
+                                <span class="review_value">{{reviewData?.permanentAddress.city}}</span>
+                            </div>
+                        </div>
+                        <div fxLayout="row" fxFlex="50%">
+                            <mat-checkbox class="checkpresent small-font" [disabled]=true checked="reviewData?.permanentAddressSameAsCurrentAddress"></mat-checkbox>
+                            <span fxFlex="100%" class="review_value m-b-4x p-l-1x">Same as Present Address</span>    
+                        </div>
+                        <span fxFlex="100%" class="form-header-text m-b-4x">My Contact Details</span>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Mobile Number</span>
+                            <span class="review_value">{{reviewData?.mobileNumber}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">Alternative Mobile</span>
+                            <span class="review_value">{{reviewData?.alternativeMobile}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Personal Email Id</span>
+                            <span class="review_value">{{reviewData?.personalEmailId}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">Skype Id</span>
+                            <span class="review_value">{{reviewData?.skypeId}}</span>
+                        </div>
+                    </div>
+                    <mat-divider></mat-divider>
+                    <div fxLayout="row wrap" class="m-t-4x">
+                        <span fxFlex="100%" class="form-header-text m-b-4x">Emergency Contact Information</span>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x">
+                            <span class="review_label">Contact Person 1</span>
+                            <span class="review_value">{{reviewData?.emergencyContactHistory[0].emergencyContactPerson1}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%">
+                            <span class="review_label">Phone Number</span>
+                            <span class="review_value">{{reviewData?.emergencyContactHistory[0].phoneNumber}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="100%" class="m-b-4x">
+                            <span class="review_label">Relationship</span>
+                            <span class="review_value">{{reviewData?.emergencyContactHistory[0].relation}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" class="m-b-4x" *ngIf="reviewData?.emergencyContactHistory.length > 1">
+                            <span class="review_label">Contact Person 2</span>
+                            <span class="review_value">{{reviewData?.emergencyContactHistory[1].emergencyContactPerson2}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="50%" *ngIf="reviewData?.emergencyContactHistory.length > 1">
+                            <span class="review_label">Phone Number</span>
+                            <span class="review_value">{{reviewData?.emergencyContactHistory[1].phoneNumber}}</span>
+                        </div>
+                        <div fxLayout="column" fxFlex="100%" *ngIf="reviewData?.emergencyContactHistory.length > 1">
+                            <span class="review_label">Relationship</span>
+                            <span class="review_value">{{reviewData?.emergencyContactHistory[1].relation}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>        
+        </div>
+
+        <div fxLayout="column" fxFlex="66%" fxFlexOffset="1%">
+            <div class="review_container">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="review_header">
+                    <span class="review_header_text">Offical Information</span>
+                    <span class="ms_icon_edit" (click)="navigateToOfficialInfo()">icon</span>
+                </div>
+                <div fxLayout="row wrap" class="review_body">
+                    <div fxLayout="column" fxFlex="33%" class="m-b-4x">
+                        <span class="review_label">Department</span>
+                        <span class="review_value">{{reviewData?.departmentName}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%">
+                        <span class="review_label">Practice</span>
+                        <span class="review_value">{{reviewData?.practice}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%">
+                        <span class="review_label">Competency</span>
+                        <span class="review_value">{{reviewData?.competency}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%" class="m-b-4x">
+                        <span class="review_label">Designation</span>
+                        <span class="review_value">{{reviewData?.designation}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%">
+                        <span class="review_label">Reporting Manager</span>
+                        <span class="review_value">{{reviewData?.managerName}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%">
+                        <span class="review_label">Permanent Location</span>
+                        <span class="review_value">{{reviewData?.permanentLocationName}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%" class="m-b-4x">
+                        <span class="review_label">Work Location</span>
+                        <span class="review_value">{{reviewData?.workLocationName}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%">
+                        <span class="review_label">Company Joining Date</span>
+                        <span class="review_value">{{reviewData?.joiningDate | date: 'dd/MM/yyy'}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%">
+                        <span class="review_label">Company Email Id</span>
+                        <span class="review_value">{{reviewData?.companyEmailId}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%">
+                        <span class="review_label">Business Email Id</span>
+                        <span class="review_value">{{reviewData?.businessEmailId}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%">
+                        <span class="review_label">Employment Type</span>
+                        <span class="review_value">{{reviewData?.employmentType}}</span>
+                    </div>
+                    <div fxLayout="column" fxFlex="33%">
+                        <span class="review_label">Employee Code</span>
+                        <span class="review_value">{{reviewData?.employeeCode}}</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review_container m-t-5x">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="review_header">
+                    <div>
+                        <span class="review_header_text">Work Experience</span>
+                        <span class="review_label p-lr-3x">|</span>
+                        <span class="review_label p-r-1x">Overall Experience</span>
+                        <span class="review_header_text">{{overallExperience}}</span>
+                    </div>
+                    <span class="ms_icon_edit" (click)="navigateToWorkInfo()">icon</span>
+                </div>
+                <div fxLayout="column" class="review_body">
+                    <div fxLayout="column" *ngFor="let employment of reviewData?.employmentHistory | sortBy: 'startDate': false" class="review_loop">
+                        <div fxLayout="row"  fxLayoutAlign="space-between center" class="m-tb-4x">
+                            <div fxLayout="column" fxFlex="33%">
+                                <span class="form-header-text">{{employment.employerName}}</span>
+                                <span class="review_info_value">{{employment.designation}}</span>
+                            </div>
+                            <span class="review_info_value" fxFlex="33%">{{employment.city}}, {{employment.state}}, {{employment.country}}</span>
+                            <span class="review_value text-right" fxFlex="34%">
+                                {{employment.startDate | date:'MMM dd, yyyy'}} - 
+                                <span *ngIf="employment.endDate">{{employment.endDate | date:'MMM dd, yyyy'}}</span>
+                                <span *ngIf="!employment.endDate">Present</span>
+                            </span>
+                        </div>
+                        <mat-divider></mat-divider>
+                    </div>
+                </div>
+            </div>
+
+            <div class="review_container m-t-5x">
+                <div fxLayout="row" fxLayoutAlign="space-between center" class="review_header">
+                    <div>
+                        <span class="review_header_text">Educational Information</span>
+                        <span class="review_label p-lr-3x">|</span>
+                        <span class="review_label p-r-1x">Highest Degree</span>
+                        <span class="review_header_text">{{maxQualification}}</span>
+                    </div>
+                    <span class="ms_icon_edit" (click)="navigateToEduInfo()">icon</span>
+                </div>
+                <div fxLayout="column" class="review_body">
+                    <div fxLayout="column" *ngFor="let education of reviewData?.educationHistory | sortBy: 'startDate': false" class="review_loop">
+                        <div fxLayout="row"  fxLayoutAlign="space-between center" class="m-tb-4x">
+                            <div fxLayout="column" fxFlex="33%">
+                                <span class="form-header-text">{{education.certification}}</span>
+                                <span class="review_info_value">{{education.specialization}}</span>
+                            </div>
+                            <div fxLayout="column" fxFlex="33%">
+                                <span class="review_info_value">{{education.instituteName}}</span>
+                                <span class="review_info_value">{{education.city}}, {{education.state}}, {{education.country}}</span>
+                            </div>
+                            <span class="review_value text-right" fxFlex="34%">
+                                {{education.startDate | date:'MMM dd, yyyy'}} - 
+                                <span *ngIf="education.endDate">{{education.endDate | date:'MMM dd, yyyy'}}</span>
+                                <span *ngIf="!education.endDate">Present</span>
+                            </span>
+                        </div>
+                        <mat-divider></mat-divider>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <button class="ms-btn ms-btn-secondary-filled" (click)="navigateToEduInfo()">Back</button>
+        <button class="ms-btn ms-btn-primary-filled m-l-1x" (click)="openSubmitDialog()">Submit</button>
+    </div>
+</div>

@@ -1,0 +1,43 @@
+@import './colors.scss';
+@import './variables.scss';
+/*
+Modifications to fullcalendar css for satisfying myspace needs.
+*/
+
+.fc-toolbar {
+  &.fc-header-toolbar {
+    .fc-left,
+    .fc-right {
+      width: 35%;
+      .fc-button {
+        background: none;
+        box-shadow: none;
+        border: none;
+        .fc-icon {
+          font-size: 12px;
+        }
+        &.fc-prev-button {
+          float: right;
+        }
+        &.fc-next-button {
+          float: left;
+        }
+      }
+    }
+  }
+}
+
+.fc-head-container.fc-widget-header {
+  border: none;
+  .fc-day-header {
+    background: $pure-white;
+    text-align: left;
+    border: none;
+    padding-left: $space-2x;
+  }
+}
+
+.fc-ltr .fc-basic-view .fc-day-top .fc-day-number {
+  float: left;
+  padding: $space-1x 0 0 $space-2x;
+}

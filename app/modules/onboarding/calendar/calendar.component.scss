@@ -1,0 +1,27 @@
+@import '../../../../assets/scss/colors.scss';
+@import '../../../../assets/scss/fonts.scss';
+@import '../../../../assets/scss/spacing.scss';
+
+.calender {
+    width: inherit;
+    margin: 0 auto;
+    background-color: $pure-white;
+    @extend .p-t-2x;
+    box-shadow: 0 2px 4px 0 rgba(0,0,0,0.03), 0 1px 5px 0 rgba(0,0,0,0.13);
+    border: 1px solid $white1;
+    width: 90%;
+}
+.joinees {
+    float: right;
+    margin-right: 10%;
+}
+.count {
+    color: $blue1;
+    text-align: center;
+    @extend .semi-bold, .count-text;
+}
+.text {
+    color: $gray9;
+    margin-top: 3px;
+    @extend .new-joinees-text;
+}

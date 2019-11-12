@@ -1,0 +1,370 @@
+
+<div class="recruiter-profile-details">
+  <tabs class="profile-detail-tabs" (tabSelect)="tabSelect($event)">
+    <tab [tabTitle]="'Personal Info'">
+      <div class="personal-details">
+      <form #personalDetailsForm="ngForm" *ngIf="profileDetails" (ngSubmit)="OnSubmit(personalDetailsForm)">
+    <div class="row">
+      <div class="form-group col-md-4 col-xs-12 col-sm-6">
+        <label class="labelText" for="firstName">First Name*</label>
+        <input type="text" id="firstName" class="form-control inputText" required name="firstName" maxlength="100" [(ngModel)]="profileDetails.firstName"
+        #firstNameRef="ngModel" [readOnly]="viewMode"/>
+        <div [hidden]="firstNameRef.valid || firstNameRef.pristine" class="alert alert-danger">Please enter the First name</div>
+      </div>
+      <div class="form-group col-md-4 col-xs-12 col-sm-6">
+        <label class="labelText" for="lastName">Last Name*</label>
+        <input type="text" id="lastName" class="form-control inputText" required maxlength="40" [(ngModel)]="profileDetails.lastName"
+        name="lastName" #lastNameRef="ngModel" [readOnly]="viewMode"/>
+        <div [hidden]="lastNameRef.valid || lastNameRef.pristine" class="alert alert-danger">Please enter the Last name</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4 col-xs-12 col-sm-6">
+        <label class="labelText" for="personalEmail">Personal Email ID*</label>
+        <input type="email" id="personalEmail" class="form-control inputText" required maxlength="64" [(ngModel)]="profileDetails.email"
+        name="personalEmail" #personalEmailRef="ngModel" [readOnly]="viewMode"/>
+        <div [hidden]="personalEmailRef.valid || personalEmailRef.pristine" class="alert alert-danger">Please enter the Email ID</div>
+      </div>
+      <div class="form-group col-md-4 col-xs-12 col-sm-6">
+        <label class="labelText" for="mobileNumber">Mobile Number*</label>
+        <input type="number" id="mobileNumber" class="form-control inputText" required maxlength="24" [(ngModel)]="profileDetails.mobileNumber"
+        name="mobileNumber" #mobileNumberRef="ngModel" [readOnly]="viewMode"/>
+        <div [hidden]="mobileNumberRef.valid || mobileNumberRef.pristine" class="alert alert-danger">Please enter the Mobile number</div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-4 col-xs-12 col-sm-6">
+        <label class="labelText" for="dateOfBirth">Date of Birth</label>
+        <div class="date-picker-view">
+            <p-calendar name="dateOfBirth" [(ngModel)]="profileDetails.dateOfBirth" dateFormat="dd-mm-yy" [showIcon]="true" #dateOfBirth="ngModel" readonlyInput="viewMode" [disabled]="viewMode"></p-calendar>
+       </div>
+        <div [hidden]="dateOfBirth.valid || dateOfBirth.pristine" class="alert alert-danger">Please enter the Date of birth</div>
+      </div>
+      <div class="form-group col-md-4 col-xs-12 col-sm-6">
+        <label class="labelText" for="nationality">Nationality*</label>
+        <input type="text" id="nationality" class="form-control inputText" required maxlength="32" [(ngModel)]="profileDetails.nationality"
+        name="nationality" #nationalityRef="ngModel" [readOnly]="viewMode"/>
+        <div [hidden]="nationalityRef.valid || nationalityRef.pristine" class="alert alert-danger">Please enter the Nationality</div>
+      </div>
+    </div>
+    <div *ngIf="!commonService.hideFeature('VIEW_PROFILE_CONFIDENTIAL_DETAILS')" class="row">
+        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+            <label class="labelText" for="citizenIdentity1Type">Citizen Identity Type</label>
+            <select name="citizenIdentity1Type" class="form-control" [(ngModel)]="profileDetails.citizenIdentity1Type"
+                [disabled]="viewMode">
+                <option value="AADHAR" [disabled] ="profileDetails.citizenIdentity2Type == 'AADHAR'">AADHAR</option>
+                <option value="PAN" [disabled] ="profileDetails.citizenIdentity2Type == 'PAN'">PAN</option>
+                <option value="VOTER ID" [disabled] ="profileDetails.citizenIdentity2Type == 'VOTER ID'">VOTER ID</option>
+                <option value="SSN" [disabled] ="profileDetails.citizenIdentity2Type == 'SSN'">SSN</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+            <label class="labelText" for="citizenIdentity1">Citizen Identity</label>
+            <input type="text" id="citizenIdentity1" class="form-control inputText" maxlength="16" [(ngModel)]="profileDetails.citizenIdentity1"
+                name="citizenIdentity1" [readOnly]="viewMode" />
+        </div>
+    </div>
+        <div class="currentaddress-row" *ngIf="profileDetails.currentAddress">
+            <h5>Current Address</h5>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="currentPlotNumber">H.No/Plot.No</label>
+                    <input type="text" id="currentPlotNumber" class="form-control inputText" [(ngModel)]="profileDetails.currentAddress.address1"
+                    name="currentPlotNumber" #currentPlotNumberRef="ngModel" maxlength="100" [readOnly]="viewMode"/>
+                    <div [hidden]="currentPlotNumberRef.valid || currentPlotNumberRef.pristine" class="alert alert-danger">Please enter the H.No/Plot.No</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="currentStreetName">House Name & Street</label>
+                    <input type="text" id="currentStreetName" class="form-control inputText" maxlength="100" [(ngModel)]="profileDetails.currentAddress.address2"
+                    name="currentStreetName" #currentStreetNameRef="ngModel" [readOnly]="viewMode"/>
+                    <div [hidden]="currentStreetNameRef.valid || currentStreetNameRef.pristine" class="alert alert-danger">Please enter the House name & Street</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="currentCity">City*</label>
+                    <input type="text" id="currentCity" class="form-control inputText" required maxlength="32" [(ngModel)]="profileDetails.currentAddress.city"
+                    name="currentCity" #currentCityRef="ngModel" [readOnly]="viewMode"/>
+                    <div [hidden]="currentCityRef.valid || currentCityRef.pristine" class="alert alert-danger">Please enter the City</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="currentState">State*</label>
+                    <input type="text" id="currentState" class="form-control inputText" required maxlength="32" [(ngModel)]="profileDetails.currentAddress.state"
+                    name="currentState" #currentStateRef="ngModel" [readOnly]="viewMode"/>
+                    <div [hidden]="currentStateRef.valid || currentStateRef.pristine" class="alert alert-danger">Please enter the State</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="currentCountry">Country*</label>
+                    <input type="text" id="currentCountry" class="form-control inputText" required maxlength="32" [(ngModel)]="profileDetails.currentAddress.country"
+                    name="currentCountry" #currentCountryRef="ngModel" [readOnly]="viewMode"/>
+                    <div [hidden]="currentCountryRef.valid || currentCountryRef.pristine" class="alert alert-danger">Please enter the Country</div>
+                </div>
+                <div class="col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="currentZipcode">Zip code*</label>
+                    <input type="text" id="currentZipcode" class="form-control inputText" required [(ngModel)]="profileDetails.currentAddress.zipcode" maxlength="16"
+                    name="currentZipcode" #currentZipcodeRef="ngModel" [readOnly]="viewMode"/>
+                    <div [hidden]="currentZipcodeRef.valid || currentZipcodeRef.pristine" class="alert alert-danger">Please enter the Zip codee</div>
+                </div>
+            </div>
+        </div> 
+        <div class="permanentAddressDetails ">
+            <label class="boldText shortlisted_permanent_address">Permanent Address</label>
+            <div class="row" *ngIf="profileDetails.permanentAddressSameAsCurrentAddress &&profileDetails.currentAddress">
+                <div class="col-xs-10 pull-left permanentDetailsText">{{ profileDetails.currentAddress.address1 }}</div>
+                <div class="col-xs-10 pull-left permanentDetailsText">{{ profileDetails.currentAddress.address2 }}</div>
+                <div class="col-xs-10 pull-left permanentDetailsText">{{ profileDetails.currentAddress.city }}</div>
+                <div class="col-xs-10 pull-left permanentDetailsText">{{ profileDetails.currentAddress.state }}</div>
+                <div class="col-xs-10 pull-left permanentDetailsText">{{ profileDetails.currentAddress.country }}</div>
+                <div class="col-xs-10 pull-left permanentDetailsText">{{ profileDetails.currentAddress.zipcode }}</div>
+            </div>
+            <div *ngIf="profileDetails">
+                <div *ngIf="!profileDetails.permanentAddressSameAsCurrentAddress && profileDetails.permanentAddress">
+                    <div class="row">
+                        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                            <label class="labelText" for="permanentPlotNumber">H.No/Plot.No</label>
+                            <input type="text" id="permanentPlotNumber" class="form-control inputText" maxlength="100" [(ngModel)]="profileDetails.permanentAddress.address1"
+                                name="permanentPlotNumber" #permanentPlotNumberRef="ngModel" [readOnly]="viewMode" />
+                            <div [hidden]="permanentPlotNumberRef.valid || permanentPlotNumberRef.pristine" class="alert alert-danger">Please enter the H.No/Plot.No*</div>
+                        </div>
+                        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                            <label class="labelText" for="permanentStreetName">House Name & Street</label>
+                            <input type="text" id="permanentStreetName" class="form-control inputText" [(ngModel)]="profileDetails.permanentAddress.address2"
+                                name="permanentStreetName" #permanentStreetNameRef="ngModel" maxlength="100" [readOnly]="viewMode" />
+                            <div [hidden]="permanentStreetNameRef.valid || permanentStreetNameRef.pristine" class="alert alert-danger">Please enter the House name & Street</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                            <label class="labelText" for="permanentCity">City*</label>
+                            <input type="text" id="permanentCity" class="form-control inputText" required maxlength="32" [(ngModel)]="profileDetails.permanentAddress.city"
+                                name="permanentCity" #permanentCityRef="ngModel" [readOnly]="viewMode" />
+                            <div [hidden]="permanentCityRef.valid || permanentCityRef.pristine" class="alert alert-danger">Please enter the City</div>
+                        </div>
+                        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                            <label class="labelText" for="permanentState">State*</label>
+                            <input type="text" id="permanentState" class="form-control inputText" required maxlength="32" [(ngModel)]="profileDetails.permanentAddress.state"
+                                name="permanentState" #permanentStateRef="ngModel" [readOnly]="viewMode" />
+                            <div [hidden]="permanentStateRef.valid || permanentStateRef.pristine" class="alert alert-danger">Please enter the State</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                            <label class="labelText" for="permanentCountry">Country*</label>
+                            <input type="text" id="permanentCountry" class="form-control inputText" required maxlength="32" [(ngModel)]="profileDetails.permanentAddress.country"
+                                name="permanentCountry" #permanentCountryRef="ngModel" [readOnly]="viewMode" />
+                            <div [hidden]="permanentCountryRef.valid || permanentCountryRef.pristine" class="alert alert-danger">Please enter the Country</div>
+                        </div>
+                        <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                            <label class="labelText" for="permanentZipcode">Zip code*</label>
+                            <input type="text" id="permanentZipcode" class="form-control inputText" required [(ngModel)]="profileDetails.permanentAddress.zipcode"
+                                name="permanentZipcode" #permanentZipcodeRef="ngModel" [readOnly]="viewMode" (keypress)="restrictNumeric($event)"  minlength="6" maxlength="16"
+                            />
+                            <div [hidden]="permanentZipcodeRef.valid || permanentZipcodeRef.pristine" class="alert alert-danger">Please enter the Zip codee</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div> 
+  </form>
+  </div>
+  </tab>
+  <tab [tabTitle]="'Professional Info'">
+    <div class="Professional-details"  *ngIf="profileDetails">
+       <form #professionalDetailsForm="ngForm">
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="working-status">Working Status</label>
+                    <div class="working-status-radio">
+                        <label class="radio-inline">
+                            <input type="radio" name="unemployed" [(ngModel)]="profileDetails.unemployed" [value]="false" [readonly]="viewmode" > Active
+                        </label>
+                        <label class="radio-inline">
+                            <input type="radio" name="unemployed" [(ngModel)]="profileDetails.unemployed" [value]="true" [disabled]="viewMode" [readonly]="viewmode"> Inactive
+                        </label>
+                    </div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="current-employer">Current Employer*</label>
+                    <input type="text" name="currentEmployer" class="form-control" id="current-employer" maxlength="120" [(ngModel)]="profileDetails.currentEmployer" value="Infosys Private Ltd,Banglore" #currentEmployerRef="ngModel" [readOnly]="viewMode" required/>
+                    <div [hidden]="currentEmployerRef.valid || currentEmployerRef.pristine" class="alert alert-danger">Please enter the current employer</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="country">Current Work Location*</label>
+                    <input type="text" class="form-control" name="currentWorkLocation" maxlength="30" [(ngModel)]="profileDetails.currentWorkLocation" #currentWorkLocationRef="ngModel" [readOnly]="viewMode" required/>
+                    <div [hidden]="currentWorkLocationRef.valid || currentWorkLocationRef.pristine" class="alert alert-danger">Please enter the current work location</div>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-6"  *ngIf ="profileDetails && comboData &&profileDetails.employmentType && comboData.employmenttype">
+                    <label class="labelText" for="country">Notice Period (in months)</label>
+                    <select name="noticePeriod" class="form-control" [(ngModel)]="profileDetails.noticePeriod" [disabled]="viewMode" >
+                        <option *ngFor="let noticePeriod of comboData.noticeperiod" value= {{noticePeriod.code}}>
+                         {{noticePeriod.description}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div *ngIf="!commonService.hideFeature('VIEW_PROFILE_CTC_DETAILS')" class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="country">Current CTC*</label>
+                    <input type="number" class="form-control" name="currentCTC"  min="0" [(ngModel)]="profileDetails.currentCTC" #currentCTCRef="ngModel" (keypress)="restrictMobilenumber($event)" (keyup)="convertToWords(currentCTCRef.value,'ctc');hide=false" (change)="convertToWords(currentCTCRef.value,'ctc');hide=false" [readOnly]="viewMode" required />
+                    <!--<input type="number" class="form-control" name="currentCTC" [(ngModel)]="profileDetails.currentCTC" #currentCTCRef="ngModel" (keyup)="convertToWords(currentCTCRef.value)" [readOnly]="viewMode" required />-->
+                    <span class="ctc-words" [hidden]="hide">{{ctcToWord}}</span>
+                    <!--<span>{{toWord}}</span>-->
+                    <div [hidden]="currentCTCRef.valid || currentCTCRef.pristine" class="alert alert-danger">Please enter the current CTC</div>
+                </div>
+                <div *ngIf="!commonService.hideFeature('VIEW_PROFILE_CTC_DETAILS')" class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="country">Expected CTC*</label>
+                    <input type="number" class="form-control" name="expectedCTC" min="0" [(ngModel)]="profileDetails.expectedCTC" #expectedCTCRef="ngModel" (keypress)="restrictMobilenumber($event)" (keyup)="convertToWords(expectedCTCRef.value,'etc');eHide=false" (change)="convertToWords(expectedCTCRef.value,'etc');eHide=false;" [readOnly]="viewMode" required />
+                    <span class="ctc-words" [hidden]="eHide">{{etcToWord}}</span>
+                    <div [hidden]="expectedCTCRef.valid || expectedCTCRef.pristine" class="alert alert-danger">Please enter the expected CTC</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="totalExperienceInYears">Total Experience (in years)*</label>
+                    <input type="number" class="form-control" name="totalExperienceInYears" min="0"  #totalExp="ngModel" step="any" [(ngModel)]="profileDetails.totalExperienceInYears" [readOnly]="viewMode" required (keypress)="restrictFloatnumber($event)" (change)="totalExpirenece(profileDetails.totalExperienceInYears,profileDetails.relevantExperienceInYears)" />
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="relevantExperienceInYears">Relevant Experience (in years)*</label>
+                    <input type="number" class="form-control" name="relevantExperienceInYears" #relExp="ngModel"  min="0" step="any" [(ngModel)]="profileDetails.relevantExperienceInYears" [readOnly]="viewMode" required (keypress)="restrictFloatnumber($event)" (change)="releventExpirence(profileDetails.totalExperienceInYears,profileDetails.relevantExperienceInYears)"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6" *ngIf ="profileDetails && comboData &&profileDetails.employmentType && comboData.employmenttype" >
+                    <label class="labelText" for="employementtype">Employement Type</label>
+                    <select name="employementtype" class="form-control" [(ngModel)]="profileDetails.employmentType" [disabled]="viewMode">
+                        <option *ngFor="let employementtype of comboData.employmenttype" value= {{employementtype.code}}>
+                         {{employementtype.description}}
+                        </option>
+                    </select>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-6"  *ngIf ="profileDetails && comboData &&profileDetails.employmentType && comboData.employmenttype">
+                    <label class="labelText" for="documenttype">Document Type</label>
+                    <select name="documenttype" class="form-control" [(ngModel)]="profileDetails.documentType" [disabled]="true">
+                        <option *ngFor="let documenttype of comboData.documenttype" value= {{documenttype.code}}>
+                         {{documenttype.description}}
+                        </option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6"  *ngIf ="profileDetails && comboData &&profileDetails.employmentType && comboData.employmenttype">
+                    <label class="labelText" for="prospectsource">Prospect Source</label>
+                    <select name="prospectsource" class="form-control" [(ngModel)]="profileDetails.source" [disabled]="viewMode" (change)="propsectSourceChange()">
+                        <option *ngFor="let prospectSource of comboData && comboData.prospectSource" [value]="prospectSource.code">{{prospectSource.description}}</option>  
+                    </select>
+                </div>
+                <div class="col-md-4 upload_resume_main">
+                    <div class="row upload_resume_starts">
+                        <div class="col-md-6 col-xs-12 col-sm-6 professional-row-container">
+                            <label class="labelText" for="uploadResume">Upload Your Resume</label>
+                            <input type="text" name="fileNamePreview" id="fileNamePreview" class="form-control image-preview-filename" style="pointer-events: none;" [readOnly]="true" [(ngModel)]="resumeDetails && resumeDetails.title">
+                        </div>
+                        <div class="col-md-6 col-xs-12 col-sm-6" style="padding-left:0;padding-right:0">
+                        <span class="pull-left resume-upload-button">
+                            <div class="btn btn-default image-preview-input professional-upload-btn resume_btn">
+
+                                <span class="image-preview-input-title">Browse</span>
+                                <input type="file" name="resumeFileUpload" (change)="uploadFile($event)" [disabled]="viewMode || uploaded" multiple/>
+                            </div>
+                        </span>
+                        <button #removeButton type="button" class="btn btn-danger btn-xs remove-resume" [disabled]="viewMode || !uploaded" (click)="deleteDocument()">
+                            <span class="glyphicon glyphicon-trash"></span> Remove
+                        </button>
+                        <!--<span class="pull-left cancel-upload">
+                            <a href="#">Cancel</a>
+                        </span>-->
+                        <!--</div>-->
+                        </div>
+                    </div>
+                    <div *ngIf="resumeDetails" class="row professional-row-container resume-title">
+                        <a href="javascript:void(0)" (click)="downloadFile(resumeDetails)">{{resumeDetails.title}}</a>
+                    </div>
+                </div>
+            </div>
+            <br>
+            <div class="row referral-show" *ngIf="isReferral">
+                <div class="col-md-4 col-xs-12 col-sm-6 professional-row-container">
+                    <label class="labelText" for="referral">Referral</label><br>
+                <p-autoComplete [style]="{'width':'100%', 'height': '2.8em'}" [inputStyle]="{'width':'100%', 'height': '2.8em'}" name="referralSearch" [(ngModel)]="referralData[0]" [readonly]="viewMode" [suggestions]="results" (completeMethod)="search($event)" [minLength]="3" [delay]="500" placeholder="Search by Name or Emp Id or Mail Id (min 3 characters)" field="fullName" (onSelect)="loadReferralDetails($event)"></p-autoComplete>
+                </div>
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="referralEmail">Referral Email</label>
+                    <input type="text" class="form-control" name="referralEmail" [(ngModel)]="profileDetails.referralDetails[0] && profileDetails.referralDetails[0].referralEmail" [readOnly]="true"/>
+                </div>
+            </div>
+            <div class="row" *ngIf="isReferral">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <label class="labelText" for="referralMobile">Referral Mobile</label>
+                    <input type="text" class="form-control" name="referralMobile" [(ngModel)]="profileDetails.referralDetails[0] && profileDetails.referralDetails[0].referralPhone" [readOnly]="true"/>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-4 col-xs-12 col-sm-6">
+                    <div class="addresscheck">
+                        <input type="checkbox" class="isSingleAddress" [(ngModel)]="profileDetails.willingToRelocate" (click)="locationsdisplay()"
+                            name="willingtorelocate" [disabled]="viewMode" /><span class="isPermanet">
+                        Willing to Relocate</span>
+                    </div>
+                    <div class="willingtorelocate-locations" *ngIf="profileDetails.willingToRelocate">
+                        <input type="text" [className]="viewMode?'form-control selectdisable':'form-control'" name="location" [(ngModel)]="profileDetails.locationName" placeholder="Location" [disabled]="viewMode"/>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+  </tab>
+  <tab [tabTitle]="'Skill Set'">
+    <div class="skill-details shortlisted_skill_details">
+      <form #skillDetailsForm="ngForm">
+        <div class="row">
+            <div class="skillset-container">
+                <div style="margin-left:-1em;" class="table-responsive" *ngIf="profileDetails">
+                    <div class="col-md-8 col-md-offset-1 skill-set" *ngFor="let categoryskill of profileDetails.skillSets;let rowcatIndex=index">
+                        <div *ngIf = "categoryskill.skillProficiencies">
+                            <span class="category-name">{{categoryskill.categoryName}}</span><span class="cat-remove-icon" (click)="removeCategory(rowcatIndex)"><i class="fa fa-minus-circle pull-right" aria-hidden="true"></i></span>
+                            <skill [allSkills]="availableTechSkills" [isViewMode]="viewMode" [skillDetails]="categoryskill.skillProficiencies" [headers]="headers"></skill>
+                            <span *ngIf="!viewMode" [className]="viewMode?'glyphicon glyphicon-plus add-more action-disabled':'glyphicon glyphicon-plus add-more show'" (click)="AddSkill(rowcatIndex)"></span>
+                            <span *ngIf="!viewMode" (click)="AddSkill(rowcatIndex)"  [className]="viewMode?'action-disabled':'show'">Add Skill</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+    </div>
+</tab>
+<tab *ngIf="!commonService.hideFeature('VIEW_PROFILE_CONFIDENTIAL_DOCUMENT')" [tabTitle]="'Confidential Documents'">
+    <div class="professional-details-form miscellaneous-uploads-main col-md-9">
+    <p>Upload documents like background verification etc.</p>
+    <div class="row col-md-11">
+        <div class="form-group" *ngFor="let document of addDocuments let i = index">
+            <upload-doc id="{{'confidentialDoc'+(i+1)}}" (onFileChange)="setFileData($event, ('OTHERS' + (i+1)))" [isUpload]="uploaded['OTHERS' + (i+1)]" (onUpload)="uploadDocument('OTHERS' + (i+1))" (onDelete)="deleteDocument('OTHERS' + (i+1))" [docTitle]="loadDocumentName('OTHERS' + (i+1))" [index]="i" (onRemove)="remove(i)" (onDownload)="downloadDocument('OTHERS' + (i+1))" [hideRemove]="true">
+            </upload-doc>
+        </div>
+    </div>
+    <div class="row col-md-12">
+        <div class="form-group add-confidential-item">
+            <span class="glyphicon glyphicon-plus add-more" (click)="addMore()"></span>
+            <span (click)="addMore()" style="cursor:pointer;">Add Item</span>
+        </div>
+    </div>
+</div>
+</tab>
+</tabs>
+  <div class="row">
+        <div class="profile-screen-btns shortlists-remarks">
+            <div class="col-md-8 pull-right" [hidden]="rejectprofile">
+                <remarks-modal *ngIf="!commonService.hideFeature('SHORTLIST_PROFILE_FOR_HIRING_REQUEST_NEED')" [modalId]="rejectId" #shortListModal [remarkTitle]="shortListTitle" (openModal)="modalOpen()" (updateReason)="shortListProfile($event)"></remarks-modal>
+                <remarks-modal *ngIf="!commonService.hideFeature('REJECT_PROFILE_FOR_HIRING_REQUEST_NEED')" [modalId]="shortListId" #rejectModal [remarkTitle]="rejectTitle" [required]="true" [message]="'Please enter the reason for rejection'" (openModal)="modalOpen()" (updateReason)="rejectProfile($event)"></remarks-modal>
+                <button class="profile-screening-view-button profile-close" (click)="navigateToPrevious()">Close</button>
+            </div>
+            <div class="profile-close-btn pull-right" [hidden]="!rejectprofile">
+                <button class="profile-screening-view-button" (click)="navigateToPrevious()">Close</button>
+            </div>
+        </div>
+    </div>  
+</div>

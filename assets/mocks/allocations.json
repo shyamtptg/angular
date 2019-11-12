@@ -1,0 +1,98 @@
+[
+    {
+        "joinee": 1, "date": "01/02/2020", "status": "Offer rolled out", "request": "005",
+        "workstation": "W-489", "availiability": "Avialiable", "action": 0, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 2, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 3, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 4, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 1, "date": "01/02/2020", "status": "Offer rolled out", "request": "005",
+        "workstation": "W-489", "availiability": "Avialiable", "action": 0, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 2, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 3, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 4, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 1, "date": "01/02/2020", "status": "Offer rolled out", "request": "005",
+        "workstation": "W-489", "availiability": "Avialiable", "action": 0, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 2, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 3, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 4, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 1, "date": "01/02/2020", "status": "Offer rolled out", "request": "005",
+        "workstation": "W-489", "availiability": "Avialiable", "action": 0, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 2, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 3, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 4, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 1, "date": "01/02/2020", "status": "Offer rolled out", "request": "005",
+        "workstation": "W-489", "availiability": "Avialiable", "action": 0, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 2, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 3, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 4, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 1, "date": "01/02/2020", "status": "Offer rolled out", "request": "005",
+        "workstation": "W-489", "availiability": "Avialiable", "action": 0, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 2, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 3, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    },
+    {
+        "joinee": 4, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "W-347", "availiability": "Avialiable", "action": 1, "src": "../../../assets/face.svg", "name": "Dummy Name", "id": "0000", "building": "Waverock, building 2.1"
+    }
+]

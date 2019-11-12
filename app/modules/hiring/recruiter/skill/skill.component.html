@@ -1,0 +1,37 @@
+
+<table cellspacing="0" cellpadding="0" class="table" id="ToolsID" style="margin-bottom:10px;">
+	<tbody>
+		<tr class="table-header">
+			<th class="col-md-4 col-xs-12 col-sm-4">Skill</th>
+			<th class="col-md-4 col-xs-12 col-sm-4">Years Of Experience</th>
+			<th class="col-md-4 col-xs-12 col-sm-4">Rate Yourself</th>
+			<th class="col-md-4 col-xs-12 col-sm-4">
+				<th>
+		</tr>
+		<tr *ngFor="let skillDetail of skillDetails; let rowIndex=index">
+			<td class="col-md-4 col-xs-12 col-sm-4">
+				<!--<div *ngIf="!skillDetail.isNew && skillDetail.skill">
+			<span [innerHtml]="skillDetail.skill.name" ></span>		
+				</div>-->
+				<div >
+					<select class="form-control" required [(ngModel)]="skillDetail.skillId" name="skills" [disabled]="isViewMode">
+						<option *ngFor="let skill of skillDetail.skill" [value]="skill.id">{{skill.name}}</option>
+					</select>
+				</div>
+			</td>
+			<td class="col-md-4 col-xs-12 col-sm-4">
+				<input class="form-control" type="text" maxlength="4" required name="experience" [(ngModel)]="skillDetail.yearsOfExperience" (keypress)="restrictFloatnumber($event) && validateExperience(experienceRef.value)" #experienceRef="ngModel"  [readOnly]="isViewMode">
+			</td>
+			<td class="col-md-4 col-xs-5 col-sm-5">
+				<ngb-rating [(rate)]="skillDetail.rating" [(max)]="maxProficiency" [readonly]="isViewMode" style="outline:none;">
+					<ng-template let-fill="fill">
+						<span class="star" [class.filled]="fill === 100">&#9733;</span>
+					</ng-template>
+				</ngb-rating>
+			</td>
+			<td class="col-md-2 col-xs-2 col-sm-2">
+				<span *ngIf="!isViewMode" style="cursor:pointer;" class="delete-icon" (click)="deleteSkill(rowIndex)"></span>
+			</td>
+		</tr>
+	</tbody>
+</table>

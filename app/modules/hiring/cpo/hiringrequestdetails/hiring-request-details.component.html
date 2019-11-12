@@ -1,0 +1,59 @@
+<form #basicHiringDetailsForm="ngForm" novalidate>
+	<div #basicHiringDetails [hidden]="false" *ngIf="detailsFrmHiringRequestData">
+		<div class="row card">
+			<p class="heading">HIRING REQUEST DETAILS</p>
+			<div class="row">
+				<div class="form-group col-md-4 col-xs-12 col-sm-12">
+					<label class="labelText" for="hiringfor">Hiring For*</label>
+					<select name="hiringfor" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.hiringReason" [disabled]="viewMode"  required>
+						<option *ngFor="let reason of hiringForOptions" [value]="reason.code">{{reason.description}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4 col-xs-12 col-sm-12">
+					<label class="labelText" for="clientname">Client Name*</label>
+					<select name="clientname" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.clientId" [disabled]="viewMode" required>
+						<option *ngFor="let client of clientNameOptions" [value]="client.id">{{client.clientName}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4 col-xs-12 col-sm-12">
+					<label class="labelText" for="department">Department*</label>
+					<select name="department" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.departmentId" [disabled]="viewMode" required (change)="loadPracticesByDepartment()">
+						<option *ngFor="let dept of departmentOptions" [value]="dept.id">{{dept.name}}</option>
+					</select>
+				</div>
+			</div>
+			<div class="row">
+				<div class="form-group col-md-4 col-xs-12 col-sm-12">
+					<label class="labelText" for="hiringtype">Hiring Type*</label>
+					<select name="hiringtype" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.hiringType" [disabled]="viewMode" required>
+						<option *ngFor="let type of hiringTypeOptions" [value]="type.code">{{type.description}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4 col-xs-12 col-sm-12">
+					<label class="labelText" for="hiringmanager">Hiring Manager*</label>
+					<select name="hiringmanager" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.hiringManagerId" [disabled]="viewMode" required>
+						<option *ngFor="let hiringManager of hiringManagerOptions" [value]="hiringManager.id">{{hiringManager.fullName}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-4 col-xs-12 col-sm-12">
+					<label class="labelText" for="priority">Priority*</label>
+					<select name="priority" class="form-control" [(ngModel)]="detailsFrmHiringRequestData.hiringPriority" [disabled]="viewMode" required>
+						<option *ngFor="let priority of priorityOptions" [value]="priority.code">{{priority.description}}</option>
+					</select>
+				</div>
+				<div class="form-group col-md-8 col-xs-8 col-sm-12">
+                    <label class="labelText" for="purpose">Purpose*</label>
+                    <input type="text" name="purpose" class="form-control" maxlength="128" [(ngModel)]="detailsFrmHiringRequestData.purpose" [disabled]="viewMode" required/>
+                </div>
+			</div>
+			<div class="pull-right">
+				<button class="hiring-request-new-next-button" (click)="navigateToHiringRequests()">Close</button>
+			</div>
+		</div>
+	</div>
+</form>
+<div #hiringRequestNeeds [hidden]="false">
+	<div class="row hiring-request-need-details hiring-need-container">
+		<cpo-hiring-request-need-details [hiringReqId]="hiringId" [comboData]="hiringNeedComboData" [needData]="need" [needIndex]="i" *ngFor="let need of needList; let i = index" (remove)="removeNeed($event)"></cpo-hiring-request-need-details>
+	</div>
+</div>

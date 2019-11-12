@@ -1,0 +1,60 @@
+<div class="scheduled-interview-title">
+    <div class="no-padding col-md-6 col-sm-6">
+        <p class="heading">PROFILES<span class="subheading"> | TOTAL {{recordsCount}}</span></p>
+    </div>
+    <div class="col-md-5 col-xs-12 res-prioritymain col-sm-11">
+        <div class="prioritydropdrown-main no-padding col-md-12">
+            <div class="no-padding col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <select name="resultStatus" class="form-control" [(ngModel)]="resultStatus" #resultStatusRef="ngModel" (change)="filterChanged()">
+                        <option value="ALL">Select Result Status</option>
+                        <option *ngFor="let resultStatus of resultStatusOptions" [value]="resultStatus.code">{{resultStatus.description}}</option>
+                    </select>
+                </div>
+            </div>
+            <div class="no-padding col-md-6 col-sm-6 col-xs-12">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <select name="scheduleStatus" class="form-control" [(ngModel)]="scheduleStatus" #scheduleStatusRef="ngModel" (change)="filterChanged()">
+                        <option value="ALL">Select Status</option>
+                        <option *ngFor="let status of statusOptions" [value]="status.code">{{status.description}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-1 col-sm-1">
+        <p class="heading">
+            <a class="pull-right" (click)="exportData()"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a>
+        </p>
+    </div>
+</div>
+<div class="scheduled-interview-profiles">
+    <ag-grid-angular class="ag-fresh grid_ag"
+        [gridOptions]="gridOptions"
+        enableColResize
+        enableSorting
+        enableFilter
+        rowSelection="single"
+        paginationPageSize=20
+        rowDeselection=true
+        [context]="context"
+        [frameworkComponents]="frameworkComponents"
+        (selectionChanged)="checkModes()"
+        (cellClicked)="onCellClicked($event)"
+        (gridReady)="onGridInitialize()"
+        (gridSizeChanged)="resizeColumns()">
+    </ag-grid-angular>
+    <nav class="grid_nav">
+        <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+    </nav>
+</div>
+<div class="pull-right grid_btn">
+    <button class="scheduled-interview-feedback-button" [disabled]="buttonModes.open" (click)="showProfileDetails()">Open</button>
+    <button *ngIf="!commonService.hideFeature('ACCEPT_SCHEDULED_INTERVIEW')" class="scheduled-interview-feedback-button" [disabled]="buttonModes.accept" (click)="accept()">Accept</button>
+    <button *ngIf="!commonService.hideFeature('DECLINE_SCHEDULED_INTERVIEW')" class="scheduled-interview-feedback-button" [disabled]="buttonModes.decline" (click)="decline()">Decline</button>
+    <button *ngIf="!commonService.hideFeature('SUBMIT_INTERVIEW_FEEDBACK')" class="scheduled-interview-feedback-button" [disabled]="buttonModes.submitFeedback" (click)="openFeedBack()">Submit Feedback</button>
+    <button *ngIf="!commonService.hideFeature('VIEW_INTERVIEW_FEEDBACK')" class="scheduled-interview-feedback-button" [disabled]="buttonModes.viewFeedback" (click)="viewFeedBack()">View Feedback</button>
+</div>
+<p-dialog class="job-desc-popup" header="Job Description" [(visible)]="display" modal="true" width="820" [responsive]="true">
+    <job-desc-view [jobDescData]="jobDescData"></job-desc-view>
+</p-dialog>

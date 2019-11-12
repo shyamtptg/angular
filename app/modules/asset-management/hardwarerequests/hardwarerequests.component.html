@@ -1,0 +1,86 @@
+<div class="dataTable m-b-9x">
+	<!-- <mat-toolbar><a  routerLinkActive="active" [routerLink]="['/onboarding/dashboard']">{{dateToDisplay}}{{numberofJoinees}}</a></mat-toolbar>  -->               
+			<div class="example-container mat-elevation-z8 display-flex" >
+					<div class="flexlayout toplayout" fxLayout="row">
+							<mat-toolbar>
+							<span fxFlex="30" class="Hardware-requests  p-l-4x">Hardware Requests Statistics</span>
+									<mat-radio-group fxFlex="70">
+											<span class="view  m-r-1x small-font">view:</span>
+											<mat-radio-button value="All"   (change)="onChange($event.value)" class="radiobtngroup">All</mat-radio-button>
+											<mat-radio-button  value="joiningThisWeek" [checked]="true"  (change)="onChange($event.value)" class="radiobtngroup" >Joining this week</mat-radio-button>                    
+											<mat-radio-button  value="joinedLastWeek"  (change)="onChange($event.value)" class="radiobtngroup">Joined Last week</mat-radio-button>                                    
+									</mat-radio-group>                     
+							</mat-toolbar>
+					</div>               
+					<mat-divider></mat-divider>
+					<mat-table #table [dataSource]="dataSource1" *ngIf="hardwareinfo && (hardwareinfo.length>0); else Norequest"  matSortActive="dateOfJoining" matSortDirection="asc" [@.disabled]="true" matSort>                       
+						<ng-container matColumnDef="src">
+							<mat-header-cell *matHeaderCellDef="let e" class="display-flex"></mat-header-cell>
+							<mat-cell *matCellDef="let e" class="matCell1"><img class="image" [src]="url" /></mat-cell>
+						</ng-container>
+						<ng-container matColumnDef="name">
+							<mat-header-cell *matHeaderCellDef="let e" mat-sort-header  class="mat-header-cell1 ">Joinee</mat-header-cell>
+							<mat-cell *matCellDef="let e" class="matCell1">
+								<div class="details" fxLayout="column" fxflex>
+									<div class="name medium-font ">{{e.name}}</div>
+									<div class="id medium-font">Emp ID: {{e.employeeId}}</div>
+								</div>
+							</mat-cell>
+						</ng-container>
+						<ng-container matColumnDef="dateOfJoining">
+							<mat-header-cell *matHeaderCellDef="let e" mat-sort-header  class="mat-header-cell1 ">Joining Date</mat-header-cell>
+							<mat-cell *matCellDef="let e" class="matCell1">
+								<span class="id">{{e.dateOfJoining |date:'dd/MM/yyyy'}}</span>
+							</mat-cell>
+						</ng-container>
+						<ng-container matColumnDef="jobStatus">
+							<mat-header-cell *matHeaderCellDef="let e"  class="mat-header-cell1 ">Job Status</mat-header-cell>
+							<mat-cell *matCellDef="let e" class="matCell1">
+								<span class="status status-text">{{e.jobStatus}}</span>
+							</mat-cell>
+						</ng-container>
+						<ng-container matColumnDef="id">
+							<mat-header-cell *matHeaderCellDef="let e" mat-sort-header  class="mat-header-cell1 ">Request#</mat-header-cell>
+							<mat-cell *matCellDef="let e" class="matCell1">
+								<span class="request large-font">{{e.id}}</span>
+							</mat-cell>
+						</ng-container>
+						<ng-container matColumnDef="requestedHardware">
+							<mat-header-cell *matHeaderCellDef="let e" mat-sort-header  class="mat-header-cell1 ">Requested Hardware/ Workstation</mat-header-cell>
+							<mat-cell *matCellDef="let e" class="matCell1">
+								<div class="details" fxLayout="column" fxflex>
+									<div class="request status-text">{{e.requestedHardware}}</div>
+										<!-- <div class="id medium-font">{{e.building}}</div> -->
+								</div>
+							</mat-cell>
+						</ng-container>
+						<ng-container matColumnDef="hardwareAvailability">
+							<mat-header-cell *matHeaderCellDef="let e" mat-sort-header  class="mat-header-cell1">Hardware Availiability</mat-header-cell>
+							<mat-cell *matCellDef="let e" class="matCell1">
+								<span  class="availiability status-text">{{e.hardwareAvailability}}</span>
+							</mat-cell>
+						</ng-container>
+						<ng-container matColumnDef="action">
+							<mat-header-cell *matHeaderCellDef="let e"  class="display-flex"></mat-header-cell>
+							<mat-cell *matCellDef="let e;let i = index;" class="matCell1">
+								<!-- <button (click)="navigateToAssignHardwareForms(e)" class="ms-btn ms-btn-primary-bordered">{{e.action}}</button> -->
+								<button *ngIf="e.action === 'Allocate'" (click)="navigateToAssignHardwareForms(e, 'Allocate',e.index)" class="ms-btn ms-btn-primary-bordered">Allocate</button>
+
+								<div *ngIf="e.action === 'Edit and Deallocate'" class="actions" fxLayout="column" fxLayoutGap="4px">
+									<button (click)="navigateToAssignHardwareForms(e, 'Edit',e.index)" class="ms-btn ms-btn-primary-bordered" 
+									[ngClass]="{'disable': ((e.dateOfJoining < e.currentTime)
+									&& (e.allocationType === 2 ||e.allocationType === 4 ||e.allocationType === 5))}">Edit</button>
+									<button (click)="navigateToAssignHardwareForms(e, 'Deallocate',e.index)" class="ms-btn ms-btn-primary-bordered"
+									[ngClass]="{'disable': ((e.dateOfJoining < e.currentTime)
+									&& (e.allocationType === 2 ||e.allocationType === 4 ||e.allocationType === 5))}">Deallocate</button>
+ 								</div>
+							</mat-cell>							
+						</ng-container>
+						 <mat-header-row *matHeaderRowDef="displayedColumns1;"></mat-header-row> 
+						<mat-row *matRowDef="let row; columns: displayedColumns1;"></mat-row> 
+					</mat-table>
+					<ng-template #Norequest>
+            <div class="no-requests">No request available for selected time period.</div>
+        </ng-template>
+			</div>
+</div>

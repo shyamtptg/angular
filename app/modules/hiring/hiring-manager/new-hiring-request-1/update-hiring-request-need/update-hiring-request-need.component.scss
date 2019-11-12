@@ -1,0 +1,90 @@
+.hiring-need-details {
+    background: #ffffff;
+    padding: 0.7em;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    clear: both;
+    margin: 1em 0 0.6em 0;
+    display: none;
+
+    .hiring-need-btns {
+        margin-right: 0.1em;
+    }
+}
+
+.hiring-need-div {
+    background: white;
+    margin: 0 0 0.5em 0;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    border: 1px solid #c5c5c5;
+    //min-height: 50px;
+    line-height: 50px;
+    font-family: $font-family;
+    font-size: 16px;
+    color: #ffffff;
+    letter-spacing:$letter-spacing;
+    cursor: auto;
+    outline: 0px solid transparent;
+
+    .need-text {
+        margin-right: 2em;
+        font-size: 13px;
+        height: 3.3em;
+        color: #555555;
+    }
+
+    .need-heading {
+        color: #575757;
+        font-weight: bold;
+    }
+
+    .arrow-img2 {
+        float: right;
+        margin-right: 17px;
+        margin-top: 13px;
+        content: url("./assets/leftarrow_white.png");
+        cursor: pointer;
+    }
+
+    .plus-icon {
+        font-size: 1em;
+        color: rgba(8, 14, 21, 0.77);
+        margin: 0.94em 0.8em 0 0;
+        text-decoration: none;
+        cursor: pointer;
+        display: block;
+    }
+
+    .minus-icon {
+        font-size: 1em;
+        color: rgba(8, 14, 21, 0.77);
+        display: none;
+        margin: 0.94em 0.8em 0 0;
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .close {
+        display: none;
+    }
+
+    .remove-need-icon {
+  		margin: 0.85em 0.5em 0 0;
+  		font-size: 1em;
+  		cursor: pointer;
+  		color:#4a4a4a;
+  		text-decoration: none;
+}
+}
+.adjust-index {
+  z-index: 0;
+}
+.disabled {
+    cursor: not-allowed!important;
+     a.glyphicon-chevron-right:before ,  a.glyphicon-search:before {
+        cursor: not-allowed!important;
+    }
+    a{
+        pointer-events: none;
+    }
+}
+.to-text { margin-right: 12px; }

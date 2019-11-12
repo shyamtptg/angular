@@ -1,0 +1,110 @@
+.leave-apply-modal {
+    .modal-body {
+        font-family: "avenirbook";
+        font-size: 13.5px;
+        line-height: 14px !important;
+        padding: 1em 1.5em;
+    }
+
+    label {
+        font-weight: unset;
+    }
+
+    .required {
+        color: #e32;
+    }
+
+    .btn-apply {
+        width: 150px;
+        vertical-align: middle;
+        margin-top: 13px;
+        background-color: #2f4d68;
+        color: white;
+    }
+
+    .textarea-height {
+        min-height: 100px;
+    }
+
+    .status-messages {
+        margin-top: 22px;
+        color: green;
+        font-size: 18px;
+    }
+
+    .close {
+        width: 100px;
+        opacity: 0.3;
+    }
+
+    .close:hover {
+        opacity: 1;
+    }
+
+    .mdl_bdy {
+        border-right: 2px solid #eee;
+    }
+
+    .availble_blance {
+        margin-top: 30px;
+        color: #7A5DA3;
+        font-size: 13px;
+        @media (max-width: 991px) {
+            margin-top: 0.4em !important;
+        }
+    }
+
+    .checkbok {
+        margin-top: 30px;
+
+        @media (max-width: 991px) {
+            margin-top: 0.4em !important;
+            margin-bottom: 0.8em !important;
+        }
+    }
+
+    .modal-header {
+        background: #f6f7f9 0 0 repeat-x;
+        padding: 1em 1.5em;
+    }
+
+    .modal-header .close {
+        padding-left: 65px;
+        outline: none;
+        font-size: 28px;
+    }
+
+    .marginTop10 {
+        margin-top: 1em;
+        @media (min-width: 992px) {
+            margin-top: 1.2em;
+        }
+    }
+    
+    .applyto {
+        margin-left: 74px;
+    }
+
+    textarea {
+        resize: none;
+    }
+
+    input[type=number]::-webkit-inner-spin-button,
+    input[type=number]::-webkit-outer-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        margin: 0;
+    }
+    .rule-list {
+        line-height: 17px;
+    }
+    .rule-list li {
+        font-size: 12.5px;
+        margin: 0.3em 0 0.3em 0;
+    }
+    
+
+    .copyTo{
+        margin-left: 12px;
+    }
+}

@@ -1,0 +1,40 @@
+@import './../../../assets/scss/colors.scss';
+@import './../../../assets/scss/fonts.scss';
+@import './../../../assets/scss/variables.scss';
+
+.footer {
+  background: $pure-white;
+  padding: $space-1x $space-2x;
+  position: fixed;
+  width: 100%;
+  bottom: 0;
+  z-index: 1000;
+  border-top: 1px solid $border-color;
+  @extend .small-text;
+  color: $gray3;
+
+  @media only screen and (max-width: 767px) {
+    padding: $space-1x 0;
+    font-size: 10px;
+  }
+  .text-right {
+    margin-bottom: 0px;
+  }
+}
+.footer-text {
+    margin-bottom: 0;
+}
+.footer-large {
+    @media (max-width: 992px) {
+        display: none;
+    }
+}
+.footer-medium {
+    text-align: center;
+    @media (max-width: 992px) {
+        display: block;
+    }
+    @media (min-width: 993px) {
+        display: none;
+    }
+}

@@ -1,0 +1,27 @@
+{
+    "candidateExperiencedetails": [
+        {
+            
+                "companyName":"Innominds software pvt ltd..",
+                "designation":" custA",
+                "companyAddress":" Alpha Way",
+                "joinDate": 1536796800000,
+                "resignDate":" AL",
+                "totalWorkingdays":"91605",
+                "id":"1"
+          
+        },
+        {
+          
+                "companyName":"Tata communications",
+                "designation":"lead",
+                "companyAddress":" Alpha Way",
+                "joinDate": 1536796800000,
+                "resignDate":" AL",
+                "totalWorkingdays":"91605",
+                "id":"2"
+            
+        }
+       
+    ]
+}

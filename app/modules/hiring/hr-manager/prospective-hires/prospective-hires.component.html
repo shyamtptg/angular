@@ -1,0 +1,20 @@
+<div class="prospective-profile-title">
+	<p class="heading">PROFILES<span class="subheading"> | TOTAL 18</span><a class="pull-right"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a></p>
+</div>
+<div class="prospective-profiles">
+    <ag-grid-angular class="ag-fresh grid_ag"
+    	[gridOptions]="gridOptions" 
+    	enableColResize
+    	enableSorting
+    	enableFilter
+    	rowSelection="single"
+    	paginationPageSize=20
+		rowDeselection=true
+    	(cellClicked)="onCellClicked($event)"
+		(gridReady)="onGridInitialize()"
+		(gridSizeChanged)="resizeColumns()">
+ 	</ag-grid-angular>
+</div>
+<div class="pull-right search_grid_btn">
+    <button class="prospective-profile-verify-button" (click)="openVerificationDetails()">Verify</button>
+</div>

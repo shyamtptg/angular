@@ -1,0 +1,24 @@
+.attachment-details {
+    background: #ffffff;
+    padding: 0.7em;
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+    clear: both;
+    margin: 1em 0 0.6em 0;
+    display: none;
+}
+.attachment-plus-icon {
+    font-size: 1em;
+    color: rgba(8, 14, 21, 0.77) !important;
+    margin: 0.94em 0.8em 0 0;
+    text-decoration: none !important;
+    cursor: pointer;
+    display: block;
+}
+.attachment-minus-icon {
+    font-size: 1em;
+    color: rgba(8, 14, 21, 0.77) !important;
+    display: none;
+    margin: 0.94em 0.8em 0 0;
+    text-decoration: none !important;
+    cursor: pointer;
+}

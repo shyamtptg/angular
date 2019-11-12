@@ -1,0 +1,139 @@
+<div #jobDescriptionDetails class="row maindiv job-desc-container">
+    <div class="col-md-12">
+        <div class="row jobdesc-header">
+            <div class="col-md-9 job-description-container">
+            </div>
+            <div class="col-md-3 job-description-progress">
+                <div class="progress">
+                    <div class="progress-bar progress-bar-info" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" [style.width] = "progressPercentage+'%'">
+                        {{progressPercentage}}%
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row job-desc-main">
+            <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="department">Department*</label>
+                <select name="department" class="form-control" [(ngModel)]="jobDescData && jobDescData.departmentId" (change)="loadPracticesByDepartment()" [disabled]="viewMode">
+                    <option value="">Select Department</option>
+                    <option *ngFor="let department of departmentOptions" [value]="department.id">{{department.name}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="practice">Practice*</label>
+                <select name="practice" class="form-control" [(ngModel)]="jobDescData && jobDescData.practiceId" [disabled]="viewMode">
+                    <option value="">Select Practice</option>
+                    <option *ngFor="let practice of practiceOptions" [value]="practice.id">{{practice.name}}</option>
+                </select>
+            </div>
+            <div class="form-group col-md-4 col-xs-12 col-sm-4">
+                <label class="labelText" for="templateName">Template Name*</label>
+                <input type="text" class="form-control" name="templateName" maxlength="64" [(ngModel)]="jobDescData && jobDescData.templateName" [readOnly]="viewMode" autocomplete="off"/>
+            </div>
+        </div>
+        <div class="job-desc-details row">
+            <div class="col-md-12 job-desc-col">
+                <p class="heading job-desc-heading col-md-10">JOB DESCRIPTION</p>
+                <div class="col-md-2 job-description-container">
+                  <input type="checkbox" [disabled]="!editMode || viewMode" [(ngModel)]="jobDescData && jobDescData.deprecated">
+                  <label for="meatHam">Deprecate</label>
+                </div>
+                <tabs #tablist (tabSelect)="tabSelect($event)" >
+                <tab #companyBackground [tabTitle]="'Company Background'">
+                <div class="form-group">
+                    <label for="companyBackground" class="labelText">Company Background</label>
+                    <textarea class="form-control" rows="5" cpls="15"
+                    id="companyBackground" [readOnly]="viewMode" [(ngModel)]="jobDescData && jobDescData.details.companyOverview" [autofocus]></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="practiceBackground" class="labelText">Practice Background</label>
+                    <textarea class="form-control"
+                    id="practiceBackground" [(ngModel)]="jobDescData && jobDescData.details.practiceOverview" [readOnly]="viewMode"></textarea>
+                </div>
+                </tab>
+                <tab #jobDescription [tabTitle]="'Job Description'">
+                <div class="form-group">
+                    <label for="jobDescription" class="labelText">Job Description</label>
+                    <textarea class="form-control"
+                    id="jobDescription" [(ngModel)]=" jobDescData && jobDescData.details.jobDesc" [readOnly]="viewMode"></textarea>
+                </div>
+                </tab>
+                <tab [tabTitle]="'Position/Responsibilities'">
+                <div class="form-group">
+                    <label for="positionResponsibility" class="labelText">Position/Responsibilities</label>
+                    <textarea class="form-control"
+                    id="positionResponsibility" [(ngModel)]=" jobDescData && jobDescData.details.responsibilities" [readOnly]="viewMode"></textarea>
+                </div>
+                </tab>
+                <tab [tabTitle]="'Skills'">
+                    <div *ngIf="!viewMode">
+                        <div class="form-group">
+                            <label for="designSkills" class="labelText">Design Skills</label>
+                            <div class="tag-section">
+                                <tag-input inputId="designSkills" secondaryPlaceholder="Enter a new Skill" placeholder="Add a new skill" [(ngModel)]="jobDescData && jobDescData.details.skills && jobDescData.details.skills.uxDesignSkills" addOnBlur="true"></tag-input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="technicalSkills" class="labelText">Technical Skills</label>
+                            <div class="tag-section">
+                                <tag-input inputId="technicalSkills" secondaryPlaceholder="Enter a new Skill" placeholder="Add a new skill" [(ngModel)]="jobDescData && jobDescData.details.skills && jobDescData.details.skills.technicalSkills" addOnBlur="true"></tag-input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="certifications" class="labelText">Certifications (If mandatory)</label>
+                            <div class="tag-section">
+                                <tag-input inputId="certifications" secondaryPlaceholder="Enter a new Skill" placeholder="Add a new skill" [(ngModel)]="jobDescData && jobDescData.details.skills && jobDescData.details.skills.certifications" addOnBlur="true"></tag-input>
+                            </div>
+                        </div>
+                    </div>
+                    <div *ngIf="viewMode">
+                        <div class="form-group">
+                            <label for="designSkills" class="labelText">Select Design Skills</label>
+                            <div class="tag-section">
+                                <tag-input inputId="designSkills" [(ngModel)]="jobDescData && jobDescData.details.skills && jobDescData.details.skills.designSkills" hideForm="true"></tag-input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="technicalSkills" class="labelText">Select Technical Skills</label>
+                            <div class="tag-section">
+                                <tag-input inputId="technicalSkills" [(ngModel)]="jobDescData && jobDescData.details.skills && jobDescData.details.skills.technicalSkills" hideForm="true"></tag-input>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="certifications" class="labelText">Certifications (If mandatory)</label>
+                            <div class="tag-section">
+                                <tag-input inputId="certifications" [(ngModel)]="jobDescData && jobDescData.details.skills && jobDescData.details.skills.certifications" hideForm="true"></tag-input>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="otherSkills" class="labelText">Other Skills</label>
+                        <textarea class="form-control"
+                        id="otherSkills" [(ngModel)]="jobDescData && jobDescData.details.skills && jobDescData.details.skills.others" [readOnly]="viewMode"></textarea>
+                    </div>
+                </tab>
+                <tab [tabTitle]="'Education'">
+                <div class="form-group">
+                    <label for="education" class="labelText">Education</label>
+                    <textarea class="form-control"
+                    id="education" [(ngModel)]="jobDescData &&jobDescData.details.education" [readOnly]="viewMode"></textarea>
+                </div>
+                </tab>
+                <tab [tabTitle]="'Initial Screening Questions'">
+                <div class="form-group">
+                    <label for="initialScrreningQuestions" class="labelText">Initial Screening Questions</label>
+                    <textarea class="form-control"
+                    id="initialScrreningQuestions" [(ngModel)]="jobDescData && jobDescData.details.screeningQuestions" [readOnly]="viewMode"></textarea>
+                </div>
+                </tab>
+                </tabs>
+                <div class="job-desc-btns pull-right">
+                    <button class="job-description-next-button" (click)="showJobDescList()">Close</button>
+                    <button #jobDescriptionNext class="job-description-next-button" (click)="next()">Next</button>
+                    <button *ngIf="editMode && !viewMode" [hidden]="commonService.hideFeature('UPDATE_JOB_DESCRIPTION')" class="job-description-finish-button" (click)="finishJobDescription()">Update</button>
+                    <button *ngIf="!editMode && !viewMode" #jobDescriptionFinish hidden=true class="job-description-finish-button" (click)="finishJobDescription()">Save</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

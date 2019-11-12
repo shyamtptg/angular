@@ -1,0 +1,301 @@
+@import './../../../../../assets/scss/common.scss';
+
+.offer-letter-details {
+    .offer-letter {
+        background: #f3f3f3;
+        border: 1px solid #979797;
+        height: 1029px;
+        margin: 10px;
+        clear: both;
+        overflow:auto;
+    }
+    .pdfnav {
+        float: right;
+        margin-right: 60px;
+        margin-top: -42px;
+    }
+    .btntoLinkclass {
+        color: #337ab7;
+        text-decoration: none;
+        border: none;
+        background-color: transparent;
+    }
+    .pdfnavzoom {
+        float: right;
+        margin-top: -33px;
+    }
+    .pdfnavright {
+        float: right;
+        line-height: 30px;
+        margin-left: 20px;
+    }
+    .pdfnavpage {
+        width: 60px;
+        display: inline-block
+    }
+    .offer-letter-container {
+        background: #ffffff;
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.10);
+    }
+    .offer-letter-margin {
+        border: 1px solid #e5e5e5;
+        height: 2px;
+        margin: 10px 15px 0px 15px;
+    }
+    .nav-route-items>li {
+        display: inline-block;
+        margin-right: 10px;
+        padding: 10px 15px 10px 15px;
+    }
+    .nav-route-items>li>a:hover,
+    .nav-route-items>li>a:active,
+    .nav-route-items>li>a:focus {
+        font-family: $font-family;
+        font-size: 16px;
+        color: rgba(30, 52, 72, 0.96);
+        letter-spacing: $letter-spacing;
+        border-bottom: 3px solid rgba(39, 70, 98, 0.96);
+        background: none !important;
+    }
+    .nav-route-items {
+        margin: 0px;
+    }
+    .nav-route-items>li>a {
+        font-family: $font-family;
+        font-size: 15px;
+        color: #9b9b9b;
+        letter-spacing: $letter-spacing;
+        text-decoration: none;
+        padding: 0px 0px 6px 0px;
+    }
+    .active-btn {
+        background: rgba(30, 52, 72, 0.96);
+        border-radius: 2px;
+        padding: 10px;
+        margin-left: 20px;
+    }
+    .disable-btn {
+        background: #9b9b9b;
+        border-radius: 2px;
+        padding: 10px;
+        width: 72px;
+        height: 42px;
+    }
+    .btn-text {
+        font-family: $font-family;
+        font-size: 14px;
+        color: #ffffff;
+        letter-spacing: $letter-spacing;
+        text-align: middle;
+    }
+    .active-link {
+        font-family: $font-family;
+        font-size: 15px;
+        color: rgba(30, 52, 72, 0.96);
+        letter-spacing: $letter-spacing;
+        border-bottom: 3px solid rgba(39, 70, 98, 0.96);
+        background: none !important;
+    }
+    .modal-content {
+        background: #ffffff;
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.10);
+        padding: 15px 20px 0px 30px;
+    }
+    .offer-attachments {
+        position: relative;
+    }
+    ul.attachment-list {
+        margin-top:1em;
+        padding-left:1.2em;
+        height:30em;
+        overflow: auto;
+        overflow-x: hidden;
+        li {
+            padding: 0px 10px;
+        }
+    }
+    a.attachment-link {
+        color: blue;
+    }
+    a.attachment-link:hover {
+        cursor: pointer;
+    }
+    .notification {
+        color: #f7f7f7;
+        background: white;
+        box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.10);
+        height: 1085px !important;
+        position: relative;
+    }
+    .notification-header {
+        height: auto;
+        font-family: "avenirbook";
+        font-size: 15px;
+        color: #000000;
+        letter-spacing: 0.2px;
+        border-bottom: 2px solid #e5e5e5;
+        margin: 0px 15px;
+        padding: 10px 0px 2px 0px;
+        p {
+            margin-bottom: 0px;
+        }
+    }
+    .attachment_head {
+        padding: 6px 12px;
+        p {
+            margin-bottom: 0px;
+        }
+    }
+    .letter-header {
+        padding: 6px 0 4px 0;
+    }
+    .notification-body {
+        margin: 12px 15px 20px 15px;
+        border-radius: 2px;
+        height: auto;
+        input {
+            height: 200px;
+        }
+        .checkbox {
+            label {
+                color: #000;
+                font-size: 12px;
+                input {
+                    height: auto;
+                }
+            }
+        }
+    }
+    .notify-btn {
+        background: rgba(39, 70, 98, 0.96);
+        border-radius: 2px;
+        padding: 10px;
+        font-family: $font-family;
+        font-size: 12px;
+        color: #ffffff;
+        height: 33px;
+        letter-spacing: $letter-spacing;
+        text-align: center;
+        width: 76px;
+        line-height: 10px;
+        margin-top: 10px;
+    }
+    .button-grp {
+        height: 35px;
+    }
+    #snackbar {
+        visibility: hidden;
+        width: 200px;
+        margin-left: -59px;
+        margin-right: -46px;
+        background-color: #6f6d6d;
+        color: #fff;
+        text-align: center;
+        border-radius: 3px;
+        padding: 7px 5px 7px 5px;
+        position: relative;
+        z-index: 1;
+        left: 32%;
+        top: 6em;
+        font-size: 13px;
+    }
+    #snackbar.show {
+        visibility: visible;
+        -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+    @-webkit-keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+    @keyframes fadein {
+        from {
+            bottom: 0;
+            opacity: 0;
+        }
+        to {
+            bottom: 30px;
+            opacity: 1;
+        }
+    }
+    @-webkit-keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+    @keyframes fadeout {
+        from {
+            bottom: 30px;
+            opacity: 1;
+        }
+        to {
+            bottom: 0;
+            opacity: 0;
+        }
+    }
+}
+
+.offer-detail-tabs {
+    .nav li.active a {
+        background: rgba(39, 70, 98, 0.96);
+    }
+    .nav {
+        margin-top: 0.7em;
+    }
+}
+
+.close-btn {
+    background: rgba(39, 70, 98, 0.96);
+    border-radius: 2px;
+    padding: 10px;
+    font-family: $font-family;
+    font-size: 12px;
+    color: #ffffff;
+    height: 33px;
+    letter-spacing: $letter-spacing;
+    text-align: center;
+    width: 76px;
+    line-height: 10px;
+    margin: 1em 1em 2em 0;
+}
+
+.history-comment-time p {
+    font-size: 11px;
+    color: #5d5757;
+    float: right;
+    margin: 0px;
+    padding-top: 10px;
+}
+.password-submit-button{
+  min-width: 72px;
+  height: 30px !important;
+  margin-left: 0.5em;
+  color: white;
+  border-radius: 2px;
+  border-color: transparent;  
+}
+.password-message {
+   color: red;
+   font-size: 12px;
+   margin-top: -0.7em;
+}
+.password-container {
+    width:50%;
+    margin:auto;
+    margin-top:14em;
+    background: white;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.10);
+    height: 160px;
+    padding: 10px;
+}

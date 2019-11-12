@@ -1,0 +1,20 @@
+<div class="col-md-12 hiring-need-div"><span class="pull-left need-text"><span class="need-heading" style="padding-left:0.5em;">ATTACHMENTS</span></span><span class="pull-right"><a class="glyphicon glyphicon-chevron-right attachment-plus-icon" (click)="toggleHiringNeedDetails()"></a><a class="glyphicon glyphicon-chevron-down attachment-minus-icon" (click)="toggleHiringNeedDetails()"></a></span></div>
+<div class="attachment-details close">
+	<div class="row">
+	<div class="col-md-8">
+	<div class="row col-md-12">
+		<p [hidden]="!hideAttachments">No Attachments</p>
+		<div [hidden]="hideAttachments" class="form-group" *ngFor="let document of addDocuments let i = index">
+			<upload-doc id="{{'uploadDoc'+(i+1)}}" (onFileChange)="setFileData($event, ('OTHERS' + (i+1)))" [isUpload]="uploaded['OTHERS' + (i+1)]" (onUpload)="uploadDocument('OTHERS' + (i+1))" (onDelete)="deleteDocument('OTHERS' + (i+1))" [docTitle]="loadDocumentName('OTHERS' + (i+1))" [index]="i" (onRemove)="remove(i)" [hideDownload]="true" [hideUpload]="commonService.hideFeature('UPLOAD_OFFER_ATTACHMENT') || readonly" [hideDelete]="commonService.hideFeature('DELETE_OFFER_ATTACHMENT') || readonly" [hideRemove]="true" [hideBrowse]="readonly">
+			</upload-doc>
+		</div>
+	</div>
+	<div class="row col-md-12">
+		<div class="form-group add-attachment-item" [hidden]="readonly">
+			<span class="glyphicon glyphicon-plus add-more" (click)="addMore()"></span>
+			<span (click)="addMore()" style="cursor:pointer;">Add Item</span>
+		</div>
+	</div>
+	</div>
+	</div>
+</div>

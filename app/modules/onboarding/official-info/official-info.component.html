@@ -1,0 +1,79 @@
+<form class="officialformwidth" [formGroup]="officialInfoForm">
+    <div class="fullwidth" cellspacing="0" >
+        <div fxLayout="column" fxLayoutGap="45px">       
+            <div fxLayout="row"  fxLayoutGap="40px">
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="departmentName" readonly    name="departmentName" formControlName="departmentName" >
+                    </mat-form-field>
+                </div>
+                <div>            
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Practice" readonly  name="practice" formControlName="practice">
+                    </mat-form-field>
+                </div>
+                <div>  
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Competency" readonly   name="competency" formControlName="competency">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Designation"  readonly  name="designation" formControlName="designation">
+                    </mat-form-field>
+                </div>
+            </div> 
+            <div fxLayout="row"  fxLayoutGap="41px" >
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Reporting Manager" readonly   name="Reporting Manager" formControlName="reportingManager">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Parmanent Location"  readonly  name="Parmanent Location"  formControlName="parmanentLocation">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Work Location"  readonly name="workLocationName"  formControlName="workLocationName">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Comapany Joining Date" readonly   name="Comapany Joining Date"  formControlName="joiningDate">
+                    </mat-form-field>
+                </div>                   
+            </div>
+            <div fxLayout="row"  fxLayoutGap="40px">
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Comapany Email ID"  name="Comapany Email ID"  formControlName="companyEmailId">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Business Email ID"  name="Business Email ID"  formControlName="businessEmailId">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Employment Type"   name="Employment Type"  formControlName="employmentType" [errorStateMatcher]="matcher">
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Employee Code"  name="Employee Code"  formControlName="employeeCode" [errorStateMatcher]="matcher">
+                    </mat-form-field>
+                </div>  
+            </div>
+            <div fxLayout="row"  fxLayoutGap="40px">
+                <div>
+                    <mat-form-field>
+                        <input matInput type="text" placeholder="Billable" readonly   name="Billable"  formControlName="billable">
+                    </mat-form-field>
+                </div>
+            </div>  
+        </div> 
+    </div>
+</form>

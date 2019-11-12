@@ -1,0 +1,51 @@
+<div class="row marginTop">
+    <div class="col-md-8">
+        <div class="row">
+            <div class="row wfh-radio">
+                <div class="col-md-offset-8 col-md-4">
+                    <div class="radio-info radio-inline">
+                        <input type="radio" id="inlineRadio1" value="option1" name="filter" (click)="getRequests('ALL')">
+                        <label for="All"> All </label>
+                    </div>
+                    <div class=" radio-inline">
+                        <input type="radio" value="option2" name="filter" [value]="true" checked=true (click)="getRequests('PENDING')">
+                        <label for="Pending"> Pending </label>
+                    </div>
+                    <div class=" radio-inline">
+                        <input type="radio" value="option3" name="filter" [value]="isWFH" (click)="getRequests('CANCEL')">
+                        <label for="Pending"> Cancel </label>
+                    </div>
+                </div>
+            </div>
+            <div class="row work-from-home">
+                <div class="col-md-12" style="margin-left:1em;">
+                    <h4 class="Delivery_heading">Delivery Team</h4>
+                    <ag-grid-angular #agGrid style="width:100%; height:370px;" enableColResize enableSorting enableFilter (gridReady)="onGridReady($event)"
+                        [getRowHeight]="getRowHeight" [context]="context" [paginationPageSize]="paginationPageSize" (gridSizeChanged)="resizeColumns($event)"
+                        class="ag-theme-fresh teamreqst-grid" [columnDefs]="columnDefs"></ag-grid-angular>
+                    <nav class="grid-pagination">
+                        <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPages" (onPageChange)="paginate($event)"></p-paginator>
+                    </nav>
+                </div>
+                <div class="col-md-12 " style="margin-left:1em;">
+                    <h4>Reporting Team</h4>
+                    <ag-grid-angular #agGrid style="width:100%; height:370px;" enableColResize enableSorting enableFilter (gridReady)="onGridReadyRm($event)"
+                        [getRowHeight]="getRowHeight" [context]="context" [paginationPageSize]="paginationPageSize" (gridSizeChanged)="resizeColumns($event)"
+                        class="ag-theme-fresh teamreqst-grid" [columnDefs]="columnDefsRm"></ag-grid-angular>
+                    <nav class="grid-pagination">
+                        <p-paginator [style]="{'background':'none','border':'none'}" [rows]="pageSize" [totalRecords]="totalPagesRm" (onPageChange)="paginateRm($event)"></p-paginator>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4 desc-content">
+        <h5 class="aside-heading">Work From Home</h5>
+        <div>
+            <ol>
+                <li *ngFor="let desc of leaveDetails[0].detailedDescription.split('*')">{{desc}}</li>
+
+            </ol>
+        </div>
+    </div>
+</div>

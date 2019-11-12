@@ -1,0 +1,149 @@
+<div class="recruiter-profiles">
+    <div class="row profile-details">
+        <div class="col-md-12" style="padding-left: 6px;margin-left:-10px;margin-bottom:11px">
+            <div class="dropdrown-main no-padding col-md-12">
+                <div class="no-padding col-md-3 col-sm-6 col-xs-12">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="hiringrequest" class="form-control" [(ngModel)]="hiringRequestId" (change)="loadNeedsByHiringId()">
+                        <option value="">Select Hiring Request</option>
+                        <option *ngFor="let hiringRequest of hiringRequestOptions" [value]="hiringRequest.id">{{hiringRequest.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-3 col-sm-6 col-xs-12">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="hiringneed" class="form-control" [(ngModel)]="hiringRequestNeedId" (change)="filterChanged()">
+                        <option value="">Select Hiring Request Need</option>
+                        <option *ngFor="let hiringNeed of hiringNeedOptions" [value]="hiringNeed.id">{{hiringNeed.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-3 col-sm-6 col-xs-12">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="priority" class="form-control" [(ngModel)]="noticePeriod" #noticePeriodRef="ngModel" (change)="filterChanged()">
+                            <option value="ALL">Select Notice Period</option>
+                            <option *ngFor="let noticePeriod of noticePeriodOptions" [value]="noticePeriod.code">{{noticePeriod.description}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-3 col-sm-6 col-xs-12">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="status" class="form-control" [(ngModel)]="status" #statusRef="ngModel" (change)="filterChanged()">
+                            <option value="ALL">Select Status</option>
+                            <option *ngFor="let status of statusOptions" [value]="status.code">{{status.description}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!--<div class="form-group col-md-3 col-xs-3 col-sm-12">
+            <label class="labelText" for="hiringrequest">Hiring Request</label>
+            <select name="hiringrequest" class="form-control" [(ngModel)]="hiringRequestId" (change)="loadNeedsByHiringId()">
+                <option *ngFor="let hiringRequest of hiringRequestOptions" [value]="hiringRequest.id">{{hiringRequest.purpose}}</option>
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3 col-xs-3 col-sm-12">
+            <label class="labelText" for="hiringneed">Hiring Need</label>
+            <select name="hiringneed" class="form-control" [(ngModel)]="hiringRequestNeedId">
+                <option *ngFor="let hiringNeed of hiringNeedOptions" [value]="hiringNeed.id">{{hiringNeed.purpose}}</option>
+                <option value="">All</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3 col-xs-3 col-sm-12 profile-details-buttons">
+            <button class="profile-screening-approve-button" (click)="showProfiles()">Show</button>
+            <button class="profile-screening-approve-button" (click)="resetFields()">Clear</button>
+        </div>-->
+    </div>
+    <div class="profiles-title">
+        <div class="no-padding col-md-6 col-sm-6 col-xs-6">
+            <p class="heading">PROFILES<span class="subheading"> | TOTAL {{totalRecords}}</span></p>
+        </div>
+        <!--<div class="col-md-9">
+            <div class="prioritydropdrown-main no-padding col-md-12">
+                <div class="no-padding col-md-3">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="hiringrequest" class="form-control" [(ngModel)]="hiringRequestId" (change)="loadNeedsByHiringId()">
+                        <option value="">Select Hiring Request</option>
+                        <option *ngFor="let hiringRequest of hiringRequestOptions" [value]="hiringRequest.id">{{hiringRequest.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-3">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="hiringneed" class="form-control" [(ngModel)]="hiringRequestNeedId">
+                        <option value="">Select Hiring Need</option>
+                        <option *ngFor="let hiringNeed of hiringNeedOptions" [value]="hiringNeed.id">{{hiringNeed.purpose}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-3">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="priority" class="form-control" [(ngModel)]="noticePeriod" #noticePeriodRef="ngModel" (change)="loadGrid()">
+                            <option value="ALL">Select Notice Period</option>
+                            <option *ngFor="let noticePeriod of noticePeriodOptions" [value]="noticePeriod.code">{{noticePeriod.description}}</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="no-padding col-md-3">
+                    <div class="col-md-12 col-sm-12">
+                        <select name="status" class="form-control" [(ngModel)]="status" #statusRef="ngModel" (change)="loadGrid()">
+                            <option value="ALL">Select Status</option>
+                            <option *ngFor="let status of statusOptions" [value]="status.code">{{status.description}}</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>-->
+    
+        <div class="col-md-6 col-sm-6 col-xs-6">
+            <p class="heading">
+                <a class="pull-right" (click)="exportData()"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a>
+            </p>
+        </div>
+    </div>
+    <div class="alert alert-warning alert-dismissible" role="alert" *ngIf="recordNotSelected">
+        <button type="button" class="close" (click)="this.recordNotSelected = false" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <strong *ngIf="recordNotSelected">Please select a record!</strong>
+    </div>
+    <div class="hiring-requests">
+        <ag-grid-angular class="ag-fresh grid_ag"
+            [gridOptions]="gridOptions"
+            enableColResize
+            enableSorting
+            enableFilter
+            rowSelection="single"
+            paginationPageSize=1
+            rowDeselection=true
+            (selectionChanged)="checkModes()"
+            (gridReady)="onGridInitialize()"
+            (gridSizeChanged)="resizeColumns()">
+        </ag-grid-angular>
+        <nav class="grid_nav" *ngIf="totalPages">
+            <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+        </nav>
+</div>
+<!--<div class="pull-left attach-div">
+        <span class="heading attached-text ">
+                <svg width="10" height="10">
+                    <rect width="10" height="10" style="fill:rgb(69, 135, 255);" />
+                </svg>
+                <span>Attached Profiles</span>
+            </span>
+</div>-->
+<div class="pull-right grid_btn">
+    <remarks-modal *ngIf="!commonService.hideFeature('SHORTLIST_PROFILE_FOR_HIRING_REQUEST_NEED')" [modalId]="'shortListProfile'" [remarkTitle]="'Shortlist'" [isDisable]="buttonModes.shortlist" (updateReason)="shortListProfile($event)"></remarks-modal>
+    <remarks-modal *ngIf="!commonService.hideFeature('REJECT_PROFILE_FOR_HIRING_REQUEST_NEED')" [modalId]="'RejectProfile'" [remarkTitle]="'Reject'" [required]="true" [message]="'Please enter the reason for rejection'" [isDisable]="buttonModes.reject" (updateReason)="rejectProfile($event)"></remarks-modal>
+    <button *ngIf="!commonService.hideFeature('SCHEDULE_INTERVIEW')" class="profiles-view-button" [hidden]="buttonModes.schedule" (click)="loadScheduleInterview()">Schedule Interview</button>
+    <button class="profiles-view-button" *ngIf="!commonService.hideFeature('NOTIFY_SELECTED_CANDIDATE_TO_UPLOAD_SUPPORTING_DOCUMENTS')" (click)="notifyCandidate()" [disabled]="buttonModes.notify">Notify Candidate</button>
+    <button class="profiles-view-button" *ngIf="!commonService.hideFeature('START_VERIFICATION_OF_SELECTED_CANDIDATE_DOCUMENTS')" (click)="startVerification()" [disabled]="buttonModes.startVerification">Start Verification</button>
+    <button *ngIf="!commonService.hideFeature('VIEW_PRE_JOINING_DOCUMENTS_LIST')" [disabled]="buttonModes.viewDetails" class="profiles-view-button" (click)="showVerificationDetails()">View Details</button>
+    <button *ngIf="!commonService.hideFeature('CREATE_OFFER')" class="profiles-view-button" [hidden]="buttonModes.createOffer" (click)="navigateToOffers()">Create Offer</button>
+    <button *ngIf="!commonService.hideFeature('MARK_CANDIDATE_AS_JOINED')" class="profile-screening-view-button" [disabled]="buttonModes.join" (click)="updateProspectStatus('JOIN')">Join</button>
+    <button *ngIf="!commonService.hideFeature('MARK_CANDIDATE_AS_NO_SHOW')" class="profile-screening-view-button" [disabled]="buttonModes.noShow" (click)="updateProspectStatus('NO_SHOW')">No Show</button>   
+    <button *ngIf="!commonService.hideFeature('VIEW_PROFILE_TIMELINE')" [disabled]="buttonModes.timeline" class="profile-screening-view-button" (click)="showProspectTimeline()">Show Timeline</button>
+    <button *ngIf="!commonService.hideFeature('VIEW_INTERVIEW_FEEDBACK')" [disabled]="buttonModes.viewFeedback" class="profiles-view-button" (click)="viewFeedBack()">View Feedback</button>
+    <button *ngIf="!commonService.hideFeature('VIEW_PROFILE')" [disabled]="buttonModes.viewProfile" class="profiles-view-button" (click)="viewProfile()">View Profile</button>
+</div>
+
+</div>

@@ -1,0 +1,33 @@
+<form #skillDetailsForm="ngForm" autocomplete="off">
+	<div *ngIf="!viewMode" class="row skill-category">
+		<div class="form-group col-md-5 col-xs-12 col-sm-6">
+			<label class="labelText" for="skillcategory">Skill Category</label>
+			<select name="skillcategory" class="form-control" [(ngModel)]="categoryId" [disabled]="viewMode">
+				<option *ngFor="let categoryName of categoryNames" [value]="categoryName.id">{{categoryName.name}}</option>
+			</select>
+		</div>
+		<div class="col-md-5 col-xs-12 col-sm-6">
+			<button class="skillset-add-category-button" (click)="AddCategory(categoryId)" [disabled]="(categoryId==null) ||(categoryId==9999) ">Add Category</button>
+		</div>
+	</div>
+	<div class="row">
+		<div class="skillset-container">
+			<div class="table-responsive" *ngIf="techSkillsCatwise">
+				<div class="col-md-11 col-md-offset-1 skill-set" *ngFor="let categoryskill of techSkillsCatwise.skillSets;let rowcatIndex=index">
+				<span class="category-name">{{categoryskill.categoryName}}</span><span style="cursor:pointer;" class="pull-right"><span *ngIf="!viewMode" class="cat-remove-icon" (click)="removeCategory(rowcatIndex)"><i class="fa fa-minus-circle" aria-hidden="true"></i></span><span *ngIf="!viewMode" (click)="removeCategory(rowcatIndex)">&nbsp;Remove Category</span></span>
+					<skill [allSkills]="availableTechSkills" [isViewMode]="viewMode" [skillDetails]="categoryskill.skillProficiencies" [headers]="headers"></skill>
+					<span *ngIf="!viewMode" [className]="viewMode?'glyphicon glyphicon-plus add-more action-disabled':'glyphicon glyphicon-plus add-more show'" (click)="AddSkill(rowcatIndex)"></span>
+					<span *ngIf="!viewMode" (click)="AddSkill(rowcatIndex)"  [className]="viewMode?'action-disabled':'show'">Add Skill</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div *ngIf="!viewMode && !hide" class="row skillset-button-grp">
+		<button *ngIf="!commonService.hideFeature('UPDATE_PROFILE') && hideEdit" class="pull-right login-register-btn btn" [disabled]="!skillDetailsForm.valid" (click)="saveNext(techSkillsCatwise)">Save</button>
+		<button *ngIf="!commonService.hideFeature('UPDATE_PROFILE') && !hideEdit" class="pull-right login-register-btn btn" [disabled]="!skillDetailsForm.valid" (click)="saveNext(techSkillsCatwise)">Update</button>
+		<button class="pull-right login-register-btn btn" (click)="navigateToPrevious()">Close</button>
+	</div>
+	<div *ngIf="viewMode && !hide" class="row skillset-button-grp">
+	<button class="pull-right login-register-btn btn" (click)="navigateToPrevious()">Close</button>
+	</div>
+</form>

@@ -1,0 +1,39 @@
+
+[
+    {
+        "joinee": 1, "date": "01/02/2018", "status": "Offer rolled out", "request": "005",
+        "workstation": "MAC Book Pro", "availiability": "Avialiable", "action": 0, "src": "../../../assets/Group 10.svg", "name": "Dummy Name", "id": "0000", "building": "w-489"
+    },
+    {
+        "joinee": 2, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "MAC Book Pro", "availiability": "Avialiable", "action": 1, "src": "../../../assets/Group 10.svg", "name": "Dummy Name", "id": "0000", "building": "Not Available"
+    },
+    {
+        "joinee": 3, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "MAC Book Pro", "availiability": "Avialiable", "action": 1, "src": "../../../assets/Group 10.svg", "name": "Dummy Name", "id": "0000", "building": "W-489"
+    },
+    {
+        "joinee": 4, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "MAC Book Pro", "availiability": "Avialiable", "action": 1, "src": "../../../assets/Group 10.svg", "name": "Dummy Name", "id": "0000", "building": "Not Available"
+    },
+    {
+        "joinee": 5, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "MAC Book Pro", "availiability": "Not Avialiable", "action": 1, "src": "../../../assets/Group 10.svg", "name": "Dummy Name", "id": "0000", "building": "W-489"
+    },
+    {
+        "joinee": 6, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "MAC Book Pro", "availiability": "Not Avialiable", "action": 1, "src": "../../../assets/Group 10.svg", "name": "Dummy Name", "id": "0000", "building": "Not Available"
+    },
+    {
+        "joinee": 7, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "MAC Book Pro", "availiability": "Avialiable", "action": 1, "src": "../../../assets/Group 10.svg", "name": "Dummy Name", "id": "0000", "building": "Not Available"
+    },
+    {
+        "joinee": 8, "date": "01/02/2018", "status": "Offer rolled out", "request": "004",
+        "workstation": "MAC Book Pro", "availiability": "Avialiable", "action": 1, "src": "../../../assets/Group 10.svg", "name": "Dummy Name", "id": "0000", "building": "Not Available"
+    },
+    {
+        "joinee": 9, "date": "01/02/2018", "status": "Offer rolled out", "request": "005",
+        "workstation": "MAC Book Pro", "availiability": "Avialiable", "action": 1, "src": "../../../assets/Group 10.svg", "name": "Dummy Name", "id": "0000", "building": "Not Available"
+    }
+]

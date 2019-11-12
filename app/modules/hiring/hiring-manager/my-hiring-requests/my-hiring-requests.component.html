@@ -1,0 +1,114 @@
+<div class="row hiring-dropdown">
+    <div class="prioritydropdrown-main no-padding col-md-12 col-sm-11 col-xs-12">
+        <div class="form-group col-md-3 col-xs-12 col-sm-6">
+            <label class="labelText" for="department">Department</label>
+            <select name="department" class="form-control" [(ngModel)]="filterData.department" (change)="loadPracticesByDepartment()">
+                <option value="">All</option>
+                <option *ngFor="let department of departmentOptions" [value]="department.id">{{department.name}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3 col-xs-12 col-sm-6">
+            <label class="labelText" for="practice">Practice</label>
+            <select name="practice" class="form-control" [(ngModel)]="filterData.practice" (change)="filterChanged()">
+                <option value="">All</option>
+                <option *ngFor="let practice of practiceOptions" [value]="practice.id">{{practice.name}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3 col-xs-12 col-sm-6">
+            <label class="labelText" for="priority">Priority</label>
+            <select name="priority" class="form-control" [(ngModel)]="filterData.priority" (change)="filterChanged()">
+                <option value="">All</option>
+                <option *ngFor="let priority of priorityOptions" [value]="priority.code">{{priority.description}}</option>
+            </select>
+        </div>
+        <div class="form-group col-md-3 col-xs-12 col-sm-6">
+            <label class="labelText" for="status">Status</label>
+            <select name="status" class="form-control" [(ngModel)]="filterData.status" (change)="filterChanged()">
+                <option value="">All</option>
+                <option *ngFor="let status of statusOptions" [value]="status.code">{{status.description}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+<div class="hiring-requests-title">
+    <div class="no-padding col-md-11 col-sm-11">
+        <p class="heading">MY HIRING REQUESTS<span class="subheading"> | TOTAL {{recordsCount}}</span></p>
+    </div>
+    <div class="col-md-1 col-sm-1 col-xs-12">
+        <p class="heading">
+            <a class="pull-right" (click)="exportData()"><i class="fa fa-download grid-download-icon" aria-hidden="true"></i></a>
+        </p>
+    </div>
+</div>
+<div class="hiring-requests">
+    <ag-grid-angular #agGrid class="ag-fresh grid_ag"
+        [gridOptions]="gridOptions"
+        enableColResize
+        enableSorting
+        enableFilter
+        rowSelection="single"
+        paginationPageSize=20
+        rowDeselection=true
+        (selectionChanged)="checkModes()"
+        (gridReady)="onGridInitialize()"
+        (gridSizeChanged)="resizeColumns()">
+    </ag-grid-angular>
+    <nav class="grid_nav">
+        <pagination [pageNumber]="pageNum" [pageCount]="totalPages" (pageChanged)="setPageNum($event)"></pagination>
+    </nav>
+</div>
+<div class="pull-right grid_btn">
+<button *ngIf="!commonService.hideFeature('VIEW_HIRING_REQUEST')" class="hiring-requests-update-button" [disabled]="buttonModes.edit" (click)="viewRequest()">View</button>
+<button *ngIf="!commonService.hideFeature('DELETE_HIRING_REQUEST')" class="hiring-requests-update-button" [disabled]="buttonModes.delete" (click)="deleteRequest()">Delete</button>
+<button *ngIf="!commonService.hideFeature('COMPLETE_HIRING_REQUEST')" class="hiring-requests-update-button" [disabled]="buttonModes.close" (click)="closeHiringRequest()">Complete</button>
+<button *ngIf="!commonService.hideFeature('UPDATE_HIRING_REQUEST')" class="hiring-requests-update-button" [disabled]="buttonModes.edit" (click)="updateHiringRequest()">Edit</button>
+    <button *ngIf="!commonService.hideFeature('VIEW_HIRING_REQUEST_TIMELINE')" class="hiring-requests-update-button" [disabled]="buttonModes.timeline" (click)="showHiringTimeline()">Show Timeline</button>
+    <button *ngIf="!commonService.hideFeature('SUBMIT_HIRING_REQUEST')" class="hiring-requests-update-button" [disabled]="buttonModes.submit" (click)="submitHiringRequest()">Submit</button>
+    <button *ngIf="(commonService.hideFeature('SUBMIT_HIRING_REQUEST')) && (!commonService.hideFeature('SUBMIT_HIRING_REQUEST_FOR_APPROVAL'))" class="hiring-requests-update-button" [disabled]="buttonModes.submitForApproval" (click)="submitForApproval()">Submit For Approval</button>
+<button *ngIf="!commonService.hideFeature('CREATE_HIRING_REQUEST')" class="hiring-requests-create-button" (click)="createHiringRequest()">Create</button>
+</div>
+
+<p-dialog header="Confirmation" [(visible)]="statsModal" [modal]="true" [responsive]="true" [width]="500" [minWidth]="200">
+    <div class="hiring-stats" *ngIf="hiringReqStats.showStats">
+        <span>Please find below information linked to this hiring request:</span>
+        <table>
+            <tr *ngIf="hiringReqStats.numberOfNeeds > 0">
+                <td>Needs attached</td>
+                <td>-- {{hiringReqStats.numberOfNeeds}}</td>
+            </tr>
+            <tr *ngIf="hiringReqStats.interviewStatistics.totalNumberOfUpcomingInterviews > 0">
+                <td>Interviews scheduled</td>
+                <td>-- {{hiringReqStats.interviewStatistics.totalNumberOfUpcomingInterviews}}</td>
+            </tr>
+            <tr *ngIf="hiringReqStats.interviewStatistics.totalNumberOfInterviews > 0">
+                <td>Total interviews</td>
+                <td>-- {{hiringReqStats.interviewStatistics.totalNumberOfInterviews}}</td>
+            </tr>
+            <tr *ngIf="hiringReqStats.profileStatistics.numberOfProfilesProcessed > 0">
+                <td>Profiles processed</td>
+                <td>-- {{hiringReqStats.profileStatistics.numberOfProfilesProcessed}}</td>
+            </tr>
+            <tr *ngIf="hiringReqStats.profileStatistics.numberOfCandidatesJoined > 0">
+                <td>Candidates joined</td>
+                <td>-- {{hiringReqStats.profileStatistics.numberOfCandidatesJoined}}</td>
+            </tr>
+            <tr *ngIf="hiringReqStats.offerStatistics.numberOfOffersReleased > 0">
+                <td>Offers released</td>
+                <td>-- {{hiringReqStats.offerStatistics.numberOfOffersReleased}}</td>
+            </tr>
+            <tr *ngIf="hiringReqStats.offerStatistics.numberOfOffersAccepted > 0">
+                <td>Offers accepted</td>
+                <td>-- {{hiringReqStats.offerStatistics.numberOfOffersAccepted}}</td>
+            </tr>
+            <tr *ngIf="hiringReqStats.offerStatistics.numberOfOffersRejected > 0">
+                <td>Offers rejected</td>
+                <td>-- {{hiringReqStats.offerStatistics.numberOfOffersRejected}}</td>
+            </tr>
+        </table>
+    </div>
+    <span>Do you want to proceed with closing the hiring request?</span>
+    <p-footer>
+        <button type="button" pButton (click)="statsModal = false;" label="Cancel" class="ui-button-secondary"></button>
+        <button type="button" pButton (click)="statsModal = false; close(hiringReqStats.reqId)" label="Proceed"></button>
+    </p-footer>
+</p-dialog>
